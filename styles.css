@@ -581,9 +581,9 @@ h3 {
   display: block;
   width: 100%;
   height: auto;
-  /* Feather edges into the dark background */
-  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 45%, transparent 78%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 45%, transparent 78%);
+  /* Feather edges smoothly into the page background */
+  mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 0%, black 55%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 0%, black 55%, transparent 90%);
 }
 
 /* Animated glow overlay — pulses warmth from the sun */
@@ -701,12 +701,12 @@ h3 {
 }
 
 /* Planet positions — centered on actual planet spheres */
-.planet-btn-1 { width: 110px; height: 110px; top: 31.5%; left: 27.5%; }
-.planet-btn-2 { width: 110px; height: 110px; top: 25.5%; left: 69.5%; }
-.planet-btn-3 { width: 110px; height: 110px; top: 49%; left: 82%; }
-.planet-btn-4 { width: 110px; height: 110px; top: 68.5%; left: 65.5%; }
-.planet-btn-5 { width: 110px; height: 110px; top: 73%; left: 30%; }
-.planet-btn-6 { width: 110px; height: 110px; top: 50.5%; left: 20.5%; }
+.planet-btn-1 { width: 110px; height: 110px; top: 24%; left: 29%; }
+.planet-btn-2 { width: 110px; height: 110px; top: 22%; left: 70%; }
+.planet-btn-3 { width: 110px; height: 110px; top: 48%; left: 82%; }
+.planet-btn-4 { width: 110px; height: 110px; top: 74%; left: 64%; }
+.planet-btn-5 { width: 110px; height: 110px; top: 76%; left: 32%; }
+.planet-btn-6 { width: 110px; height: 110px; top: 52%; left: 18%; }
 
 /* Stagger pulse animations */
 .planet-btn-1 .planet-pulse { animation-delay: 0s; }
@@ -722,7 +722,8 @@ h3 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.8);
-  width: 320px;
+  width: min(320px, 85vw);
+  max-width: 90vw;
   padding: 2rem;
   border-radius: 24px;
   background: rgba(8, 16, 30, 0.96);
@@ -783,9 +784,32 @@ h3 {
 
 .planet-detail-desc {
   color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  line-height: 1.5;
   margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Tablet and smaller responsiveness */
+@media (max-width: 1024px) {
+  .planet-btn {
+    width: 85px !important;
+    height: 85px !important;
+  }
+
+  .planet-detail {
+    width: min(300px, 80vw);
+    padding: 1.5rem;
+  }
+
+  .planet-detail-title {
+    font-size: 1.1rem;
+  }
+
+  .planet-detail-desc {
+    font-size: 0.85rem;
+  }
 }
 
 /* Mobile fallback */
@@ -800,8 +824,17 @@ h3 {
   }
 
   .planet-detail {
-    width: 280px;
-    padding: 1.5rem;
+    width: min(260px, 85vw);
+    padding: 1.25rem;
+  }
+
+  .planet-detail-title {
+    font-size: 1rem;
+  }
+
+  .planet-detail-desc {
+    font-size: 0.8rem;
+    line-height: 1.4;
   }
 }
 
