@@ -1,0 +1,1079 @@
+:root {
+  color-scheme: dark;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #e9eef2;
+  background: #05070b;
+  --bg: #071119;
+  --panel: rgba(10, 20, 34, 0.92);
+  --panel-strong: rgba(14, 26, 44, 0.98);
+  --text: #f8fafc;
+  --muted: #9fb2c6;
+  --accent: #60a5fa;
+  --accent-strong: #818cf8;
+  --border: rgba(96, 165, 250, 0.1);
+  --shadow: 0 25px 90px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 100% 30% at 50% 0%, rgba(96, 165, 250, 0.18) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 20% at 15% 8%, rgba(96, 165, 250, 0.12) 0%, transparent 100%),
+    radial-gradient(ellipse 50% 15% at 85% 5%, rgba(129, 140, 248, 0.1) 0%, transparent 100%),
+    linear-gradient(180deg, #030d1a 0%, #040a13 18%, #030810 40%, #020609 70%, #05070b 100%);
+  overflow-x: hidden;
+}
+
+/* ── Logo intro overlay ── */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #030d1a;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.intro-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.intro-overlay.hidden {
+  display: none;
+}
+
+.intro-logo-wrap {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-logo {
+  position: relative;
+  z-index: 1;
+  width: 360px;
+  height: auto;
+  filter: invert(1) hue-rotate(180deg) drop-shadow(0 0 0px rgba(96, 165, 250, 0));
+  opacity: 0;
+  animation: introLogoIn 1.2s ease 0.3s forwards, introLogoGlow 2s ease 1s forwards;
+}
+
+#introCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes introLogoIn {
+  0% { opacity: 0; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes introLogoGlow {
+  0% { filter: invert(1) hue-rotate(180deg) drop-shadow(0 0 0px rgba(96, 165, 250, 0)); }
+  50% { filter: invert(1) hue-rotate(180deg) drop-shadow(0 0 25px rgba(96, 165, 250, 0.8)) drop-shadow(0 0 60px rgba(96, 165, 250, 0.4)); }
+  100% { filter: invert(1) hue-rotate(180deg) drop-shadow(0 0 35px rgba(96, 165, 250, 0.9)) drop-shadow(0 0 80px rgba(129, 140, 248, 0.5)); }
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+main, .site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(3, 10, 22, 0.88);
+  border-bottom: 1px solid rgba(96, 165, 250, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  color: var(--text);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand-logo {
+  display: block;
+  height: 14rem;
+  width: auto;
+  margin: -4.5rem 0;
+  filter: invert(1) hue-rotate(180deg) drop-shadow(0 0 8px rgba(96, 165, 250, 0.2));
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-toggle {
+  display: none;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.section-heading {
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--text);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1.02;
+}
+
+h2 {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+.lead,
+.service-card p,
+.portfolio-card p,
+.testimonial-card p,
+.contact-details,
+.about p {
+  color: var(--muted);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.95rem 1.6rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #ffffff;
+}
+
+.button-outline {
+  background: transparent;
+  color: var(--text);
+  border-color: rgba(159, 178, 198, 0.25);
+}
+
+.button-secondary {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text);
+}
+
+.hero {
+  position: relative;
+  padding: 5rem 0 7rem;
+  min-height: 72vh;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.22), transparent 55%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.16), transparent 60%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.hero .eyebrow,
+.hero h1,
+.hero .lead,
+.hero-subtext,
+.hero-actions,
+.hero-card {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeInUp 0.85s ease forwards;
+}
+
+.hero .eyebrow {
+  animation-delay: 0.18s;
+}
+
+.hero h1 {
+  animation-delay: 0.28s;
+}
+
+.hero .lead {
+  animation-delay: 0.38s;
+}
+
+.hero-subtext {
+  margin-top: 1rem;
+  max-width: 620px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.75;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeInUp 0.85s ease forwards;
+  animation-delay: 0.43s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-card {
+  display: grid;
+  position: relative;
+}
+
+.hero-card::before {
+  display: none;
+}
+
+.hero-capabilities {
+  display: grid;
+  gap: 1rem;
+}
+
+.capability-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 20px;
+  background: rgba(96, 165, 250, 0.04);
+  border: 1px solid rgba(96, 165, 250, 0.12);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.capability-item:hover {
+  border-color: rgba(96, 165, 250, 0.35);
+  box-shadow: 0 0 30px rgba(96, 165, 250, 0.1), inset 0 0 20px rgba(96, 165, 250, 0.03);
+  transform: translateX(-4px);
+}
+
+.capability-icon {
+  font-size: 1.5rem;
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(96, 165, 250, 0.1);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+.capability-item strong {
+  display: block;
+  color: var(--text);
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.capability-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.hero-strengths {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.hero-strength {
+  padding: 1.3rem 1.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.01);
+}
+
+.hero-strength strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.card-panel {
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.card-panel h2 {
+  margin-bottom: 1rem;
+}
+
+.card-panel ul,
+.service-card ul,
+.experience-item ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card-panel li::before,
+.service-card li::before,
+.experience-item li::before {
+  content: '•';
+  margin-right: 0.5rem;
+  color: var(--accent);
+}
+
+.section-heading {
+  position: relative;
+}
+
+.section-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.6rem;
+  width: 4rem;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+}
+
+.section-alt {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.trust-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.trust-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(96, 165, 250, 0.24);
+}
+
+.trust-card h3 {
+  margin-bottom: 0.75rem;
+}
+
+.service-grid,
+.portfolio-grid,
+.testimonial-grid,
+.contact-grid,
+.about-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.service-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.service-card,
+.portfolio-card,
+.testimonial-card,
+.contact-card,
+.highlight-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.service-card:hover,
+.portfolio-card:hover,
+.testimonial-card:hover,
+.contact-card:hover,
+.highlight-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(96, 165, 250, 0.32);
+  box-shadow: 0 36px 120px rgba(0, 0, 0, 0.28);
+}
+
+.service-card h3,
+.portfolio-card h3,
+.experience-item h3 {
+  margin-bottom: 0.75rem;
+}
+
+.portfolio-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* ── Solar System "Why It Matters" ── */
+.why-heading {
+  text-align: center;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.solar-system {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 3rem auto 0;
+}
+
+.solar-image-wrap {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
+.solar-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Feather edges into the dark background */
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 45%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 45%, transparent 78%);
+}
+
+/* Animated glow overlay — pulses warmth from the sun */
+.solar-glow-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 25% 30% at 50% 50%, rgba(255, 200, 60, 0.08) 0%, transparent 60%);
+  animation: solarGlow 4s ease-in-out infinite;
+}
+
+@keyframes solarGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Rotating orbit ring overlays — subtle rings that spin */
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orbit-ring-1 {
+  width: 28%;
+  height: 42%;
+  border: 1px solid rgba(255, 180, 60, 0.2);
+  animation: orbitSpin 35s linear infinite;
+}
+
+.orbit-ring-2 {
+  width: 52%;
+  height: 65%;
+  border: 1px solid rgba(96, 165, 250, 0.12);
+  animation: orbitSpin 60s linear infinite reverse;
+}
+
+.orbit-ring-3 {
+  width: 78%;
+  height: 88%;
+  border: 1px solid rgba(96, 165, 250, 0.06);
+  animation: orbitSpin 90s linear infinite;
+}
+
+/* Orbiting particle dots on each ring */
+.orbit-ring::before,
+.orbit-ring::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(96, 165, 250, 0.7);
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.6), 0 0 20px rgba(96, 165, 250, 0.3);
+}
+
+.orbit-ring::before { top: 0; left: 50%; transform: translate(-50%, -50%); }
+.orbit-ring::after { bottom: 0; left: 50%; transform: translate(-50%, 50%); }
+
+.orbit-ring-1::before,
+.orbit-ring-1::after {
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 180, 60, 0.8);
+  box-shadow: 0 0 8px rgba(255, 180, 60, 0.6), 0 0 20px rgba(255, 180, 60, 0.3);
+}
+
+.orbit-ring-2::before,
+.orbit-ring-2::after {
+  width: 4px;
+  height: 4px;
+}
+
+@keyframes orbitSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Planet buttons — large hit areas over the image planets */
+.planet-btn {
+  position: absolute;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+  z-index: 2;
+}
+
+.planet-btn:hover {
+  background: rgba(96, 165, 250, 0.1);
+  box-shadow: 0 0 25px rgba(96, 165, 250, 0.35), 0 0 50px rgba(96, 165, 250, 0.12);
+}
+
+.planet-btn:active {
+  background: rgba(96, 165, 250, 0.18);
+}
+
+/* Pulse ring inside each planet button */
+.planet-pulse {
+  position: absolute;
+  inset: 20%;
+  border-radius: 50%;
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  animation: planetPulseRing 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes planetPulseRing {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Planet positions — centered on actual planet spheres */
+.planet-btn-1 { width: 110px; height: 110px; top: 31.5%; left: 27.5%; }
+.planet-btn-2 { width: 110px; height: 110px; top: 25.5%; left: 69.5%; }
+.planet-btn-3 { width: 110px; height: 110px; top: 49%; left: 82%; }
+.planet-btn-4 { width: 110px; height: 110px; top: 68.5%; left: 65.5%; }
+.planet-btn-5 { width: 110px; height: 110px; top: 73%; left: 30%; }
+.planet-btn-6 { width: 110px; height: 110px; top: 50.5%; left: 20.5%; }
+
+/* Stagger pulse animations */
+.planet-btn-1 .planet-pulse { animation-delay: 0s; }
+.planet-btn-2 .planet-pulse { animation-delay: 0.6s; }
+.planet-btn-3 .planet-pulse { animation-delay: 1.2s; }
+.planet-btn-4 .planet-pulse { animation-delay: 1.8s; }
+.planet-btn-5 .planet-pulse { animation-delay: 2.4s; }
+.planet-btn-6 .planet-pulse { animation-delay: 3.0s; }
+
+/* Expanded detail panel */
+.planet-detail {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  width: 320px;
+  padding: 2rem;
+  border-radius: 24px;
+  background: rgba(8, 16, 30, 0.96);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 0 60px rgba(96, 165, 250, 0.15), 0 25px 80px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10;
+  text-align: center;
+}
+
+.planet-detail.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+.planet-detail[hidden] {
+  display: block;
+}
+
+.planet-detail-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.planet-detail-close:hover {
+  color: var(--text);
+}
+
+.planet-detail-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  background: rgba(96, 165, 250, 0.1);
+  border: 1px solid rgba(96, 165, 250, 0.25);
+}
+
+.planet-detail-title {
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.planet-detail-desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Mobile fallback */
+@media (max-width: 768px) {
+  .solar-system {
+    max-width: 100%;
+  }
+
+  .planet-btn {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .planet-detail {
+    width: 280px;
+    padding: 1.5rem;
+  }
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.12);
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.contact-card {
+  background: linear-gradient(180deg, rgba(4, 10, 18, 0.95), rgba(12, 20, 32, 0.98));
+}
+
+.contact-details {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.contact-details li {
+  padding: 1rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.contact-details strong {
+  color: var(--text);
+}
+
+.form-note {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 980px) {
+  .hero-grid,
+  .service-grid,
+  .portfolio-grid,
+  .testimonial-grid,
+  .contact-grid,
+  .about-grid,
+  .hero-strengths,
+  .trust-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-grid {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-top: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .hero {
+    padding-top: 2rem;
+  }
+}
+
+.portfolio-card {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.testimonial-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.testimonial-card p {
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-card strong {
+  color: var(--text);
+}
+
+.about-grid {
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+.experience-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.experience-list-simple {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+  color: var(--muted);
+}
+
+.experience-list-simple li::before {
+  content: '•';
+  margin-right: 0.5rem;
+  color: var(--accent);
+}
+
+.experience-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 1.75rem;
+}
+
+.experience-item p {
+  margin: 0.4rem 0 1rem;
+  color: var(--accent);
+}
+
+.about-cta {
+  margin-top: 2rem;
+}
+
+.contact-grid {
+  grid-template-columns: 1.2fr 0.9fr;
+  gap: 2rem;
+}
+
+.contact-details {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 0.8rem;
+  color: var(--muted);
+}
+
+.contact-card form {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-card label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.contact-card input,
+.contact-card textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 18, 27, 0.95);
+  color: var(--text);
+  border-radius: 18px;
+  padding: 0.95rem 1rem;
+  outline: none;
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.12);
+}
+
+.form-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ── Animated tech canvas background (full page) ── */
+#techCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scroll reveal animations */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.site-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.75rem 0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  color: var(--muted);
+}
+
+@media (max-width: 1080px) {
+  .hero-grid,
+  .about-grid,
+  .contact-grid,
+  .service-grid,
+  .portfolio-grid,
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .container {
+    width: min(100%, calc(100% - 1.5rem));
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
