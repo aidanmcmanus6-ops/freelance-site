@@ -565,7 +565,7 @@ h3 {
 }
 
 .solar-system {
-  position: relative;
+  position: relative  ls ~/.ssh/id_ed25519.pub;
   width: 100%;
   max-width: 1000px;
   margin: 3rem auto 0;
