@@ -1035,13 +1035,10 @@ h3 {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .orbital-showcase {
-    min-height: 360px;
-    border-radius: 20px;
+    display: none;
   }
-
-
 
   .planet-card-grid {
     grid-template-columns: 1fr;

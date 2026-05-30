@@ -186,6 +186,12 @@ function IntroOverlay({ onComplete }) {
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) {
+      setVisible(false);
+      onComplete();
+      return undefined;
+    }
     const timer = window.setTimeout(() => {
       setVisible(false);
       onComplete();
