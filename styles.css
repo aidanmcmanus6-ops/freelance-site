@@ -1036,10 +1036,6 @@ h3 {
 }
 
 @media (max-width: 768px) {
-  .orbital-showcase {
-    display: none;
-  }
-
   .planet-card-grid {
     grid-template-columns: 1fr;
   }
