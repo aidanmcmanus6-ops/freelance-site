@@ -88,12 +88,12 @@ const planetData = [
 // Angles use the golden angle (~2.4 rad) for maximum spread — proven to avoid periodic bunching.
 // Speeds are set to irrational ratios of each other to prevent orbital resonances.
 const planetVisuals = [
-  { base: '#7c3aed', light: '#f3e8ff', dark: '#1e1037', glow: 'rgba(168, 85, 247, 0.5)', size: 29, orbit: 0.52, speed: 0.161, angle: 0.50, bands: ['rgba(233, 213, 255, 0.24)', 'rgba(59, 7, 100, 0.28)'] },
-  { base: '#ea580c', light: '#ffedd5', dark: '#431407', glow: 'rgba(251, 146, 60, 0.52)', size: 36, orbit: 0.61, speed: 0.117, angle: 2.90, bands: ['rgba(255, 237, 213, 0.25)', 'rgba(124, 45, 18, 0.3)'] },
-  { base: '#0284c7', light: '#e0f2fe', dark: '#082f49', glow: 'rgba(56, 189, 248, 0.48)', size: 33, orbit: 0.70, speed: 0.088, angle: 5.30, bands: ['rgba(186, 230, 253, 0.28)', 'rgba(12, 74, 110, 0.24)'] },
-  { base: '#0891b2', light: '#cffafe', dark: '#083344', glow: 'rgba(34, 211, 238, 0.44)', size: 39, orbit: 0.80, speed: 0.067, angle: 1.42, bands: ['rgba(207, 250, 254, 0.24)', 'rgba(22, 78, 99, 0.24)'] },
-  { base: '#a16207', light: '#fef3c7', dark: '#422006', glow: 'rgba(215, 163, 95, 0.42)', size: 30, orbit: 0.90, speed: 0.051, angle: 3.82, bands: ['rgba(254, 243, 199, 0.24)', 'rgba(113, 63, 18, 0.24)'] },
-  { base: '#2563eb', light: '#dbeafe', dark: '#172554', glow: 'rgba(96, 165, 250, 0.46)', size: 34, orbit: 1.00, speed: 0.039, angle: 6.22, bands: ['rgba(219, 234, 254, 0.22)', 'rgba(30, 58, 138, 0.24)'] },
+  { base: '#7c3aed', light: '#f3e8ff', dark: '#1e1037', glow: 'rgba(168, 85, 247, 0.5)', size: 29, orbit: 0.52, speed: 0.161, angle: 0.50 },
+  { base: '#ea580c', light: '#ffedd5', dark: '#431407', glow: 'rgba(251, 146, 60, 0.52)', size: 36, orbit: 0.61, speed: 0.117, angle: 2.90 },
+  { base: '#0284c7', light: '#e0f2fe', dark: '#082f49', glow: 'rgba(56, 189, 248, 0.48)', size: 33, orbit: 0.70, speed: 0.088, angle: 5.30 },
+  { base: '#0891b2', light: '#cffafe', dark: '#083344', glow: 'rgba(34, 211, 238, 0.44)', size: 39, orbit: 0.80, speed: 0.067, angle: 1.42 },
+  { base: '#a16207', light: '#fef3c7', dark: '#422006', glow: 'rgba(215, 163, 95, 0.42)', size: 30, orbit: 0.90, speed: 0.051, angle: 3.82 },
+  { base: '#2563eb', light: '#dbeafe', dark: '#172554', glow: 'rgba(96, 165, 250, 0.46)', size: 34, orbit: 1.00, speed: 0.039, angle: 6.22 },
 ];
 
 const minorOrbitals = [
@@ -616,7 +616,7 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
     };
 
     const drawPlanet = (planet) => {
-      const { x, y, radius, base, light, dark, glow, bands, index, depth } = planet;
+      const { x, y, radius, base, light, dark, glow, index, depth } = planet;
       const distanceFromSun = Math.max(1, Math.hypot(x, y));
       const lightX = -x / distanceFromSun;
       const lightY = -y / distanceFromSun;
