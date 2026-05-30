@@ -1408,7 +1408,15 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
 function WhyItMatters() {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [hintSeen, setHintSeen] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 768px)').matches);
   const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
 
   const handlePlanetClick = useCallback((index) => {
     setSelectedPlanet(index);
@@ -1426,6 +1434,7 @@ function WhyItMatters() {
           viewport={sectionViewport}
           transition={transition(reducedMotion)}
         >
+          {!isMobile && (
           <div className="orbital-showcase" aria-label="Six business impact planets orbiting MCM Integrated delivery">
             <OrbitalScrollScene activeIndex={selectedPlanet ?? -1} onPlanetClick={handlePlanetClick} />
             <AnimatePresence>
@@ -1463,6 +1472,7 @@ function WhyItMatters() {
               )}
             </AnimatePresence>
           </div>
+          )}
 
           <div className="planet-card-grid">
             {planetData.map((planet, index) => (
