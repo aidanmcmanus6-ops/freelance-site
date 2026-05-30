@@ -1,6 +1,6 @@
 # MCM Integrated — Freelance Services Site
 
-A modern, responsive website showcasing professional services in web development, AI automation, and observability/monitoring. Built with clean, accessible HTML, CSS, and vanilla JavaScript.
+A modern, responsive website showcasing professional services in web development, AI automation, and observability/monitoring. Built with React, Vite, Framer Motion, and focused CSS.
 
 ## Features
 
@@ -12,17 +12,19 @@ A modern, responsive website showcasing professional services in web development
 - **About & Contact** — Team info and contact form
 - **Responsive Design** — Mobile-first layout that adapts to all screen sizes
 - **Dark Theme** — Professional dark mode with accent colors
-- **Animations** — Smooth fade-in, orbit rings, pulsing effects, and scroll reveals
+- **Animations** — Framer Motion reveals, animated intro, orbit rings, pulsing effects, and canvas background motion
 
 ## File Structure
 
 ```
 freelance-site/
 ├── index.html          # Main HTML structure
+├── src/                # React app and components
 ├── styles.css          # All styling and animations
-├── script.js           # Interactive features (menu toggle, planet buttons, scroll reveal)
-├── logo.png            # Brand logo
+├── mcm-logo-transparent.png # Transparent site logo
+├── intro-animation-clean.mp4 # Intro animation without watermark
 ├── solarsystem.png     # Interactive solar system image (transparent background)
+├── package.json        # Vite/React dependencies and scripts
 └── README.md           # This file
 ```
 
@@ -30,15 +32,21 @@ freelance-site/
 
 ### Local Development
 
-1. Clone or open the project directory
-2. Start a local server:
+1. Install dependencies:
    ```bash
-   python3 -m http.server 8000
+   npm install
    ```
-3. Open [http://localhost:8000](http://localhost:8000) in your browser
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+3. Open the local Vite URL shown in the terminal.
 
-### No Build Step Required
-This is a static site—just open `index.html` in any modern browser. No dependencies or compilation needed.
+### Production Build
+
+```bash
+npm run build
+```
 
 ## Key Sections
 
@@ -72,7 +80,7 @@ Edit CSS variables in `:root` in `styles.css`:
 ```
 
 ### Images
-- Replace `logo.png` with your brand logo
+- Replace `mcm-logo-transparent.png` with your brand logo
 - Replace `solarsystem.png` with your own visualization (must have transparent background)
 
 ### Text Content
