@@ -1650,6 +1650,33 @@ function About() {
 
 function Contact() {
   const reducedMotion = useReducedMotion();
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+    setError('');
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/aidan@mcm-integrated.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(event.target),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (response.ok && (result.success === 'true' || result.success === true)) {
+        // We own the post-submit experience: send the visitor to the
+        // confirmation page (which also fires the GA4 conversion event).
+        window.location.href = '/thank-you/';
+        return;
+      }
+      throw new Error(result.message || 'Submission failed');
+    } catch (err) {
+      setError('Something went wrong sending your request. Please email aidan@mcm-integrated.com directly.');
+      setSubmitting(false);
+    }
+  }
 
   return (
     <section className="section contact" id="contact">
@@ -1670,7 +1697,7 @@ function Contact() {
           </div>
         </motion.div>
         <motion.div className="contact-card" variants={cardMotion} initial="hidden" whileInView="visible" viewport={sectionViewport} transition={transition(reducedMotion)}>
-          <form id="contactForm" action="https://formsubmit.co/aidan@mcm-integrated.com" method="POST">
+          <form id="contactForm" action="https://formsubmit.co/aidan@mcm-integrated.com" method="POST" onSubmit={handleSubmit}>
             <input type="hidden" name="_subject" value="New MCM Integrated project request" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
@@ -1722,7 +1749,8 @@ function Contact() {
             <label htmlFor="message">Message</label>
             <textarea id="message" name="message" rows="5" placeholder="Tell me about your project" required />
 
-            <button className="button button-primary" type="submit">Send Request</button>
+            <button className="button button-primary" type="submit" disabled={submitting}>{submitting ? 'Sending…' : 'Send Request'}</button>
+            {error && <p className="form-note" role="alert" style={{ color: '#fca5a5' }}>{error}</p>}
             <p className="form-note">Requests are sent directly to aidan@mcm-integrated.com. Prefer to talk first? <a href={calendarUrl} target="_blank" rel="noopener">Book a call</a>.</p>
           </form>
         </motion.div>
