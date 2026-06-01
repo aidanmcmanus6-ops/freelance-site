@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- noindex: confirmation page should never appear in search results -->
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Thank You — Request Received | MCM Integrated</title>
+  <meta name="theme-color" content="#020617" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4H8NQ7SRDD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4H8NQ7SRDD');
+
+    // GA4 conversion event — fires once when this confirmation page loads,
+    // i.e. only after a successful contact-form / appointment request.
+    // Mark "generate_lead" as a Key event in GA4 Admin, then import it into Google Ads.
+    gtag('event', 'generate_lead', {
+      event_category: 'contact',
+      event_label: 'appointment_request'
+    });
+
+    // ── Google Ads conversion (OPTIONAL direct method) ───────────────────────
+    // After you create a conversion action in Google Ads, it gives you a
+    // send_to value like 'AW-XXXXXXXXX/aBcDeFgHiJ'. Uncomment and paste it:
+    //
+    // gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXX/XXXXXXXXXXXXXXXXX' });
+    // ─────────────────────────────────────────────────────────────────────────
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="module" src="/src/page.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="MCM Integrated home">
+        <img src="/mcm-logo-transparent.png" alt="MCM Integrated logo" class="brand-logo" />
+        <span class="sr-only">MCM Integrated</span>
+      </a>
+      <nav class="nav-links" id="primaryNav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/web-design/">Web Design</a>
+        <a href="/ai-automation/">AI Automation</a>
+        <a href="/monitoring/">Monitoring</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/#contact" class="button button-secondary">Contact</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section">
+      <div class="container hero-grid" style="grid-template-columns: 1fr; max-width: 760px; text-align: center;">
+        <div>
+          <p class="eyebrow">Request received</p>
+          <h1>Thank you — your request is in.</h1>
+          <p class="lead">Thanks for reaching out to MCM Integrated. Your project request has been sent and I'll get back to you personally, usually within one business day.</p>
+          <p style="color: var(--muted); margin-bottom: 2rem;">Want to lock in a time right now? You can book a discovery call directly on my calendar.</p>
+          <div class="hero-actions" style="justify-content: center;">
+            <a class="button button-primary" href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener">Book a Call</a>
+            <a class="button button-outline" href="/">Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 MCM Integrated</p>
+      <nav aria-label="Footer">
+        <a href="/">Home</a> ·
+        <a href="/web-design/">Web Design</a> ·
+        <a href="/ai-automation/">AI Automation</a> ·
+        <a href="/monitoring/">Monitoring</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
