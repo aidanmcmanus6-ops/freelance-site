@@ -1690,7 +1690,7 @@ function Contact() {
           <ul className="contact-details">
             <li><strong>Email:</strong> <a href="mailto:aidan@mcm-integrated.com">aidan@mcm-integrated.com</a></li>
             <li><strong>Phone:</strong> <a href="tel:+16093040371">609-304-0371</a></li>
-            <li><strong>Location:</strong> Southern New Jersey / Remote engagements</li>
+            <li><strong>Service area:</strong> Burlington &amp; Camden County, NJ - Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, Burlington, and the greater Philadelphia area. Remote engagements welcome.</li>
           </ul>
           <div className="contact-actions">
             <a className="button button-outline" href={calendarUrl} target="_blank" rel="noopener">Book a Call</a>
@@ -1802,6 +1802,7 @@ function App() {
       <footer className="site-footer">
         <div className="container footer-inner">
           <p>© 2026 MCM Integrated</p>
+          <p className="footer-areas">Web design, AI automation &amp; monitoring serving Burlington and Camden County, New Jersey - Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, Lumberton, Burlington - and the greater Philadelphia area.</p>
         </div>
       </footer>
     </>

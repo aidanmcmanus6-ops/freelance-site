@@ -1413,6 +1413,15 @@ h3 {
   color: var(--muted);
 }
 
+.footer-areas {
+  flex-basis: 100%;
+  margin: 0.4rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--muted);
+  opacity: 0.85;
+}
+
 @media (max-width: 1080px) {
   .hero-grid,
   .about-grid,
