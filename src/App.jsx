@@ -25,6 +25,7 @@ const navItems = [
   ['Why It Matters', '#why'],
   ['Portfolio', '#portfolio'],
   ['FAQ', '#faq'],
+  ['Blog', '/blog/'],
 ];
 
 const capabilityItems = [

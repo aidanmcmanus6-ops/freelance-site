@@ -15,6 +15,9 @@ export default defineConfig({
         monitoring: resolve(__dirname, 'monitoring/index.html'),
         // Conversion confirmation page (noindex) — fires the lead/booking event.
         thankYou: resolve(__dirname, 'thank-you/index.html'),
+        // Blog.
+        blog: resolve(__dirname, 'blog/index.html'),
+        blogWebsiteCost: resolve(__dirname, 'blog/small-business-website-cost-south-jersey/index.html'),
       },
     },
   },
