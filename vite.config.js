@@ -13,6 +13,8 @@ export default defineConfig({
         webDesign: resolve(__dirname, 'web-design/index.html'),
         aiAutomation: resolve(__dirname, 'ai-automation/index.html'),
         monitoring: resolve(__dirname, 'monitoring/index.html'),
+        // Conversion confirmation page (noindex) — fires the lead/booking event.
+        thankYou: resolve(__dirname, 'thank-you/index.html'),
       },
     },
   },

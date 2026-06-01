@@ -1674,6 +1674,7 @@ function Contact() {
             <input type="hidden" name="_subject" value="New MCM Integrated project request" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://www.mcm-integrated.com/thank-you/" />
             <label htmlFor="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Your name" required />
 
