@@ -15,4 +15,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://mcm-integrated.com/sitemap.xml
+Sitemap: https://www.mcm-integrated.com/sitemap.xml
