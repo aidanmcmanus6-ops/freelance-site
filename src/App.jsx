@@ -1659,7 +1659,7 @@ function Contact() {
     setSubmitting(true);
     setError('');
     try {
-      const response = await fetch('https://formsubmit.co/ajax/aidan@mcm-integrated.com', {
+      const response = await fetch('https://formsubmit.co/ajax/6882a8350f42f5141130704b2cfafc2b', {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: new FormData(event.target),
@@ -1697,7 +1697,7 @@ function Contact() {
           </div>
         </motion.div>
         <motion.div className="contact-card" variants={cardMotion} initial="hidden" whileInView="visible" viewport={sectionViewport} transition={transition(reducedMotion)}>
-          <form id="contactForm" action="https://formsubmit.co/aidan@mcm-integrated.com" method="POST" onSubmit={handleSubmit}>
+          <form id="contactForm" action="https://formsubmit.co/6882a8350f42f5141130704b2cfafc2b" method="POST" onSubmit={handleSubmit}>
             <input type="hidden" name="_subject" value="New MCM Integrated project request" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
