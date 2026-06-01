@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+  Source template for the social share image (Open Graph / Twitter card).
+  Rendered to public/og-image.png at 1200x630 via headless Chrome.
+  Edit this file and re-run the render command to regenerate the image.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #f8fafc;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 15%, rgba(124, 58, 237, 0.28) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 85% 90%, rgba(14, 116, 144, 0.30) 0%, transparent 60%),
+        radial-gradient(ellipse 90% 60% at 50% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 70%),
+        linear-gradient(150deg, #020617 0%, #050b1c 45%, #0a0f24 100%);
+    }
+    .frame {
+      position: absolute;
+      inset: 28px;
+      border: 1px solid rgba(139, 92, 246, 0.18);
+      border-radius: 28px;
+      pointer-events: none;
+    }
+    .logo {
+      width: 720px;
+      max-width: 78%;
+      height: auto;
+      filter: drop-shadow(0 18px 60px rgba(0, 0, 0, 0.45));
+    }
+    .tagline {
+      margin-top: 44px;
+      font-size: 38px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #e9eef2;
+    }
+    .tagline .dot { color: #8b5cf6; margin: 0 14px; font-weight: 700; }
+    .sub {
+      margin-top: 20px;
+      font-size: 25px;
+      font-weight: 500;
+      color: #a9b7cb;
+      letter-spacing: 0.3px;
+    }
+    .url {
+      position: absolute;
+      bottom: 54px;
+      font-size: 23px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: #38bdf8;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="frame"></div>
+  <img class="logo" src="./mcm-logo-transparent.png" alt="MCM Integrated" />
+  <div class="tagline">Websites<span class="dot">·</span>AI Automation<span class="dot">·</span>Monitoring</div>
+  <div class="sub">Senior engineering for growing businesses — Southern New Jersey &amp; remote</div>
+  <div class="url">mcm-integrated.com</div>
+</body>
+</html>
