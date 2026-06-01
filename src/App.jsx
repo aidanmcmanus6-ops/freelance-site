@@ -38,16 +38,19 @@ const services = [
     title: 'Modern Websites',
     body: 'Production-ready websites and applications - built, launched, and supported end to end.',
     bullets: ['Custom landing pages and product sites', 'Responsive UX with modern frameworks', 'Deployment, hosting, and release automation'],
+    href: '/web-design/',
   },
   {
     title: 'AI & Automation',
     body: 'Practical AI workflows and integrations using Microsoft Copilot Studio, Azure Foundry, and secure toolchain orchestration.',
     bullets: ['Intelligent automation workflows', 'Azure Functions and tool connectors', 'Identity-aware authorization and access controls'],
+    href: '/ai-automation/',
   },
   {
     title: 'Monitoring & Reliability',
     body: 'Observability and alerting that keeps your team ahead of outages and reduces operational noise.',
     bullets: ['Production-scale monitoring and synthetic checks', 'Custom dashboards and response workflows', 'Incident automation and deployment practices'],
+    href: '/monitoring/',
   },
 ];
 
@@ -187,7 +190,8 @@ function IntroOverlay({ onComplete }) {
 
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    if (isMobile) {
+    const deepLinked = window.location.hash.length > 1;
+    if (isMobile || deepLinked) {
       setVisible(false);
       onComplete();
       return undefined;
@@ -195,7 +199,7 @@ function IntroOverlay({ onComplete }) {
     const timer = window.setTimeout(() => {
       setVisible(false);
       onComplete();
-    }, reducedMotion ? 650 : 2800);
+    }, reducedMotion ? 650 : 6000);
     return () => window.clearTimeout(timer);
   }, [onComplete, reducedMotion]);
 
@@ -445,6 +449,7 @@ function Services() {
               <ul>
                 {service.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
               </ul>
+              <a className="service-link" href={service.href}>Learn more →</a>
             </motion.article>
           ))}
         </CardGrid>
@@ -1638,9 +1643,6 @@ function About() {
             <li>Secure workflows and authorization patterns that protect data and identity</li>
           </ul>
         </motion.div>
-        <motion.div className="about-cta" variants={fadeUp} initial="hidden" whileInView="visible" viewport={sectionViewport} transition={transition(reducedMotion)}>
-          <a className="button button-primary" href="#contact">Start a Project</a>
-        </motion.div>
       </div>
     </section>
   );
@@ -1730,6 +1732,25 @@ function Contact() {
 
 function App() {
   const [introComplete, setIntroComplete] = useState(false);
+
+  // SPA deep-link support: when arriving with a #hash (e.g. from a service
+  // page's "Start Your Project" link), the browser's native scroll fires
+  // before React renders the section, so do it manually once mounted.
+  useEffect(() => {
+    const { hash } = window.location;
+    if (hash.length <= 1) return undefined;
+    const id = decodeURIComponent(hash.slice(1));
+    const timer = window.setTimeout(() => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const root = document.documentElement;
+      const previousBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+      el.scrollIntoView({ block: 'start' });
+      root.style.scrollBehavior = previousBehavior;
+    }, 120);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <>

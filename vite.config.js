@@ -1,6 +1,19 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      input: {
+        // Home page — the React SPA (unchanged).
+        main: resolve(__dirname, 'index.html'),
+        // Static, content-rich service landing pages (real HTML for SEO/AEO).
+        webDesign: resolve(__dirname, 'web-design/index.html'),
+        aiAutomation: resolve(__dirname, 'ai-automation/index.html'),
+        monitoring: resolve(__dirname, 'monitoring/index.html'),
+      },
+    },
+  },
 });
