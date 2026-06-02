@@ -1602,3 +1602,38 @@ h3 {
 }
 
 .article-cta p { margin: 0 0 1.4rem; }
+
+.article-figure {
+  margin: 2.4rem 0;
+}
+
+.article-figure svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.article-figure figcaption {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 0.7rem;
+}
+
+/* Buttons inside article content must not inherit the prose link styling */
+.article-body .button {
+  text-decoration: none;
+}
+
+.article-body .button-primary {
+  color: #ffffff;
+}
+
+.article-body .button-outline {
+  color: var(--text);
+}
