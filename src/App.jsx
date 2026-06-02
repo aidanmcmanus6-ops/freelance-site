@@ -186,16 +186,30 @@ function SectionHeading({ eyebrow, title, centered = false }) {
 }
 
 function IntroOverlay({ onComplete }) {
-  const [visible, setVisible] = useState(true);
   const reducedMotion = useReducedMotion();
+  // Decide synchronously (before first paint) whether the intro should show, so
+  // it never flashes on screen before being skipped. Play it only once per visit;
+  // skip on mobile, on deep links, and after it has already shown this session.
+  const [visible, setVisible] = useState(() => {
+    try {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const deepLinked = window.location.hash.length > 1;
+      const alreadySeen = sessionStorage.getItem('mcm-intro-seen') === '1';
+      return !(isMobile || deepLinked || alreadySeen);
+    } catch (err) {
+      return true;
+    }
+  });
 
   useEffect(() => {
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const deepLinked = window.location.hash.length > 1;
-    if (isMobile || deepLinked) {
-      setVisible(false);
+    if (!visible) {
       onComplete();
       return undefined;
+    }
+    try {
+      sessionStorage.setItem('mcm-intro-seen', '1');
+    } catch (err) {
+      /* sessionStorage unavailable; intro will simply play on each load */
     }
     const timer = window.setTimeout(() => {
       setVisible(false);
@@ -1803,7 +1817,7 @@ function App() {
       <footer className="site-footer">
         <div className="container footer-inner">
           <p>© 2026 MCM Integrated</p>
-          <p className="footer-areas">Web design, AI automation &amp; monitoring serving Burlington and Camden County, New Jersey - Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, Lumberton, Burlington - and the greater Philadelphia area.</p>
+          <p className="footer-areas">Web design, AI automation &amp; monitoring serving Burlington and Camden County, New Jersey, including Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, Lumberton, Burlington, and the greater Philadelphia area.</p>
         </div>
       </footer>
     </>
