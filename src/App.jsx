@@ -37,7 +37,7 @@ const capabilityItems = [
 const services = [
   {
     title: 'Modern Websites',
-    body: 'Production-ready websites and applications - built, launched, and supported end to end.',
+    body: 'Production-ready websites and applications, built, launched, and supported end to end.',
     bullets: ['Custom landing pages and product sites', 'Responsive UX with modern frameworks', 'Deployment, hosting, and release automation'],
     href: '/web-design/',
   },
@@ -81,12 +81,12 @@ const pricing = [
 ];
 
 const planetData = [
-  { icon: '↑', title: 'Ship faster, spend less', desc: 'No agency overhead, no onboarding delays. A senior engineer who moves immediately - cutting weeks off timelines and a significant fraction off typical agency costs.' },
-  { icon: '⬡', title: 'One partner, full ownership', desc: 'From architecture to deployment, one person owns the outcome. No handoffs between teams, no miscommunication - just accountability and clear delivery.' },
-  { icon: '⟳', title: 'Built to scale', desc: "Every website, workflow, and system is built with your growth in mind - clean code, documented decisions, and infrastructure that doesn't need to be rebuilt when you scale." },
+  { icon: '↑', title: 'Ship faster, spend less', desc: 'No agency overhead, no onboarding delays. A senior engineer who moves immediately, cutting weeks off timelines and a significant fraction off typical agency costs.' },
+  { icon: '⬡', title: 'One partner, full ownership', desc: 'From architecture to deployment, one person owns the outcome. No handoffs between teams, no miscommunication, just accountability and clear delivery.' },
+  { icon: '⟳', title: 'Built to scale', desc: "Every website, workflow, and system is built with your growth in mind: clean code, documented decisions, and infrastructure that doesn't need to be rebuilt when you scale." },
   { icon: '◎', title: 'Reduce operational risk', desc: 'Monitoring, alerting, and resilient automation means your team spends less time firefighting and more time building. Issues get caught before they become outages.' },
-  { icon: '⚡', title: 'AI that actually works', desc: 'Not AI for the sake of it - practical automation that removes repetitive work, connects your tools, and gives your team leverage.' },
-  { icon: '⬤', title: 'Security built in', desc: 'Identity-aware integrations, RBAC controls, and secure workflows from day one - not bolted on after the fact. Your data stays protected as you grow.' },
+  { icon: '⚡', title: 'AI that actually works', desc: 'Not AI for the sake of it. Just practical automation that removes repetitive work, connects your tools, and gives your team leverage.' },
+  { icon: '⬤', title: 'Security built in', desc: 'Identity-aware integrations, RBAC controls, and secure workflows from day one, not bolted on after the fact. Your data stays protected as you grow.' },
 ];
 
 // Angles use the golden angle (~2.4 rad) for maximum spread — proven to avoid periodic bunching.
@@ -1651,9 +1651,9 @@ function About() {
       <div className="container about-grid">
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={sectionViewport} transition={transition(reducedMotion)}>
           <SectionHeading eyebrow="About" title="Enterprise systems experience, delivered directly." />
-          <p>I help growing companies access senior-level engineering without the overhead of a full-time hire or agency. One partner, focused execution, real results.</p>
+          <p>I help growing companies access senior level engineering without the overhead of a full time hire or agency. One partner, focused execution, real results.</p>
           <ul className="experience-list-simple">
-            <li>Cloud automation and tool integration for mission-critical environments</li>
+            <li>Cloud automation and tool integration for mission critical environments</li>
             <li>Observability, dashboarding, and alerting that reduce risk</li>
             <li>Secure workflows and authorization patterns that protect data and identity</li>
           </ul>
@@ -1701,11 +1701,11 @@ function Contact() {
             <p className="eyebrow">Contact</p>
             <h2>Let's talk about your next project.</h2>
           </div>
-          <p>Whether you need a website, AI automation, or improved monitoring - let's figure out the right solution together.</p>
+          <p>Whether you need a website, AI automation, or improved monitoring, let's figure out the right solution together.</p>
           <ul className="contact-details">
             <li><strong>Email:</strong> <a href="mailto:aidan@mcm-integrated.com">aidan@mcm-integrated.com</a></li>
             <li><strong>Phone:</strong> <a href="tel:+16093040371">609-304-0371</a></li>
-            <li><strong>Service area:</strong> Burlington &amp; Camden County, NJ - Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, Burlington, and the greater Philadelphia area. Remote engagements welcome.</li>
+            <li><strong>Service area:</strong> Burlington &amp; Camden County, NJ, including Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, and Burlington, plus the greater Philadelphia area. Remote engagements welcome.</li>
           </ul>
           <div className="contact-actions">
             <a className="button button-outline" href={calendarUrl} target="_blank" rel="noopener">Book a Call</a>
