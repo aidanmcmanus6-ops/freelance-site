@@ -1,6 +1,5 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import logoUrl from '../mcm-logo-transparent.png';
 import introVideoUrl from '../intro-animation-clean.mp4';
 import planetRenderSheetUrl from './assets/planet-render-sheet-v2.png';
 import sunRenderUrl from './assets/sun-render.png';
@@ -359,7 +358,7 @@ function Header() {
     <header className={`site-header${scrolled ? ' scrolled' : ''}`}>
       <div className="container header-inner">
         <a className="brand" href="#home" onClick={() => setMenuOpen(false)}>
-          <img src={logoUrl} alt="MCM Integrated logo" className="brand-logo" />
+          <img src="/mcm-logo-transparent.png" alt="MCM Integrated logo" className="brand-logo" />
           <span className="sr-only">MCM Integrated</span>
         </a>
         <nav className={`nav-links${menuOpen ? ' open' : ''}`} id="primaryNav" aria-label="Primary navigation">
