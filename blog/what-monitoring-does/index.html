@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4H8NQ7SRDD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4H8NQ7SRDD');
+  </script>
+  <title>What Monitoring Actually Does (and When Your Business Needs It)</title>
+  <meta name="description" content="Monitoring explained without the jargon: how it catches problems before your customers do, what it actually watches, why alert noise ruins it, and when a small business actually needs it." />
+  <meta name="author" content="Aidan McManus" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="canonical" href="https://www.mcm-integrated.com/blog/what-monitoring-does/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="MCM Integrated" />
+  <meta property="og:title" content="What Monitoring Actually Does (and When Your Business Needs It)" />
+  <meta property="og:description" content="How monitoring catches problems before your customers do, what it watches, and when a business actually needs it." />
+  <meta property="og:url" content="https://www.mcm-integrated.com/blog/what-monitoring-does/" />
+  <meta property="og:image" content="https://www.mcm-integrated.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What Monitoring Actually Does (and When Your Business Needs It)" />
+  <meta name="twitter:description" content="How monitoring catches problems before your customers do, what it watches, and when a business actually needs it." />
+  <meta name="twitter:image" content="https://www.mcm-integrated.com/og-image.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "What Monitoring Actually Does (and When Your Business Needs It)",
+      "description": "Monitoring explained without the jargon: how it catches problems before your customers do, what it actually watches, why alert noise ruins it, and when a small business actually needs it.",
+      "image": "https://www.mcm-integrated.com/og-image.png",
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03",
+      "author": {
+        "@type": "Person",
+        "name": "Aidan McManus",
+        "url": "https://www.mcm-integrated.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "MCM Integrated",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.mcm-integrated.com/mcm-logo-transparent.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.mcm-integrated.com/blog/what-monitoring-does/"
+      },
+      "about": "Business monitoring and observability"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.mcm-integrated.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.mcm-integrated.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "What Monitoring Actually Does", "item": "https://www.mcm-integrated.com/blog/what-monitoring-does/" }
+      ]
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="module" src="/src/page.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="MCM Integrated home">
+        <img src="/mcm-logo-transparent.png" alt="MCM Integrated logo" class="brand-logo" />
+        <span class="sr-only">MCM Integrated</span>
+      </a>
+      <nav class="nav-links" id="primaryNav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/web-design/">Web Design</a>
+        <a href="/ai-automation/">AI Automation</a>
+        <a href="/monitoring/">Monitoring</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#contact" class="button button-secondary">Contact</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <article class="article">
+      <div class="article-container">
+        <p class="article-eyebrow"><a href="/blog/">Blog</a> · Monitoring</p>
+        <h1>What Monitoring Actually Does (and When Your Business Needs It)</h1>
+        <p class="article-meta">By Aidan McManus, MCM Integrated · June 2026 · ~5 min read</p>
+
+        <div class="article-body">
+          <p>There are two ways to find out one of your systems went down. Your monitoring tells you, or your customer does. One of those is a quiet Tuesday-morning fix. The other is an angry email, a scramble, and a few customers who already left.</p>
+
+          <p>Most small businesses are running on the second option without realizing it. The website, the booking system, the thing that takes payments, all of it just runs until it doesn't, and nobody knows until someone outside the company notices. That's the gap monitoring closes.</p>
+
+          <h2>"It was working yesterday"</h2>
+          <p>Here's the uncomfortable part: when something breaks, it usually doesn't break in an obvious way. The website looks completely fine. The homepage loads, the pages look normal, everything seems healthy. Except the checkout page quietly stopped working. Nobody notices, because nobody is sitting there testing checkout all day. You find out when you realize a full day went by with no orders.</p>
+          <p>That kind of thing is normal. What separates a non-event from a lost day of sales is whether you catch it in two minutes or two days. Without monitoring, your detection system is "a human happens to notice," and that human is usually a customer trying to give you money, which is the worst possible person to be your alarm.</p>
+
+          <figure class="article-figure">
+            <svg viewBox="0 0 720 320" role="img" aria-label="Two outcomes when something breaks: monitoring catches it and you fix it quietly, or a customer notices and you lose a day of sales.">
+              <defs>
+                <marker id="arrowG" markerWidth="8" markerHeight="8" refX="5.5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#34d399"/></marker>
+                <marker id="arrowB" markerWidth="8" markerHeight="8" refX="5.5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#f87171"/></marker>
+              </defs>
+              <rect x="20" y="132" width="150" height="56" rx="14" fill="#101a36" stroke="rgba(159,178,198,0.3)"/>
+              <text x="95" y="158" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#f8fafc">Something</text>
+              <text x="95" y="178" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#f8fafc">breaks</text>
+
+              <path d="M170 150 C 215 150 205 70 244 70" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arrowG)"/>
+              <path d="M170 170 C 215 170 205 250 244 250" fill="none" stroke="#f87171" stroke-width="2" marker-end="url(#arrowB)"/>
+
+              <rect x="252" y="44" width="180" height="52" rx="13" fill="rgba(52,211,153,0.12)" stroke="rgba(52,211,153,0.5)"/>
+              <text x="342" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#d7f5e9">Monitoring catches it</text>
+              <path d="M432 70 H 502" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arrowG)"/>
+              <rect x="512" y="44" width="188" height="52" rx="13" fill="rgba(52,211,153,0.12)" stroke="rgba(52,211,153,0.5)"/>
+              <text x="606" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#d7f5e9">You fix it quietly</text>
+
+              <rect x="252" y="224" width="180" height="52" rx="13" fill="rgba(248,113,113,0.1)" stroke="rgba(248,113,113,0.45)"/>
+              <text x="342" y="255" text-anchor="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#fecaca">A customer notices</text>
+              <path d="M432 250 H 502" fill="none" stroke="#f87171" stroke-width="2" marker-end="url(#arrowB)"/>
+              <rect x="512" y="224" width="188" height="52" rx="13" fill="rgba(248,113,113,0.1)" stroke="rgba(248,113,113,0.45)"/>
+              <text x="606" y="246" text-anchor="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#fecaca">A day of sales,</text>
+              <text x="606" y="264" text-anchor="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#fecaca">gone</text>
+            </svg>
+            <figcaption>The same failure, two very different mornings. Monitoring decides which one you get.</figcaption>
+          </figure>
+
+          <h2>What monitoring actually watches</h2>
+          <p>Monitoring isn't one thing. It's a few checks running constantly so you don't have to:</p>
+          <ul>
+            <li><strong>Is it up?</strong> The simplest and most important. A check hits your site from outside your network every minute and confirms it actually responds.</li>
+            <li><strong>Is it fast?</strong> Up but slow is its own kind of broken. A page that takes eight seconds loses people about as well as one that's down.</li>
+            <li><strong>Is it actually working, not just loading?</strong> "Synthetic checks" run through a real flow, load the page, log in, hit checkout, and confirm each step. The homepage being up doesn't help if payment is broken.</li>
+            <li><strong>Are errors piling up?</strong> Sometimes nothing looks down but the error rate is climbing in the background. Catching that early is the difference between a fix and an incident.</li>
+          </ul>
+
+          <figure class="article-figure">
+            <svg viewBox="0 0 720 180" role="img" aria-label="Monitoring watches four things: is it up, is it fast, does it work, and are errors rising.">
+              <defs>
+                <linearGradient id="acc3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
+              </defs>
+              <text x="20" y="28" font-family="Inter, sans-serif" font-size="17" font-weight="700" fill="#f8fafc">What monitoring keeps an eye on</text>
+              <g font-family="Inter, sans-serif">
+                <rect x="20" y="48" width="162" height="104" rx="14" fill="#0e1733" stroke="rgba(139,92,246,0.22)"/>
+                <rect x="20" y="48" width="162" height="5" rx="2.5" fill="url(#acc3)"/>
+                <text x="38" y="94" font-size="16" font-weight="700" fill="#f8fafc">Is it up?</text>
+                <text x="38" y="120" font-size="13" fill="#a9b7cb">Responds at all</text>
+
+                <rect x="194" y="48" width="162" height="104" rx="14" fill="#0e1733" stroke="rgba(139,92,246,0.22)"/>
+                <rect x="194" y="48" width="162" height="5" rx="2.5" fill="url(#acc3)"/>
+                <text x="212" y="94" font-size="16" font-weight="700" fill="#f8fafc">Is it fast?</text>
+                <text x="212" y="120" font-size="13" fill="#a9b7cb">Loads quickly</text>
+
+                <rect x="368" y="48" width="162" height="104" rx="14" fill="#0e1733" stroke="rgba(139,92,246,0.22)"/>
+                <rect x="368" y="48" width="162" height="5" rx="2.5" fill="url(#acc3)"/>
+                <text x="386" y="94" font-size="16" font-weight="700" fill="#f8fafc">Does it work?</text>
+                <text x="386" y="120" font-size="13" fill="#a9b7cb">Checkout, login</text>
+
+                <rect x="542" y="48" width="162" height="104" rx="14" fill="#0e1733" stroke="rgba(139,92,246,0.22)"/>
+                <rect x="542" y="48" width="162" height="5" rx="2.5" fill="url(#acc3)"/>
+                <text x="560" y="94" font-size="16" font-weight="700" fill="#f8fafc">Errors rising?</text>
+                <text x="560" y="120" font-size="13" fill="#a9b7cb">Before it's an outage</text>
+              </g>
+            </svg>
+            <figcaption>Four simple questions, answered automatically, around the clock.</figcaption>
+          </figure>
+
+          <h2>Alerts that actually mean something</h2>
+          <p>This is where most monitoring setups go wrong, and where I spend a lot of my time. It's easy to set up monitoring that screams about everything. Within a week the team mutes it, and now you have monitoring that's worse than none, because it gave everyone a reason to ignore the one alert that mattered.</p>
+          <p>Good monitoring is mostly about what it does <em>not</em> alert on. The goal is a quiet system that only speaks up when something genuinely needs a human, and when it does, it tells you what broke and where, not just "something is wrong." I've taken setups generating hundreds of noisy alerts and tuned them down to a handful of meaningful ones, and the ticket volume dropped because the team could finally trust the signal.</p>
+
+          <h2>When does a business actually need it?</h2>
+          <p>Not everyone needs monitoring on day one, and I won't pretend otherwise. A simple brochure site that loses you nothing if it blips for an hour can wait. You need monitoring when:</p>
+          <ul>
+            <li>Downtime actually costs you. You take orders, bookings, or payments online.</li>
+            <li>You're running systems the business depends on that aren't somebody's full time job to watch.</li>
+            <li>You've already been burned once by finding out too late.</li>
+          </ul>
+          <p>If a system going down for an afternoon would cost you customers or revenue, monitoring is cheaper than the afternoon.</p>
+
+          <h2>What this looks like in practice</h2>
+          <p>I've done this at real scale. One project meant migrating monitoring for 800+ devices off an aging platform onto New Relic, building dashboards the team would actually use, and setting up alerting that caught problems before they became outages. The result wasn't just "more monitoring," it was <em>fewer</em> tickets, because issues got caught and fixed before anyone had to report them.</p>
+          <p>The same approach scales down to a small business with a website, a booking tool, and a couple of integrations. The point was never a wall of graphs. It's that you, not your customers, are the first to know.</p>
+
+          <div class="article-cta">
+            <h3>Want to stop hearing about problems from your customers?</h3>
+            <p>I set up <a href="/monitoring/">monitoring and alerting</a> that catches issues early without drowning you in noise. Tell me what your business runs on and I'll tell you what's actually worth watching.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="/#contact">Start a Project</a>
+              <a class="button button-outline" href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener">Book a Call</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 MCM Integrated</p>
+      <p class="footer-areas">Monitoring &amp; observability serving Burlington and Camden County, New Jersey, including Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, and Burlington, plus the greater Philadelphia area.</p>
+      <nav aria-label="Footer">
+        <a href="/">Home</a> ·
+        <a href="/web-design/">Web Design</a> ·
+        <a href="/ai-automation/">AI Automation</a> ·
+        <a href="/monitoring/">Monitoring</a> ·
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
