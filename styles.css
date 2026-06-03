@@ -123,9 +123,8 @@ main, .site-footer {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(2, 6, 23, 0.9);
+  background: rgba(2, 6, 23, 0.95);
   border-bottom: 1px solid rgba(139, 92, 246, 0.1);
-  backdrop-filter: blur(18px);
   transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
