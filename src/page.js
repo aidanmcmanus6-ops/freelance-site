@@ -1,8 +1,15 @@
-// Shared entry for the static service landing pages.
+// Shared entry for the static landing/blog pages.
 // Content lives in the HTML (so it is fully crawlable without JS).
-// This script only pulls in the shared stylesheet and replicates the
-// home page header behavior (scroll state + mobile menu toggle).
+// This script pulls in the shared stylesheet, runs Vercel Analytics +
+// Speed Insights, and replicates the home header behavior (scroll + menu).
 import '../styles.css';
+import { inject } from '@vercel/analytics';
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
+// Vercel Web Analytics + Speed Insights for every static page.
+// (The home React SPA uses the <Analytics/> and <SpeedInsights/> components.)
+inject();
+injectSpeedInsights();
 
 const header = document.querySelector('.site-header');
 if (header) {
