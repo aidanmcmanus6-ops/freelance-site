@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import introVideoUrl from '../intro-animation-clean.mp4';
 import planetRenderSheetUrl from './assets/planet-render-sheet-v2.webp';
 import sunRenderUrl from './assets/sun-render.webp';
@@ -1839,6 +1840,7 @@ function App() {
         </div>
       </footer>
       <Analytics />
+      <SpeedInsights />
     </>
   );
 }
