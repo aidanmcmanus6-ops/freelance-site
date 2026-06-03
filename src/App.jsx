@@ -1655,7 +1655,7 @@ function FinalCTA() {
         </div>
         <div className="final-cta-actions">
           <a className="button button-primary" href="#contact">Start Your Project</a>
-          <a className="button button-outline" href={calendarUrl} target="_blank" rel="noopener">Book a Call</a>
+          <a className="button button-outline" href={calendarUrl} target="_blank" rel="noopener noreferrer">Book a Call</a>
         </div>
       </motion.div>
     </section>
@@ -1727,7 +1727,7 @@ function Contact() {
             <li><strong>Service area:</strong> Burlington &amp; Camden County, NJ, including Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, and Burlington, plus the greater Philadelphia area. Remote engagements welcome.</li>
           </ul>
           <div className="contact-actions">
-            <a className="button button-outline" href={calendarUrl} target="_blank" rel="noopener">Book a Call</a>
+            <a className="button button-outline" href={calendarUrl} target="_blank" rel="noopener noreferrer">Book a Call</a>
           </div>
         </motion.div>
         <motion.div className="contact-card" variants={cardMotion} initial="hidden" whileInView="visible" viewport={sectionViewport} transition={transition(reducedMotion)}>
@@ -1735,12 +1735,13 @@ function Contact() {
             <input type="hidden" name="_subject" value="New MCM Integrated project request" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" tabIndex="-1" autoComplete="off" style={{ display: 'none' }} aria-hidden="true" />
             <input type="hidden" name="_next" value="https://www.mcm-integrated.com/thank-you/" />
             <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required />
+            <input type="text" id="name" name="name" placeholder="Your name" autoComplete="name" maxLength="120" required />
 
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            <input type="email" id="email" name="email" placeholder="you@example.com" autoComplete="email" maxLength="254" required />
 
             <label htmlFor="projectType">Project Type</label>
             <select id="projectType" name="project_type" required defaultValue="">
@@ -1781,11 +1782,11 @@ function Contact() {
             </div>
 
             <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project" required />
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project" maxLength="4000" required />
 
             <button className="button button-primary" type="submit" disabled={submitting}>{submitting ? 'Sending…' : 'Send Request'}</button>
             {error && <p className="form-note" role="alert" style={{ color: '#fca5a5' }}>{error}</p>}
-            <p className="form-note">Requests are sent directly to aidan@mcm-integrated.com. Prefer to talk first? <a href={calendarUrl} target="_blank" rel="noopener">Book a call</a>.</p>
+            <p className="form-note">Requests are sent directly to aidan@mcm-integrated.com. Prefer to talk first? <a href={calendarUrl} target="_blank" rel="noopener noreferrer">Book a call</a>.</p>
           </form>
         </motion.div>
       </div>
@@ -1837,6 +1838,9 @@ function App() {
         <div className="container footer-inner">
           <p>© 2026 MCM Integrated</p>
           <p className="footer-areas">Web design, AI automation &amp; monitoring serving Burlington and Camden County, New Jersey, including Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, Lumberton, Burlington, and the greater Philadelphia area.</p>
+          <nav aria-label="Footer">
+            <a href="/privacy/">Privacy</a>
+          </nav>
         </div>
       </footer>
       <Analytics />
