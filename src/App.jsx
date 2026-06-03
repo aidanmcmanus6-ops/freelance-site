@@ -1,5 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import introVideoUrl from '../intro-animation-clean.mp4';
 import planetRenderSheetUrl from './assets/planet-render-sheet-v2.webp';
 import sunRenderUrl from './assets/sun-render.webp';
@@ -1837,6 +1838,7 @@ function App() {
           <p className="footer-areas">Web design, AI automation &amp; monitoring serving Burlington and Camden County, New Jersey, including Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, Lumberton, Burlington, and the greater Philadelphia area.</p>
         </div>
       </footer>
+      <Analytics />
     </>
   );
 }
