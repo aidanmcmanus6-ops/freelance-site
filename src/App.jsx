@@ -143,8 +143,8 @@ const faqs = [
 const sectionViewport = { once: true, margin: '0px 0px -90px 0px' };
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0 },
 };
 
 const cardGrid = {
@@ -158,8 +158,8 @@ const cardGrid = {
 };
 
 const cardMotion = {
-  hidden: { opacity: 0, y: 34, scale: 0.965, filter: 'blur(8px)' },
-  visible: { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' },
+  hidden: { opacity: 0, y: 34, scale: 0.965 },
+  visible: { opacity: 1, y: 0, scale: 1 },
 };
 
 function transition(reducedMotion) {
@@ -395,8 +395,8 @@ function Hero({ ready }) {
     <section className="hero section" id="home">
       <div className="container hero-grid">
         <motion.div
-          initial={{ opacity: 0, x: -28, filter: 'blur(10px)' }}
-          animate={ready ? { opacity: 1, x: 0, filter: 'blur(0px)' } : { opacity: 0, x: -28, filter: 'blur(10px)' }}
+          initial={{ opacity: 0, x: -28 }}
+          animate={ready ? { opacity: 1, x: 0 } : { opacity: 0, x: -28 }}
           transition={{ ...transition(reducedMotion), delay: reducedMotion ? 0 : 0.02 }}
         >
           <p className="eyebrow">Professional-grade development without the full-time hire.</p>
@@ -522,6 +522,8 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
     const ctx = canvas.getContext('2d');
     let animationFrame = 0;
     let time = 0;
+    let isIntersecting = true;
+    const isActive = () => isIntersecting && !document.hidden;
 
     const planetSheet = new Image();
     planetSheet.src = planetRenderSheetUrl;
@@ -1383,7 +1385,8 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
       ctx.restore();
 
       time += reducedMotion ? 0 : 8;
-      animationFrame = window.requestAnimationFrame(draw);
+      // Pause the loop when the scene scrolls off-screen or the tab is hidden.
+      animationFrame = isActive() ? window.requestAnimationFrame(draw) : 0;
     };
 
     const handleClick = (e) => {
@@ -1409,10 +1412,25 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
     window.addEventListener('resize', resize);
     animationFrame = window.requestAnimationFrame(draw);
 
+    // Resume the loop when it becomes visible / the tab is shown again.
+    const resumeLoop = () => {
+      if (isActive() && !animationFrame) {
+        animationFrame = window.requestAnimationFrame(draw);
+      }
+    };
+    const visibilityObserver = new IntersectionObserver((entries) => {
+      isIntersecting = entries[0].isIntersecting;
+      resumeLoop();
+    }, { rootMargin: '150px' });
+    visibilityObserver.observe(wrap);
+    document.addEventListener('visibilitychange', resumeLoop);
+
     return () => {
       window.cancelAnimationFrame(animationFrame);
       window.removeEventListener('resize', resize);
       canvas.removeEventListener('click', handleClick);
+      visibilityObserver.disconnect();
+      document.removeEventListener('visibilitychange', resumeLoop);
     };
   }, [reducedMotion]);
 
@@ -1448,8 +1466,8 @@ function WhyItMatters() {
         <SectionHeading eyebrow="Why It Matters" title="The difference it makes for your business" centered />
         <motion.div
           className="planet-idea-stage"
-          initial={{ opacity: 0, y: 24, scale: 0.975, filter: 'blur(8px)' }}
-          whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 24, scale: 0.975 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={sectionViewport}
           transition={transition(reducedMotion)}
         >
