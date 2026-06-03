@@ -1,8 +1,8 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import introVideoUrl from '../intro-animation-clean.mp4';
-import planetRenderSheetUrl from './assets/planet-render-sheet-v2.png';
-import sunRenderUrl from './assets/sun-render.png';
+import planetRenderSheetUrl from './assets/planet-render-sheet-v2.webp';
+import sunRenderUrl from './assets/sun-render.webp';
 
 const calendarUrl = 'https://calendar.app.google/STcrArBdLP484i9f8';
 
