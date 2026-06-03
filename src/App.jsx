@@ -38,20 +38,20 @@ const capabilityItems = [
 const services = [
   {
     title: 'Modern Websites',
-    body: 'Production-ready websites and applications, built, launched, and supported end to end.',
+    body: 'Polished websites and applications, built, launched, and supported end to end.',
     bullets: ['Custom landing pages and product sites', 'Responsive UX with modern frameworks', 'Deployment, hosting, and release automation'],
     href: '/web-design/',
   },
   {
     title: 'AI & Automation',
     body: 'Practical AI workflows and integrations using Microsoft Copilot Studio, Azure Foundry, and secure toolchain orchestration.',
-    bullets: ['Intelligent automation workflows', 'Azure Functions and tool connectors', 'Identity-aware authorization and access controls'],
+    bullets: ['Intelligent automation workflows', 'Azure Functions and tool connectors', 'Secure authorization and access controls'],
     href: '/ai-automation/',
   },
   {
     title: 'Monitoring & Reliability',
     body: 'Observability and alerting that keeps your team ahead of outages and reduces operational noise.',
-    bullets: ['Production-scale monitoring and synthetic checks', 'Custom dashboards and response workflows', 'Incident automation and deployment practices'],
+    bullets: ['Reliable monitoring and synthetic checks', 'Custom dashboards and response workflows', 'Incident automation and deployment practices'],
     href: '/monitoring/',
   },
 ];
@@ -82,12 +82,12 @@ const pricing = [
 ];
 
 const planetData = [
-  { icon: '↑', title: 'Ship faster, spend less', desc: 'No agency overhead, no onboarding delays. A senior engineer who moves immediately, cutting weeks off timelines and a significant fraction off typical agency costs.' },
-  { icon: '⬡', title: 'One partner, full ownership', desc: 'From architecture to deployment, one person owns the outcome. No handoffs between teams, no miscommunication, just accountability and clear delivery.' },
+  { icon: '↑', title: 'Ship faster, spend less', desc: 'No agency overhead, no onboarding delays. Two senior engineers who move immediately, cutting weeks off timelines and a significant fraction off typical agency costs.' },
+  { icon: '⬡', title: 'Two senior engineers, full ownership', desc: 'From architecture to deployment, a senior team of two owns the outcome end to end. With two experienced engineers thinking through every problem, you get stronger solutions and faster answers, backed by clear accountability and direct communication.' },
   { icon: '⟳', title: 'Built to scale', desc: "Every website, workflow, and system is built with your growth in mind: clean code, documented decisions, and infrastructure that doesn't need to be rebuilt when you scale." },
   { icon: '◎', title: 'Reduce operational risk', desc: 'Monitoring, alerting, and resilient automation means your team spends less time firefighting and more time building. Issues get caught before they become outages.' },
   { icon: '⚡', title: 'AI that actually works', desc: 'Not AI for the sake of it. Just practical automation that removes repetitive work, connects your tools, and gives your team leverage.' },
-  { icon: '⬤', title: 'Security built in', desc: 'Identity-aware integrations, RBAC controls, and secure workflows from day one, not bolted on after the fact. Your data stays protected as you grow.' },
+  { icon: '⬤', title: 'Security built in', desc: 'Secure integrations, RBAC access controls, and hardened workflows from day one, not bolted on after the fact. Your data stays protected as you grow.' },
 ];
 
 // Angles use the golden angle (~2.4 rad) for maximum spread — proven to avoid periodic bunching.
@@ -129,14 +129,14 @@ const testimonials = [
 
 const processSteps = [
   ['01', 'Discover', 'We define the business goal, audience, current systems, constraints, and the smallest useful launch path.'],
-  ['02', 'Build', 'I design and implement the site, workflow, or monitoring setup with regular check-ins and visible progress.'],
-  ['03', 'Launch', 'We ship cleanly with responsive polish, deployment support, handoff notes, and practical next-step guidance.'],
-  ['04', 'Support', 'After launch, I can stay involved for updates, automation improvements, monitoring, and advisory support.'],
+  ['02', 'Build', 'We design and implement the site, workflow, or monitoring setup with regular updates and visible progress.'],
+  ['03', 'Launch', 'We ship cleanly with responsive polish, deployment support, handoff notes, and practical next steps.'],
+  ['04', 'Support', 'After launch, we can stay involved for updates, automation improvements, monitoring, and advisory support.'],
 ];
 
 const faqs = [
-  ['How long does a typical website take?', 'A basic two-page site can often be completed in one to two weeks once content is ready. Larger sites, rewrites, integrations, or automation work depend on scope and complexity.'],
-  ['Do you work with small businesses?', 'Yes. The pricing and process are designed for small and growing businesses that need senior-level execution without hiring a full-time developer or agency.'],
+  ['How long does a typical website take?', 'A basic two page site can often be completed in one to two weeks once content is ready. Larger sites, rewrites, integrations, or automation work depend on scope and complexity.'],
+  ['Do you work with small businesses?', 'Yes. The pricing and process are designed for small and growing businesses that need senior level execution without hiring a full time developer or agency.'],
   ['Can you maintain the site after launch?', 'Yes. Monthly retainers start at $500 and can cover updates, monitoring, content changes, technical support, and ongoing improvements.'],
   ['What do I need before starting?', 'A clear goal, rough budget range, brand assets if you have them, and any existing website or system access. If you are not sure, the discovery call is where we sort that out.'],
   ['Can you help with AI automation even if we are early?', 'Yes. The best first step is usually mapping repetitive work, data flow, permissions, and business risk before deciding what should actually be automated.'],
@@ -403,7 +403,7 @@ function Hero({ ready }) {
         >
           <p className="eyebrow">Professional-grade development without the full-time hire.</p>
           <h1>Modern websites, AI agents, and observability delivered for your business.</h1>
-          <p className="lead">Work directly with a senior developer who builds polished digital experiences, secure automation, and resilient operations with focused expertise.</p>
+          <p className="lead">Work directly with two senior engineers who build polished digital experiences, secure automation, and resilient operations with focused expertise.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#contact">Start Your Project</a>
             <a className="button button-outline" href="#portfolio">View Work</a>
@@ -1544,7 +1544,7 @@ function Portfolio() {
   return (
     <section className="section portfolio" id="portfolio">
       <div className="container">
-        <SectionHeading eyebrow="Portfolio" title="Selected examples of business-ready delivery" />
+        <SectionHeading eyebrow="Portfolio" title="Selected examples of work we have delivered" />
         <CardGrid className="portfolio-grid">
           {portfolio.map(([title, body, tag]) => (
             <motion.article className="portfolio-card" key={title} variants={cardMotion} transition={transition(reducedMotion)}>
@@ -1670,7 +1670,7 @@ function About() {
       <div className="container about-grid">
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={sectionViewport} transition={transition(reducedMotion)}>
           <SectionHeading eyebrow="About" title="Enterprise systems experience, delivered directly." />
-          <p>I help growing companies access senior level engineering without the overhead of a full time hire or agency. One partner, focused execution, real results.</p>
+          <p>We help growing companies access senior level engineering without the overhead of a full time hire or agency. A senior team of two, focused execution, real results.</p>
           <ul className="experience-list-simple">
             <li>Cloud automation and tool integration for mission critical environments</li>
             <li>Observability, dashboarding, and alerting that reduce risk</li>
