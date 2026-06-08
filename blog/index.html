@@ -36,7 +36,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script type="module" src="/src/page.js"></script>
 </head>
-<body>
+<body class="page-service">
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="MCM Integrated home">
@@ -61,41 +61,50 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Blog</p>
           <h2>Practical guides, no hype</h2>
         </div>
-        <p class="faq-intro">Straight answers on websites, AI automation, and monitoring for small and growing businesses, written by a senior engineer who builds them, not a marketing team.</p>
-        <div class="service-grid">
-          <article class="service-card">
-            <p class="pricing-label">Monitoring</p>
-            <h3><a href="/blog/what-monitoring-does/">What Monitoring Actually Does (and When Your Business Needs It)</a></h3>
-            <p>There are two ways to find out a system went down: your monitoring tells you, or your customer does. What monitoring actually watches, why alert noise ruins it, and when a business actually needs it.</p>
-            <a class="service-link" href="/blog/what-monitoring-does/">Read the guide &rarr;</a>
-          </article>
-          <article class="service-card">
-            <p class="pricing-label">AI &amp; Automation</p>
-            <h3><a href="/blog/what-is-an-ai-agent/">What an AI Agent Actually Is (And Why It Beats Juggling Five AI Tools)</a></h3>
-            <p>Most businesses already run several AI tools that ignore each other. Here is what an AI agent does differently, what an MCP actually is in plain English, and why the model you are using matters more than you think.</p>
-            <a class="service-link" href="/blog/what-is-an-ai-agent/">Read the guide &rarr;</a>
-          </article>
-          <article class="service-card">
-            <p class="pricing-label">Web Design</p>
-            <h3><a href="/blog/small-business-website-cost-south-jersey/">How Much Does a Small Business Website Cost in South Jersey? (2026)</a></h3>
-            <p>Real 2026 price ranges, DIY vs freelancer vs agency, what actually drives the cost, the ongoing fees nobody mentions, and how to avoid overpaying.</p>
-            <a class="service-link" href="/blog/small-business-website-cost-south-jersey/">Read the guide &rarr;</a>
-          </article>
-          <article class="service-card">
-            <p class="pricing-label">AI &amp; Automation</p>
-            <h3><a href="/blog/what-to-automate/">What's Actually Worth Automating in Your Business (And What Isn't)</a></h3>
-            <p>Not everything should be automated. How to tell which tasks are worth it, what makes a good automation candidate, where AI changes the equation, and the right place to start.</p>
-            <a class="service-link" href="/blog/what-to-automate/">Read the guide &rarr;</a>
-          </article>
-          <article class="service-card">
-            <p class="pricing-label">Web Design</p>
-            <h3><a href="/blog/why-your-website-isnt-converting/">Why Your Website Gets Visitors But Not Customers</a></h3>
-            <p>Traffic without action is not a win. What actually stops visitors from becoming customers, from slow load times and unclear headlines to too many competing calls to action, and what to fix first.</p>
-            <a class="service-link" href="/blog/why-your-website-isnt-converting/">Read the guide &rarr;</a>
-          </article>
+        <p class="faq-intro">Straight answers on websites, AI automation, and monitoring for small and growing businesses, written by the engineers who build them, not a marketing team.</p>
+        <div class="post-list">
+          <a class="post-row" href="/blog/what-monitoring-does/">
+            <span class="post-tag">Monitoring</span>
+            <div class="post-row-main">
+              <h3>What Monitoring Actually Does (and When Your Business Needs It)</h3>
+              <p>There are two ways to find out a system went down: your monitoring tells you, or your customer does. What monitoring actually watches, why alert noise ruins it, and when a business actually needs it.</p>
+            </div>
+            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="post-row" href="/blog/what-is-an-ai-agent/">
+            <span class="post-tag">AI &amp; Automation</span>
+            <div class="post-row-main">
+              <h3>What an AI Agent Actually Is (And Why It Beats Juggling Five AI Tools)</h3>
+              <p>Most businesses already run several AI tools that ignore each other. Here is what an AI agent does differently, what an MCP actually is in plain English, and why the model you are using matters more than you think.</p>
+            </div>
+            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="post-row" href="/blog/small-business-website-cost-south-jersey/">
+            <span class="post-tag">Web Design</span>
+            <div class="post-row-main">
+              <h3>How Much Does a Small Business Website Cost in South Jersey? (2026)</h3>
+              <p>Real 2026 price ranges, DIY vs freelancer vs agency, what actually drives the cost, the ongoing fees nobody mentions, and how to avoid overpaying.</p>
+            </div>
+            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="post-row" href="/blog/what-to-automate/">
+            <span class="post-tag">AI &amp; Automation</span>
+            <div class="post-row-main">
+              <h3>What's Actually Worth Automating in Your Business (And What Isn't)</h3>
+              <p>Not everything should be automated. How to tell which tasks are worth it, what makes a good automation candidate, where AI changes the equation, and the right place to start.</p>
+            </div>
+            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="post-row" href="/blog/why-your-website-isnt-converting/">
+            <span class="post-tag">Web Design</span>
+            <div class="post-row-main">
+              <h3>Why Your Website Gets Visitors But Not Customers</h3>
+              <p>Traffic without action is not a win. What actually stops visitors from becoming customers, from slow load times and unclear headlines to too many competing calls to action, and what to fix first.</p>
+            </div>
+            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          </a>
         </div>
       </div>
     </section>
@@ -103,9 +112,8 @@
     <section class="section final-cta" aria-label="Start a project">
       <div class="container final-cta-inner">
         <div>
-          <p class="eyebrow">Ready When You Are</p>
-          <h2>Have a project in mind?</h2>
-          <p>Tell me what you're building and I'll give you a straight estimate, no sales pitch.</p>
+          <h2>Build something polished, useful, and reliable.</h2>
+          <p>Start with a project request or book a discovery call if you want to talk through the best next move first.</p>
         </div>
         <div class="final-cta-actions">
           <a class="button button-primary" href="/#contact">Start Your Project</a>

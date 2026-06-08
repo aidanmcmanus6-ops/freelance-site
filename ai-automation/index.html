@@ -101,7 +101,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script type="module" src="/src/page.js"></script>
 </head>
-<body>
+<body class="page-service">
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="MCM Integrated home">
@@ -113,6 +113,7 @@
         <a href="/web-design/">Web Design</a>
         <a href="/ai-automation/">AI Automation</a>
         <a href="/monitoring/">Monitoring</a>
+        <a href="/blog/">Blog</a>
         <a href="/#pricing">Pricing</a>
         <a href="/#contact" class="button button-secondary">Contact</a>
       </nav>
@@ -135,19 +136,43 @@
           </div>
         </div>
         <div class="hero-card">
-          <div class="hero-capabilities">
-            <div class="capability-item">
-              <span class="capability-icon">⚡</span>
-              <div><strong>Intelligent automation workflows</strong><p>Remove repetitive, error-prone manual work.</p></div>
-            </div>
-            <div class="capability-item">
-              <span class="capability-icon">⬡</span>
-              <div><strong>Azure Functions &amp; connectors</strong><p>Connect the tools and systems you already use.</p></div>
-            </div>
-            <div class="capability-item">
-              <span class="capability-icon">⬤</span>
-              <div><strong>Identity-aware access controls</strong><p>RBAC and secure authorization from day one.</p></div>
-            </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-glow"></div>
+            <svg class="hero-mockup" viewBox="0 0 440 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="aiHub" cx="0.5" cy="0.4" r="0.6">
+                  <stop offset="0" stop-color="#38bdf8" />
+                  <stop offset="1" stop-color="#8b5cf6" />
+                </radialGradient>
+              </defs>
+              <g stroke="rgba(56,189,248,0.4)" stroke-width="2">
+                <line x1="220" y1="180" x2="80" y2="80" />
+                <line x1="220" y1="180" x2="360" y2="80" />
+                <line x1="220" y1="180" x2="62" y2="200" />
+                <line x1="220" y1="180" x2="378" y2="200" />
+                <line x1="220" y1="180" x2="120" y2="300" />
+                <line x1="220" y1="180" x2="320" y2="300" />
+              </g>
+              <g stroke-width="2" stroke-linecap="round" stroke="rgba(148,163,184,0.55)">
+                <rect x="52" y="56" width="56" height="48" rx="12" fill="#0b1226" stroke="rgba(139,92,246,0.45)" />
+                <rect x="332" y="56" width="56" height="48" rx="12" fill="#0b1226" stroke="rgba(56,189,248,0.45)" />
+                <rect x="34" y="176" width="56" height="48" rx="12" fill="#0b1226" stroke="rgba(56,189,248,0.45)" />
+                <rect x="350" y="176" width="56" height="48" rx="12" fill="#0b1226" stroke="rgba(139,92,246,0.45)" />
+                <rect x="92" y="276" width="56" height="48" rx="12" fill="#0b1226" stroke="rgba(56,189,248,0.45)" />
+                <rect x="292" y="276" width="56" height="48" rx="12" fill="#0b1226" stroke="rgba(255,159,50,0.45)" />
+                <line x1="66" y1="74" x2="94" y2="74" /><line x1="66" y1="86" x2="86" y2="86" />
+                <line x1="346" y1="74" x2="374" y2="74" /><line x1="346" y1="86" x2="366" y2="86" />
+                <line x1="48" y1="194" x2="76" y2="194" /><line x1="48" y1="206" x2="68" y2="206" />
+                <line x1="364" y1="194" x2="392" y2="194" /><line x1="364" y1="206" x2="384" y2="206" />
+                <line x1="106" y1="294" x2="134" y2="294" /><line x1="106" y1="306" x2="126" y2="306" />
+                <line x1="306" y1="294" x2="334" y2="294" /><line x1="306" y1="306" x2="326" y2="306" />
+              </g>
+              <circle cx="220" cy="180" r="46" fill="#0b1226" stroke="url(#aiHub)" stroke-width="2.5" />
+              <circle cx="220" cy="180" r="22" fill="url(#aiHub)" />
+            </svg>
+            <span class="hero-chip hero-chip-1">Connected</span>
+            <span class="hero-chip hero-chip-2">Secure by design</span>
+            <span class="hero-chip hero-chip-3">Automated</span>
           </div>
         </div>
       </div>
@@ -156,24 +181,32 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">What's included</p>
           <h2>Automation that connects your systems securely</h2>
         </div>
-        <div class="service-grid">
-          <article class="service-card">
-            <h3>Intelligent automation workflows</h3>
-            <p>Map repetitive work, data flow, and permissions, then automate the steps that actually pay off.</p>
-            <ul><li>Process and data-flow mapping</li><li>Workflow design and build</li><li>Practical, measurable wins</li></ul>
+        <div class="services-list">
+          <article class="service-entry service-entry-1">
+            <div class="service-entry-head">
+              <span class="service-entry-icon" aria-hidden="true">⚡</span>
+              <h3>Intelligent automation workflows</h3>
+            </div>
+            <p class="service-entry-body">Map repetitive work, data flow, and permissions, then automate the steps that actually pay off.</p>
+            <ul class="service-entry-points"><li>Process and data-flow mapping</li><li>Workflow design and build</li><li>Practical, measurable wins</li></ul>
           </article>
-          <article class="service-card">
-            <h3>Copilot Studio, Azure &amp; API integrations</h3>
-            <p>Connect SaaS tools, internal systems, and AI agents with Azure Functions and tool connectors.</p>
-            <ul><li>Copilot Studio &amp; Azure Foundry agents</li><li>Azure Function integration services</li><li>API and SaaS connectivity</li></ul>
+          <article class="service-entry service-entry-2">
+            <div class="service-entry-head">
+              <span class="service-entry-icon" aria-hidden="true">⬡</span>
+              <h3>Copilot Studio, Azure &amp; API integrations</h3>
+            </div>
+            <p class="service-entry-body">Connect SaaS tools, internal systems, and AI agents with Azure Functions and tool connectors.</p>
+            <ul class="service-entry-points"><li>Copilot Studio &amp; Azure Foundry agents</li><li>Azure Function integration services</li><li>API and SaaS connectivity</li></ul>
           </article>
-          <article class="service-card">
-            <h3>Secure handoff &amp; documentation</h3>
-            <p>Identity-aware authorization and clear documentation so your team can own it confidently.</p>
-            <ul><li>RBAC-aware authorization</li><li>Documented decisions</li><li>Clean handoff</li></ul>
+          <article class="service-entry service-entry-3">
+            <div class="service-entry-head">
+              <span class="service-entry-icon" aria-hidden="true">◈</span>
+              <h3>Secure handoff &amp; documentation</h3>
+            </div>
+            <p class="service-entry-body">Identity-aware authorization and clear documentation so your team can own it confidently.</p>
+            <ul class="service-entry-points"><li>RBAC-aware authorization</li><li>Documented decisions</li><li>Clean handoff</li></ul>
           </article>
         </div>
       </div>
@@ -182,21 +215,21 @@
     <section class="section pricing">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Pricing</p>
           <h2>Estimated starting points for automation work</h2>
         </div>
-        <div class="pricing-grid">
-          <article class="pricing-card pricing-card-featured">
+        <div class="pricing-feature">
+          <div class="pricing-feature-head">
             <p class="pricing-label">AI &amp; Automation</p>
             <h3>Workflow Build</h3>
             <p class="price">From $2,500</p>
-            <p>For companies ready to automate repetitive work, connect systems, or build practical AI-powered operations.</p>
-            <ul>
-              <li>Discovery and workflow design</li>
-              <li>Copilot Studio, Azure, or API integrations</li>
-              <li>Secure handoff and documentation</li>
-            </ul>
-          </article>
+            <p class="pricing-feature-desc">For companies ready to automate repetitive work, connect systems, or build practical AI powered operations.</p>
+            <a class="button button-primary" href="/#contact">Start Your Project</a>
+          </div>
+          <div class="pricing-feature-tiers">
+            <div class="pricing-tier included"><span>Discovery and workflow design</span></div>
+            <div class="pricing-tier included"><span>Copilot Studio, Azure, or API integrations</span></div>
+            <div class="pricing-tier included"><span>Secure handoff and documentation</span></div>
+          </div>
         </div>
         <div class="pricing-note">
           <strong>Pricing note:</strong> These are estimated starting points. Final pricing can vary based on complexity, integrations, data access, and support requirements. Monthly retainers typically start at $500.
@@ -207,22 +240,12 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Proof</p>
           <h2>Recent automation &amp; integration work</h2>
         </div>
-        <div class="service-grid">
-          <article class="service-card">
-            <h3>Enterprise AI Automation Platform</h3>
-            <p>Built a secure automation platform integrating Copilot Studio, Azure Foundry agents, and internal SaaS systems to streamline business operations.</p>
-          </article>
-          <article class="service-card">
-            <h3>Secure Integration Workflows</h3>
-            <p>Designed Azure Function based integration services and RBAC-aware authorization for tool connectivity and resilience.</p>
-          </article>
-          <article class="service-card">
-            <h3>What clients say</h3>
-            <p>IAM &amp; Security Partner: “Their work on secure Azure integrations and AI workflows helped our organization move faster while keeping data and identity controls intact.”</p>
-          </article>
+        <div class="faq-list">
+          <div class="faq-row"><h3>Enterprise AI Automation Platform</h3><p>Built a secure automation platform integrating Copilot Studio, Azure Foundry agents, and internal SaaS systems to streamline business operations.</p></div>
+          <div class="faq-row"><h3>Secure Integration Workflows</h3><p>Designed Azure Function based integration services and RBAC-aware authorization for tool connectivity and resilience.</p></div>
+          <div class="faq-row"><h3>What clients say</h3><p>IAM &amp; Security Partner: “Their work on secure Azure integrations and AI workflows helped our organization move faster while keeping data and identity controls intact.”</p></div>
         </div>
       </div>
     </section>
@@ -230,12 +253,11 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">FAQ</p>
           <h2>Automation questions, answered</h2>
         </div>
-        <div class="service-grid">
-          <article class="service-card"><h3>Can you help with AI automation even if we are early?</h3><p>Yes. The best first step is usually mapping repetitive work, data flow, permissions, and business risk before deciding what should actually be automated.</p></article>
-          <article class="service-card"><h3>What do I need before starting?</h3><p>A clear goal, rough budget range, and any existing system access. If you are not sure, the discovery call is where we sort that out.</p></article>
+        <div class="faq-list">
+          <div class="faq-row"><h3>Can you help with AI automation even if we are early?</h3><p>Yes. The best first step is usually mapping repetitive work, data flow, permissions, and business risk before deciding what should actually be automated.</p></div>
+          <div class="faq-row"><h3>What do I need before starting?</h3><p>A clear goal, rough budget range, and any existing system access. If you are not sure, the discovery call is where we sort that out.</p></div>
         </div>
       </div>
     </section>
@@ -243,12 +265,11 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Related services</p>
           <h2>Pair automation with the rest of the stack</h2>
         </div>
-        <div class="service-grid">
-          <article class="service-card"><h3><a href="/web-design/">Modern Websites</a></h3><p>Production-ready websites and applications, built and launched end to end.</p></article>
-          <article class="service-card"><h3><a href="/monitoring/">Monitoring &amp; Reliability</a></h3><p>Dashboards, alerting, and observability that keep your team ahead of outages.</p></article>
+        <div class="related-links">
+          <a class="related-link" href="/web-design/"><div><h3>Modern Websites</h3><p>Production-ready websites and applications, built and launched end to end.</p></div><span class="related-arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="related-link" href="/monitoring/"><div><h3>Monitoring &amp; Reliability</h3><p>Dashboards, alerting, and observability that keep your team ahead of outages.</p></div><span class="related-arrow" aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </section>
@@ -256,9 +277,8 @@
     <section class="section final-cta" aria-label="Start a project">
       <div class="container final-cta-inner">
         <div>
-          <p class="eyebrow">Ready When You Are</p>
-          <h2>Put practical AI to work in your business.</h2>
-          <p>Start with a project request or book a discovery call to map the highest-value automation first.</p>
+          <h2>Build something polished, useful, and reliable.</h2>
+          <p>Start with a project request or book a discovery call if you want to talk through the best next move first.</p>
         </div>
         <div class="final-cta-actions">
           <a class="button button-primary" href="/#contact">Start Your Project</a>
