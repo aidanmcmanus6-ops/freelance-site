@@ -83,7 +83,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script type="module" src="/src/page.js"></script>
 </head>
-<body>
+<body class="page-service">
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="MCM Integrated home">
@@ -95,6 +95,7 @@
         <a href="/web-design/">Web Design</a>
         <a href="/ai-automation/">AI Automation</a>
         <a href="/monitoring/">Monitoring</a>
+        <a href="/blog/">Blog</a>
         <a href="/#pricing">Pricing</a>
         <a href="/#contact" class="button button-secondary">Contact</a>
       </nav>
@@ -117,19 +118,33 @@
           </div>
         </div>
         <div class="hero-card">
-          <div class="hero-capabilities">
-            <div class="capability-item">
-              <span class="capability-icon">◎</span>
-              <div><strong>Production-scale monitoring</strong><p>Synthetic checks and real system visibility.</p></div>
-            </div>
-            <div class="capability-item">
-              <span class="capability-icon">◈</span>
-              <div><strong>Custom dashboards &amp; alerts</strong><p>Actionable signals, not noise.</p></div>
-            </div>
-            <div class="capability-item">
-              <span class="capability-icon">⟳</span>
-              <div><strong>Incident workflows</strong><p>Faster, calmer response when it matters.</p></div>
-            </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-glow"></div>
+            <svg class="hero-mockup" viewBox="0 0 440 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="28" width="400" height="304" rx="18" fill="#0b1226" stroke="rgba(56,189,248,0.4)" />
+              <rect x="44" y="54" width="130" height="14" rx="6" fill="#f8fafc" opacity="0.85" />
+              <circle cx="388" cy="61" r="7" fill="#34d399" />
+              <g stroke="rgba(148,163,184,0.16)" stroke-width="1">
+                <line x1="44" y1="104" x2="396" y2="104" />
+                <line x1="44" y1="150" x2="396" y2="150" />
+                <line x1="44" y1="196" x2="396" y2="196" />
+              </g>
+              <path d="M44 196 L96 168 L148 182 L200 132 L252 150 L304 100 L356 120 L396 88" fill="none" stroke="#34d399" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+              <circle cx="304" cy="100" r="5" fill="#34d399" />
+              <circle cx="396" cy="88" r="5" fill="#34d399" />
+              <rect x="44" y="232" width="108" height="74" rx="13" fill="rgba(56,189,248,0.09)" stroke="rgba(56,189,248,0.24)" />
+              <rect x="166" y="232" width="108" height="74" rx="13" fill="rgba(52,211,153,0.09)" stroke="rgba(52,211,153,0.24)" />
+              <rect x="288" y="232" width="108" height="74" rx="13" fill="rgba(255,159,50,0.08)" stroke="rgba(255,159,50,0.24)" />
+              <rect x="60" y="250" width="44" height="9" rx="4" fill="#7dd3fc" opacity="0.8" />
+              <rect x="60" y="272" width="64" height="14" rx="5" fill="#f8fafc" opacity="0.85" />
+              <rect x="182" y="250" width="44" height="9" rx="4" fill="#34d399" opacity="0.8" />
+              <rect x="182" y="272" width="64" height="14" rx="5" fill="#f8fafc" opacity="0.85" />
+              <rect x="304" y="250" width="44" height="9" rx="4" fill="#fdba74" opacity="0.8" />
+              <rect x="304" y="272" width="64" height="14" rx="5" fill="#f8fafc" opacity="0.85" />
+            </svg>
+            <span class="hero-chip hero-chip-1">Always watching</span>
+            <span class="hero-chip hero-chip-2">Fewer outages</span>
+            <span class="hero-chip hero-chip-3">Real signal</span>
           </div>
         </div>
       </div>
@@ -138,24 +153,32 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">What's included</p>
           <h2>Visibility before small issues get expensive</h2>
         </div>
-        <div class="service-grid">
-          <article class="service-card">
-            <h3>Production-scale monitoring &amp; synthetic checks</h3>
-            <p>Know your systems are healthy from the outside in, with checks that mirror real usage.</p>
-            <ul><li>Uptime and synthetic monitoring</li><li>Coverage across services and devices</li><li>Meaningful health signals</li></ul>
+        <div class="services-list">
+          <article class="service-entry service-entry-1">
+            <div class="service-entry-head">
+              <span class="service-entry-icon" aria-hidden="true">◎</span>
+              <h3>Production-scale monitoring &amp; synthetic checks</h3>
+            </div>
+            <p class="service-entry-body">Know your systems are healthy from the outside in, with checks that mirror real usage.</p>
+            <ul class="service-entry-points"><li>Uptime and synthetic monitoring</li><li>Coverage across services and devices</li><li>Meaningful health signals</li></ul>
           </article>
-          <article class="service-card">
-            <h3>Custom dashboards &amp; response workflows</h3>
-            <p>Dashboards your team actually uses, with alerts tuned to reduce noise and surface what matters.</p>
-            <ul><li>Tailored dashboards</li><li>Alert design and routing</li><li>Less alert fatigue</li></ul>
+          <article class="service-entry service-entry-2">
+            <div class="service-entry-head">
+              <span class="service-entry-icon" aria-hidden="true">◈</span>
+              <h3>Custom dashboards &amp; response workflows</h3>
+            </div>
+            <p class="service-entry-body">Dashboards your team actually uses, with alerts tuned to reduce noise and surface what matters.</p>
+            <ul class="service-entry-points"><li>Tailored dashboards</li><li>Alert design and routing</li><li>Less alert fatigue</li></ul>
           </article>
-          <article class="service-card">
-            <h3>Incident automation &amp; deployment practices</h3>
-            <p>Response workflows and deployment discipline that keep small problems from becoming outages.</p>
-            <ul><li>Incident response workflows</li><li>Automation to reduce toil</li><li>Resilient deployment practices</li></ul>
+          <article class="service-entry service-entry-3">
+            <div class="service-entry-head">
+              <span class="service-entry-icon" aria-hidden="true">⟳</span>
+              <h3>Incident automation &amp; deployment practices</h3>
+            </div>
+            <p class="service-entry-body">Response workflows and deployment discipline that keep small problems from becoming outages.</p>
+            <ul class="service-entry-points"><li>Incident response workflows</li><li>Automation to reduce toil</li><li>Resilient deployment practices</li></ul>
           </article>
         </div>
       </div>
@@ -164,21 +187,21 @@
     <section class="section pricing">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Pricing</p>
           <h2>Estimated starting points for monitoring setups</h2>
         </div>
-        <div class="pricing-grid">
-          <article class="pricing-card">
+        <div class="pricing-feature">
+          <div class="pricing-feature-head">
             <p class="pricing-label">Reliability</p>
             <h3>Monitoring Setup</h3>
             <p class="price">$2,000–$7,500</p>
-            <p>For teams that need dashboards, alerting, and operational visibility before small issues become expensive.</p>
-            <ul>
-              <li>Dashboard and alert design</li>
-              <li>Synthetic checks and system visibility</li>
-              <li>Incident response workflow recommendations</li>
-            </ul>
-          </article>
+            <p class="pricing-feature-desc">For teams that need dashboards, alerting, and operational visibility before small issues become expensive.</p>
+            <a class="button button-primary" href="/#contact">Start Your Project</a>
+          </div>
+          <div class="pricing-feature-tiers">
+            <div class="pricing-tier included"><span>Dashboard and alert design</span></div>
+            <div class="pricing-tier included"><span>Synthetic checks and system visibility</span></div>
+            <div class="pricing-tier included"><span>Incident response workflow recommendations</span></div>
+          </div>
         </div>
         <div class="pricing-note">
           <strong>Pricing note:</strong> These are estimated starting points. Final pricing can vary based on scope, number of systems, integrations, and support requirements. Monthly retainers typically start at $500.
@@ -189,22 +212,12 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Proof</p>
           <h2>Recent monitoring &amp; observability work</h2>
         </div>
-        <div class="service-grid">
-          <article class="service-card">
-            <h3>Monitoring Migration &amp; Dashboarding</h3>
-            <p>Migrated 800+ devices from ScienceLogic to New Relic, onboarded UPS monitoring, and created actionable dashboards for faster response.</p>
-          </article>
-          <article class="service-card">
-            <h3>What clients say</h3>
-            <p>Lead Engineer, Enterprise Operations: “Aidan delivered dependable automation and monitoring improvements that reduced risk and improved visibility for our critical systems.”</p>
-          </article>
-          <article class="service-card">
-            <h3>Measurable impact</h3>
-            <p>Monitoring Team Manager: “Clear dashboards and automation reduced our ticket volume significantly and helped our team stay ahead of production issues.”</p>
-          </article>
+        <div class="faq-list">
+          <div class="faq-row"><h3>Monitoring Migration &amp; Dashboarding</h3><p>Migrated 800+ devices from ScienceLogic to New Relic, onboarded UPS monitoring, and created actionable dashboards for faster response.</p></div>
+          <div class="faq-row"><h3>What clients say</h3><p>Lead Engineer, Enterprise Operations: “Aidan delivered dependable automation and monitoring improvements that reduced risk and improved visibility for our critical systems.”</p></div>
+          <div class="faq-row"><h3>Measurable impact</h3><p>Monitoring Team Manager: “Clear dashboards and automation reduced our ticket volume significantly and helped our team stay ahead of production issues.”</p></div>
         </div>
       </div>
     </section>
@@ -212,12 +225,11 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Related services</p>
           <h2>Build, automate, and keep it reliable</h2>
         </div>
-        <div class="service-grid">
-          <article class="service-card"><h3><a href="/web-design/">Modern Websites</a></h3><p>Production-ready websites and applications, built and launched end to end.</p></article>
-          <article class="service-card"><h3><a href="/ai-automation/">AI &amp; Automation</a></h3><p>Practical AI workflows and integrations that remove repetitive work.</p></article>
+        <div class="related-links">
+          <a class="related-link" href="/web-design/"><div><h3>Modern Websites</h3><p>Production-ready websites and applications, built and launched end to end.</p></div><span class="related-arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="related-link" href="/ai-automation/"><div><h3>AI &amp; Automation</h3><p>Practical AI workflows and integrations that remove repetitive work.</p></div><span class="related-arrow" aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </section>
@@ -225,9 +237,8 @@
     <section class="section final-cta" aria-label="Start a project">
       <div class="container final-cta-inner">
         <div>
-          <p class="eyebrow">Ready When You Are</p>
-          <h2>Get ahead of outages before they cost you.</h2>
-          <p>Start with a project request or book a discovery call to review where your visibility gaps are.</p>
+          <h2>Build something polished, useful, and reliable.</h2>
+          <p>Start with a project request or book a discovery call if you want to talk through the best next move first.</p>
         </div>
         <div class="final-cta-actions">
           <a class="button button-primary" href="/#contact">Start Your Project</a>

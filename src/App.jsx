@@ -116,9 +116,27 @@ const minorOrbitals = [
 ];
 
 const portfolio = [
-  ['Enterprise AI Automation Platform', 'Built a secure automation platform integrating Copilot Studio, Azure Foundry agents, and internal SaaS systems to streamline business operations.', 'AI / Automation'],
-  ['Monitoring Migration & Dashboarding', 'Migrated 800+ devices from ScienceLogic to New Relic, onboarded UPS monitoring, and created actionable dashboards for faster response.', 'Monitoring / Observability'],
-  ['Secure Integration Workflows', 'Designed Azure Function based integration services and RBAC-aware authorization for tool connectivity and resilience.', 'Security / Integration'],
+  {
+    title: 'Booking Website for a Local Wellness Studio',
+    body: 'A fast, mobile friendly site with class schedules and online booking, so the studio stopped fielding scheduling calls and started filling more classes.',
+    tag: 'Web Design',
+    art: 'web',
+    accent: '#8b5cf6',
+  },
+  {
+    title: 'Lead and Quote Automation for a Home Services Company',
+    body: 'An automation that turns new inquiries into clean quotes and handles the follow up on its own, cutting hours of admin and keeping leads from slipping away.',
+    tag: 'AI Automation',
+    art: 'flow',
+    accent: '#38bdf8',
+  },
+  {
+    title: 'Storefront Uptime Monitoring for an Online Shop',
+    body: 'Around the clock monitoring on the storefront and checkout that alerts the team the moment something breaks, so a broken payment page never costs another day of sales.',
+    tag: 'Monitoring',
+    art: 'pulse',
+    accent: '#34d399',
+  },
 ];
 
 const testimonials = [
@@ -180,7 +198,7 @@ function SectionHeading({ eyebrow, title, centered = false }) {
       viewport={sectionViewport}
       transition={transition(reducedMotion)}
     >
-      <p className="eyebrow">{eyebrow}</p>
+      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
       <h2>{title}</h2>
     </motion.div>
   );
@@ -401,7 +419,7 @@ function Hero({ ready }) {
           animate={ready ? { opacity: 1, x: 0 } : { opacity: 0, x: -28 }}
           transition={{ ...transition(reducedMotion), delay: reducedMotion ? 0 : 0.02 }}
         >
-          <p className="eyebrow">Professional-grade development without the full-time hire.</p>
+          <p className="eyebrow">Senior engineering, without the full time hire or agency.</p>
           <h1>Modern websites, AI agents, and observability delivered for your business.</h1>
           <p className="lead">Work directly with two senior engineers who build polished digital experiences, secure automation, and resilient operations with focused expertise.</p>
           <div className="hero-actions">
@@ -450,22 +468,27 @@ function CardGrid({ className, children }) {
   );
 }
 
+const serviceIcons = ['◈', '⚡', '◎'];
+
 function Services() {
   const reducedMotion = useReducedMotion();
 
   return (
     <section className="section services" id="services">
       <div className="container">
-        <SectionHeading eyebrow="Services" title="Solutions for growth, reliability, and intelligent automation" />
-        <CardGrid className="service-grid">
-          {services.map((service) => (
-            <motion.article className="service-card" key={service.title} variants={cardMotion} transition={transition(reducedMotion)}>
-              <h3>{service.title}</h3>
-              <p>{service.body}</p>
-              <ul>
+        <SectionHeading title="Websites, AI automation, and monitoring for growing businesses" />
+        <CardGrid className="services-list">
+          {services.map((service, i) => (
+            <motion.article className={`service-entry service-entry-${i + 1}`} key={service.title} variants={cardMotion} transition={transition(reducedMotion)}>
+              <div className="service-entry-head">
+                <span className="service-entry-icon" aria-hidden="true">{serviceIcons[i]}</span>
+                <h3>{service.title}</h3>
+                <a className="service-link service-entry-link" href={service.href}>Learn more →</a>
+              </div>
+              <p className="service-entry-body">{service.body}</p>
+              <ul className="service-entry-points">
                 {service.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
               </ul>
-              <a className="service-link" href={service.href}>Learn more →</a>
             </motion.article>
           ))}
         </CardGrid>
@@ -480,7 +503,7 @@ function Pricing() {
   return (
     <section className="section pricing" id="pricing">
       <div className="container">
-        <SectionHeading eyebrow="Pricing" title="Estimated starting points for serious business outcomes" />
+        <SectionHeading title="Estimated starting points for serious business outcomes" />
         <CardGrid className="pricing-grid">
           {pricing.map((item) => (
             <motion.article className={`pricing-card${item.featured ? ' pricing-card-featured' : ''}`} key={item.title} variants={cardMotion} transition={transition(reducedMotion)}>
@@ -1465,7 +1488,7 @@ function WhyItMatters() {
   return (
     <section className="section why" id="why">
       <div className="container">
-        <SectionHeading eyebrow="Why It Matters" title="The difference it makes for your business" centered />
+        <SectionHeading title="The difference it makes for your business" centered />
         <motion.div
           className="planet-idea-stage"
           initial={{ opacity: 0, y: 24, scale: 0.975 }}
@@ -1538,19 +1561,90 @@ function WhyItMatters() {
     </section>
   );
 }
+function ProjectArt({ type }) {
+  if (type === 'web') {
+    return (
+      <svg viewBox="0 0 320 190" aria-hidden="true">
+        <rect x="22" y="20" width="276" height="150" rx="14" fill="#0b1226" stroke="rgba(139,92,246,0.4)" />
+        <rect x="22" y="20" width="276" height="30" rx="14" fill="rgba(139,92,246,0.14)" />
+        <rect x="22" y="40" width="276" height="10" fill="rgba(139,92,246,0.14)" />
+        <circle cx="42" cy="35" r="4" fill="#8b5cf6" />
+        <circle cx="58" cy="35" r="4" fill="#38bdf8" />
+        <circle cx="74" cy="35" r="4" fill="#475569" />
+        <rect x="42" y="70" width="120" height="14" rx="5" fill="#f8fafc" opacity="0.88" />
+        <rect x="42" y="96" width="210" height="8" rx="4" fill="#94a3b8" opacity="0.45" />
+        <rect x="42" y="112" width="180" height="8" rx="4" fill="#94a3b8" opacity="0.35" />
+        <rect x="42" y="138" width="92" height="22" rx="9" fill="#8b5cf6" />
+      </svg>
+    );
+  }
+  if (type === 'flow') {
+    return (
+      <svg viewBox="0 0 320 190" aria-hidden="true">
+        <g stroke="rgba(56,189,248,0.45)" strokeWidth="2">
+          <line x1="160" y1="95" x2="68" y2="48" />
+          <line x1="160" y1="95" x2="68" y2="142" />
+          <line x1="160" y1="95" x2="252" y2="48" />
+          <line x1="160" y1="95" x2="252" y2="142" />
+        </g>
+        <circle cx="68" cy="48" r="15" fill="#0b1226" stroke="#38bdf8" strokeWidth="2" />
+        <circle cx="68" cy="142" r="15" fill="#0b1226" stroke="#38bdf8" strokeWidth="2" />
+        <circle cx="252" cy="48" r="15" fill="#0b1226" stroke="#38bdf8" strokeWidth="2" />
+        <circle cx="252" cy="142" r="15" fill="#0b1226" stroke="#38bdf8" strokeWidth="2" />
+        <circle cx="160" cy="95" r="24" fill="#0b1226" stroke="#38bdf8" strokeWidth="2.5" />
+        <circle cx="160" cy="95" r="9" fill="#38bdf8" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 320 190" aria-hidden="true">
+      <g stroke="rgba(148,163,184,0.16)" strokeWidth="1">
+        <line x1="28" y1="60" x2="292" y2="60" />
+        <line x1="28" y1="100" x2="292" y2="100" />
+        <line x1="28" y1="140" x2="292" y2="140" />
+      </g>
+      <polyline points="28,140 68,116 108,128 148,86 188,100 228,58 268,74 292,52" fill="none" stroke="#34d399" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
+      <circle cx="228" cy="58" r="5" fill="#34d399" />
+      <circle cx="292" cy="52" r="5" fill="#34d399" />
+      <g>
+        <rect x="28" y="158" width="24" height="10" rx="3" fill="#34d399" />
+        <rect x="58" y="158" width="24" height="10" rx="3" fill="#34d399" />
+        <rect x="88" y="158" width="24" height="10" rx="3" fill="#34d399" />
+        <rect x="118" y="158" width="24" height="10" rx="3" fill="#f59e0b" />
+        <rect x="148" y="158" width="24" height="10" rx="3" fill="#34d399" />
+        <rect x="178" y="158" width="24" height="10" rx="3" fill="#34d399" />
+        <rect x="208" y="158" width="24" height="10" rx="3" fill="#34d399" />
+        <rect x="238" y="158" width="24" height="10" rx="3" fill="#34d399" />
+        <rect x="268" y="158" width="24" height="10" rx="3" fill="#34d399" />
+      </g>
+    </svg>
+  );
+}
+
 function Portfolio() {
   const reducedMotion = useReducedMotion();
 
   return (
     <section className="section portfolio" id="portfolio">
       <div className="container">
-        <SectionHeading eyebrow="Portfolio" title="Selected examples of work we have delivered" />
-        <CardGrid className="portfolio-grid">
-          {portfolio.map(([title, body, tag]) => (
-            <motion.article className="portfolio-card" key={title} variants={cardMotion} transition={transition(reducedMotion)}>
-              <h3>{title}</h3>
-              <p>{body}</p>
-              <span className="tag">{tag}</span>
+        <SectionHeading title="Selected examples of work we have delivered" />
+        <CardGrid className="portfolio-showcase">
+          {portfolio.map((project) => (
+            <motion.article
+              className="project-row"
+              key={project.title}
+              style={{ '--art': project.accent }}
+              variants={cardMotion}
+              transition={transition(reducedMotion)}
+            >
+              <div className="project-info">
+                <span className="project-tag">{project.tag}</span>
+                <h3>{project.title}</h3>
+                <p>{project.body}</p>
+              </div>
+              <div className="project-art">
+                <ProjectArt type={project.art} />
+              </div>
             </motion.article>
           ))}
         </CardGrid>
@@ -1561,18 +1655,27 @@ function Portfolio() {
 
 function Testimonials() {
   const reducedMotion = useReducedMotion();
+  const [featured, ...rest] = testimonials;
+  const featuredQuote = featured[0].replace(/^[“"]\s*|\s*[”"]$/g, '');
 
   return (
     <section className="section testimonials" id="testimonials">
       <div className="container">
-        <SectionHeading eyebrow="Testimonials" title="Trusted by teams that need proactive, reliable execution" />
-        <CardGrid className="testimonial-grid">
-          {testimonials.map(([quote, author]) => (
-            <motion.article className="testimonial-card" key={author} variants={cardMotion} transition={transition(reducedMotion)}>
-              <p>{quote}</p>
-              <strong>{author}</strong>
-            </motion.article>
-          ))}
+        <SectionHeading title="Trusted by teams that need proactive, reliable execution" />
+        <CardGrid className="testimonial-feature">
+          <motion.figure className="testimonial-primary" variants={cardMotion} transition={transition(reducedMotion)}>
+            <span className="testimonial-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote>{featuredQuote}</blockquote>
+            <figcaption>{featured[1]}</figcaption>
+          </motion.figure>
+          <motion.div className="testimonial-secondary" variants={cardMotion} transition={transition(reducedMotion)}>
+            {rest.map(([quote, author]) => (
+              <figure className="testimonial-mini" key={author}>
+                <blockquote>{quote}</blockquote>
+                <figcaption>{author}</figcaption>
+              </figure>
+            ))}
+          </motion.div>
         </CardGrid>
       </div>
     </section>
@@ -1585,14 +1688,14 @@ function Process() {
   return (
     <section className="section process" id="process">
       <div className="container">
-        <SectionHeading eyebrow="Process" title="A straightforward path from idea to launch" />
-        <CardGrid className="process-grid">
+        <SectionHeading title="A straightforward path from idea to launch" />
+        <CardGrid className="process-timeline">
           {processSteps.map(([number, title, body]) => (
-            <motion.article className="process-card" key={title} variants={cardMotion} transition={transition(reducedMotion)}>
-              <span className="process-number">{number}</span>
+            <motion.div className="process-step" key={title} variants={cardMotion} transition={transition(reducedMotion)}>
+              <span className="process-node">{number}</span>
               <h3>{title}</h3>
               <p>{body}</p>
-            </motion.article>
+            </motion.div>
           ))}
         </CardGrid>
       </div>
@@ -1608,7 +1711,7 @@ function FAQ() {
     <section className="section faq" id="faq">
       <div className="container faq-grid">
         <div>
-          <SectionHeading eyebrow="FAQ" title="Answers before we talk" />
+          <SectionHeading title="Answers before we talk" />
           <p className="faq-intro">A few practical details clients usually want to know before booking a call or sending a request.</p>
         </div>
         <div className="faq-list">
@@ -1649,7 +1752,6 @@ function FinalCTA() {
     <section className="section final-cta" aria-label="Start a project">
       <motion.div className="container final-cta-inner" variants={fadeUp} initial="hidden" whileInView="visible" viewport={sectionViewport} transition={transition(reducedMotion)}>
         <div>
-          <p className="eyebrow">Ready When You Are</p>
           <h2>Build something polished, useful, and reliable.</h2>
           <p>Start with a project request or book a discovery call if you want to talk through the best next move first.</p>
         </div>
@@ -1669,7 +1771,7 @@ function About() {
     <section className="section about" id="about">
       <div className="container about-grid">
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={sectionViewport} transition={transition(reducedMotion)}>
-          <SectionHeading eyebrow="About" title="Enterprise systems experience, delivered directly." />
+          <SectionHeading title="Enterprise systems experience, delivered directly." />
           <p>We help growing companies access senior level engineering without the overhead of a full time hire or agency. A senior team of two, focused execution, real results.</p>
           <ul className="experience-list-simple">
             <li>Cloud automation and tool integration for mission critical environments</li>
@@ -1717,7 +1819,6 @@ function Contact() {
       <div className="container contact-grid">
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={sectionViewport} transition={transition(reducedMotion)}>
           <div className="section-heading">
-            <p className="eyebrow">Contact</p>
             <h2>Let's talk about your next project.</h2>
           </div>
           <p>Whether you need a website, AI automation, or improved monitoring, let's figure out the right solution together.</p>

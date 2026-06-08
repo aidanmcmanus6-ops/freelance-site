@@ -22,6 +22,8 @@ export default defineConfig({
         blogWebsiteCost: resolve(__dirname, 'blog/small-business-website-cost-south-jersey/index.html'),
         blogAiAgents: resolve(__dirname, 'blog/what-is-an-ai-agent/index.html'),
         blogMonitoring: resolve(__dirname, 'blog/what-monitoring-does/index.html'),
+        blogWhatToAutomate: resolve(__dirname, 'blog/what-to-automate/index.html'),
+        blogConverting: resolve(__dirname, 'blog/why-your-website-isnt-converting/index.html'),
       },
     },
   },

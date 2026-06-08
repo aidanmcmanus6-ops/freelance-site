@@ -106,7 +106,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script type="module" src="/src/page.js"></script>
 </head>
-<body>
+<body class="page-service">
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="MCM Integrated home">
@@ -118,6 +118,7 @@
         <a href="/web-design/">Web Design</a>
         <a href="/ai-automation/">AI Automation</a>
         <a href="/monitoring/">Monitoring</a>
+        <a href="/blog/">Blog</a>
         <a href="/#pricing">Pricing</a>
         <a href="/#contact" class="button button-secondary">Contact</a>
       </nav>
@@ -140,19 +141,33 @@
           </div>
         </div>
         <div class="hero-card">
-          <div class="hero-capabilities">
-            <div class="capability-item">
-              <span class="capability-icon">◈</span>
-              <div><strong>Custom sites &amp; landing pages</strong><p>Designed around your goal, not a template.</p></div>
-            </div>
-            <div class="capability-item">
-              <span class="capability-icon">⬡</span>
-              <div><strong>Responsive, modern frameworks</strong><p>Fast, accessible, and built to scale.</p></div>
-            </div>
-            <div class="capability-item">
-              <span class="capability-icon">◎</span>
-              <div><strong>Deployment &amp; hosting</strong><p>Release automation and a clean launch path.</p></div>
-            </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-glow"></div>
+            <svg class="hero-mockup" viewBox="0 0 440 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="wdBtn" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#8b5cf6" />
+                  <stop offset="1" stop-color="#38bdf8" />
+                </linearGradient>
+              </defs>
+              <rect x="20" y="28" width="400" height="304" rx="18" fill="#0b1226" stroke="rgba(139,92,246,0.4)" />
+              <path d="M20 46 a18 18 0 0 1 18 -18 h364 a18 18 0 0 1 18 18 v24 h-400 z" fill="rgba(139,92,246,0.12)" />
+              <circle cx="44" cy="49" r="5" fill="#8b5cf6" />
+              <circle cx="62" cy="49" r="5" fill="#38bdf8" />
+              <circle cx="80" cy="49" r="5" fill="#334155" />
+              <rect x="120" y="42" width="224" height="14" rx="7" fill="rgba(255,255,255,0.06)" />
+              <rect x="44" y="92" width="170" height="22" rx="6" fill="#f8fafc" opacity="0.92" />
+              <rect x="44" y="124" width="250" height="10" rx="5" fill="#94a3b8" opacity="0.5" />
+              <rect x="44" y="142" width="210" height="10" rx="5" fill="#94a3b8" opacity="0.4" />
+              <rect x="44" y="172" width="120" height="32" rx="11" fill="url(#wdBtn)" />
+              <rect x="312" y="92" width="84" height="84" rx="14" fill="rgba(56,189,248,0.12)" stroke="rgba(56,189,248,0.32)" />
+              <rect x="44" y="232" width="110" height="74" rx="13" fill="rgba(139,92,246,0.09)" stroke="rgba(139,92,246,0.24)" />
+              <rect x="166" y="232" width="110" height="74" rx="13" fill="rgba(56,189,248,0.09)" stroke="rgba(56,189,248,0.24)" />
+              <rect x="288" y="232" width="108" height="74" rx="13" fill="rgba(255,159,50,0.08)" stroke="rgba(255,159,50,0.24)" />
+            </svg>
+            <span class="hero-chip hero-chip-1">Responsive</span>
+            <span class="hero-chip hero-chip-2">Fast &amp; accessible</span>
+            <span class="hero-chip hero-chip-3">Launch ready</span>
           </div>
         </div>
       </div>
@@ -161,32 +176,40 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">What's included</p>
           <h2>A website that does real work for your business</h2>
         </div>
-        <div class="service-grid">
-          <article class="service-card">
-            <h3>Custom landing pages &amp; product sites</h3>
-            <p>Clean design built around your audience and the action you want them to take.</p>
-            <ul>
+        <div class="services-list">
+          <article class="service-entry service-entry-1">
+            <div class="service-entry-head">
+              <span class="service-entry-icon" aria-hidden="true">◈</span>
+              <h3>Custom landing pages &amp; product sites</h3>
+            </div>
+            <p class="service-entry-body">Clean design built around your audience and the action you want them to take.</p>
+            <ul class="service-entry-points">
               <li>Page structure built around your goal</li>
               <li>Visual design that fits your brand</li>
               <li>Clear calls to action</li>
             </ul>
           </article>
-          <article class="service-card">
-            <h3>Responsive UX with modern frameworks</h3>
-            <p>Built with current, maintainable tooling so the site looks right on every device and stays fast.</p>
-            <ul>
+          <article class="service-entry service-entry-2">
+            <div class="service-entry-head">
+              <span class="service-entry-icon" aria-hidden="true">⬡</span>
+              <h3>Responsive UX with modern frameworks</h3>
+            </div>
+            <p class="service-entry-body">Built with current, maintainable tooling so the site looks right on every device and stays fast.</p>
+            <ul class="service-entry-points">
               <li>Responsive layouts built for mobile</li>
               <li>Performance and accessibility</li>
               <li>Clean, documented code</li>
             </ul>
           </article>
-          <article class="service-card">
-            <h3>Deployment, hosting &amp; release automation</h3>
-            <p>A professional launch path so going live is smooth, and updating later is painless.</p>
-            <ul>
+          <article class="service-entry service-entry-3">
+            <div class="service-entry-head">
+              <span class="service-entry-icon" aria-hidden="true">◎</span>
+              <h3>Deployment, hosting &amp; release automation</h3>
+            </div>
+            <p class="service-entry-body">A professional launch path so going live is smooth, and updating later is painless.</p>
+            <ul class="service-entry-points">
               <li>Hosting and domain setup</li>
               <li>Automated, repeatable deploys</li>
               <li>Handoff notes and support</li>
@@ -199,21 +222,21 @@
     <section class="section pricing">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Pricing</p>
           <h2>Estimated starting points for website builds</h2>
         </div>
-        <div class="pricing-grid">
-          <article class="pricing-card">
+        <div class="pricing-feature">
+          <div class="pricing-feature-head">
             <p class="pricing-label">Websites</p>
             <h3>Site Builds</h3>
             <p class="price">From $1,000</p>
-            <p>For polished business websites that need clean design, responsive structure, and a professional launch path.</p>
-            <ul>
-              <li>Basic 2-page website: starts at $1,000</li>
-              <li>3-4 page website: starts at $1,750</li>
-              <li>Full rewrite or new site from scratch: starts at $3,000</li>
-            </ul>
-          </article>
+            <p class="pricing-feature-desc">For polished business websites that need clean design, responsive structure, and a professional launch path.</p>
+            <a class="button button-primary" href="/#contact">Start Your Project</a>
+          </div>
+          <div class="pricing-feature-tiers">
+            <div class="pricing-tier"><span>Basic 2-page website</span><strong>From $1,000</strong></div>
+            <div class="pricing-tier"><span>3-4 page website</span><strong>From $1,750</strong></div>
+            <div class="pricing-tier"><span>Full rewrite or new site from scratch</span><strong>From $3,000</strong></div>
+          </div>
         </div>
         <div class="pricing-note">
           <strong>Pricing note:</strong> These are estimated starting points. Final pricing can vary based on project complexity, content needs, integrations, platform setup, timeline, and support requirements. Monthly retainers typically start at $500.
@@ -224,14 +247,13 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Process</p>
           <h2>How a website project runs</h2>
         </div>
-        <div class="service-grid">
-          <article class="service-card"><h3>01 · Discover</h3><p>We define the business goal, audience, current systems, constraints, and the smallest useful launch path.</p></article>
-          <article class="service-card"><h3>02 · Build</h3><p>We design and implement the site with regular updates and visible progress.</p></article>
-          <article class="service-card"><h3>03 · Launch</h3><p>We ship cleanly with responsive polish, deployment support, and handoff notes.</p></article>
-          <article class="service-card"><h3>04 · Support</h3><p>After launch, we can stay involved for updates, improvements, and advisory support.</p></article>
+        <div class="process-timeline">
+          <div class="process-step"><span class="process-node">01</span><h3>Discover</h3><p>We define the business goal, audience, current systems, constraints, and the smallest useful launch path.</p></div>
+          <div class="process-step"><span class="process-node">02</span><h3>Build</h3><p>We design and implement the site with regular updates and visible progress.</p></div>
+          <div class="process-step"><span class="process-node">03</span><h3>Launch</h3><p>We ship cleanly with responsive polish, deployment support, and handoff notes.</p></div>
+          <div class="process-step"><span class="process-node">04</span><h3>Support</h3><p>After launch, we can stay involved for updates, improvements, and advisory support.</p></div>
         </div>
       </div>
     </section>
@@ -239,13 +261,12 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">FAQ</p>
           <h2>Website questions, answered</h2>
         </div>
-        <div class="service-grid">
-          <article class="service-card"><h3>How long does a typical website take?</h3><p>A basic two page site can often be completed in one to two weeks once content is ready. Larger sites, rewrites, integrations, or automation work depend on scope and complexity.</p></article>
-          <article class="service-card"><h3>What do I need before starting?</h3><p>A clear goal, rough budget range, brand assets if you have them, and any existing website or system access. If you are not sure, the discovery call is where we sort that out.</p></article>
-          <article class="service-card"><h3>Can you maintain the site after launch?</h3><p>Yes. Monthly retainers start at $500 and can cover updates, monitoring, content changes, technical support, and ongoing improvements.</p></article>
+        <div class="faq-list">
+          <div class="faq-row"><h3>How long does a typical website take?</h3><p>A basic two page site can often be completed in one to two weeks once content is ready. Larger sites, rewrites, integrations, or automation work depend on scope and complexity.</p></div>
+          <div class="faq-row"><h3>What do I need before starting?</h3><p>A clear goal, rough budget range, brand assets if you have them, and any existing website or system access. If you are not sure, the discovery call is where we sort that out.</p></div>
+          <div class="faq-row"><h3>Can you maintain the site after launch?</h3><p>Yes. Monthly retainers start at $500 and can cover updates, monitoring, content changes, technical support, and ongoing improvements.</p></div>
         </div>
       </div>
     </section>
@@ -253,12 +274,17 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Related services</p>
           <h2>Need more than a website?</h2>
         </div>
-        <div class="service-grid">
-          <article class="service-card"><h3><a href="/ai-automation/">AI &amp; Automation</a></h3><p>Practical AI workflows and integrations that remove repetitive work and connect your tools.</p></article>
-          <article class="service-card"><h3><a href="/monitoring/">Monitoring &amp; Reliability</a></h3><p>Dashboards, alerting, and observability that keep your team ahead of outages.</p></article>
+        <div class="related-links">
+          <a class="related-link" href="/ai-automation/">
+            <div><h3>AI &amp; Automation</h3><p>Practical AI workflows and integrations that remove repetitive work and connect your tools.</p></div>
+            <span class="related-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="related-link" href="/monitoring/">
+            <div><h3>Monitoring &amp; Reliability</h3><p>Dashboards, alerting, and observability that keep your team ahead of outages.</p></div>
+            <span class="related-arrow" aria-hidden="true">&rarr;</span>
+          </a>
         </div>
       </div>
     </section>
@@ -266,7 +292,6 @@
     <section class="section final-cta" aria-label="Start a project">
       <div class="container final-cta-inner">
         <div>
-          <p class="eyebrow">Ready When You Are</p>
           <h2>Build something polished, useful, and reliable.</h2>
           <p>Start with a project request or book a discovery call if you want to talk through the best next move first.</p>
         </div>
