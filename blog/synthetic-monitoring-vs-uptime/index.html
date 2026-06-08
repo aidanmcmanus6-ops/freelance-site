@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4H8NQ7SRDD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4H8NQ7SRDD');
+  </script>
+  <title>Why Your Uptime Check Isn't Enough: The Case for Synthetic Monitoring</title>
+  <meta name="description" content="A basic uptime check only tells you the server answered. It won't catch a broken checkout, a failed login, or a contact form that silently eats submissions. Here's what synthetic monitoring does instead." />
+  <meta name="author" content="Aidan McManus" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="canonical" href="https://www.mcm-integrated.com/blog/synthetic-monitoring-vs-uptime/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="MCM Integrated" />
+  <meta property="og:title" content="Why Your Uptime Check Isn't Enough: The Case for Synthetic Monitoring" />
+  <meta property="og:description" content="A basic uptime check only tells you the server answered. It won't catch a broken checkout, a failed login, or a contact form that silently eats submissions." />
+  <meta property="og:url" content="https://www.mcm-integrated.com/blog/synthetic-monitoring-vs-uptime/" />
+  <meta property="og:image" content="https://www.mcm-integrated.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Why Your Uptime Check Isn't Enough: The Case for Synthetic Monitoring" />
+  <meta name="twitter:description" content="A basic uptime check only tells you the server answered. It won't catch a broken checkout, a failed login, or a contact form that silently eats submissions." />
+  <meta name="twitter:image" content="https://www.mcm-integrated.com/og-image.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Why Your Uptime Check Isn't Enough: The Case for Synthetic Monitoring",
+      "description": "A basic uptime check only tells you the server answered. It won't catch a broken checkout, a failed login, or a contact form that silently eats submissions. Here's what synthetic monitoring does instead.",
+      "image": "https://www.mcm-integrated.com/og-image.png",
+      "datePublished": "2026-06-08",
+      "dateModified": "2026-06-08",
+      "author": {
+        "@type": "Person",
+        "name": "Aidan McManus",
+        "url": "https://www.mcm-integrated.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "MCM Integrated",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.mcm-integrated.com/mcm-logo-transparent.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.mcm-integrated.com/blog/synthetic-monitoring-vs-uptime/"
+      },
+      "about": "Synthetic monitoring and uptime monitoring for small businesses"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.mcm-integrated.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.mcm-integrated.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Why Your Uptime Check Isn't Enough", "item": "https://www.mcm-integrated.com/blog/synthetic-monitoring-vs-uptime/" }
+      ]
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="module" src="/src/page.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="MCM Integrated home">
+        <img src="/mcm-logo-transparent.png" alt="MCM Integrated logo" class="brand-logo" />
+        <span class="sr-only">MCM Integrated</span>
+      </a>
+      <nav class="nav-links" id="primaryNav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/web-design/">Web Design</a>
+        <a href="/ai-automation/">AI Automation</a>
+        <a href="/monitoring/">Monitoring</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#contact" class="button button-secondary">Contact</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <article class="article">
+      <div class="article-container">
+        <p class="article-eyebrow"><a href="/blog/">Blog</a> &middot; Monitoring</p>
+        <h1>Why Your Uptime Check Isn't Enough: The Case for Synthetic Monitoring</h1>
+        <p class="article-meta">By Aidan McManus, MCM Integrated &middot; June 2026 &middot; ~5 min read</p>
+
+        <div class="article-body">
+          <p>Here is a scenario that plays out more than it should. A business owner checks their monitoring dashboard, sees everything green, and goes about their day. Meanwhile, the checkout page has been broken for six hours. The server is up. The homepage loads fine. The uptime check has been passing every minute. Nobody knows.</p>
+
+          <p>A basic uptime check is not the same as knowing your site works. It's the same as knowing your front door is unlocked, when what you actually need to know is whether anyone can get in, find what they came for, and walk out with it.</p>
+
+          <h2>What an uptime check actually does</h2>
+          <p>A standard uptime monitor does one thing: it sends a request to a URL and checks whether it gets a response. Status 200, the check passes. No response or a 500 error, the check fails. That's the whole thing.</p>
+          <p>This catches a server that went offline or a DNS failure. Those are real problems worth catching. But they're also not where most businesses lose money. The more common failure is quieter: the server responds, the page loads, but something deeper is broken. A payment integration that stopped working after an API update. A contact form that submits but never delivers. A login flow that returns an error on mobile after a browser update that the developer didn't test against. All of those would pass an uptime check without question.</p>
+
+          <figure class="article-figure">
+            <svg viewBox="0 0 720 260" role="img" aria-label="Comparison of what an uptime check catches versus what it misses. Uptime checks catch server down and DNS failure. They miss broken checkout, failed form submissions, broken login, and payment errors.">
+              <defs>
+                <linearGradient id="syn1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
+              </defs>
+              <text x="20" y="30" font-family="Inter, sans-serif" font-size="17" font-weight="700" fill="#f8fafc">What an uptime check sees vs. what it misses</text>
+
+              <rect x="20" y="52" width="320" height="186" rx="14" fill="rgba(52,211,153,0.07)" stroke="rgba(52,211,153,0.4)"/>
+              <text x="40" y="78" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#34d399">Catches</text>
+              <g font-family="Inter, sans-serif" font-size="14" fill="#f8fafc">
+                <text x="52" y="110">Server is completely down</text>
+                <text x="52" y="140">DNS failure</text>
+                <text x="52" y="170">HTTP 5xx errors on the homepage</text>
+                <text x="52" y="200">SSL certificate expired</text>
+              </g>
+
+              <rect x="380" y="52" width="320" height="186" rx="14" fill="rgba(248,113,113,0.07)" stroke="rgba(248,113,113,0.4)"/>
+              <text x="400" y="78" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#f87171">Misses entirely</text>
+              <g font-family="Inter, sans-serif" font-size="14" fill="#f8fafc">
+                <text x="412" y="110">Checkout flow is broken</text>
+                <text x="412" y="140">Contact form silently eats submissions</text>
+                <text x="412" y="170">Login fails on mobile browsers</text>
+                <text x="412" y="200">Payment integration stopped working</text>
+              </g>
+            </svg>
+            <figcaption>A green uptime check means the server answered. It says nothing about whether your site actually does what it's supposed to do.</figcaption>
+          </figure>
+
+          <h2>What synthetic monitoring does instead</h2>
+          <p>Synthetic monitoring runs scripted user journeys against your site on a schedule. Not just "does this URL respond" but "load the page, fill in the form, click submit, confirm the confirmation screen appeared." The monitoring tool plays the role of a real user, step by step, and alerts you if any step fails.</p>
+          <p>This is where the name comes from: the traffic is synthetic, manufactured by the monitoring system rather than coming from a real visitor. But the behavior is real. It goes through the actual flow, hits the actual integrations, and either succeeds or doesn't.</p>
+          <p>For a business that takes online bookings, that means a check that runs through the booking flow every five minutes: pick a date, fill in the details, submit, confirm the booking confirmation appears. If that check starts failing at 2am on a Tuesday, you know before your customers start calling Wednesday morning with questions about why their appointment never confirmed.</p>
+
+          <figure class="article-figure">
+            <svg viewBox="0 0 720 180" role="img" aria-label="A synthetic monitoring check runs through a multi-step user journey: load page, fill form, submit, confirm success. If any step fails, an alert fires.">
+              <defs>
+                <linearGradient id="syn2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
+                <marker id="arr2" markerWidth="8" markerHeight="8" refX="5.5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#38bdf8"/></marker>
+              </defs>
+              <text x="20" y="28" font-family="Inter, sans-serif" font-size="17" font-weight="700" fill="#f8fafc">A synthetic check runs the actual user journey</text>
+
+              <g font-family="Inter, sans-serif" text-anchor="middle">
+                <rect x="20" y="50" width="130" height="60" rx="12" fill="#0e1733" stroke="rgba(139,92,246,0.3)"/>
+                <text x="85" y="78" font-size="13" font-weight="600" fill="#f8fafc">Load page</text>
+                <text x="85" y="98" font-size="12" fill="#a9b7cb">Confirm it renders</text>
+
+                <path d="M152 80 H 172" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr2)"/>
+
+                <rect x="174" y="50" width="130" height="60" rx="12" fill="#0e1733" stroke="rgba(139,92,246,0.3)"/>
+                <text x="239" y="78" font-size="13" font-weight="600" fill="#f8fafc">Fill the form</text>
+                <text x="239" y="98" font-size="12" fill="#a9b7cb">Real test data</text>
+
+                <path d="M306 80 H 326" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr2)"/>
+
+                <rect x="328" y="50" width="130" height="60" rx="12" fill="#0e1733" stroke="rgba(139,92,246,0.3)"/>
+                <text x="393" y="78" font-size="13" font-weight="600" fill="#f8fafc">Submit</text>
+                <text x="393" y="98" font-size="12" fill="#a9b7cb">Trigger the action</text>
+
+                <path d="M460 80 H 480" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr2)"/>
+
+                <rect x="482" y="50" width="130" height="60" rx="12" fill="#0e1733" stroke="rgba(139,92,246,0.3)"/>
+                <text x="547" y="78" font-size="13" font-weight="600" fill="#f8fafc">Confirm success</text>
+                <text x="547" y="98" font-size="12" fill="#a9b7cb">Assert the outcome</text>
+              </g>
+
+              <text x="360" y="150" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#a9b7cb">Any step fails &rarr; alert fires immediately</text>
+            </svg>
+            <figcaption>Synthetic checks follow the real path a customer would take. Every step is verified, not assumed.</figcaption>
+          </figure>
+
+          <h2>The scenarios where this matters most</h2>
+          <p>Not every site needs synthetic monitoring at the same level. But there are a few situations where a basic uptime check is genuinely not sufficient:</p>
+          <ul>
+            <li><strong>You take payments or bookings online.</strong> This is the clearest case. If a customer can't complete a purchase, your business loses money in real time. A synthetic check on the checkout or booking flow is the only way to know it's working before a customer tells you otherwise.</li>
+            <li><strong>You rely on third-party integrations.</strong> Payment processors, CRM syncs, booking engines, email delivery: these services have their own uptime issues and API changes that have nothing to do with your server. Your server being up doesn't mean Stripe's webhook is still configured correctly after their last update.</li>
+            <li><strong>You have a login or account area.</strong> Authentication breaks in specific and hard-to-notice ways. A token expiry issue, a session configuration change after a deployment, a third-party auth provider outage. None of these show up as a homepage error. A synthetic check on the login flow catches them before they lock out your users.</li>
+            <li><strong>Your lead form is how people contact you.</strong> A contact form that loads and submits but doesn't deliver to your inbox is one of the most common silent failures I see. The user thinks they sent a message. You never get it. A synthetic check can confirm end-to-end delivery, not just that the submit button works.</li>
+          </ul>
+
+          <h2>Running both together</h2>
+          <p>This isn't an argument for dropping uptime checks in favor of synthetic ones. They catch different things and you want both. The uptime check is the broad perimeter: is the server alive, is the domain resolving, is the SSL valid. It runs every minute and catches the fast, obvious failures. The synthetic check is the functional test: does the thing your business depends on actually work right now. It runs every few minutes on the specific flows that matter.</p>
+          <p>Together they cover the range. Separately, you have a gap that's big enough to cost you a day of business without anyone noticing.</p>
+
+          <h2>What good synthetic checks look like in practice</h2>
+          <p>A few things I've learned setting these up across different kinds of businesses:</p>
+          <ul>
+            <li><strong>Start with the highest-value flow, not the most interesting one.</strong> Checkout or contact form first. Everything else second. The goal is to catch the failure that would cost the most, not to build a comprehensive test suite.</li>
+            <li><strong>Use test accounts and test data.</strong> Synthetic checks that run against production with real data create real records, real emails, real charges. Set up dedicated test accounts and flag synthetic traffic appropriately so it doesn't pollute your real data.</li>
+            <li><strong>Keep the assertions tight.</strong> Check for the specific success state, not just "the page loaded." Confirming a success message appeared is different from confirming the page responded. The former is what you actually care about.</li>
+            <li><strong>Set a reasonable check interval.</strong> Every five minutes is usually right for a checkout or booking flow. Every minute is overkill and generates noise. Every thirty minutes is too slow to catch something before a few customers run into it.</li>
+          </ul>
+
+          <h2>The setup cost is lower than you think</h2>
+          <p>The reason most small businesses don't have synthetic monitoring isn't cost. Tools like New Relic, Checkly, and Datadog Synthetics all have tiers that cover a handful of checks for a few hundred dollars a year, sometimes less. The reason is that nobody set it up and pointed it at the right flows.</p>
+          <p>I've done the full setup as part of larger monitoring projects: scripting the user journeys, connecting the alerting, making sure the notifications go to the right person at the right time, not to a Slack channel that seventeen people muted because the old setup sent too much noise. The technical part is not complicated. The value is in knowing exactly what to watch and making sure the signal is trusted when it fires.</p>
+
+          <div class="article-cta">
+            <h3>Not sure whether your critical flows are actually being monitored?</h3>
+            <p>I set up <a href="/monitoring/">monitoring and alerting</a> that covers the things that actually cost you money when they break. Tell me what your business runs on and I'll tell you what's worth watching and what isn't.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="/#contact">Start a Project</a>
+              <a class="button button-outline" href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener noreferrer">Book a Call</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 MCM Integrated</p>
+      <p class="footer-areas">Monitoring &amp; observability serving Burlington and Camden County, New Jersey, including Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, Burlington, and the greater Philadelphia area.</p>
+      <nav aria-label="Footer">
+        <a href="/">Home</a> &middot;
+        <a href="/web-design/">Web Design</a> &middot;
+        <a href="/ai-automation/">AI Automation</a> &middot;
+        <a href="/monitoring/">Monitoring</a> &middot;
+        <a href="/blog/">Blog</a> &middot;
+        <a href="/privacy/">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
