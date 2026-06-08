@@ -24,6 +24,7 @@ export default defineConfig({
         blogMonitoring: resolve(__dirname, 'blog/what-monitoring-does/index.html'),
         blogWhatToAutomate: resolve(__dirname, 'blog/what-to-automate/index.html'),
         blogConverting: resolve(__dirname, 'blog/why-your-website-isnt-converting/index.html'),
+        blogSyntheticMonitoring: resolve(__dirname, 'blog/synthetic-monitoring-vs-uptime/index.html'),
       },
     },
   },
