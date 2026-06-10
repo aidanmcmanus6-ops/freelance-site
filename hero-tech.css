@@ -199,6 +199,17 @@
    visits each planet; its card appears during the hold
    ============================================================ */
 
+/* overflow-x: hidden on html/body creates scroll containers that silently
+   break position: sticky (the fly-through pin). `clip` keeps the same
+   horizontal clipping without breaking sticky. */
+:root {
+  overflow-x: clip;
+}
+
+html body {
+  overflow-x: clip;
+}
+
 .section.why-fly {
   padding: 0;
 }
