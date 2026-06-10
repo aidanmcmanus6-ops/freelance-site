@@ -28,8 +28,15 @@
 .hero-immersive .hero-grid {
   position: relative;
   z-index: 2;
-  width: 100%;
   align-items: center;
+}
+
+/* Compact glass console: anchored low in its column so the sun
+   and orbit rings stay visible behind/above it */
+.hero-immersive .hero-card {
+  align-self: end;
+  justify-self: end;
+  width: min(420px, 100%);
 }
 
 .hero-backdrop {
@@ -64,6 +71,11 @@
   text-shadow: 0 2px 24px rgba(2, 6, 23, 0.85);
 }
 
+.word-rise {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
 .hero-immersive .lead {
   text-shadow: 0 1px 16px rgba(2, 6, 23, 0.85);
 }
@@ -73,9 +85,9 @@
   position: relative;
   border-radius: 16px;
   border: 1px solid rgba(56, 189, 248, 0.26);
-  background: rgba(3, 9, 20, 0.78);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(4, 10, 22, 0.38);
+  backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
   box-shadow:
     0 24px 70px rgba(0, 0, 0, 0.5),
     0 0 42px rgba(56, 189, 248, 0.08),
@@ -102,9 +114,9 @@
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.7rem 1rem;
+  padding: 0.6rem 0.9rem;
   border-bottom: 1px solid rgba(56, 189, 248, 0.16);
-  background: rgba(8, 15, 31, 0.72);
+  background: rgba(8, 15, 31, 0.45);
 }
 
 .hud-dot {
@@ -152,10 +164,10 @@
 
 .hud-terminal-body {
   position: relative;
-  padding: 1.1rem 1.2rem 1.3rem;
-  min-height: 264px;
-  font-size: 0.84rem;
-  line-height: 1.85;
+  padding: 0.9rem 1rem 1rem;
+  min-height: 216px;
+  font-size: 0.78rem;
+  line-height: 1.75;
   color: #cbd5e1;
 }
 

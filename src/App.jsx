@@ -426,42 +426,30 @@ function useIsMobile() {
   return isMobile;
 }
 
-const SCRAMBLE_CHARS = '!<>-_\\/[]{}=+*^?#';
-
-function ScrambleText({ text, start }) {
+function WordRise({ text, start }) {
   const reducedMotion = useReducedMotion();
-  const [display, setDisplay] = useState(() => (reducedMotion ? text : ''));
+  const words = text.split(' ');
 
-  useEffect(() => {
-    if (!start) return undefined;
-    if (reducedMotion) {
-      setDisplay(text);
-      return undefined;
-    }
-    let frame = 0;
-    let raf = 0;
-    const totalFrames = 64;
-    const step = () => {
-      frame += 1;
-      const progress = frame / totalFrames;
-      const revealed = Math.floor(text.length * progress);
-      let out = text.slice(0, revealed);
-      for (let i = revealed; i < text.length; i += 1) {
-        const char = text[i];
-        if (char === ' ') out += ' ';
-        else if (Math.random() < 0.62) out += SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
-        else out += char;
-      }
-      setDisplay(out);
-      if (frame < totalFrames) raf = window.requestAnimationFrame(step);
-      else setDisplay(text);
-    };
-    raf = window.requestAnimationFrame(step);
-    return () => window.cancelAnimationFrame(raf);
-  }, [start, text, reducedMotion]);
+  if (reducedMotion) return <span>{text}</span>;
 
-  // aria-label keeps the real headline for screen readers while glyphs cycle.
-  return <span aria-label={text} role="text">{display || ' '}</span>;
+  // aria-label keeps the headline readable as one phrase for screen readers.
+  return (
+    <span aria-label={text} role="text">
+      {words.map((word, index) => (
+        <motion.span
+          key={`${word}-${index}`}
+          className="word-rise"
+          aria-hidden="true"
+          initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
+          animate={start ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 18, filter: 'blur(6px)' }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.12 + index * 0.055 }}
+        >
+          {word}
+          {index < words.length - 1 ? ' ' : ''}
+        </motion.span>
+      ))}
+    </span>
+  );
 }
 
 const terminalScript = [
@@ -580,7 +568,7 @@ function Hero({ ready }) {
           transition={{ ...transition(reducedMotion), delay: reducedMotion ? 0 : 0.02 }}
         >
           <p className="eyebrow">Senior engineering, without the full time hire or agency.</p>
-          <h1><ScrambleText text="Modern websites, AI agents, and observability delivered for your business." start={ready} /></h1>
+          <h1><WordRise text="Modern websites, AI agents, and observability delivered for your business." start={ready} /></h1>
           <p className="lead">Work directly with two senior engineers who build polished digital experiences, secure automation, and resilient operations with focused expertise.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#contact">Start Your Project</a>
