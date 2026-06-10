@@ -1634,6 +1634,7 @@ function WhyItMatters() {
   const reducedMotion = useReducedMotion();
   const isMobile = useIsMobile();
   const stageRef = useRef(null);
+  const pinRef = useRef(null);
   const focusRef = useRef({ index: -1, strength: 0 });
   const [activeCard, setActiveCard] = useState(-1);
   const [hintSeen, setHintSeen] = useState(false);
@@ -1662,6 +1663,29 @@ function WhyItMatters() {
         else if (local > 0.85 && index < count - 1) strength = (1 - local) / 0.15;
         else strength = 1;
         focusRef.current = { index, strength };
+        // Pin via position:fixed (sticky is unreliable here: ancestor overflow
+        // rules on html/body can silently disable it).
+        const pin = pinRef.current;
+        if (pin) {
+          const top = -rect.top;
+          const mode = top < 0 ? 'before' : top >= total ? 'after' : 'during';
+          if (pin.dataset.pin !== mode) {
+            pin.dataset.pin = mode;
+            if (mode === 'during') {
+              pin.style.position = 'fixed';
+              pin.style.top = '0px';
+              pin.style.bottom = 'auto';
+            } else if (mode === 'after') {
+              pin.style.position = 'absolute';
+              pin.style.top = 'auto';
+              pin.style.bottom = '0px';
+            } else {
+              pin.style.position = 'absolute';
+              pin.style.top = '0px';
+              pin.style.bottom = 'auto';
+            }
+          }
+        }
         const visible = strength > 0.6 && progress > 0.01 ? index : -1;
         setActiveCard((prev) => (prev === visible ? prev : visible));
         if (visible !== -1) setHintSeen(true);
@@ -1708,7 +1732,7 @@ function WhyItMatters() {
   return (
     <section className="section why why-fly" id="why">
       <div className="why-scroll-stage" ref={stageRef} style={{ height: `${planetData.length * 120}vh` }}>
-        <div className="why-sticky">
+        <div className="why-sticky" ref={pinRef}>
           <div className="container">
             <SectionHeading title="The difference it makes for your business" centered />
           </div>

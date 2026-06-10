@@ -4,6 +4,24 @@
    scramble headline support, scroll progress bar
    ============================================================ */
 
+/* Header shrinks to roughly half height once the page is scrolled */
+.site-header .header-inner {
+  transition: min-height 0.3s ease, padding 0.3s ease;
+}
+
+.site-header .brand-logo {
+  transition: width 0.3s ease, filter 0.3s ease;
+}
+
+.site-header.scrolled .header-inner {
+  min-height: 2.6rem;
+  padding: 0.3rem 0;
+}
+
+.site-header.scrolled .brand-logo {
+  width: 9rem;
+}
+
 .scroll-progress {
   position: absolute;
   bottom: -1px;
@@ -218,9 +236,13 @@ html body {
   position: relative;
 }
 
+/* Pinned by JS (position:fixed while the stage is in range) because
+   position:sticky is unreliable with the site's overflow rules */
 .why-sticky {
-  position: sticky;
+  position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
