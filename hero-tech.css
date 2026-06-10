@@ -1,0 +1,199 @@
+
+/* ============================================================
+   High-tech hero upgrade: orbital backdrop, HUD terminal,
+   scramble headline support, scroll progress bar
+   ============================================================ */
+
+.scroll-progress {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.45);
+}
+
+.hero-immersive {
+  display: flex;
+  align-items: center;
+  min-height: 92vh;
+  overflow: hidden;
+  padding: 6rem 0 7rem;
+}
+
+.hero-immersive .hero-grid {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  align-items: center;
+}
+
+.hero-backdrop {
+  position: absolute;
+  inset: -28px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-backdrop .orbital-canvas-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-backdrop .orbital-canvas-overlay {
+  background:
+    radial-gradient(ellipse 70% 60% at 62% 48%, transparent 0 52%, rgba(2, 6, 23, 0.5) 100%),
+    linear-gradient(180deg, rgba(2, 6, 23, 0.18), rgba(2, 6, 23, 0.3));
+}
+
+.hero-backdrop-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(2, 6, 17, 0.9) 0%, rgba(2, 6, 17, 0.72) 30%, rgba(2, 6, 17, 0.28) 56%, rgba(2, 6, 17, 0.06) 78%, rgba(2, 6, 17, 0) 100%),
+    linear-gradient(180deg, rgba(2, 6, 23, 0.55) 0%, rgba(2, 6, 23, 0) 18%, rgba(2, 6, 23, 0) 74%, rgba(3, 7, 18, 0.92) 100%);
+}
+
+.hero-immersive h1 {
+  text-shadow: 0 2px 24px rgba(2, 6, 23, 0.85);
+}
+
+.hero-immersive .lead {
+  text-shadow: 0 1px 16px rgba(2, 6, 23, 0.85);
+}
+
+/* HUD terminal panel */
+.hud-terminal {
+  position: relative;
+  border-radius: 16px;
+  border: 1px solid rgba(56, 189, 248, 0.26);
+  background: rgba(3, 9, 20, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.5),
+    0 0 42px rgba(56, 189, 248, 0.08),
+    inset 0 0 32px rgba(56, 189, 248, 0.04);
+  overflow: hidden;
+  font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+
+.hud-terminal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.018) 0px,
+    rgba(255, 255, 255, 0.018) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.hud-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.16);
+  background: rgba(8, 15, 31, 0.72);
+}
+
+.hud-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.hud-dot-red { background: #f87171; }
+.hud-dot-amber { background: #fbbf24; }
+.hud-dot-green { background: #34d399; }
+
+.hud-terminal-title {
+  margin-left: 0.6rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: rgba(169, 183, 203, 0.85);
+}
+
+.hud-terminal-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: auto;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #34d399;
+}
+
+.hud-status-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6);
+  animation: hud-pulse 2.2s ease-out infinite;
+}
+
+@keyframes hud-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+.hud-terminal-body {
+  position: relative;
+  padding: 1.1rem 1.2rem 1.3rem;
+  min-height: 264px;
+  font-size: 0.84rem;
+  line-height: 1.85;
+  color: #cbd5e1;
+}
+
+.hud-line { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hud-line-ok { color: #4ade80; }
+.hud-line-info { color: #7dd3fc; }
+.hud-prompt { color: #a78bfa; font-weight: 600; }
+
+.hud-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: #7dd3fc;
+  animation: hud-blink 1.05s steps(1) infinite;
+}
+
+@keyframes hud-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@media (max-width: 980px) {
+  .hero-immersive {
+    min-height: auto;
+    padding: 4.5rem 0 5rem;
+  }
+
+  .hud-terminal-body {
+    min-height: 232px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-status-pulse,
+  .hud-cursor {
+    animation: none;
+  }
+}

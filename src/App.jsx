@@ -1,8 +1,9 @@
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import introVideoUrl from '../intro-animation-clean.mp4';
+import '../hero-tech.css';
 import planetRenderSheetUrl from './assets/planet-render-sheet-v2.webp';
 import sunRenderUrl from './assets/sun-render.webp';
 
@@ -27,12 +28,6 @@ const navItems = [
   ['Portfolio', '#portfolio'],
   ['FAQ', '#faq'],
   ['Blog', '/blog/'],
-];
-
-const capabilityItems = [
-  ['◈', 'Modern Websites', 'Responsive design & deployment'],
-  ['⬡', 'AI Agents', 'Copilot Studio & Azure Foundry'],
-  ['◎', 'Observability', 'Dashboards, alerts & reliability'],
 ];
 
 const services = [
@@ -363,15 +358,24 @@ function TechCanvas() {
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const progressRef = useRef(null);
 
   useEffect(() => {
     function syncHeaderState() {
       setScrolled(window.scrollY > 12);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (progressRef.current) {
+        progressRef.current.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+      }
     }
 
     syncHeaderState();
     window.addEventListener('scroll', syncHeaderState, { passive: true });
-    return () => window.removeEventListener('scroll', syncHeaderState);
+    window.addEventListener('resize', syncHeaderState, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', syncHeaderState);
+      window.removeEventListener('resize', syncHeaderState);
+    };
   }, []);
 
   return (
@@ -404,15 +408,171 @@ function Header() {
           <span />
         </button>
       </div>
+      <div className="scroll-progress" ref={progressRef} aria-hidden="true" />
     </header>
+  );
+}
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 768px)').matches);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  return isMobile;
+}
+
+const SCRAMBLE_CHARS = '!<>-_\\/[]{}=+*^?#';
+
+function ScrambleText({ text, start }) {
+  const reducedMotion = useReducedMotion();
+  const [display, setDisplay] = useState(() => (reducedMotion ? text : ''));
+
+  useEffect(() => {
+    if (!start) return undefined;
+    if (reducedMotion) {
+      setDisplay(text);
+      return undefined;
+    }
+    let frame = 0;
+    let raf = 0;
+    const totalFrames = 64;
+    const step = () => {
+      frame += 1;
+      const progress = frame / totalFrames;
+      const revealed = Math.floor(text.length * progress);
+      let out = text.slice(0, revealed);
+      for (let i = revealed; i < text.length; i += 1) {
+        const char = text[i];
+        if (char === ' ') out += ' ';
+        else if (Math.random() < 0.62) out += SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+        else out += char;
+      }
+      setDisplay(out);
+      if (frame < totalFrames) raf = window.requestAnimationFrame(step);
+      else setDisplay(text);
+    };
+    raf = window.requestAnimationFrame(step);
+    return () => window.cancelAnimationFrame(raf);
+  }, [start, text, reducedMotion]);
+
+  // aria-label keeps the real headline for screen readers while glyphs cycle.
+  return <span aria-label={text} role="text">{display || ' '}</span>;
+}
+
+const terminalScript = [
+  { prompt: true, text: 'mcm deploy --site client-prod' },
+  { tone: 'ok', text: '✓ build complete · 1.2s' },
+  { tone: 'ok', text: '✓ live on edge network · 24 regions' },
+  { prompt: true, text: 'mcm agents status' },
+  { tone: 'info', text: '⬡ 3 workflows running · 0 errors' },
+  { prompt: true, text: 'mcm monitor --live' },
+  { tone: 'info', text: '◎ uptime 99.99% · response 84ms' },
+  { tone: 'ok', text: '✓ all systems operational' },
+];
+
+function TerminalPanel({ ready }) {
+  const reducedMotion = useReducedMotion();
+  // [completed line count, chars typed on current line]
+  const [progress, setProgress] = useState(() => (reducedMotion ? [terminalScript.length, 0] : [0, 0]));
+
+  useEffect(() => {
+    if (!ready || reducedMotion) return undefined;
+    let line = 0;
+    let char = 0;
+    let timer = 0;
+    const schedule = (fn, ms) => { timer = window.setTimeout(fn, ms); };
+    const tick = () => {
+      const current = terminalScript[line];
+      if (char < current.text.length) {
+        char += 1;
+        setProgress([line, char]);
+        schedule(tick, current.prompt ? 34 : 13);
+        return;
+      }
+      line += 1;
+      char = 0;
+      setProgress([line, 0]);
+      if (line >= terminalScript.length) {
+        // Hold the finished log on screen, then replay.
+        schedule(() => {
+          line = 0;
+          setProgress([0, 0]);
+          schedule(tick, 400);
+        }, 9000);
+        return;
+      }
+      schedule(tick, current.prompt ? 160 : 420);
+    };
+    schedule(tick, 600);
+    return () => window.clearTimeout(timer);
+  }, [ready, reducedMotion]);
+
+  const [lineCount, charCount] = progress;
+
+  return (
+    <div className="hud-terminal" role="img" aria-label="Live operations console showing deploys, AI agents, and monitoring all healthy">
+      <div className="hud-terminal-bar">
+        <span className="hud-dot hud-dot-red" />
+        <span className="hud-dot hud-dot-amber" />
+        <span className="hud-dot hud-dot-green" />
+        <span className="hud-terminal-title">mcm-ops — live</span>
+        <span className="hud-terminal-status"><span className="hud-status-pulse" />online</span>
+      </div>
+      <div className="hud-terminal-body" aria-hidden="true">
+        {terminalScript.slice(0, lineCount + 1).map((line, index) => {
+          const isTyping = index === lineCount;
+          if (isTyping && charCount === 0 && lineCount < terminalScript.length) {
+            return <div className="hud-line" key={index}>{line.prompt ? <span className="hud-prompt">$ </span> : null}<span className="hud-cursor" /></div>;
+          }
+          const text = isTyping ? line.text.slice(0, charCount) : line.text;
+          if (index >= terminalScript.length) return null;
+          return (
+            <div className={`hud-line${line.tone ? ` hud-line-${line.tone}` : ''}`} key={index}>
+              {line.prompt ? <span className="hud-prompt">$ </span> : null}
+              {text}
+              {isTyping ? <span className="hud-cursor" /> : null}
+            </div>
+          );
+        })}
+        {lineCount >= terminalScript.length ? <div className="hud-line"><span className="hud-prompt">$ </span><span className="hud-cursor" /></div> : null}
+      </div>
+    </div>
   );
 }
 
 function Hero({ ready }) {
   const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+
+  // Mouse-reactive depth: backdrop drifts opposite the cursor, panel tilts toward it.
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springConfig = { stiffness: 55, damping: 18, mass: 0.6 };
+  const backdropX = useSpring(useTransform(mouseX, [-1, 1], [16, -16]), springConfig);
+  const backdropY = useSpring(useTransform(mouseY, [-1, 1], [12, -12]), springConfig);
+  const cardRotateX = useSpring(useTransform(mouseY, [-1, 1], [3.5, -3.5]), springConfig);
+  const cardRotateY = useSpring(useTransform(mouseX, [-1, 1], [-3.5, 3.5]), springConfig);
+
+  const handleMouseMove = (event) => {
+    if (reducedMotion || isMobile) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    mouseX.set(((event.clientX - rect.left) / rect.width) * 2 - 1);
+    mouseY.set(((event.clientY - rect.top) / rect.height) * 2 - 1);
+  };
 
   return (
-    <section className="hero section" id="home">
+    <section className="hero section hero-immersive" id="home" onMouseMove={handleMouseMove}>
+      {!isMobile && (
+        <motion.div className="hero-backdrop" style={reducedMotion ? undefined : { x: backdropX, y: backdropY }} aria-hidden="true">
+          <OrbitalScrollScene interactive={false} centerXFrac={0.66} activeIndex={-1} onPlanetClick={() => {}} />
+        </motion.div>
+      )}
+      <div className="hero-backdrop-veil" aria-hidden="true" />
       <div className="container hero-grid">
         <motion.div
           initial={{ opacity: 0, x: -28 }}
@@ -420,7 +580,7 @@ function Hero({ ready }) {
           transition={{ ...transition(reducedMotion), delay: reducedMotion ? 0 : 0.02 }}
         >
           <p className="eyebrow">Senior engineering, without the full time hire or agency.</p>
-          <h1>Modern websites, AI agents, and observability delivered for your business.</h1>
+          <h1><ScrambleText text="Modern websites, AI agents, and observability delivered for your business." start={ready} /></h1>
           <p className="lead">Work directly with two senior engineers who build polished digital experiences, secure automation, and resilient operations with focused expertise.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#contact">Start Your Project</a>
@@ -429,22 +589,12 @@ function Hero({ ready }) {
         </motion.div>
         <motion.div
           className="hero-card"
-          variants={cardGrid}
-          initial="hidden"
-          animate={ready ? 'visible' : 'hidden'}
-          transition={{ delay: reducedMotion ? 0 : 0.08 }}
+          style={reducedMotion || isMobile ? undefined : { rotateX: cardRotateX, rotateY: cardRotateY, transformPerspective: 900 }}
+          initial={{ opacity: 0, y: 34, scale: 0.965 }}
+          animate={ready ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 34, scale: 0.965 }}
+          transition={{ ...transition(reducedMotion), delay: reducedMotion ? 0 : 0.12 }}
         >
-          <div className="hero-capabilities">
-            {capabilityItems.map(([icon, title, body]) => (
-              <motion.div className="capability-item" key={title} variants={cardMotion} transition={transition(reducedMotion)} whileHover={reducedMotion ? undefined : { x: -4, scale: 1.01 }}>
-                <span className="capability-icon">{icon}</span>
-                <div>
-                  <strong>{title}</strong>
-                  <p>{body}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <TerminalPanel ready={ready} />
         </motion.div>
       </div>
     </section>
@@ -525,7 +675,7 @@ function Pricing() {
   );
 }
 
-function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
+function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, centerXFrac = 0.43 }) {
   const canvasRef = useRef(null);
   const wrapRef = useRef(null);
   const activeIndexRef = useRef(activeIndex);
@@ -1341,7 +1491,7 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
       const rect = wrap.getBoundingClientRect();
       const width = rect.width;
       const height = rect.height;
-      const centerX = width * 0.43;
+      const centerX = width * centerXFrac;
       const centerY = height * 0.5;
       const maxOrbit = Math.min(width * 0.45, height * 0.62);
       const tilt = 0.48;
@@ -1416,7 +1566,7 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
 
     const handleClick = (e) => {
       const rect = canvas.getBoundingClientRect();
-      const dx = (e.clientX - rect.left) - rect.width * 0.43;
+      const dx = (e.clientX - rect.left) - rect.width * centerXFrac;
       const dy = (e.clientY - rect.top) - rect.height * 0.5;
       const cos = Math.cos(0.02);
       const sin = Math.sin(0.02);
@@ -1431,8 +1581,10 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
       onPlanetClickRef.current(null);
     };
 
-    canvas.style.cursor = 'pointer';
-    canvas.addEventListener('click', handleClick);
+    if (interactive) {
+      canvas.style.cursor = 'pointer';
+      canvas.addEventListener('click', handleClick);
+    }
     resize();
     window.addEventListener('resize', resize);
     animationFrame = window.requestAnimationFrame(draw);
@@ -1453,11 +1605,11 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
     return () => {
       window.cancelAnimationFrame(animationFrame);
       window.removeEventListener('resize', resize);
-      canvas.removeEventListener('click', handleClick);
+      if (interactive) canvas.removeEventListener('click', handleClick);
       visibilityObserver.disconnect();
       document.removeEventListener('visibilitychange', resumeLoop);
     };
-  }, [reducedMotion]);
+  }, [reducedMotion, interactive, centerXFrac]);
 
   return (
     <div className="orbital-canvas-wrap" ref={wrapRef}>
