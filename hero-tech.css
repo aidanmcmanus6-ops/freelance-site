@@ -17,7 +17,7 @@
   box-shadow: 0 0 12px rgba(56, 189, 248, 0.45);
 }
 
-.hero-immersive {
+.hero.hero-immersive {
   display: flex;
   align-items: center;
   min-height: 92vh;
@@ -44,6 +44,9 @@
   inset: -28px;
   z-index: 0;
   pointer-events: none;
+  /* Fade the space scene into the page background instead of a hard cut */
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 68%, rgba(0, 0, 0, 0.5) 86%, transparent 99%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 68%, rgba(0, 0, 0, 0.5) 86%, transparent 99%);
 }
 
 .hero-backdrop .orbital-canvas-wrap {
@@ -64,7 +67,7 @@
   pointer-events: none;
   background:
     linear-gradient(90deg, rgba(2, 6, 17, 0.9) 0%, rgba(2, 6, 17, 0.72) 30%, rgba(2, 6, 17, 0.28) 56%, rgba(2, 6, 17, 0.06) 78%, rgba(2, 6, 17, 0) 100%),
-    linear-gradient(180deg, rgba(2, 6, 23, 0.55) 0%, rgba(2, 6, 23, 0) 18%, rgba(2, 6, 23, 0) 74%, rgba(3, 7, 18, 0.92) 100%);
+    linear-gradient(180deg, rgba(2, 6, 23, 0.55) 0%, rgba(2, 6, 23, 0) 18%, rgba(2, 6, 23, 0) 78%, rgba(3, 7, 18, 0.45) 100%);
 }
 
 .hero-immersive h1 {
@@ -191,8 +194,60 @@
   50%, 100% { opacity: 0; }
 }
 
+/* ============================================================
+   Why-section scroll fly-through: section pins while the camera
+   visits each planet; its card appears during the hold
+   ============================================================ */
+
+.section.why-fly {
+  padding: 0;
+}
+
+.why-scroll-stage {
+  position: relative;
+}
+
+.why-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.why-sticky .section-heading {
+  padding-top: 5.5rem;
+  margin-bottom: 1rem;
+}
+
+.why-showcase-full {
+  flex: 1;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+.why-card-anchor {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: min(380px, 86%);
+  pointer-events: none;
+}
+
+.why-card-anchor .planet-detail-card {
+  position: static;
+  top: auto;
+  left: auto;
+  transform: none;
+  width: 100%;
+  pointer-events: auto;
+}
+
 @media (max-width: 980px) {
-  .hero-immersive {
+  .hero.hero-immersive {
     min-height: auto;
     padding: 4.5rem 0 5rem;
   }

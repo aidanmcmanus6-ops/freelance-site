@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import introVideoUrl from '../intro-animation-clean.mp4';
@@ -436,17 +436,18 @@ function WordRise({ text, start }) {
   return (
     <span aria-label={text} role="text">
       {words.map((word, index) => (
-        <motion.span
-          key={`${word}-${index}`}
-          className="word-rise"
-          aria-hidden="true"
-          initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
-          animate={start ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 18, filter: 'blur(6px)' }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.12 + index * 0.055 }}
-        >
-          {word}
+        <Fragment key={`${word}-${index}`}>
+          <motion.span
+            className="word-rise"
+            aria-hidden="true"
+            initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
+            animate={start ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 18, filter: 'blur(6px)' }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.12 + index * 0.055 }}
+          >
+            {word}
+          </motion.span>
           {index < words.length - 1 ? ' ' : ''}
-        </motion.span>
+        </Fragment>
       ))}
     </span>
   );
@@ -663,7 +664,7 @@ function Pricing() {
   );
 }
 
-function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, centerXFrac = 0.43 }) {
+function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, centerXFrac = 0.43, focusRef = null }) {
   const canvasRef = useRef(null);
   const wrapRef = useRef(null);
   const activeIndexRef = useRef(activeIndex);
@@ -687,6 +688,8 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, ce
     let time = 0;
     let isIntersecting = true;
     const isActive = () => isIntersecting && !document.hidden;
+    // Scroll-driven camera (eased every frame toward the focused planet)
+    const cam = { x: 0, y: 0, z: 1 };
 
     const planetSheet = new Image();
     planetSheet.src = planetRenderSheetUrl;
@@ -1489,9 +1492,38 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, ce
       drawSpace(width, height);
       drawComets(width, height);
 
+      const planets = planetVisuals.map((planet, index) => {
+        const orbitRadius = maxOrbit * planet.orbit;
+        const angle = phase * planet.speed + planet.angle;
+        const depth = (Math.sin(angle) + 1) / 2;
+        const x = Math.cos(angle) * orbitRadius;
+        const y = Math.sin(angle) * orbitRadius * tilt;
+        return { ...planet, index, x, y, depth, radius: planet.size * (0.78 + depth * 0.42) };
+      }).sort((a, b) => a.y - b.y);
+
+      // Fly-through camera: zoom toward the scroll-focused planet
+      const focus = focusRef ? focusRef.current : null;
+      let targetX = 0;
+      let targetY = 0;
+      let targetZ = 1;
+      if (focus && focus.index >= 0 && focus.strength > 0) {
+        const focused = planets.find((p) => p.index === focus.index);
+        if (focused) {
+          const s = Math.min(1, Math.max(0, focus.strength));
+          targetZ = 1 + s * 2.3;
+          targetX = focused.x * s;
+          targetY = focused.y * s;
+        }
+      }
+      cam.x += (targetX - cam.x) * 0.12;
+      cam.y += (targetY - cam.y) * 0.12;
+      cam.z += (targetZ - cam.z) * 0.12;
+
       ctx.save();
       ctx.translate(centerX, centerY);
       ctx.rotate(-0.02);
+      ctx.scale(cam.z, cam.z);
+      ctx.translate(-cam.x, -cam.y);
       planetVisuals.forEach((planet, index) => {
         const orbitRadius = maxOrbit * planet.orbit;
         const isActive = index === activeIndexRef.current;
@@ -1522,15 +1554,6 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, ce
         ctx.stroke();
         ctx.restore();
       });
-
-      const planets = planetVisuals.map((planet, index) => {
-        const orbitRadius = maxOrbit * planet.orbit;
-        const angle = phase * planet.speed + planet.angle;
-        const depth = (Math.sin(angle) + 1) / 2;
-        const x = Math.cos(angle) * orbitRadius;
-        const y = Math.sin(angle) * orbitRadius * tilt;
-        return { ...planet, index, x, y, depth, radius: planet.size * (0.78 + depth * 0.42) };
-      }).sort((a, b) => a.y - b.y);
 
       drawAmbientSystemObjects(maxOrbit, tilt, phase, 'back');
       planets.filter((planet) => planet.y < 0).forEach(drawPlanet);
@@ -1608,78 +1631,59 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, ce
 }
 
 function WhyItMatters() {
-  const [selectedPlanet, setSelectedPlanet] = useState(null);
-  const [hintSeen, setHintSeen] = useState(false);
-  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 768px)').matches);
   const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+  const stageRef = useRef(null);
+  const focusRef = useRef({ index: -1, strength: 0 });
+  const [activeCard, setActiveCard] = useState(-1);
+  const [hintSeen, setHintSeen] = useState(false);
+  const flyMode = !isMobile && !reducedMotion;
 
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)');
-    const handler = (e) => setIsMobile(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
+    if (!flyMode) return undefined;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        const stage = stageRef.current;
+        if (!stage) return;
+        const viewHeight = window.innerHeight;
+        const rect = stage.getBoundingClientRect();
+        const total = Math.max(1, rect.height - viewHeight);
+        const progress = Math.min(1, Math.max(0, -rect.top / total));
+        const count = planetData.length;
+        const seg = Math.min(count - 0.0001, progress * count);
+        const index = Math.floor(seg);
+        const local = seg - index;
+        // Each planet gets a segment: fly in, hold (card visible), fly out.
+        let strength;
+        if (local < 0.3) strength = local / 0.3;
+        else if (local > 0.85 && index < count - 1) strength = (1 - local) / 0.15;
+        else strength = 1;
+        focusRef.current = { index, strength };
+        const visible = strength > 0.6 && progress > 0.01 ? index : -1;
+        setActiveCard((prev) => (prev === visible ? prev : visible));
+        if (visible !== -1) setHintSeen(true);
+      });
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
+  }, [flyMode]);
 
-  const handlePlanetClick = useCallback((index) => {
-    setSelectedPlanet(index);
-    if (index !== null) setHintSeen(true);
-  }, []);
-
-  return (
-    <section className="section why" id="why">
-      <div className="container">
-        <SectionHeading title="The difference it makes for your business" centered />
-        <motion.div
-          className="planet-idea-stage"
-          initial={{ opacity: 0, y: 24, scale: 0.975 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={sectionViewport}
-          transition={transition(reducedMotion)}
-        >
-          {!isMobile && (
-          <div className="orbital-showcase" aria-label="Six business impact planets orbiting MCM Integrated delivery">
-            <OrbitalScrollScene activeIndex={selectedPlanet ?? -1} onPlanetClick={handlePlanetClick} />
-            <AnimatePresence>
-              {!hintSeen && (
-                <motion.div
-                  className="planet-click-hint"
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 4 }}
-                  transition={{ delay: 1.2, duration: 0.5, ease: 'easeOut' }}
-                >
-                  <span className="planet-click-hint-icon">⊕</span>
-                  Click a planet to explore
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <AnimatePresence>
-              {selectedPlanet !== null && (
-                <motion.div
-                  className="planet-detail-card"
-                  key={selectedPlanet}
-                  initial={{ opacity: 0, scale: 0.88, y: 16 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.88, y: 16 }}
-                  transition={{ duration: 0.26, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <button className="planet-detail-close" onClick={() => setSelectedPlanet(null)} aria-label="Close">×</button>
-                  <div className="planet-detail-header">
-                    <span className="planet-detail-number">{String(selectedPlanet + 1).padStart(2, '0')}</span>
-                    <span className="planet-detail-icon">{planetData[selectedPlanet].icon}</span>
-                  </div>
-                  <h3>{planetData[selectedPlanet].title}</h3>
-                  <p>{planetData[selectedPlanet].desc}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-          )}
-
+  if (!flyMode) {
+    return (
+      <section className="section why" id="why">
+        <div className="container">
+          <SectionHeading title="The difference it makes for your business" centered />
           <div className="planet-card-grid">
             {planetData.map((planet, index) => (
               <motion.article
-                className={`planet-card planet-card-${index + 1}${selectedPlanet === index ? ' active' : ''}`}
+                className={`planet-card planet-card-${index + 1}`}
                 key={planet.title}
                 variants={cardMotion}
                 initial="hidden"
@@ -1696,7 +1700,57 @@ function WhyItMatters() {
               </motion.article>
             ))}
           </div>
-        </motion.div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="section why why-fly" id="why">
+      <div className="why-scroll-stage" ref={stageRef} style={{ height: `${planetData.length * 120}vh` }}>
+        <div className="why-sticky">
+          <div className="container">
+            <SectionHeading title="The difference it makes for your business" centered />
+          </div>
+          <div className="orbital-showcase why-showcase-full" aria-label="Scroll to fly between six business impact planets">
+            <OrbitalScrollScene activeIndex={-1} onPlanetClick={() => {}} interactive={false} focusRef={focusRef} />
+            <AnimatePresence>
+              {!hintSeen && (
+                <motion.div
+                  className="planet-click-hint"
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 4 }}
+                  transition={{ delay: 0.8, duration: 0.5, ease: 'easeOut' }}
+                >
+                  <span className="planet-click-hint-icon">⌄</span>
+                  Keep scrolling to fly through the system
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <div className="why-card-anchor">
+              <AnimatePresence>
+                {activeCard !== -1 && (
+                  <motion.div
+                    className="planet-detail-card"
+                    key={activeCard}
+                    initial={{ opacity: 0, scale: 0.9, x: 26 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.92, x: 26 }}
+                    transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <div className="planet-detail-header">
+                      <span className="planet-detail-number">{String(activeCard + 1).padStart(2, '0')}</span>
+                      <span className="planet-detail-icon">{planetData[activeCard].icon}</span>
+                    </div>
+                    <h3>{planetData[activeCard].title}</h3>
+                    <p>{planetData[activeCard].desc}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
