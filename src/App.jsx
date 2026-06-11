@@ -1687,7 +1687,7 @@ function WhyItMatters() {
         const blend = traveling ? ease((local - 0.78) / 0.22) : 0;
         // Zoom envelope: fly in once at the start, pull back once at the end.
         let strength = 1;
-        if (index === 0 && local < 0.22) strength = ease(local / 0.22);
+        if (index === 0 && local < 0.45) strength = ease(local / 0.45);
         else if (index === count - 1 && local > 0.85) strength = ease((1 - local) / 0.15);
         focusRef.current = { index, nextIndex: traveling ? index + 1 : -1, blend, strength };
         // Pin via position:fixed (sticky is unreliable here: ancestor overflow
