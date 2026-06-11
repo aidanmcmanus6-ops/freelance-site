@@ -26,6 +26,7 @@ export default defineConfig({
         blogConverting: resolve(__dirname, 'blog/why-your-website-isnt-converting/index.html'),
         blogSyntheticMonitoring: resolve(__dirname, 'blog/synthetic-monitoring-vs-uptime/index.html'),
         blogRebuildVsFix: resolve(__dirname, 'blog/rebuild-vs-fix-your-website/index.html'),
+        blogSilentAutomations: resolve(__dirname, 'blog/when-automations-fail-silently/index.html'),
       },
     },
   },
