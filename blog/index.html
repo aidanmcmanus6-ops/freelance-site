@@ -58,84 +58,94 @@
   </header>
 
   <main>
-    <section class="section">
+    <section class="section blog-index">
       <div class="container">
         <div class="section-heading">
           <h2>Practical guides, no hype</h2>
         </div>
         <p class="faq-intro">Straight answers on websites, AI automation, and monitoring for small and growing businesses, written by the engineers who build them, not a marketing team.</p>
-        <div class="post-list">
-          <a class="post-row" href="/blog/what-downtime-actually-costs/">
-            <span class="post-tag">Monitoring</span>
-            <div class="post-row-main">
-              <h3>What an Hour of Downtime Actually Costs a Small Business</h3>
-              <p>The lost sale is the cheapest line on the bill. The hidden costs nobody invoices you for, the math most owners never do, and why detection time, not failure count, is the metric that matters.</p>
+
+        <div class="blog-filters" aria-label="Filter posts by topic">
+          <button class="blog-filter is-active" data-filter="all" type="button">All posts</button>
+          <button class="blog-filter" data-filter="web" type="button">Web Design</button>
+          <button class="blog-filter" data-filter="ai" type="button">AI &amp; Automation</button>
+          <button class="blog-filter" data-filter="mon" type="button">Monitoring</button>
+        </div>
+
+        <a class="blog-feature blog-cat-mon" href="/blog/what-downtime-actually-costs/" data-cat="mon" data-reveal>
+          <div class="blog-feature-body">
+            <div class="blog-card-tags">
+              <span class="blog-latest">Latest</span>
+              <span class="blog-tag">Monitoring</span>
             </div>
-            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+            <h3>What an Hour of Downtime Actually Costs a Small Business</h3>
+            <p>The lost sales are the cheapest part. The hidden costs nobody invoices you for, the math most owners never do, and why detection time is the whole game.</p>
+            <span class="blog-read">June 2026 &middot; ~5 min read <span class="blog-arrow" aria-hidden="true">&rarr;</span></span>
+          </div>
+          <div class="blog-feature-art" aria-hidden="true">
+            <span class="orbit orbit-1"></span>
+            <span class="orbit orbit-2"></span>
+            <span class="orbit orbit-3"></span>
+            <span class="core"></span>
+          </div>
+        </a>
+
+        <div class="blog-grid">
+          <a class="blog-card blog-cat-ai" href="/blog/when-automations-fail-silently/" data-cat="ai" data-reveal style="--d: 0.05s">
+            <span class="blog-card-glow" aria-hidden="true"></span>
+            <span class="blog-tag">AI &amp; Automation</span>
+            <h3>The Silent Failure Problem: When Your Automation Breaks and Nobody Notices</h3>
+            <p>An automation that breaks doesn't put an error on your homepage. It just stops doing the thing. Why silent failures cost more than downtime, and the three layers of checks that catch them.</p>
+            <span class="blog-read">Read article <span class="blog-arrow" aria-hidden="true">&rarr;</span></span>
           </a>
-          <a class="post-row" href="/blog/when-automations-fail-silently/">
-            <span class="post-tag">AI &amp; Automation</span>
-            <div class="post-row-main">
-              <h3>The Silent Failure Problem: When Your Automation Breaks and Nobody Notices</h3>
-              <p>An automation that breaks doesn't put an error on your homepage. It just stops doing the thing, and everything keeps looking fine. Why silent failures cost more than downtime, and the three layers of checks that catch them.</p>
-            </div>
-            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          <a class="blog-card blog-cat-web" href="/blog/rebuild-vs-fix-your-website/" data-cat="web" data-reveal style="--d: 0.1s">
+            <span class="blog-card-glow" aria-hidden="true"></span>
+            <span class="blog-tag">Web Design</span>
+            <h3>When to Rebuild Your Website vs. When to Just Fix It</h3>
+            <p>A rebuild is expensive, slow, and often the wrong call. How to tell whether your site needs to start over, or whether a few targeted fixes would do the same job for less.</p>
+            <span class="blog-read">Read article <span class="blog-arrow" aria-hidden="true">&rarr;</span></span>
           </a>
-          <a class="post-row" href="/blog/rebuild-vs-fix-your-website/">
-            <span class="post-tag">Web Design</span>
-            <div class="post-row-main">
-              <h3>When to Rebuild Your Website vs. When to Just Fix It</h3>
-              <p>A rebuild is expensive, slow, and often the wrong call. How to tell whether your site needs to start over, or whether a few targeted fixes would do the same job for less money and time.</p>
-            </div>
-            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          <a class="blog-card blog-cat-mon" href="/blog/synthetic-monitoring-vs-uptime/" data-cat="mon" data-reveal style="--d: 0.15s">
+            <span class="blog-card-glow" aria-hidden="true"></span>
+            <span class="blog-tag">Monitoring</span>
+            <h3>Why Your Uptime Check Isn't Enough: The Case for Synthetic Monitoring</h3>
+            <p>A basic uptime check only tells you the server answered. It won't catch a broken checkout, a failed login, or a contact form that silently eats submissions.</p>
+            <span class="blog-read">Read article <span class="blog-arrow" aria-hidden="true">&rarr;</span></span>
           </a>
-          <a class="post-row" href="/blog/synthetic-monitoring-vs-uptime/">
-            <span class="post-tag">Monitoring</span>
-            <div class="post-row-main">
-              <h3>Why Your Uptime Check Isn't Enough: The Case for Synthetic Monitoring</h3>
-              <p>A basic uptime check only tells you the server answered. It won't catch a broken checkout, a failed login, or a contact form that silently eats submissions. Here's what synthetic monitoring does instead.</p>
-            </div>
-            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          <a class="blog-card blog-cat-mon" href="/blog/what-monitoring-does/" data-cat="mon" data-reveal style="--d: 0.2s">
+            <span class="blog-card-glow" aria-hidden="true"></span>
+            <span class="blog-tag">Monitoring</span>
+            <h3>What Monitoring Actually Does (and When Your Business Needs It)</h3>
+            <p>There are two ways to find out a system went down: your monitoring tells you, or your customer does. What monitoring watches, and when a business actually needs it.</p>
+            <span class="blog-read">Read article <span class="blog-arrow" aria-hidden="true">&rarr;</span></span>
           </a>
-          <a class="post-row" href="/blog/what-monitoring-does/">
-            <span class="post-tag">Monitoring</span>
-            <div class="post-row-main">
-              <h3>What Monitoring Actually Does (and When Your Business Needs It)</h3>
-              <p>There are two ways to find out a system went down: your monitoring tells you, or your customer does. What monitoring actually watches, why alert noise ruins it, and when a business actually needs it.</p>
-            </div>
-            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          <a class="blog-card blog-cat-ai" href="/blog/what-is-an-ai-agent/" data-cat="ai" data-reveal style="--d: 0.25s">
+            <span class="blog-card-glow" aria-hidden="true"></span>
+            <span class="blog-tag">AI &amp; Automation</span>
+            <h3>What an AI Agent Actually Is (And Why It Beats Juggling Five AI Tools)</h3>
+            <p>Most businesses already run several AI tools that ignore each other. What an AI agent does differently, what an MCP is in plain English, and why the model matters.</p>
+            <span class="blog-read">Read article <span class="blog-arrow" aria-hidden="true">&rarr;</span></span>
           </a>
-          <a class="post-row" href="/blog/what-is-an-ai-agent/">
-            <span class="post-tag">AI &amp; Automation</span>
-            <div class="post-row-main">
-              <h3>What an AI Agent Actually Is (And Why It Beats Juggling Five AI Tools)</h3>
-              <p>Most businesses already run several AI tools that ignore each other. Here is what an AI agent does differently, what an MCP actually is in plain English, and why the model you are using matters more than you think.</p>
-            </div>
-            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          <a class="blog-card blog-cat-web" href="/blog/small-business-website-cost-south-jersey/" data-cat="web" data-reveal style="--d: 0.3s">
+            <span class="blog-card-glow" aria-hidden="true"></span>
+            <span class="blog-tag">Web Design</span>
+            <h3>How Much Does a Small Business Website Cost in South Jersey? (2026)</h3>
+            <p>Real 2026 price ranges, DIY vs freelancer vs agency, what actually drives the cost, the ongoing fees nobody mentions, and how to avoid overpaying.</p>
+            <span class="blog-read">Read article <span class="blog-arrow" aria-hidden="true">&rarr;</span></span>
           </a>
-          <a class="post-row" href="/blog/small-business-website-cost-south-jersey/">
-            <span class="post-tag">Web Design</span>
-            <div class="post-row-main">
-              <h3>How Much Does a Small Business Website Cost in South Jersey? (2026)</h3>
-              <p>Real 2026 price ranges, DIY vs freelancer vs agency, what actually drives the cost, the ongoing fees nobody mentions, and how to avoid overpaying.</p>
-            </div>
-            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          <a class="blog-card blog-cat-ai" href="/blog/what-to-automate/" data-cat="ai" data-reveal style="--d: 0.35s">
+            <span class="blog-card-glow" aria-hidden="true"></span>
+            <span class="blog-tag">AI &amp; Automation</span>
+            <h3>What's Actually Worth Automating in Your Business (And What Isn't)</h3>
+            <p>Not everything should be automated. How to tell which tasks are worth it, what makes a good automation candidate, and the right place to start.</p>
+            <span class="blog-read">Read article <span class="blog-arrow" aria-hidden="true">&rarr;</span></span>
           </a>
-          <a class="post-row" href="/blog/what-to-automate/">
-            <span class="post-tag">AI &amp; Automation</span>
-            <div class="post-row-main">
-              <h3>What's Actually Worth Automating in Your Business (And What Isn't)</h3>
-              <p>Not everything should be automated. How to tell which tasks are worth it, what makes a good automation candidate, where AI changes the equation, and the right place to start.</p>
-            </div>
-            <span class="post-arrow" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="post-row" href="/blog/why-your-website-isnt-converting/">
-            <span class="post-tag">Web Design</span>
-            <div class="post-row-main">
-              <h3>Why Your Website Gets Visitors But Not Customers</h3>
-              <p>Traffic without action is not a win. What actually stops visitors from becoming customers, from slow load times and unclear headlines to too many competing calls to action, and what to fix first.</p>
-            </div>
-            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          <a class="blog-card blog-cat-web" href="/blog/why-your-website-isnt-converting/" data-cat="web" data-reveal style="--d: 0.4s">
+            <span class="blog-card-glow" aria-hidden="true"></span>
+            <span class="blog-tag">Web Design</span>
+            <h3>Why Your Website Gets Visitors But Not Customers</h3>
+            <p>Traffic without action is not a win. What stops visitors from becoming customers, from slow load times to too many competing calls to action, and what to fix first.</p>
+            <span class="blog-read">Read article <span class="blog-arrow" aria-hidden="true">&rarr;</span></span>
           </a>
         </div>
       </div>
