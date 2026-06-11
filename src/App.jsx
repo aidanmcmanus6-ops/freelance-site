@@ -2140,6 +2140,105 @@ function Contact() {
   );
 }
 
+const tiltSelector = '.service-entry, .pricing-card, .pricing-note, .planet-card, .testimonial-primary, .testimonial-mini, .faq-item, .contact-card, .project-row';
+const magnetSelector = '.button-primary, .button-outline, .button-secondary';
+
+// Unified pointer physics, one delegated listener for the whole page:
+// card surfaces tilt in 3D toward the cursor (glare position is handed to
+// CSS via --gx/--gy), and CTA buttons are gently magnetic. Mouse-only;
+// disabled for touch and reduced-motion users.
+function CardPhysics() {
+  useEffect(() => {
+    const fine = window.matchMedia('(pointer: fine)').matches;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!fine || reduce) return undefined;
+
+    let card = null;
+    let magnet = null;
+    let raf = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let curX = 0;
+    let curY = 0;
+
+    const releaseCard = (el) => {
+      el.style.transition = 'transform 0.45s ease';
+      el.style.transform = '';
+      window.setTimeout(() => {
+        if (el !== card) el.style.transition = '';
+      }, 480);
+    };
+
+    const loop = () => {
+      curX += (targetX - curX) * 0.16;
+      curY += (targetY - curY) * 0.16;
+      if (card) {
+        card.style.transform = `perspective(850px) rotateX(${curX.toFixed(2)}deg) rotateY(${curY.toFixed(2)}deg)`;
+        raf = window.requestAnimationFrame(loop);
+      } else {
+        raf = 0;
+      }
+    };
+
+    const onMove = (event) => {
+      const origin = event.target instanceof Element ? event.target : null;
+      const hitCard = origin ? origin.closest(tiltSelector) : null;
+      const hitMagnet = origin ? origin.closest(magnetSelector) : null;
+
+      if (hitCard !== card) {
+        if (card) releaseCard(card);
+        card = hitCard;
+        curX = 0;
+        curY = 0;
+        if (card) card.style.transition = 'none';
+      }
+      if (card) {
+        const rect = card.getBoundingClientRect();
+        const px = (event.clientX - rect.left) / rect.width;
+        const py = (event.clientY - rect.top) / rect.height;
+        targetX = (py - 0.5) * -5.5;
+        targetY = (px - 0.5) * 5.5;
+        card.style.setProperty('--gx', `${(px * 100).toFixed(1)}%`);
+        card.style.setProperty('--gy', `${(py * 100).toFixed(1)}%`);
+        if (!raf) raf = window.requestAnimationFrame(loop);
+      }
+
+      if (hitMagnet !== magnet) {
+        if (magnet) magnet.style.transform = '';
+        magnet = hitMagnet;
+      }
+      if (magnet) {
+        const rect = magnet.getBoundingClientRect();
+        const dx = Math.max(-4, Math.min(4, (event.clientX - (rect.left + rect.width / 2)) * 0.12));
+        const dy = Math.max(-3, Math.min(3, (event.clientY - (rect.top + rect.height / 2)) * 0.18));
+        magnet.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px)`;
+      }
+    };
+
+    const onLeave = () => {
+      if (card) {
+        releaseCard(card);
+        card = null;
+      }
+      if (magnet) {
+        magnet.style.transform = '';
+        magnet = null;
+      }
+    };
+
+    document.addEventListener('pointermove', onMove, { passive: true });
+    document.addEventListener('pointerleave', onLeave);
+    return () => {
+      document.removeEventListener('pointermove', onMove);
+      document.removeEventListener('pointerleave', onLeave);
+      if (raf) window.cancelAnimationFrame(raf);
+      onLeave();
+    };
+  }, []);
+
+  return null;
+}
+
 function App() {
   const [introComplete, setIntroComplete] = useState(false);
 
@@ -2165,6 +2264,7 @@ function App() {
   return (
     <>
       <IntroOverlay onComplete={() => setIntroComplete(true)} />
+      <CardPhysics />
       <TechCanvas />
       <Header />
       <main>
