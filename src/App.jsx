@@ -740,6 +740,7 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, ce
       canvas.style.width = `${rect.width}px`;
       canvas.style.height = `${rect.height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.imageSmoothingQuality = 'high';
     };
 
     const drawSpace = (width, height) => {
@@ -1510,14 +1511,14 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, ce
         const focused = planets.find((p) => p.index === focus.index);
         if (focused) {
           const s = Math.min(1, Math.max(0, focus.strength));
-          targetZ = 1 + s * 2.3;
+          targetZ = 1 + s * 1.55;
           targetX = focused.x * s;
           targetY = focused.y * s;
         }
       }
-      cam.x += (targetX - cam.x) * 0.12;
-      cam.y += (targetY - cam.y) * 0.12;
-      cam.z += (targetZ - cam.z) * 0.12;
+      cam.x += (targetX - cam.x) * 0.1;
+      cam.y += (targetY - cam.y) * 0.1;
+      cam.z += (targetZ - cam.z) * 0.1;
 
       ctx.save();
       ctx.translate(centerX, centerY);
@@ -1569,6 +1570,21 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, ce
       drawMoons(planets);
       drawSpaceStation(maxOrbit, tilt, phase);
       ctx.restore();
+
+      // Focus vignette: gently darken the edges while zoomed so the
+      // visited planet pops without the rest of the system vanishing
+      const focusAmt = Math.min(1, Math.max(0, (cam.z - 1) / 1.55));
+      if (focusAmt > 0.03) {
+        const spot = ctx.createRadialGradient(
+          centerX, centerY, Math.min(width, height) * 0.16,
+          centerX, centerY, Math.max(width, height) * 0.78,
+        );
+        spot.addColorStop(0, 'rgba(2, 6, 23, 0)');
+        spot.addColorStop(0.55, `rgba(2, 6, 23, ${0.18 * focusAmt})`);
+        spot.addColorStop(1, `rgba(2, 6, 23, ${0.6 * focusAmt})`);
+        ctx.fillStyle = spot;
+        ctx.fillRect(0, 0, width, height);
+      }
 
       time += reducedMotion ? 0 : 8;
       // Pause the loop when the scene scrolls off-screen or the tab is hidden.
@@ -1662,6 +1678,7 @@ function WhyItMatters() {
         if (local < 0.3) strength = local / 0.3;
         else if (local > 0.85 && index < count - 1) strength = (1 - local) / 0.15;
         else strength = 1;
+        strength = strength * strength * (3 - 2 * strength); // smoothstep ease
         focusRef.current = { index, strength };
         // Pin via position:fixed (sticky is unreliable here: ancestor overflow
         // rules on html/body can silently disable it).
