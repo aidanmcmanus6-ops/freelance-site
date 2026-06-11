@@ -320,3 +320,43 @@ html body {
     animation: none;
   }
 }
+
+/* ============================================================
+   Tech-panel corners (home page cards): notch two corners so
+   cards read as fabricated panels instead of plain rounded
+   boxes. Hover glow is inset because clip-path clips anything
+   painted outside the shape. (Static pages get the same
+   treatment in blog-cards.css.)
+   ============================================================ */
+
+.service-entry,
+.pricing-card,
+.pricing-note,
+.planet-card,
+.planet-detail-card,
+.testimonial-primary,
+.testimonial-mini,
+.faq-item,
+.contact-card,
+.project-row {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 18px) 0,
+    100% 18px,
+    100% 100%,
+    18px 100%,
+    0 calc(100% - 18px)
+  );
+}
+
+.service-entry:hover,
+.pricing-card:hover,
+.planet-card:hover,
+.testimonial-primary:hover,
+.testimonial-mini:hover,
+.faq-item:hover,
+.contact-card:hover,
+.project-row:hover {
+  border-color: rgba(139, 92, 246, 0.45);
+  box-shadow: inset 0 0 34px rgba(139, 92, 246, 0.07);
+}

@@ -375,6 +375,19 @@
   display: none !important;
 }
 
+/* Tech-panel corners for static-page cards (mirrors the homepage
+   treatment in hero-tech.css) */
+.article-cta {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 18px) 0,
+    100% 18px,
+    100% 100%,
+    18px 100%,
+    0 calc(100% - 18px)
+  );
+}
+
 @media (max-width: 980px) {
   .blog-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
