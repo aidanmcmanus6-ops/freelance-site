@@ -27,6 +27,7 @@ export default defineConfig({
         blogSyntheticMonitoring: resolve(__dirname, 'blog/synthetic-monitoring-vs-uptime/index.html'),
         blogRebuildVsFix: resolve(__dirname, 'blog/rebuild-vs-fix-your-website/index.html'),
         blogSilentAutomations: resolve(__dirname, 'blog/when-automations-fail-silently/index.html'),
+        blogDowntimeCosts: resolve(__dirname, 'blog/what-downtime-actually-costs/index.html'),
       },
     },
   },
