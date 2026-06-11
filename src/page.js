@@ -12,6 +12,9 @@ import { injectSpeedInsights } from '@vercel/speed-insights';
 inject();
 injectSpeedInsights();
 
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer = window.matchMedia('(pointer: fine)').matches;
+
 const header = document.querySelector('.site-header');
 if (header) {
   const syncHeaderState = () => header.classList.toggle('scrolled', window.scrollY > 12);
@@ -32,7 +35,6 @@ if (toggle && nav) {
 // Scroll reveal for any element opting in via [data-reveal].
 const revealTargets = document.querySelectorAll('[data-reveal]');
 if (revealTargets.length) {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion || !('IntersectionObserver' in window)) {
     revealTargets.forEach((el) => el.classList.add('revealed'));
   } else {
@@ -61,4 +63,52 @@ if (filterButtons.length) {
       });
     });
   });
+}
+
+// Catalog physics (blog index, mouse devices only): each entry tilts in 3D
+// toward the pointer with a glare sheen tracking across its surface, and the
+// section's blueprint grid is lit by a spotlight that follows the cursor.
+if (finePointer && !reduceMotion) {
+  document.querySelectorAll('.cat-card').forEach((card) => {
+    let raf = 0;
+    let px = 0.5;
+    let py = 0.5;
+
+    card.addEventListener('pointermove', (event) => {
+      const rect = card.getBoundingClientRect();
+      px = (event.clientX - rect.left) / rect.width;
+      py = (event.clientY - rect.top) / rect.height;
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        card.style.setProperty('--ry', `${((px - 0.5) * 8).toFixed(2)}deg`);
+        card.style.setProperty('--rx', `${((py - 0.5) * -8).toFixed(2)}deg`);
+        card.style.setProperty('--gx', `${(px * 100).toFixed(1)}%`);
+        card.style.setProperty('--gy', `${(py * 100).toFixed(1)}%`);
+      });
+    });
+
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
+  });
+
+  const catalog = document.querySelector('.blog-index');
+  if (catalog) {
+    let spotRaf = 0;
+    let sx = 0;
+    let sy = 0;
+    catalog.addEventListener('pointermove', (event) => {
+      const rect = catalog.getBoundingClientRect();
+      sx = event.clientX - rect.left;
+      sy = event.clientY - rect.top;
+      if (spotRaf) return;
+      spotRaf = window.requestAnimationFrame(() => {
+        spotRaf = 0;
+        catalog.style.setProperty('--sx', `${sx.toFixed(0)}px`);
+        catalog.style.setProperty('--sy', `${sy.toFixed(0)}px`);
+      });
+    });
+  }
 }
