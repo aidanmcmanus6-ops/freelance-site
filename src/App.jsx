@@ -1,8 +1,9 @@
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import introVideoUrl from '../intro-animation-clean.mp4';
+import '../hero-tech.css';
 import planetRenderSheetUrl from './assets/planet-render-sheet-v2.webp';
 import sunRenderUrl from './assets/sun-render.webp';
 
@@ -27,12 +28,6 @@ const navItems = [
   ['Portfolio', '#portfolio'],
   ['FAQ', '#faq'],
   ['Blog', '/blog/'],
-];
-
-const capabilityItems = [
-  ['◈', 'Modern Websites', 'Responsive design & deployment'],
-  ['⬡', 'AI Agents', 'Copilot Studio & Azure Foundry'],
-  ['◎', 'Observability', 'Dashboards, alerts & reliability'],
 ];
 
 const services = [
@@ -363,15 +358,24 @@ function TechCanvas() {
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const progressRef = useRef(null);
 
   useEffect(() => {
     function syncHeaderState() {
       setScrolled(window.scrollY > 12);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (progressRef.current) {
+        progressRef.current.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+      }
     }
 
     syncHeaderState();
     window.addEventListener('scroll', syncHeaderState, { passive: true });
-    return () => window.removeEventListener('scroll', syncHeaderState);
+    window.addEventListener('resize', syncHeaderState, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', syncHeaderState);
+      window.removeEventListener('resize', syncHeaderState);
+    };
   }, []);
 
   return (
@@ -404,15 +408,160 @@ function Header() {
           <span />
         </button>
       </div>
+      <div className="scroll-progress" ref={progressRef} aria-hidden="true" />
     </header>
+  );
+}
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 768px)').matches);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  return isMobile;
+}
+
+function WordRise({ text, start }) {
+  const reducedMotion = useReducedMotion();
+  const words = text.split(' ');
+
+  if (reducedMotion) return <span>{text}</span>;
+
+  // aria-label keeps the headline readable as one phrase for screen readers.
+  return (
+    <span aria-label={text} role="text">
+      {words.map((word, index) => (
+        <Fragment key={`${word}-${index}`}>
+          <motion.span
+            className="word-rise"
+            aria-hidden="true"
+            initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
+            animate={start ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 18, filter: 'blur(6px)' }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.12 + index * 0.055 }}
+          >
+            {word}
+          </motion.span>
+          {index < words.length - 1 ? ' ' : ''}
+        </Fragment>
+      ))}
+    </span>
+  );
+}
+
+const terminalScript = [
+  { prompt: true, text: 'mcm deploy --site client-prod' },
+  { tone: 'ok', text: '✓ build complete · 1.2s' },
+  { tone: 'ok', text: '✓ live on edge network · 24 regions' },
+  { prompt: true, text: 'mcm agents status' },
+  { tone: 'info', text: '⬡ 3 workflows running · 0 errors' },
+  { prompt: true, text: 'mcm monitor --live' },
+  { tone: 'info', text: '◎ uptime 99.99% · response 84ms' },
+  { tone: 'ok', text: '✓ all systems operational' },
+];
+
+function TerminalPanel({ ready }) {
+  const reducedMotion = useReducedMotion();
+  // [completed line count, chars typed on current line]
+  const [progress, setProgress] = useState(() => (reducedMotion ? [terminalScript.length, 0] : [0, 0]));
+
+  useEffect(() => {
+    if (!ready || reducedMotion) return undefined;
+    let line = 0;
+    let char = 0;
+    let timer = 0;
+    const schedule = (fn, ms) => { timer = window.setTimeout(fn, ms); };
+    const tick = () => {
+      const current = terminalScript[line];
+      if (char < current.text.length) {
+        char += 1;
+        setProgress([line, char]);
+        schedule(tick, current.prompt ? 34 : 13);
+        return;
+      }
+      line += 1;
+      char = 0;
+      setProgress([line, 0]);
+      if (line >= terminalScript.length) {
+        // Hold the finished log on screen, then replay.
+        schedule(() => {
+          line = 0;
+          setProgress([0, 0]);
+          schedule(tick, 400);
+        }, 9000);
+        return;
+      }
+      schedule(tick, current.prompt ? 160 : 420);
+    };
+    schedule(tick, 600);
+    return () => window.clearTimeout(timer);
+  }, [ready, reducedMotion]);
+
+  const [lineCount, charCount] = progress;
+
+  return (
+    <div className="hud-terminal" role="img" aria-label="Live operations console showing deploys, AI agents, and monitoring all healthy">
+      <div className="hud-terminal-bar">
+        <span className="hud-dot hud-dot-red" />
+        <span className="hud-dot hud-dot-amber" />
+        <span className="hud-dot hud-dot-green" />
+        <span className="hud-terminal-title">mcm-ops — live</span>
+        <span className="hud-terminal-status"><span className="hud-status-pulse" />online</span>
+      </div>
+      <div className="hud-terminal-body" aria-hidden="true">
+        {terminalScript.slice(0, lineCount + 1).map((line, index) => {
+          const isTyping = index === lineCount;
+          if (isTyping && charCount === 0 && lineCount < terminalScript.length) {
+            return <div className="hud-line" key={index}>{line.prompt ? <span className="hud-prompt">$ </span> : null}<span className="hud-cursor" /></div>;
+          }
+          const text = isTyping ? line.text.slice(0, charCount) : line.text;
+          if (index >= terminalScript.length) return null;
+          return (
+            <div className={`hud-line${line.tone ? ` hud-line-${line.tone}` : ''}`} key={index}>
+              {line.prompt ? <span className="hud-prompt">$ </span> : null}
+              {text}
+              {isTyping ? <span className="hud-cursor" /> : null}
+            </div>
+          );
+        })}
+        {lineCount >= terminalScript.length ? <div className="hud-line"><span className="hud-prompt">$ </span><span className="hud-cursor" /></div> : null}
+      </div>
+    </div>
   );
 }
 
 function Hero({ ready }) {
   const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+
+  // Mouse-reactive depth: backdrop drifts opposite the cursor, panel tilts toward it.
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springConfig = { stiffness: 55, damping: 18, mass: 0.6 };
+  const backdropX = useSpring(useTransform(mouseX, [-1, 1], [16, -16]), springConfig);
+  const backdropY = useSpring(useTransform(mouseY, [-1, 1], [12, -12]), springConfig);
+  const cardRotateX = useSpring(useTransform(mouseY, [-1, 1], [3.5, -3.5]), springConfig);
+  const cardRotateY = useSpring(useTransform(mouseX, [-1, 1], [-3.5, 3.5]), springConfig);
+
+  const handleMouseMove = (event) => {
+    if (reducedMotion || isMobile) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    mouseX.set(((event.clientX - rect.left) / rect.width) * 2 - 1);
+    mouseY.set(((event.clientY - rect.top) / rect.height) * 2 - 1);
+  };
 
   return (
-    <section className="hero section" id="home">
+    <section className="hero section hero-immersive" id="home" onMouseMove={handleMouseMove}>
+      {!isMobile && (
+        <motion.div className="hero-backdrop" style={reducedMotion ? undefined : { x: backdropX, y: backdropY }} aria-hidden="true">
+          <OrbitalScrollScene interactive={false} centerXFrac={0.66} activeIndex={-1} onPlanetClick={() => {}} />
+        </motion.div>
+      )}
+      <div className="hero-backdrop-veil" aria-hidden="true" />
       <div className="container hero-grid">
         <motion.div
           initial={{ opacity: 0, x: -28 }}
@@ -420,7 +569,7 @@ function Hero({ ready }) {
           transition={{ ...transition(reducedMotion), delay: reducedMotion ? 0 : 0.02 }}
         >
           <p className="eyebrow">Senior engineering, without the full time hire or agency.</p>
-          <h1>Modern websites, AI agents, and observability delivered for your business.</h1>
+          <h1><WordRise text="Modern websites, AI agents, and observability delivered for your business." start={ready} /></h1>
           <p className="lead">Work directly with two senior engineers who build polished digital experiences, secure automation, and resilient operations with focused expertise.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#contact">Start Your Project</a>
@@ -429,22 +578,12 @@ function Hero({ ready }) {
         </motion.div>
         <motion.div
           className="hero-card"
-          variants={cardGrid}
-          initial="hidden"
-          animate={ready ? 'visible' : 'hidden'}
-          transition={{ delay: reducedMotion ? 0 : 0.08 }}
+          style={reducedMotion || isMobile ? undefined : { rotateX: cardRotateX, rotateY: cardRotateY, transformPerspective: 900 }}
+          initial={{ opacity: 0, y: 34, scale: 0.965 }}
+          animate={ready ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 34, scale: 0.965 }}
+          transition={{ ...transition(reducedMotion), delay: reducedMotion ? 0 : 0.12 }}
         >
-          <div className="hero-capabilities">
-            {capabilityItems.map(([icon, title, body]) => (
-              <motion.div className="capability-item" key={title} variants={cardMotion} transition={transition(reducedMotion)} whileHover={reducedMotion ? undefined : { x: -4, scale: 1.01 }}>
-                <span className="capability-icon">{icon}</span>
-                <div>
-                  <strong>{title}</strong>
-                  <p>{body}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <TerminalPanel ready={ready} />
         </motion.div>
       </div>
     </section>
@@ -525,7 +664,7 @@ function Pricing() {
   );
 }
 
-function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
+function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, centerXFrac = 0.43, focusRef = null }) {
   const canvasRef = useRef(null);
   const wrapRef = useRef(null);
   const activeIndexRef = useRef(activeIndex);
@@ -549,6 +688,8 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
     let time = 0;
     let isIntersecting = true;
     const isActive = () => isIntersecting && !document.hidden;
+    // Scroll-driven camera (eased every frame toward the focused planet)
+    const cam = { x: 0, y: 0, z: 1 };
 
     const planetSheet = new Image();
     planetSheet.src = planetRenderSheetUrl;
@@ -599,6 +740,7 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
       canvas.style.width = `${rect.width}px`;
       canvas.style.height = `${rect.height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.imageSmoothingQuality = 'high';
     };
 
     const drawSpace = (width, height) => {
@@ -1341,7 +1483,7 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
       const rect = wrap.getBoundingClientRect();
       const width = rect.width;
       const height = rect.height;
-      const centerX = width * 0.43;
+      const centerX = width * centerXFrac;
       const centerY = height * 0.5;
       const maxOrbit = Math.min(width * 0.45, height * 0.62);
       const tilt = 0.48;
@@ -1351,9 +1493,44 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
       drawSpace(width, height);
       drawComets(width, height);
 
+      const planets = planetVisuals.map((planet, index) => {
+        const orbitRadius = maxOrbit * planet.orbit;
+        const angle = phase * planet.speed + planet.angle;
+        const depth = (Math.sin(angle) + 1) / 2;
+        const x = Math.cos(angle) * orbitRadius;
+        const y = Math.sin(angle) * orbitRadius * tilt;
+        return { ...planet, index, x, y, depth, radius: planet.size * (0.78 + depth * 0.42) };
+      }).sort((a, b) => a.y - b.y);
+
+      // Fly-through camera: track the focused planet, or glide between two
+      // planets while traveling (zoom dips slightly mid-flight)
+      const focus = focusRef ? focusRef.current : null;
+      let targetX = 0;
+      let targetY = 0;
+      let targetZ = 1;
+      if (focus && focus.index >= 0 && focus.strength > 0) {
+        const fromPlanet = planets.find((p) => p.index === focus.index);
+        const toPlanet = focus.nextIndex >= 0 ? planets.find((p) => p.index === focus.nextIndex) : null;
+        if (fromPlanet) {
+          const s = Math.min(1, Math.max(0, focus.strength));
+          const blend = toPlanet ? Math.min(1, Math.max(0, focus.blend || 0)) : 0;
+          const px = toPlanet ? fromPlanet.x + (toPlanet.x - fromPlanet.x) * blend : fromPlanet.x;
+          const py = toPlanet ? fromPlanet.y + (toPlanet.y - fromPlanet.y) * blend : fromPlanet.y;
+          const dip = Math.sin(Math.PI * blend) * 0.55;
+          targetZ = 1 + s * (1.55 - dip);
+          targetX = px * s;
+          targetY = py * s;
+        }
+      }
+      cam.x += (targetX - cam.x) * 0.1;
+      cam.y += (targetY - cam.y) * 0.1;
+      cam.z += (targetZ - cam.z) * 0.1;
+
       ctx.save();
       ctx.translate(centerX, centerY);
       ctx.rotate(-0.02);
+      ctx.scale(cam.z, cam.z);
+      ctx.translate(-cam.x, -cam.y);
       planetVisuals.forEach((planet, index) => {
         const orbitRadius = maxOrbit * planet.orbit;
         const isActive = index === activeIndexRef.current;
@@ -1385,15 +1562,6 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
         ctx.restore();
       });
 
-      const planets = planetVisuals.map((planet, index) => {
-        const orbitRadius = maxOrbit * planet.orbit;
-        const angle = phase * planet.speed + planet.angle;
-        const depth = (Math.sin(angle) + 1) / 2;
-        const x = Math.cos(angle) * orbitRadius;
-        const y = Math.sin(angle) * orbitRadius * tilt;
-        return { ...planet, index, x, y, depth, radius: planet.size * (0.78 + depth * 0.42) };
-      }).sort((a, b) => a.y - b.y);
-
       drawAmbientSystemObjects(maxOrbit, tilt, phase, 'back');
       planets.filter((planet) => planet.y < 0).forEach(drawPlanet);
       const sunRadius = drawSun(maxOrbit);
@@ -1409,6 +1577,21 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
       drawSpaceStation(maxOrbit, tilt, phase);
       ctx.restore();
 
+      // Focus vignette: gently darken the edges while zoomed so the
+      // visited planet pops without the rest of the system vanishing
+      const focusAmt = Math.min(1, Math.max(0, (cam.z - 1) / 1.55));
+      if (focusAmt > 0.03) {
+        const spot = ctx.createRadialGradient(
+          centerX, centerY, Math.min(width, height) * 0.16,
+          centerX, centerY, Math.max(width, height) * 0.78,
+        );
+        spot.addColorStop(0, 'rgba(2, 6, 23, 0)');
+        spot.addColorStop(0.55, `rgba(2, 6, 23, ${0.18 * focusAmt})`);
+        spot.addColorStop(1, `rgba(2, 6, 23, ${0.6 * focusAmt})`);
+        ctx.fillStyle = spot;
+        ctx.fillRect(0, 0, width, height);
+      }
+
       time += reducedMotion ? 0 : 8;
       // Pause the loop when the scene scrolls off-screen or the tab is hidden.
       animationFrame = isActive() ? window.requestAnimationFrame(draw) : 0;
@@ -1416,7 +1599,7 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
 
     const handleClick = (e) => {
       const rect = canvas.getBoundingClientRect();
-      const dx = (e.clientX - rect.left) - rect.width * 0.43;
+      const dx = (e.clientX - rect.left) - rect.width * centerXFrac;
       const dy = (e.clientY - rect.top) - rect.height * 0.5;
       const cos = Math.cos(0.02);
       const sin = Math.sin(0.02);
@@ -1431,8 +1614,10 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
       onPlanetClickRef.current(null);
     };
 
-    canvas.style.cursor = 'pointer';
-    canvas.addEventListener('click', handleClick);
+    if (interactive) {
+      canvas.style.cursor = 'pointer';
+      canvas.addEventListener('click', handleClick);
+    }
     resize();
     window.addEventListener('resize', resize);
     animationFrame = window.requestAnimationFrame(draw);
@@ -1453,11 +1638,11 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
     return () => {
       window.cancelAnimationFrame(animationFrame);
       window.removeEventListener('resize', resize);
-      canvas.removeEventListener('click', handleClick);
+      if (interactive) canvas.removeEventListener('click', handleClick);
       visibilityObserver.disconnect();
       document.removeEventListener('visibilitychange', resumeLoop);
     };
-  }, [reducedMotion]);
+  }, [reducedMotion, interactive, centerXFrac]);
 
   return (
     <div className="orbital-canvas-wrap" ref={wrapRef}>
@@ -1468,78 +1653,88 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick }) {
 }
 
 function WhyItMatters() {
-  const [selectedPlanet, setSelectedPlanet] = useState(null);
-  const [hintSeen, setHintSeen] = useState(false);
-  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 768px)').matches);
   const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+  const stageRef = useRef(null);
+  const pinRef = useRef(null);
+  const focusRef = useRef({ index: -1, nextIndex: -1, blend: 0, strength: 0 });
+  const [activeCard, setActiveCard] = useState(-1);
+  const [hintSeen, setHintSeen] = useState(false);
+  const flyMode = !isMobile && !reducedMotion;
 
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)');
-    const handler = (e) => setIsMobile(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
+    if (!flyMode) return undefined;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        const stage = stageRef.current;
+        if (!stage) return;
+        const viewHeight = window.innerHeight;
+        const rect = stage.getBoundingClientRect();
+        const total = Math.max(1, rect.height - viewHeight);
+        const progress = Math.min(1, Math.max(0, -rect.top / total));
+        const count = planetData.length;
+        const seg = Math.min(count - 0.0001, progress * count);
+        const index = Math.floor(seg);
+        const local = seg - index;
+        const ease = (v) => v * v * (3 - 2 * v);
+        // Glide directly between planets (no full zoom-out): the camera
+        // leaves a planet during the last 22% of its segment and arrives
+        // at the next planet right at the boundary.
+        const traveling = index < count - 1 && local > 0.78;
+        const blend = traveling ? ease((local - 0.78) / 0.22) : 0;
+        // Zoom envelope: fly in once at the start, pull back once at the end.
+        let strength = 1;
+        if (index === 0 && local < 0.45) strength = ease(local / 0.45);
+        else if (index === count - 1 && local > 0.85) strength = ease((1 - local) / 0.15);
+        focusRef.current = { index, nextIndex: traveling ? index + 1 : -1, blend, strength };
+        // Pin via position:fixed (sticky is unreliable here: ancestor overflow
+        // rules on html/body can silently disable it).
+        const pin = pinRef.current;
+        if (pin) {
+          const top = -rect.top;
+          const mode = top < 0 ? 'before' : top >= total ? 'after' : 'during';
+          if (pin.dataset.pin !== mode) {
+            pin.dataset.pin = mode;
+            if (mode === 'during') {
+              pin.style.position = 'fixed';
+              pin.style.top = '0px';
+              pin.style.bottom = 'auto';
+            } else if (mode === 'after') {
+              pin.style.position = 'absolute';
+              pin.style.top = 'auto';
+              pin.style.bottom = '0px';
+            } else {
+              pin.style.position = 'absolute';
+              pin.style.top = '0px';
+              pin.style.bottom = 'auto';
+            }
+          }
+        }
+        const visible = progress > 0.005 && strength > 0.75 && blend < 0.25 ? index : -1;
+        setActiveCard((prev) => (prev === visible ? prev : visible));
+        if (visible !== -1) setHintSeen(true);
+      });
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
+  }, [flyMode]);
 
-  const handlePlanetClick = useCallback((index) => {
-    setSelectedPlanet(index);
-    if (index !== null) setHintSeen(true);
-  }, []);
-
-  return (
-    <section className="section why" id="why">
-      <div className="container">
-        <SectionHeading title="The difference it makes for your business" centered />
-        <motion.div
-          className="planet-idea-stage"
-          initial={{ opacity: 0, y: 24, scale: 0.975 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={sectionViewport}
-          transition={transition(reducedMotion)}
-        >
-          {!isMobile && (
-          <div className="orbital-showcase" aria-label="Six business impact planets orbiting MCM Integrated delivery">
-            <OrbitalScrollScene activeIndex={selectedPlanet ?? -1} onPlanetClick={handlePlanetClick} />
-            <AnimatePresence>
-              {!hintSeen && (
-                <motion.div
-                  className="planet-click-hint"
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 4 }}
-                  transition={{ delay: 1.2, duration: 0.5, ease: 'easeOut' }}
-                >
-                  <span className="planet-click-hint-icon">⊕</span>
-                  Click a planet to explore
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <AnimatePresence>
-              {selectedPlanet !== null && (
-                <motion.div
-                  className="planet-detail-card"
-                  key={selectedPlanet}
-                  initial={{ opacity: 0, scale: 0.88, y: 16 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.88, y: 16 }}
-                  transition={{ duration: 0.26, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <button className="planet-detail-close" onClick={() => setSelectedPlanet(null)} aria-label="Close">×</button>
-                  <div className="planet-detail-header">
-                    <span className="planet-detail-number">{String(selectedPlanet + 1).padStart(2, '0')}</span>
-                    <span className="planet-detail-icon">{planetData[selectedPlanet].icon}</span>
-                  </div>
-                  <h3>{planetData[selectedPlanet].title}</h3>
-                  <p>{planetData[selectedPlanet].desc}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-          )}
-
+  if (!flyMode) {
+    return (
+      <section className="section why" id="why">
+        <div className="container">
+          <SectionHeading title="The difference it makes for your business" centered />
           <div className="planet-card-grid">
             {planetData.map((planet, index) => (
               <motion.article
-                className={`planet-card planet-card-${index + 1}${selectedPlanet === index ? ' active' : ''}`}
+                className={`planet-card planet-card-${index + 1}`}
                 key={planet.title}
                 variants={cardMotion}
                 initial="hidden"
@@ -1556,7 +1751,57 @@ function WhyItMatters() {
               </motion.article>
             ))}
           </div>
-        </motion.div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="section why why-fly" id="why">
+      <div className="why-scroll-stage" ref={stageRef} style={{ height: `${planetData.length * 120}vh` }}>
+        <div className="why-sticky" ref={pinRef}>
+          <div className="container">
+            <SectionHeading title="The difference it makes for your business" centered />
+          </div>
+          <div className="orbital-showcase why-showcase-full" aria-label="Scroll to fly between six business impact planets">
+            <OrbitalScrollScene activeIndex={-1} onPlanetClick={() => {}} interactive={false} focusRef={focusRef} />
+            <AnimatePresence>
+              {!hintSeen && (
+                <motion.div
+                  className="planet-click-hint"
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 4 }}
+                  transition={{ delay: 0.8, duration: 0.5, ease: 'easeOut' }}
+                >
+                  <span className="planet-click-hint-icon">⌄</span>
+                  Keep scrolling to fly through the system
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <div className="why-card-anchor">
+              <AnimatePresence>
+                {activeCard !== -1 && (
+                  <motion.div
+                    className="planet-detail-card"
+                    key={activeCard}
+                    initial={{ opacity: 0, scale: 0.9, x: 26 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.92, x: 26 }}
+                    transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <div className="planet-detail-header">
+                      <span className="planet-detail-number">{String(activeCard + 1).padStart(2, '0')}</span>
+                      <span className="planet-detail-icon">{planetData[activeCard].icon}</span>
+                    </div>
+                    <h3>{planetData[activeCard].title}</h3>
+                    <p>{planetData[activeCard].desc}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
