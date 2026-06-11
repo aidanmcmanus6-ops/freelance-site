@@ -1502,18 +1502,24 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, ce
         return { ...planet, index, x, y, depth, radius: planet.size * (0.78 + depth * 0.42) };
       }).sort((a, b) => a.y - b.y);
 
-      // Fly-through camera: zoom toward the scroll-focused planet
+      // Fly-through camera: track the focused planet, or glide between two
+      // planets while traveling (zoom dips slightly mid-flight)
       const focus = focusRef ? focusRef.current : null;
       let targetX = 0;
       let targetY = 0;
       let targetZ = 1;
       if (focus && focus.index >= 0 && focus.strength > 0) {
-        const focused = planets.find((p) => p.index === focus.index);
-        if (focused) {
+        const fromPlanet = planets.find((p) => p.index === focus.index);
+        const toPlanet = focus.nextIndex >= 0 ? planets.find((p) => p.index === focus.nextIndex) : null;
+        if (fromPlanet) {
           const s = Math.min(1, Math.max(0, focus.strength));
-          targetZ = 1 + s * 1.55;
-          targetX = focused.x * s;
-          targetY = focused.y * s;
+          const blend = toPlanet ? Math.min(1, Math.max(0, focus.blend || 0)) : 0;
+          const px = toPlanet ? fromPlanet.x + (toPlanet.x - fromPlanet.x) * blend : fromPlanet.x;
+          const py = toPlanet ? fromPlanet.y + (toPlanet.y - fromPlanet.y) * blend : fromPlanet.y;
+          const dip = Math.sin(Math.PI * blend) * 0.55;
+          targetZ = 1 + s * (1.55 - dip);
+          targetX = px * s;
+          targetY = py * s;
         }
       }
       cam.x += (targetX - cam.x) * 0.1;
@@ -1651,7 +1657,7 @@ function WhyItMatters() {
   const isMobile = useIsMobile();
   const stageRef = useRef(null);
   const pinRef = useRef(null);
-  const focusRef = useRef({ index: -1, strength: 0 });
+  const focusRef = useRef({ index: -1, nextIndex: -1, blend: 0, strength: 0 });
   const [activeCard, setActiveCard] = useState(-1);
   const [hintSeen, setHintSeen] = useState(false);
   const flyMode = !isMobile && !reducedMotion;
@@ -1673,13 +1679,17 @@ function WhyItMatters() {
         const seg = Math.min(count - 0.0001, progress * count);
         const index = Math.floor(seg);
         const local = seg - index;
-        // Each planet gets a segment: fly in, hold (card visible), fly out.
-        let strength;
-        if (local < 0.3) strength = local / 0.3;
-        else if (local > 0.85 && index < count - 1) strength = (1 - local) / 0.15;
-        else strength = 1;
-        strength = strength * strength * (3 - 2 * strength); // smoothstep ease
-        focusRef.current = { index, strength };
+        const ease = (v) => v * v * (3 - 2 * v);
+        // Glide directly between planets (no full zoom-out): the camera
+        // leaves a planet during the last 22% of its segment and arrives
+        // at the next planet right at the boundary.
+        const traveling = index < count - 1 && local > 0.78;
+        const blend = traveling ? ease((local - 0.78) / 0.22) : 0;
+        // Zoom envelope: fly in once at the start, pull back once at the end.
+        let strength = 1;
+        if (index === 0 && local < 0.22) strength = ease(local / 0.22);
+        else if (index === count - 1 && local > 0.85) strength = ease((1 - local) / 0.15);
+        focusRef.current = { index, nextIndex: traveling ? index + 1 : -1, blend, strength };
         // Pin via position:fixed (sticky is unreliable here: ancestor overflow
         // rules on html/body can silently disable it).
         const pin = pinRef.current;
@@ -1703,7 +1713,7 @@ function WhyItMatters() {
             }
           }
         }
-        const visible = strength > 0.6 && progress > 0.01 ? index : -1;
+        const visible = progress > 0.005 && strength > 0.75 && blend < 0.25 ? index : -1;
         setActiveCard((prev) => (prev === visible ? prev : visible));
         if (visible !== -1) setHintSeen(true);
       });
