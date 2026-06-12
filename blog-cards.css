@@ -539,6 +539,144 @@
   }
 }
 
+/* ============================================================
+   Service-page refresh (web-design / ai-automation / monitoring).
+   page.js adds .page-web / .page-ai / .page-mon from the URL.
+   ============================================================ */
+
+.page-web { --pa: #8b5cf6; --pa-dim: rgba(139, 92, 246, 0.16); --pa-bright: rgba(139, 92, 246, 0.55); }
+.page-ai  { --pa: #38bdf8; --pa-dim: rgba(56, 189, 248, 0.16); --pa-bright: rgba(56, 189, 248, 0.55); }
+.page-mon { --pa: #34d399; --pa-dim: rgba(52, 211, 153, 0.16); --pa-bright: rgba(52, 211, 153, 0.55); }
+
+/* Numbered sections, stamped in the page accent */
+.page-web main,
+.page-ai main,
+.page-mon main {
+  counter-reset: svc-section;
+}
+
+.page-web .section-heading h2::before,
+.page-ai .section-heading h2::before,
+.page-mon .section-heading h2::before {
+  counter-increment: svc-section;
+  content: "Sec " counter(svc-section, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.55rem;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pa);
+}
+
+/* Panel corners on service-page cards (same language as the rest of the site) */
+.page-service .service-entry,
+.page-service .pricing-feature,
+.page-service .pricing-note,
+.page-service .faq-row,
+.page-service .related-link {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 18px) 0,
+    100% 18px,
+    100% 100%,
+    18px 100%,
+    0 calc(100% - 18px)
+  );
+}
+
+/* Pointer-tracked glare on pseudo-free service cards (fed by page.js) */
+.page-service .pricing-feature,
+.page-service .faq-row,
+.page-service .related-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-service .pricing-feature::after,
+.page-service .faq-row::after,
+.page-service .related-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(260px at var(--gx, 50%) var(--gy, 40%), rgba(255, 255, 255, 0.07), transparent 62%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.page-service .pricing-feature:hover::after,
+.page-service .faq-row:hover::after,
+.page-service .related-link:hover::after {
+  opacity: 1;
+}
+
+.page-service .service-entry:hover,
+.page-service .pricing-feature:hover,
+.page-service .faq-row:hover,
+.page-service .related-link:hover {
+  border-color: var(--pa-bright, rgba(139, 92, 246, 0.45));
+  box-shadow: inset 0 0 34px var(--pa-dim, rgba(139, 92, 246, 0.07));
+}
+
+/* Signature: Web Design — measurement ruler along the hero's bottom edge */
+.page-web .hero {
+  border-bottom: 1px solid rgba(139, 92, 246, 0.25);
+  background-image: repeating-linear-gradient(90deg, rgba(139, 92, 246, 0.3) 0 1px, transparent 1px 40px);
+  background-size: 100% 9px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+/* Signature: AI & Automation — circuit trace running down the page edge */
+.page-ai main {
+  position: relative;
+}
+
+.page-ai main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 595px);
+  width: 1px;
+  pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(56, 189, 248, 0.4) 0 7px, transparent 7px 25px);
+  animation: svc-trace 22s linear infinite;
+}
+
+@keyframes svc-trace {
+  from { background-position-y: 0; }
+  to { background-position-y: 250px; }
+}
+
+@media (max-width: 1260px) {
+  .page-ai main::before {
+    display: none;
+  }
+}
+
+/* Signature: Monitoring — live status pulse beside the h1 */
+.page-mon h1::after {
+  content: '';
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-left: 0.65rem;
+  border-radius: 50%;
+  vertical-align: middle;
+  background: #34d399;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
+  animation: svc-pulse 2.2s ease-out infinite;
+}
+
+@keyframes svc-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55); }
+  70% { box-shadow: 0 0 0 10px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] {
     opacity: 1;
@@ -555,5 +693,10 @@
   .blog-arrow,
   .cat-card::after {
     transition: none;
+  }
+
+  .page-ai main::before,
+  .page-mon h1::after {
+    animation: none;
   }
 }

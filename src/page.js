@@ -15,6 +15,21 @@ injectSpeedInsights();
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
 
+// Page identity for the service pages, derived from the URL (no HTML edits
+// needed). Drives per-page accents, numbered sections, and signatures.
+const servicePath = window.location.pathname;
+if (servicePath.startsWith('/web-design')) document.body.classList.add('page-web');
+else if (servicePath.startsWith('/ai-automation')) document.body.classList.add('page-ai');
+else if (servicePath.startsWith('/monitoring')) document.body.classList.add('page-mon');
+
+// Service pages: their building blocks stagger-reveal automatically.
+if (document.body.matches('.page-web, .page-ai, .page-mon')) {
+  document.querySelectorAll('main .section-heading, .service-entry, .pricing-feature, .pricing-note, .process-step, .faq-row, .related-link').forEach((el, index) => {
+    el.setAttribute('data-reveal', '');
+    el.style.setProperty('--d', `${((index % 4) * 0.07).toFixed(2)}s`);
+  });
+}
+
 const header = document.querySelector('.site-header');
 if (header) {
   // Inject the scroll progress bar so every static page matches the home page.
@@ -73,6 +88,85 @@ if (filterButtons.length) {
         post.classList.toggle('blog-hidden', want !== 'all' && post.dataset.cat !== want);
       });
     });
+  });
+}
+
+// Card physics for service-page surfaces + magnetic CTAs on every static
+// page (mirrors CardPhysics in App.jsx). Mouse-only, reduced-motion aware.
+if (finePointer && !reduceMotion) {
+  const tiltSelector = '.service-entry, .pricing-feature, .faq-row, .related-link';
+  const magnetSelector = '.button-primary, .button-outline, .button-secondary';
+  let card = null;
+  let magnet = null;
+  let raf = 0;
+  let targetX = 0;
+  let targetY = 0;
+  let curX = 0;
+  let curY = 0;
+
+  const releaseCard = (el) => {
+    el.style.transition = 'transform 0.45s ease';
+    el.style.transform = '';
+    window.setTimeout(() => {
+      if (el !== card) el.style.transition = '';
+    }, 480);
+  };
+
+  const loop = () => {
+    curX += (targetX - curX) * 0.16;
+    curY += (targetY - curY) * 0.16;
+    if (card) {
+      card.style.transform = `perspective(850px) rotateX(${curX.toFixed(2)}deg) rotateY(${curY.toFixed(2)}deg)`;
+      raf = window.requestAnimationFrame(loop);
+    } else {
+      raf = 0;
+    }
+  };
+
+  document.addEventListener('pointermove', (event) => {
+    const origin = event.target instanceof Element ? event.target : null;
+    const hitCard = origin ? origin.closest(tiltSelector) : null;
+    const hitMagnet = origin ? origin.closest(magnetSelector) : null;
+
+    if (hitCard !== card) {
+      if (card) releaseCard(card);
+      card = hitCard;
+      curX = 0;
+      curY = 0;
+      if (card) card.style.transition = 'none';
+    }
+    if (card) {
+      const rect = card.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width;
+      const py = (event.clientY - rect.top) / rect.height;
+      targetX = (py - 0.5) * -5.5;
+      targetY = (px - 0.5) * 5.5;
+      card.style.setProperty('--gx', `${(px * 100).toFixed(1)}%`);
+      card.style.setProperty('--gy', `${(py * 100).toFixed(1)}%`);
+      if (!raf) raf = window.requestAnimationFrame(loop);
+    }
+
+    if (hitMagnet !== magnet) {
+      if (magnet) magnet.style.transform = '';
+      magnet = hitMagnet;
+    }
+    if (magnet) {
+      const rect = magnet.getBoundingClientRect();
+      const dx = Math.max(-4, Math.min(4, (event.clientX - (rect.left + rect.width / 2)) * 0.12));
+      const dy = Math.max(-3, Math.min(3, (event.clientY - (rect.top + rect.height / 2)) * 0.18));
+      magnet.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px)`;
+    }
+  }, { passive: true });
+
+  document.addEventListener('pointerleave', () => {
+    if (card) {
+      releaseCard(card);
+      card = null;
+    }
+    if (magnet) {
+      magnet.style.transform = '';
+      magnet = null;
+    }
   });
 }
 
