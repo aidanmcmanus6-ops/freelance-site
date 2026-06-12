@@ -17,9 +17,20 @@ const finePointer = window.matchMedia('(pointer: fine)').matches;
 
 const header = document.querySelector('.site-header');
 if (header) {
-  const syncHeaderState = () => header.classList.toggle('scrolled', window.scrollY > 12);
+  // Inject the scroll progress bar so every static page matches the home page.
+  const progress = document.createElement('div');
+  progress.className = 'scroll-progress';
+  progress.setAttribute('aria-hidden', 'true');
+  header.appendChild(progress);
+
+  const syncHeaderState = () => {
+    header.classList.toggle('scrolled', window.scrollY > 12);
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+  };
   syncHeaderState();
   window.addEventListener('scroll', syncHeaderState, { passive: true });
+  window.addEventListener('resize', syncHeaderState, { passive: true });
 }
 
 const toggle = document.querySelector('.nav-toggle');
