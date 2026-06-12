@@ -320,3 +320,99 @@ html body {
     animation: none;
   }
 }
+
+/* ============================================================
+   Tech-panel corners (home page cards): notch two corners so
+   cards read as fabricated panels instead of plain rounded
+   boxes. Hover glow is inset because clip-path clips anything
+   painted outside the shape. (Static pages get the same
+   treatment in blog-cards.css.)
+   ============================================================ */
+
+.service-entry,
+.pricing-card,
+.pricing-note,
+.planet-card,
+.planet-detail-card,
+.testimonial-primary,
+.testimonial-mini,
+.faq-item,
+.contact-card,
+.project-row {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 18px) 0,
+    100% 18px,
+    100% 100%,
+    18px 100%,
+    0 calc(100% - 18px)
+  );
+}
+
+.service-entry:hover,
+.pricing-card:hover,
+.planet-card:hover,
+.testimonial-primary:hover,
+.testimonial-mini:hover,
+.faq-item:hover,
+.contact-card:hover,
+.project-row:hover {
+  border-color: rgba(139, 92, 246, 0.45);
+  box-shadow: inset 0 0 34px rgba(139, 92, 246, 0.07);
+}
+
+/* The contact form keeps glare but must not tilt while people type —
+   !important beats the inline transform set by CardPhysics. */
+.contact-card {
+  transform: none !important;
+}
+
+/* Pointer-tracked glare for cards whose ::after is free (the others keep
+   their existing decorations). Position is fed by CardPhysics in App.jsx. */
+.pricing-card,
+.pricing-note,
+.planet-card,
+.testimonial-mini,
+.faq-item,
+.contact-card,
+.project-row {
+  position: relative;
+}
+
+.pricing-card::after,
+.pricing-note::after,
+.planet-card::after,
+.testimonial-mini::after,
+.faq-item::after,
+.contact-card::after,
+.project-row::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(260px at var(--gx, 50%) var(--gy, 40%), rgba(255, 255, 255, 0.07), transparent 62%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.pricing-card:hover::after,
+.pricing-note:hover::after,
+.planet-card:hover::after,
+.testimonial-mini:hover::after,
+.faq-item:hover::after,
+.contact-card:hover::after,
+.project-row:hover::after {
+  opacity: 1;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .pricing-card::after,
+  .pricing-note::after,
+  .planet-card::after,
+  .testimonial-mini::after,
+  .faq-item::after,
+  .contact-card::after,
+  .project-row::after {
+    display: none;
+  }
+}
