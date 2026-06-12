@@ -28,6 +28,7 @@ export default defineConfig({
         blogRebuildVsFix: resolve(__dirname, 'blog/rebuild-vs-fix-your-website/index.html'),
         blogSilentAutomations: resolve(__dirname, 'blog/when-automations-fail-silently/index.html'),
         blogDowntimeCosts: resolve(__dirname, 'blog/what-downtime-actually-costs/index.html'),
+        blogGoogleVisibility: resolve(__dirname, 'blog/why-you-dont-show-up-on-google/index.html'),
       },
     },
   },
