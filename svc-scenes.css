@@ -1,0 +1,815 @@
+/* ============================================================
+   Service-page hero scenes — living dioramas injected by page.js
+   into each page's .hero-visual (the static SVG mockup stays in
+   the HTML as the no-JS / reduced-motion fallback).
+
+   .svc-web — a dated site gets kicked off the canvas and a
+              modern build assembles in its place, on loop
+   .svc-ai  — an automation pipeline wires itself up, then runs
+              live traffic (and extends itself mid-flight)
+   .svc-mon — a site crashes; monitoring detects, alerts,
+              auto-heals, and the uptime chart recovers
+   ============================================================ */
+
+.svc-scene {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 470px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  filter: drop-shadow(0 28px 60px rgba(0, 0, 0, 0.5));
+}
+
+/* Live status caption under each scene */
+.svc-caption {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.svc-caption::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pa, #8b5cf6);
+  box-shadow: 0 0 8px var(--pa, #8b5cf6);
+  animation: svc-cap-blink 1.6s ease-in-out infinite;
+}
+
+@keyframes svc-cap-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* Shared mini browser chrome (web + monitoring scenes) */
+.svc-browser {
+  position: relative;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 12px;
+  background: #0b1226;
+  overflow: hidden;
+}
+
+.svc-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.7rem;
+  background: rgba(2, 6, 23, 0.88);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.svc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.svc-dot:nth-child(1) { background: #f87171; }
+.svc-dot:nth-child(2) { background: #fbbf24; }
+.svc-dot:nth-child(3) { background: #34d399; }
+
+.svc-url {
+  flex: 1;
+  margin-left: 0.35rem;
+  padding: 0.16rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(148, 163, 184, 0.1);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.svc-viewport {
+  position: relative;
+  height: 218px;
+  overflow: hidden;
+}
+
+/* ──────────────────────────────────────────────
+   WEB DESIGN — the redesign, live on stage
+   ────────────────────────────────────────────── */
+
+/* The "before": a lovingly awful legacy site */
+.svc-old {
+  position: absolute;
+  inset: 0;
+  background: #dcd9cf;
+  color: #1f2937;
+  font-family: 'Times New Roman', Georgia, serif;
+  will-change: transform;
+}
+
+.svc-old-banner {
+  background: #000080;
+  color: #ffff00;
+  text-align: center;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 0.88rem;
+  padding: 0.45rem 0.3rem;
+  text-shadow: 1px 1px 0 #cc0000;
+}
+
+.svc-old-nav {
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-bottom: 2px solid #6b7280;
+  text-align: center;
+  padding: 0.22rem 0;
+  font-size: 0.68rem;
+}
+
+.svc-old-nav u {
+  color: #0000cc;
+  margin: 0 0.4rem;
+  cursor: pointer;
+}
+
+.svc-old-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  background: #ffffcc;
+  border-bottom: 1px solid #d4d40a;
+  font-size: 0.62rem;
+  color: #8a6d00;
+  padding: 0.14rem 0;
+}
+
+.svc-old-marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: svc-marquee 9s linear infinite;
+}
+
+@keyframes svc-marquee {
+  to { transform: translateX(-100%); }
+}
+
+.svc-old-body {
+  padding: 0.55rem 0.85rem;
+  font-size: 0.7rem;
+  line-height: 1.45;
+}
+
+.svc-old-body p {
+  margin: 0 0 0.35rem;
+}
+
+.svc-old-imgs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.35rem 0 0.45rem;
+}
+
+.svc-old-img {
+  flex: 1;
+  height: 38px;
+  background: #a8a8a8;
+  border: 2px inset #ffffff;
+  display: grid;
+  place-items: center;
+  font-family: ui-monospace, monospace;
+  font-size: 0.58rem;
+  color: #555;
+}
+
+.svc-old-btn {
+  display: inline-block;
+  background: #c0c0c0;
+  border: 2px outset #ffffff;
+  padding: 0.14rem 0.7rem;
+  font-size: 0.66rem;
+  font-family: inherit;
+}
+
+.svc-old-meta {
+  margin-top: 0.4rem;
+  font-size: 0.58rem;
+  color: #6b7280;
+}
+
+/* The kick: wind up, then launched off the canvas */
+.svc-web[data-phase='kick'] .svc-old {
+  animation: svc-kick 1s cubic-bezier(0.5, -0.15, 0.85, 0.5) forwards;
+}
+
+@keyframes svc-kick {
+  0% { transform: none; }
+  16% { transform: translateX(-3.5%) rotate(-2.5deg); }
+  100% { transform: translate(125%, 70%) rotate(30deg); }
+}
+
+.svc-web[data-phase='build'] .svc-old,
+.svc-web[data-phase='new'] .svc-old {
+  opacity: 0;
+  transform: translate(125%, 70%) rotate(30deg);
+}
+
+/* …and the next "before" drops in for the loop */
+.svc-web[data-phase='reset'] .svc-old {
+  animation: svc-return 0.85s cubic-bezier(0.2, 0.9, 0.3, 1.12) forwards;
+}
+
+@keyframes svc-return {
+  from { transform: translateY(-125%) rotate(-5deg); }
+  to { transform: none; }
+}
+
+/* The "after": a modern build assembling piece by piece */
+.svc-new {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #0c1430, #070b1c);
+  padding: 0.75rem 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.svc-new > * {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s var(--ease-out, ease);
+}
+
+.svc-web[data-phase='build'] .svc-new > *,
+.svc-web[data-phase='new'] .svc-new > * {
+  opacity: 1;
+  transform: none;
+}
+
+.svc-web[data-phase='build'] .svc-new-nav { transition-delay: 0.1s; }
+.svc-web[data-phase='build'] .svc-new-hero { transition-delay: 0.45s; }
+.svc-web[data-phase='build'] .svc-new-cards { transition-delay: 0.95s; }
+
+.svc-web[data-phase='reset'] .svc-new > *,
+.svc-web[data-phase='old'] .svc-new > *,
+.svc-web[data-phase='kick'] .svc-new > * {
+  transition: opacity 0.3s ease;
+}
+
+.svc-new-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.svc-new-logo {
+  width: 13px;
+  height: 13px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.7);
+}
+
+.svc-new-links {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: auto;
+}
+
+.svc-new-links i {
+  width: 22px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(148, 163, 184, 0.4);
+}
+
+.svc-new-cta {
+  width: 38px;
+  height: 12px;
+  border-radius: 6px;
+  background: rgba(139, 92, 246, 0.45);
+}
+
+.svc-new-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+  padding-top: 0.2rem;
+}
+
+.svc-new-h1 {
+  width: 72%;
+  height: 11px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #e2e8f0, #a78bfa);
+}
+
+.svc-new-h1.short { width: 46%; }
+
+.svc-new-p {
+  width: 84%;
+  height: 5px;
+  border-radius: 2px;
+  background: rgba(148, 163, 184, 0.35);
+}
+
+.svc-new-btn {
+  width: 74px;
+  height: 18px;
+  margin-top: 0.25rem;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  box-shadow: 0 6px 18px rgba(139, 92, 246, 0.45);
+}
+
+.svc-new-cards {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.svc-new-cards i {
+  flex: 1;
+  height: 46px;
+  border-radius: 7px;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  background:
+    linear-gradient(180deg, rgba(139, 92, 246, 0.12), transparent 60%),
+    rgba(10, 16, 36, 0.9);
+}
+
+/* Purple scan line sweeping during the rebuild */
+.svc-scan {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 34%;
+  left: -40%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
+}
+
+.svc-web[data-phase='build'] .svc-scan {
+  animation: svc-scan 1.5s ease forwards;
+}
+
+@keyframes svc-scan {
+  to { left: 110%; }
+}
+
+/* Score badge pops once the new build settles */
+.svc-badge {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.65rem;
+  padding: 0.24rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(52, 211, 153, 0.5);
+  background: rgba(4, 22, 16, 0.92);
+  color: #34d399;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  transform: scale(0);
+  z-index: 3;
+}
+
+.svc-web[data-phase='new'] .svc-badge {
+  animation: svc-badge-pop 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) 0.5s forwards;
+}
+
+@keyframes svc-badge-pop {
+  to { transform: scale(1); }
+}
+
+/* ──────────────────────────────────────────────
+   AI & AUTOMATION — the pipeline that builds itself
+   ────────────────────────────────────────────── */
+
+.svc-ai svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 12px;
+  background: radial-gradient(circle at 50% 38%, #0a1428, #060a18 75%);
+}
+
+.svc-ai .svc-wire {
+  fill: none;
+  stroke: rgba(56, 189, 248, 0.42);
+  stroke-width: 1.5;
+  stroke-dasharray: 240;
+  stroke-dashoffset: 0;
+}
+
+.svc-ai[data-phase='build'] .svc-wire {
+  stroke-dashoffset: 240;
+  animation: svc-draw 1s ease forwards;
+  animation-delay: var(--wd, 0.9s);
+}
+
+@keyframes svc-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.svc-ai .svc-node {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.svc-ai[data-phase='build'] .svc-node {
+  animation: svc-pop 0.5s cubic-bezier(0.2, 1.3, 0.4, 1) backwards;
+  animation-delay: var(--nd, 0s);
+}
+
+@keyframes svc-pop {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.svc-ai .svc-node rect {
+  fill: #0d1830;
+  stroke: rgba(56, 189, 248, 0.35);
+  stroke-width: 1;
+  transition: stroke 0.25s ease, fill 0.25s ease;
+}
+
+.svc-ai .svc-node text {
+  fill: #cbd5e1;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.svc-ai .svc-node .svc-sub {
+  fill: #64748b;
+  font-size: 9px;
+}
+
+.svc-ai .svc-node .svc-count {
+  fill: #7dd3fc;
+}
+
+/* Node lights up as a packet lands */
+.svc-ai .svc-node.svc-hit rect {
+  stroke: #7dd3fc;
+  fill: #11264a;
+}
+
+/* The AI core */
+.svc-ai .svc-core rect {
+  fill: #0a1d3a;
+  stroke: rgba(125, 211, 252, 0.7);
+}
+
+.svc-ai .svc-core text {
+  fill: #7dd3fc;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.svc-core-ring {
+  fill: none;
+  stroke: rgba(56, 189, 248, 0.55);
+  stroke-width: 1.2;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.svc-ai[data-phase='run'] .svc-core-ring {
+  animation: svc-ring 2.4s ease-out infinite;
+}
+
+.svc-ai[data-phase='run'] .svc-core-ring:nth-of-type(2) {
+  animation-delay: 1.2s;
+}
+
+@keyframes svc-ring {
+  0% { transform: scale(0.55); opacity: 0.85; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+
+/* Packets riding the wires */
+.svc-pkt {
+  fill: #7dd3fc;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.95));
+}
+
+.svc-ai[data-phase='run'] .svc-pkt:not(.svc-x) {
+  opacity: 1;
+}
+
+/* Pieces that appear when the pipeline extends itself */
+.svc-ai .svc-x {
+  opacity: 0;
+}
+
+.svc-ai.svc-extended .svc-x-node {
+  opacity: 1;
+  animation: svc-pop 0.5s cubic-bezier(0.2, 1.3, 0.4, 1) backwards;
+}
+
+.svc-ai.svc-extended .svc-x-wire {
+  opacity: 1;
+  stroke-dashoffset: 240;
+  animation: svc-draw 0.9s ease 0.35s forwards;
+}
+
+.svc-ai.svc-extended[data-phase='run'] .svc-x-pkt {
+  opacity: 1;
+  transition-delay: 1.4s;
+}
+
+/* ──────────────────────────────────────────────
+   MONITORING — crash, catch, recover
+   ────────────────────────────────────────────── */
+
+.svc-mon .svc-viewport {
+  height: 108px;
+}
+
+.svc-site-ok,
+.svc-site-err,
+.svc-site-fix {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.svc-mon[data-state='up'] .svc-site-ok,
+.svc-mon[data-state='recovered'] .svc-site-ok {
+  opacity: 1;
+}
+
+.svc-mon[data-state='down'] .svc-site-err,
+.svc-mon[data-state='alert'] .svc-site-err {
+  opacity: 1;
+}
+
+.svc-mon[data-state='down'] .svc-site-err {
+  animation: svc-glitch 0.3s steps(3) 1;
+}
+
+.svc-mon[data-state='fix'] .svc-site-fix {
+  opacity: 1;
+}
+
+@keyframes svc-glitch {
+  0% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  100% { transform: none; }
+}
+
+/* Healthy page skeleton */
+.svc-site-ok {
+  padding: 0.6rem 0.8rem;
+  background: linear-gradient(160deg, #0c1430, #070b1c);
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+}
+
+.svc-ok-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.svc-ok-logo {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, #34d399, #0d9488);
+}
+
+.svc-ok-links {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.svc-ok-links i {
+  width: 18px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(148, 163, 184, 0.4);
+}
+
+.svc-ok-pill {
+  margin-left: auto;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(52, 211, 153, 0.5);
+  color: #34d399;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.08em;
+}
+
+.svc-ok-h1 {
+  width: 62%;
+  height: 9px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #e2e8f0, #6ee7b7);
+}
+
+.svc-ok-p {
+  width: 80%;
+  height: 5px;
+  border-radius: 2px;
+  background: rgba(148, 163, 184, 0.35);
+}
+
+.svc-ok-btn {
+  width: 64px;
+  height: 15px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #34d399, #0d9488);
+}
+
+/* Crash screen */
+.svc-site-err {
+  background: #170a0e;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+.svc-err-code {
+  display: block;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #f87171;
+  text-shadow: 0 0 18px rgba(248, 113, 113, 0.5);
+}
+
+.svc-err-sub {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(248, 113, 113, 0.75);
+}
+
+/* Auto-heal screen */
+.svc-site-fix {
+  background: #0a0f1f;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.svc-spinner {
+  width: 22px;
+  height: 22px;
+  margin: 0 auto 0.5rem;
+  border-radius: 50%;
+  border: 2px solid rgba(52, 211, 153, 0.2);
+  border-top-color: #34d399;
+  animation: svc-spin 0.8s linear infinite;
+}
+
+@keyframes svc-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Monitor panel below the site */
+.svc-monitor {
+  position: relative;
+  margin-top: 0.6rem;
+  padding: 0.65rem 0.8rem 0.7rem;
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  border-radius: 12px;
+  background: #060d14;
+  overflow: hidden;
+}
+
+.svc-mon-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.svc-mon-status {
+  color: #34d399;
+  transition: color 0.25s ease;
+}
+
+.svc-mon[data-state='down'] .svc-mon-status,
+.svc-mon[data-state='alert'] .svc-mon-status {
+  color: #f87171;
+}
+
+.svc-mon[data-state='fix'] .svc-mon-status {
+  color: #fbbf24;
+}
+
+.svc-mon-lat {
+  color: var(--muted);
+}
+
+.svc-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 52px;
+}
+
+.svc-chart i {
+  flex: 1;
+  min-height: 3px;
+  border-radius: 1px;
+  background: #34d399;
+  opacity: 0.85;
+  transition: height 0.3s ease, background-color 0.3s ease;
+}
+
+.svc-mon[data-state='down'] .svc-chart i,
+.svc-mon[data-state='alert'] .svc-chart i {
+  background: #f87171;
+}
+
+.svc-mon[data-state='fix'] .svc-chart i {
+  background: #fbbf24;
+}
+
+/* Alert toast sliding in from the right */
+.svc-toast {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  padding: 0.32rem 0.6rem;
+  border-radius: 7px;
+  border: 1px solid rgba(248, 113, 113, 0.55);
+  background: rgba(23, 10, 14, 0.95);
+  color: #fca5a5;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  transform: translateX(115%);
+  transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+  z-index: 2;
+}
+
+.svc-mon[data-state='alert'] .svc-toast,
+.svc-mon[data-state='fix'] .svc-toast {
+  transform: none;
+}
+
+/* Recovery banner */
+.svc-banner {
+  margin-top: 0.55rem;
+  padding: 0.32rem 0.6rem;
+  border-radius: 7px;
+  border: 1px solid rgba(52, 211, 153, 0.45);
+  background: rgba(4, 22, 16, 0.9);
+  color: #6ee7b7;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.svc-mon[data-state='recovered'] .svc-banner {
+  opacity: 1;
+  transform: none;
+}
+
+/* Reduced motion: page.js never injects the scenes, but guard anyway */
+@media (prefers-reduced-motion: reduce) {
+  .svc-scene *,
+  .svc-scene *::before,
+  .svc-scene *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,714 @@
+
+/* ============================================================
+   Blog index — "Field Catalog": print-catalog entries that
+   behave physically (idle float, 3D pointer tilt, glare sheen)
+   ============================================================ */
+
+/* Header behavior shared with the home page (mirrors hero-tech.css):
+   shrink to half height when scrolled + thin scroll progress bar,
+   which page.js injects into the header on every static page */
+
+/* overflow-x:hidden on html/body (styles.css) silently disables
+   position:sticky — swap to clip, which doesn't create a scroll
+   container, so the header actually sticks on static pages too */
+:root {
+  overflow-x: clip;
+}
+
+html body {
+  overflow-x: clip;
+}
+
+.site-header .header-inner {
+  transition: min-height 0.3s ease, padding 0.3s ease;
+}
+
+.site-header .brand-logo {
+  transition: width 0.3s ease, filter 0.3s ease;
+}
+
+.site-header.scrolled .header-inner {
+  min-height: 2.6rem;
+  padding: 0.3rem 0;
+}
+
+.site-header.scrolled .brand-logo {
+  width: 9rem;
+}
+
+.scroll-progress {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.45);
+}
+
+/* Per-category accent variables */
+.blog-cat-web { --cat: #8b5cf6; --cat-dim: rgba(139, 92, 246, 0.16); --cat-bright: rgba(139, 92, 246, 0.55); }
+.blog-cat-ai  { --cat: #38bdf8; --cat-dim: rgba(56, 189, 248, 0.16); --cat-bright: rgba(56, 189, 248, 0.55); }
+.blog-cat-mon { --cat: #34d399; --cat-dim: rgba(52, 211, 153, 0.16); --cat-bright: rgba(52, 211, 153, 0.55); }
+
+/* Section: blueprint grid + pointer spotlight */
+.blog-index {
+  position: relative;
+  --sx: 50%;
+  --sy: 240px;
+}
+
+.blog-index::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.055) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(640px at var(--sx) var(--sy), #000 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.1) 100%);
+  mask-image: radial-gradient(640px at var(--sx) var(--sy), #000 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+.blog-index::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(520px at var(--sx) var(--sy), rgba(139, 92, 246, 0.075), transparent 70%);
+}
+
+.blog-index .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Catalog masthead */
+.cat-masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1.4rem;
+  margin-bottom: 1.6rem;
+  padding: 0.65rem 0;
+  border-top: 2px solid rgba(226, 232, 240, 0.35);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cat-masthead strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.cat-barcode {
+  display: inline-block;
+  width: 84px;
+  height: 22px;
+  opacity: 0.8;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(226, 232, 240, 0.85) 0 2px,
+    transparent 2px 5px,
+    rgba(226, 232, 240, 0.85) 5px 6px,
+    transparent 6px 9px,
+    rgba(226, 232, 240, 0.85) 9px 12px,
+    transparent 12px 14px
+  );
+}
+
+/* Section tabs (filters) — index-tab styling */
+.blog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1.7rem 0 2rem;
+}
+
+.cat-filter-label {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 0.4rem;
+}
+
+.blog-filter {
+  position: relative;
+  padding: 0.45rem 1.05rem;
+  border: 1px solid rgba(159, 178, 198, 0.24);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+}
+
+.blog-filter:hover {
+  border-color: rgba(226, 232, 240, 0.5);
+  color: var(--text);
+}
+
+.blog-filter.is-active {
+  background: rgba(226, 232, 240, 0.08);
+  border-color: rgba(226, 232, 240, 0.6);
+  color: var(--text);
+  box-shadow: inset 0 2px 0 rgba(226, 232, 240, 0.6);
+}
+
+/* Float wrappers: idle hover-in-the-air motion */
+.cat-float {
+  animation: cat-float var(--fd, 9s) ease-in-out var(--fdel, 0s) infinite alternate;
+}
+
+@keyframes cat-float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-8px); }
+}
+
+/* Catalog entry card (shared by featured + grid) */
+.cat-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 45%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  height: 100%;
+  padding: 1.45rem 1.35rem 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 10px;
+  background: linear-gradient(165deg, rgba(13, 19, 38, 0.93), rgba(6, 10, 22, 0.87));
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transform: perspective(750px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.16s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+/* Inner hairline frame — printed-page feel */
+.cat-card::before {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+/* Glare sheen that tracks the pointer */
+.cat-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(230px at var(--gx) var(--gy), rgba(255, 255, 255, 0.085), transparent 62%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.cat-card:hover {
+  border-color: var(--cat-bright);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 26px var(--cat-dim);
+}
+
+.cat-card:hover::after {
+  opacity: 1;
+}
+
+.cat-card:hover .blog-arrow {
+  transform: translateX(5px);
+}
+
+/* Mono reference rail at the top of each entry */
+.cat-rail {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--cat);
+  opacity: 0.95;
+}
+
+.cat-rail span:last-child {
+  color: var(--muted);
+  opacity: 0.75;
+}
+
+/* Category stamp — dashed, slightly off-square, like inked rubber */
+.cat-stamp {
+  align-self: flex-start;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cat);
+  border: 1px dashed var(--cat-bright);
+  border-radius: 4px;
+  padding: 0.24rem 0.65rem;
+  transform: rotate(-1.1deg);
+}
+
+.cat-card h3 {
+  margin: 0.1rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.42;
+  color: var(--text);
+}
+
+.cat-card p {
+  margin: 0;
+  flex: 1;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.62;
+}
+
+.blog-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+.blog-arrow {
+  display: inline-block;
+  transition: transform 0.3s var(--ease-out);
+}
+
+/* Ghost index numeral */
+.cat-num {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.3rem;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 3.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(148, 163, 184, 0.16);
+  pointer-events: none;
+}
+
+/* Featured entry: catalog spread with a spec-sheet panel */
+.cat-feature {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+  padding: 2rem 2.1rem;
+  margin-bottom: 1.4rem;
+}
+
+.cat-feature-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.cat-feature h3 {
+  font-size: clamp(1.3rem, 2.4vw, 1.65rem);
+  line-height: 1.3;
+}
+
+.cat-spec {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  justify-content: center;
+  padding: 1.2rem 1.3rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 8px;
+  background: rgba(2, 6, 17, 0.55);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+.cat-spec-head {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.cat-spec-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px dotted rgba(148, 163, 184, 0.18);
+  padding-bottom: 0.45rem;
+}
+
+.cat-spec-row span:last-child {
+  color: var(--text);
+}
+
+.cat-live {
+  color: #34d399 !important;
+}
+
+.cat-spec .cat-barcode {
+  margin-top: 0.5rem;
+}
+
+.cat-spec-id {
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+/* Entry mosaic: editorial mix of wide features and standard entries */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.15rem;
+}
+
+.blog-grid .cat-float,
+.blog-grid .cat-card {
+  height: 100%;
+}
+
+.cat-span-2 { grid-column: span 2; }
+.cat-span-4 { grid-column: span 4; }
+
+/* Wide entries read bigger, like featured items on a catalog page */
+.cat-span-4 .cat-card h3 {
+  font-size: 1.3rem;
+  line-height: 1.35;
+  max-width: 38ch;
+}
+
+.cat-span-4 .cat-card p {
+  max-width: 58ch;
+}
+
+/* Closing entry: slim full-width ledger row */
+.cat-strip-wrap {
+  grid-column: 1 / -1;
+}
+
+.cat-strip {
+  flex-direction: row;
+  align-items: center;
+  gap: 1.3rem;
+  padding: 1.1rem 1.5rem;
+}
+
+.cat-strip .cat-rail {
+  flex: 0 0 auto;
+  width: 130px;
+}
+
+.cat-strip .cat-rail-leader,
+.cat-strip .cat-rail span:last-child {
+  display: none;
+}
+
+.cat-strip h3 {
+  flex: 1;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.cat-strip p,
+.cat-strip .cat-num {
+  display: none;
+}
+
+.cat-strip .cat-stamp {
+  align-self: center;
+}
+
+/* Dotted leader line in reference rails, like a printed index */
+.cat-rail-leader {
+  flex: 1;
+  min-width: 1.4rem;
+  border-bottom: 1px dotted rgba(148, 163, 184, 0.28);
+  transform: translateY(-0.28em);
+}
+
+/* End-of-issue sign-off */
+.cat-end {
+  margin: 2rem 0 0;
+  text-align: center;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.65;
+}
+
+/* Scroll reveal (opt-in via data-reveal; activated by page.js) */
+[data-reveal] {
+  opacity: 0;
+  translate: 0 22px;
+  transition: opacity 0.6s ease, translate 0.6s var(--ease-out);
+  transition-delay: var(--d, 0s);
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Filtered-out posts */
+.blog-hidden {
+  display: none !important;
+}
+
+/* Tech-panel corners for static-page cards (mirrors the homepage
+   treatment in hero-tech.css) */
+.article-cta {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 18px) 0,
+    100% 18px,
+    100% 100%,
+    18px 100%,
+    0 calc(100% - 18px)
+  );
+}
+
+@media (max-width: 980px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cat-span-2,
+  .cat-span-4 {
+    grid-column: span 1;
+  }
+
+  .cat-span-4 .cat-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .cat-strip-wrap {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cat-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding: 1.45rem 1.35rem 1.25rem;
+  }
+
+  .cat-strip .cat-rail {
+    width: 100%;
+  }
+
+  .cat-feature {
+    grid-template-columns: 1fr;
+    padding: 1.6rem 1.4rem;
+  }
+
+  .cat-masthead {
+    font-size: 0.62rem;
+    gap: 0.45rem 1rem;
+  }
+}
+
+/* ============================================================
+   Service-page refresh (web-design / ai-automation / monitoring).
+   page.js adds .page-web / .page-ai / .page-mon from the URL.
+   ============================================================ */
+
+.page-web { --pa: #8b5cf6; --pa-dim: rgba(139, 92, 246, 0.16); --pa-bright: rgba(139, 92, 246, 0.55); }
+.page-ai  { --pa: #38bdf8; --pa-dim: rgba(56, 189, 248, 0.16); --pa-bright: rgba(56, 189, 248, 0.55); }
+.page-mon { --pa: #34d399; --pa-dim: rgba(52, 211, 153, 0.16); --pa-bright: rgba(52, 211, 153, 0.55); }
+
+/* Numbered sections, stamped in the page accent */
+.page-web main,
+.page-ai main,
+.page-mon main {
+  counter-reset: svc-section;
+}
+
+.page-web .section-heading h2::before,
+.page-ai .section-heading h2::before,
+.page-mon .section-heading h2::before {
+  counter-increment: svc-section;
+  content: "Sec " counter(svc-section, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.55rem;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pa);
+}
+
+/* Panel corners on service-page cards (same language as the rest of the site) */
+.page-service .service-entry,
+.page-service .pricing-feature,
+.page-service .pricing-note,
+.page-service .faq-row,
+.page-service .related-link {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 18px) 0,
+    100% 18px,
+    100% 100%,
+    18px 100%,
+    0 calc(100% - 18px)
+  );
+}
+
+/* Pointer-tracked glare on pseudo-free service cards (fed by page.js) */
+.page-service .pricing-feature,
+.page-service .faq-row,
+.page-service .related-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-service .pricing-feature::after,
+.page-service .faq-row::after,
+.page-service .related-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(260px at var(--gx, 50%) var(--gy, 40%), rgba(255, 255, 255, 0.07), transparent 62%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.page-service .pricing-feature:hover::after,
+.page-service .faq-row:hover::after,
+.page-service .related-link:hover::after {
+  opacity: 1;
+}
+
+.page-service .service-entry:hover,
+.page-service .pricing-feature:hover,
+.page-service .faq-row:hover,
+.page-service .related-link:hover {
+  border-color: var(--pa-bright, rgba(139, 92, 246, 0.45));
+  box-shadow: inset 0 0 34px var(--pa-dim, rgba(139, 92, 246, 0.07));
+}
+
+/* Signature: Web Design — measurement ruler along the hero's bottom edge */
+.page-web .hero {
+  border-bottom: 1px solid rgba(139, 92, 246, 0.25);
+  background-image: repeating-linear-gradient(90deg, rgba(139, 92, 246, 0.3) 0 1px, transparent 1px 40px);
+  background-size: 100% 9px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+/* Signature: AI & Automation — circuit trace running down the page edge */
+.page-ai main {
+  position: relative;
+}
+
+.page-ai main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 595px);
+  width: 1px;
+  pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(56, 189, 248, 0.4) 0 7px, transparent 7px 25px);
+  animation: svc-trace 22s linear infinite;
+}
+
+@keyframes svc-trace {
+  from { background-position-y: 0; }
+  to { background-position-y: 250px; }
+}
+
+@media (max-width: 1260px) {
+  .page-ai main::before {
+    display: none;
+  }
+}
+
+/* Signature: Monitoring — live status pulse beside the h1 */
+.page-mon h1::after {
+  content: '';
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-left: 0.65rem;
+  border-radius: 50%;
+  vertical-align: middle;
+  background: #34d399;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
+  animation: svc-pulse 2.2s ease-out infinite;
+}
+
+@keyframes svc-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55); }
+  70% { box-shadow: 0 0 0 10px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+
+  .cat-float {
+    animation: none;
+  }
+
+  .cat-card,
+  .blog-filter,
+  .blog-arrow,
+  .cat-card::after {
+    transition: none;
+  }
+
+  .page-ai main::before,
+  .page-mon h1::after {
+    animation: none;
+  }
+}
