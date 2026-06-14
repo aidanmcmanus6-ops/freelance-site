@@ -51,6 +51,13 @@ if (header) {
 
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.nav-links');
+// Header parity: every static (non-home) page shows the same minimal
+// Home + Contact nav, kept consistent sitewide without editing each page, so
+// future blog posts inherit it too. The home SPA keeps its full page-oriented
+// nav (it loads App.jsx, not this file).
+if (nav) {
+  nav.innerHTML = '<a href="/">Home</a><a href="/#contact" class="button button-secondary">Contact</a>';
+}
 if (toggle && nav) {
   toggle.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
