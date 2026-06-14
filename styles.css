@@ -815,6 +815,21 @@ h3 {
   .faq-row { grid-template-columns: 1fr; gap: 0.6rem; }
 }
 
+/* Local-SEO prose blocks on service / about pages */
+.section-prose {
+  max-width: 68ch;
+  margin-top: 1.6rem;
+}
+
+.section-prose p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 1.1rem;
+}
+
+.section-prose p:last-child { margin-bottom: 0; }
+
 /* Related services as "next step" link rows (not boxes) */
 .related-links { margin-top: 2.5rem; }
 

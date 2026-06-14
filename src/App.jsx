@@ -26,6 +26,7 @@ const navItems = [
   ['Process', '#process'],
   ['Why It Matters', '#why'],
   ['Portfolio', '#portfolio'],
+  ['About', '#about'],
   ['FAQ', '#faq'],
   ['Blog', '/blog/'],
 ];
@@ -570,7 +571,7 @@ function Hero({ ready }) {
         >
           <p className="eyebrow">Senior engineering, without the full time hire or agency.</p>
           <h1><WordRise text="Modern websites, AI agents, and observability delivered for your business." start={ready} /></h1>
-          <p className="lead">Work directly with two senior engineers who build polished digital experiences, secure automation, and resilient operations with focused expertise.</p>
+          <p className="lead">Work directly with two senior engineers — a New Jersey web design and automation studio building polished digital experiences, secure automation, and resilient operations for growing businesses across South Jersey and remote teams nationwide.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#contact">Start Your Project</a>
             <a className="button button-outline" href="#portfolio">View Work</a>
@@ -615,7 +616,7 @@ function Services() {
   return (
     <section className="section services" id="services">
       <div className="container">
-        <SectionHeading title="Websites, AI automation, and monitoring for growing businesses" />
+        <SectionHeading title="Websites, AI automation, and monitoring for growing New Jersey businesses" />
         <CardGrid className="services-list">
           {services.map((service, i) => (
             <motion.article className={`service-entry service-entry-${i + 1}`} key={service.title} variants={cardMotion} transition={transition(reducedMotion)}>
@@ -2018,11 +2019,13 @@ function About() {
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={sectionViewport} transition={transition(reducedMotion)}>
           <SectionHeading title="Enterprise systems experience, delivered directly." />
           <p>We help growing companies access senior level engineering without the overhead of a full time hire or agency. A senior team of two, focused execution, real results.</p>
+          <p>MCM Integrated is a New Jersey web design and automation studio serving Burlington and Camden County and the wider South Jersey and Jersey Shore area, from Medford, Mount Holly, and Lumberton to Cherry Hill, Moorestown, Voorhees, Trenton, Ocean City, and Long Beach Island. Most of the businesses we work with are local; some are fully remote.</p>
           <ul className="experience-list-simple">
             <li>Cloud automation and tool integration for mission critical environments</li>
             <li>Observability, dashboarding, and alerting that reduce risk</li>
             <li>Secure workflows and authorization patterns that protect data and identity</li>
           </ul>
+          <p className="about-cta"><a className="service-link" href="/about/">More about MCM Integrated →</a></p>
         </motion.div>
       </div>
     </section>
@@ -2070,7 +2073,7 @@ function Contact() {
           <ul className="contact-details">
             <li><strong>Email:</strong> <a href="mailto:aidan@mcm-integrated.com">aidan@mcm-integrated.com</a></li>
             <li><strong>Phone:</strong> <a href="tel:+16093040371">609-304-0371</a></li>
-            <li><strong>Service area:</strong> Burlington &amp; Camden County, NJ, including Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, and Burlington, plus the greater Philadelphia area. Remote engagements welcome.</li>
+            <li><strong>Service area:</strong> Burlington, Camden, Ocean &amp; Mercer County, NJ, including Medford, Medford Lakes, Mount Holly, Lumberton, Southampton, Cherry Hill, Voorhees, Haddon Township, Berlin, Moorestown, Trenton, Ocean City, and Long Beach Island, plus the greater Philadelphia area. Remote engagements welcome.</li>
           </ul>
           <div className="contact-actions">
             <a className="button button-outline" href={calendarUrl} target="_blank" rel="noopener noreferrer">Book a Call</a>
@@ -2283,8 +2286,9 @@ function App() {
       <footer className="site-footer">
         <div className="container footer-inner">
           <p>© 2026 MCM Integrated</p>
-          <p className="footer-areas">Web design, AI automation &amp; monitoring serving Burlington and Camden County, New Jersey, including Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, Lumberton, Burlington, and the greater Philadelphia area.</p>
+          <p className="footer-areas">Web design, AI automation &amp; monitoring serving Burlington, Camden, Ocean &amp; Mercer County, New Jersey, including Medford, Mount Holly, Lumberton, Cherry Hill, Moorestown, Voorhees, Berlin, Haddon Township, Trenton, Ocean City, Long Beach Island, and the greater Philadelphia area.</p>
           <nav aria-label="Footer">
+            <a href="/about/">About</a> ·
             <a href="/privacy/">Privacy</a>
           </nav>
         </div>
