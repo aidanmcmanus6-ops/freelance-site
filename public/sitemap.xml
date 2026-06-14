@@ -8,19 +8,19 @@
   </url>
   <url>
     <loc>https://www.mcm-integrated.com/web-design/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.mcm-integrated.com/ai-automation/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.mcm-integrated.com/monitoring/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -41,12 +41,6 @@
     <lastmod>2026-06-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.mcm-integrated.com/blog/signs-your-south-jersey-business-needs-a-new-website/</loc>
-    <lastmod>2026-06-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.mcm-integrated.com/blog/small-business-website-cost-south-jersey/</loc>
@@ -86,19 +80,43 @@
   </url>
   <url>
     <loc>https://www.mcm-integrated.com/blog/what-downtime-actually-costs/</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.mcm-integrated.com/blog/when-automations-fail-silently/</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.mcm-integrated.com/blog/rebuild-vs-fix-your-website/</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mcm-integrated.com/blog/the-outage-you-can-see-coming/</loc>
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mcm-integrated.com/blog/why-you-dont-show-up-on-google/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mcm-integrated.com/blog/writing-ai-prompts-for-business/</loc>
     <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mcm-integrated.com/blog/signs-your-south-jersey-business-needs-a-new-website/</loc>
+    <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
