@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4H8NQ7SRDD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4H8NQ7SRDD');
+  </script>
+  <title>How to Write AI Prompts That Actually Get Consistent Results</title>
+  <meta name="description" content="Vague prompts give vague answers. Here's how to write AI prompts that produce reliable, useful output for real business tasks: what to include, what to cut, and how to test whether your prompt actually works." />
+  <meta name="author" content="Aidan McManus" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="canonical" href="https://www.mcm-integrated.com/blog/writing-ai-prompts-for-business/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="MCM Integrated" />
+  <meta property="og:title" content="How to Write AI Prompts That Actually Get Consistent Results" />
+  <meta property="og:description" content="Vague prompts give vague answers. How to write AI prompts that produce reliable, useful output for real business tasks." />
+  <meta property="og:url" content="https://www.mcm-integrated.com/blog/writing-ai-prompts-for-business/" />
+  <meta property="og:image" content="https://www.mcm-integrated.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Write AI Prompts That Actually Get Consistent Results" />
+  <meta name="twitter:description" content="Vague prompts give vague answers. How to write AI prompts that produce reliable, useful output for real business tasks." />
+  <meta name="twitter:image" content="https://www.mcm-integrated.com/og-image.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "How to Write AI Prompts That Actually Get Consistent Results",
+      "description": "Vague prompts give vague answers. Here's how to write AI prompts that produce reliable, useful output for real business tasks: what to include, what to cut, and how to test whether your prompt actually works.",
+      "image": "https://www.mcm-integrated.com/og-image.png",
+      "datePublished": "2026-06-13",
+      "dateModified": "2026-06-13",
+      "author": {
+        "@type": "Person",
+        "name": "Aidan McManus",
+        "url": "https://www.mcm-integrated.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "MCM Integrated",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.mcm-integrated.com/mcm-logo-transparent.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.mcm-integrated.com/blog/writing-ai-prompts-for-business/"
+      },
+      "about": "AI prompts and automation for small business"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.mcm-integrated.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.mcm-integrated.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "How to Write AI Prompts That Actually Get Consistent Results", "item": "https://www.mcm-integrated.com/blog/writing-ai-prompts-for-business/" }
+      ]
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="module" src="/src/page.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="MCM Integrated home">
+        <img src="/mcm-logo-transparent.png" alt="MCM Integrated logo" class="brand-logo" />
+        <span class="sr-only">MCM Integrated</span>
+      </a>
+      <nav class="nav-links" id="primaryNav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/web-design/">Web Design</a>
+        <a href="/ai-automation/">AI Automation</a>
+        <a href="/monitoring/">Monitoring</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#contact" class="button button-secondary">Contact</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <article class="article">
+      <div class="article-container">
+        <p class="article-eyebrow"><a href="/blog/">Blog</a> &middot; AI &amp; Automation</p>
+        <h1>How to Write AI Prompts That Actually Get Consistent Results</h1>
+        <p class="article-meta">By Aidan McManus, MCM Integrated &middot; June 2026 &middot; ~5 min read</p>
+
+        <div class="article-body">
+          <p>Most people interact with AI the way they'd type into a search engine. Short phrase, hit enter, see what comes back. That works fine for looking something up. It doesn't work well for getting useful business output, reliably, every time.</p>
+
+          <p>If you've tried using AI for business tasks and found the results inconsistent, vague, or just not quite right, the problem is rarely the model. It's almost always the prompt.</p>
+
+          <h2>A prompt is not a request</h2>
+          <p>When you ask a coworker to draft a client update email, they already know your voice, they know the client, they've seen a hundred emails like it, and they'll ask if something's unclear. An AI model has none of that context unless you give it. The output reflects the information you provide. The vaguer the input, the more the model has to guess, and it will guess.</p>
+          <p>This is not a model failure. It's a communication problem. The fix is not a better tool; it's a more complete prompt.</p>
+
+          <h2>What to include in a prompt that works</h2>
+          <p>A reliable business prompt usually has four parts. Not every task needs all four, but the more stakes involved, the more of these you want.</p>
+          <ul>
+            <li><strong>Role or context.</strong> Tell the model what it's doing and why. "You are helping me write a weekly project update for a client who is non-technical and wants plain-English status." That one sentence changes the output significantly compared to "write a project update."</li>
+            <li><strong>The actual input.</strong> Give the model the material it's working with. If you want it to summarize something, paste the thing. If you want it to respond to an email, include the email, not a description of the email.</li>
+            <li><strong>The output format.</strong> Tell the model exactly what you want back. "Three bullet points, each one sentence" is much more useful than "a summary." "A two-paragraph email, no subject line, no sign-off" tells the model precisely what to produce.</li>
+            <li><strong>Constraints.</strong> What it should not do. "Do not use jargon. Do not mention pricing. Keep it under 150 words." Constraints prevent the model from filling in details you didn't specify.</li>
+          </ul>
+
+          <figure class="article-figure">
+            <svg viewBox="0 0 720 320" role="img" aria-label="Diagram showing the four parts of a good business prompt: role and context, actual input, output format, and constraints, each in a labeled panel.">
+              <defs>
+                <linearGradient id="prmg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#8b5cf6"/>
+                  <stop offset="1" stop-color="#38bdf8"/>
+                </linearGradient>
+              </defs>
+              <text x="20" y="32" font-family="Inter, sans-serif" font-size="17" font-weight="700" fill="#f8fafc">The four parts of a prompt that gets results</text>
+
+              <g font-family="Inter, sans-serif">
+                <rect x="20" y="50" width="330" height="100" rx="14" fill="#0e1733" stroke="rgba(139,92,246,0.22)"/>
+                <rect x="20" y="50" width="330" height="5" rx="2.5" fill="url(#prmg)"/>
+                <text x="42" y="88" font-size="14" font-weight="700" fill="#f8fafc">1. Role or context</text>
+                <text x="42" y="110" font-size="12" fill="#a9b7cb">Who is the AI being for this task?</text>
+                <text x="42" y="130" font-size="12" fill="#a9b7cb">What does the audience need?</text>
+
+                <rect x="370" y="50" width="330" height="100" rx="14" fill="#0e1733" stroke="rgba(139,92,246,0.22)"/>
+                <rect x="370" y="50" width="330" height="5" rx="2.5" fill="url(#prmg)"/>
+                <text x="392" y="88" font-size="14" font-weight="700" fill="#f8fafc">2. The actual input</text>
+                <text x="392" y="110" font-size="12" fill="#a9b7cb">Paste the email, document, or data.</text>
+                <text x="392" y="130" font-size="12" fill="#a9b7cb">Don't describe it. Include it.</text>
+
+                <rect x="20" y="168" width="330" height="100" rx="14" fill="#0e1733" stroke="rgba(139,92,246,0.22)"/>
+                <rect x="20" y="168" width="330" height="5" rx="2.5" fill="url(#prmg)"/>
+                <text x="42" y="206" font-size="14" font-weight="700" fill="#f8fafc">3. Output format</text>
+                <text x="42" y="228" font-size="12" fill="#a9b7cb">Bullets, paragraphs, email, table?</text>
+                <text x="42" y="248" font-size="12" fill="#a9b7cb">State the exact shape you need.</text>
+
+                <rect x="370" y="168" width="330" height="100" rx="14" fill="#0e1733" stroke="rgba(139,92,246,0.22)"/>
+                <rect x="370" y="168" width="330" height="5" rx="2.5" fill="url(#prmg)"/>
+                <text x="392" y="206" font-size="14" font-weight="700" fill="#f8fafc">4. Constraints</text>
+                <text x="392" y="228" font-size="12" fill="#a9b7cb">Word count, tone, what to leave out.</text>
+                <text x="392" y="248" font-size="12" fill="#a9b7cb">Make the guardrails explicit.</text>
+              </g>
+            </svg>
+            <figcaption>The more of these you include, the less the model has to guess.</figcaption>
+          </figure>
+
+          <h2>What to cut</h2>
+          <p>The most common mistake is including everything you're thinking about and hoping the model sorts it out. It will try. The results will reflect that: meandering, unsure of emphasis, longer than you need.</p>
+          <p>One task per prompt. If you want a summary, ask for the summary. If you then want that summary turned into talking points, that's a second prompt. Chaining is fine; crowding is not.</p>
+          <p>Also cut the preamble. "Sorry this is a weird ask but..." is wasted words and it subtly nudges the model toward hedged, cautious output. State the task, give the context, get the output.</p>
+
+          <h2>How to know if your prompt is actually working</h2>
+          <p>Run it twice on different inputs.</p>
+          <p>A prompt that works once might be getting lucky. If you're going to use it regularly, the real test is whether it produces something useful even when the input changes. Put in a different email, a different project, a different data set. The output should be consistently useful, not just occasionally right.</p>
+          <p>If the results vary, the usual culprit is something you left ambiguous. Somewhere in the prompt the model is making a decision you didn't specify. Find that decision and make it explicitly instead.</p>
+          <p>A second test: read the output without looking at the input, and ask whether you'd use it as-is. If you'd have to rewrite it before it's useful, the prompt isn't doing enough work yet.</p>
+
+          <figure class="article-figure">
+            <svg viewBox="0 0 720 180" role="img" aria-label="A loop diagram showing the prompt refinement cycle: write prompt, run on input A, run on input B, compare outputs, fix what varies, repeat.">
+              <defs>
+                <linearGradient id="loopg" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#8b5cf6"/>
+                  <stop offset="1" stop-color="#38bdf8"/>
+                </linearGradient>
+              </defs>
+              <text x="20" y="30" font-family="Inter, sans-serif" font-size="17" font-weight="700" fill="#f8fafc">How to test a prompt before you rely on it</text>
+
+              <g font-family="Inter, sans-serif" font-size="12" text-anchor="middle">
+                <rect x="20" y="50" width="120" height="50" rx="12" fill="#0e1733" stroke="rgba(139,92,246,0.35)"/>
+                <text x="80" y="72" font-weight="700" fill="#f8fafc">Write</text>
+                <text x="80" y="90" fill="#a9b7cb">your prompt</text>
+
+                <line x1="140" y1="75" x2="178" y2="75" stroke="rgba(139,92,246,0.5)" stroke-width="1.5"/>
+                <polygon points="178,70 188,75 178,80" fill="rgba(139,92,246,0.7)"/>
+
+                <rect x="188" y="50" width="120" height="50" rx="12" fill="#0e1733" stroke="rgba(139,92,246,0.35)"/>
+                <text x="248" y="72" font-weight="700" fill="#f8fafc">Run on</text>
+                <text x="248" y="90" fill="#a9b7cb">Input A</text>
+
+                <line x1="308" y1="75" x2="346" y2="75" stroke="rgba(139,92,246,0.5)" stroke-width="1.5"/>
+                <polygon points="346,70 356,75 346,80" fill="rgba(139,92,246,0.7)"/>
+
+                <rect x="356" y="50" width="120" height="50" rx="12" fill="#0e1733" stroke="rgba(139,92,246,0.35)"/>
+                <text x="416" y="72" font-weight="700" fill="#f8fafc">Run on</text>
+                <text x="416" y="90" fill="#a9b7cb">Input B</text>
+
+                <line x1="476" y1="75" x2="514" y2="75" stroke="rgba(139,92,246,0.5)" stroke-width="1.5"/>
+                <polygon points="514,70 524,75 514,80" fill="rgba(139,92,246,0.7)"/>
+
+                <rect x="524" y="50" width="166" height="50" rx="12" fill="#0e1733" stroke="rgba(56,189,248,0.45)"/>
+                <text x="607" y="70" font-weight="700" fill="#38bdf8">Compare outputs</text>
+                <text x="607" y="90" fill="#a9b7cb">Fix what varies</text>
+
+                <path d="M607 100 Q607 148 80 148 Q80 105 80 100" fill="none" stroke="rgba(139,92,246,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <polygon points="75,103 80,100 85,103" fill="rgba(139,92,246,0.6)"/>
+              </g>
+            </svg>
+            <figcaption>A prompt that survives different inputs is a prompt you can actually rely on.</figcaption>
+          </figure>
+
+          <h2>Building prompts you can reuse</h2>
+          <p>For any task you do regularly with AI, you want a prompt template. This is just a prompt with variable slots instead of specific values.</p>
+          <p>"Summarize the following support ticket in two sentences: [TICKET]" is a template. Paste it into your tool, drop in the ticket, get the summary. If you're running this through an automation, the variable gets filled in programmatically every time.</p>
+          <p>Good templates state the role and context once up front, use clear placeholder tokens like [INPUT] or [CONTENT], specify the output format every time, and are specific enough that you don't need to edit them before each use. The first version will probably need two or three refinements before it's reliable. After that, it works every time without you thinking about it.</p>
+
+          <h2>One thing that trips people up</h2>
+          <p>AI models can only hold so much text in working memory at once. For most business tasks this isn't an issue, but if you're asking a model to work with a long document and it seems to miss things toward the end, you've hit the limit.</p>
+          <p>The fix is to chunk the document: break it into sections, process each one separately, then combine the outputs. Not complicated, and it works reliably every time.</p>
+
+          <h2>What being good at prompting actually looks like</h2>
+          <p>It's not a special skill. It's just being clear about what you want, specific about the format, and willing to iterate once or twice. The people who get consistent value out of AI tools have stopped treating prompts as wishes and started treating them as specifications.</p>
+          <p>That shift, more than any particular model or tool, is what makes the difference.</p>
+
+          <div class="article-cta">
+            <h3>Building AI into your actual workflow?</h3>
+            <p>I help businesses set up <a href="/ai-automation/">AI automation</a> that holds up in practice, not just in demos. Tell me what you're trying to get AI to do reliably and I'll give you a straight read on what it takes.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="/#contact">Start a Project</a>
+              <a class="button button-outline" href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener noreferrer">Book a Call</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 MCM Integrated</p>
+      <p class="footer-areas">AI automation &amp; workflow integration serving Burlington and Camden County, New Jersey, including Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, Burlington, and the greater Philadelphia area.</p>
+      <nav aria-label="Footer">
+        <a href="/">Home</a> &middot;
+        <a href="/web-design/">Web Design</a> &middot;
+        <a href="/ai-automation/">AI Automation</a> &middot;
+        <a href="/monitoring/">Monitoring</a> &middot;
+        <a href="/blog/">Blog</a> &middot;
+        <a href="/privacy/">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -13,6 +13,8 @@ export default defineConfig({
         webDesign: resolve(__dirname, 'web-design/index.html'),
         aiAutomation: resolve(__dirname, 'ai-automation/index.html'),
         monitoring: resolve(__dirname, 'monitoring/index.html'),
+        // About page — local-SEO entity page (founder, story, service area).
+        about: resolve(__dirname, 'about/index.html'),
         // Conversion confirmation page (noindex) — fires the lead/booking event.
         thankYou: resolve(__dirname, 'thank-you/index.html'),
         // Privacy notice for analytics and contact-form disclosure.
@@ -25,10 +27,6 @@ export default defineConfig({
         blogWhatToAutomate: resolve(__dirname, 'blog/what-to-automate/index.html'),
         blogConverting: resolve(__dirname, 'blog/why-your-website-isnt-converting/index.html'),
         blogSyntheticMonitoring: resolve(__dirname, 'blog/synthetic-monitoring-vs-uptime/index.html'),
-        blogRebuildVsFix: resolve(__dirname, 'blog/rebuild-vs-fix-your-website/index.html'),
-        blogSilentAutomations: resolve(__dirname, 'blog/when-automations-fail-silently/index.html'),
-        blogDowntimeCosts: resolve(__dirname, 'blog/what-downtime-actually-costs/index.html'),
-        blogGoogleVisibility: resolve(__dirname, 'blog/why-you-dont-show-up-on-google/index.html'),
       },
     },
   },
