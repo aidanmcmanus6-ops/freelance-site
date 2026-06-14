@@ -30,7 +30,7 @@ export default defineConfig({
         blogDowntimeCost: resolve(__dirname, 'blog/what-downtime-actually-costs/index.html'),
         blogSilentFailures: resolve(__dirname, 'blog/when-automations-fail-silently/index.html'),
         blogRebuildVsFix: resolve(__dirname, 'blog/rebuild-vs-fix-your-website/index.html'),
-        blogSeenComing: resolve(__dirname, 'blog/the-outage-you-can-see-coming/index.html'),
+        blogSignsNewSite: resolve(__dirname, 'blog/signs-your-south-jersey-business-needs-a-new-website/index.html'),
       },
     },
   },
