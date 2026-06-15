@@ -564,11 +564,11 @@ function Hero({ ready }) {
       <div className="container hero-grid">
         <motion.div
           initial={{ opacity: 0, x: -28 }}
-          animate={ready ? { opacity: 1, x: 0 } : { opacity: 0, x: -28 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ ...transition(reducedMotion), delay: reducedMotion ? 0 : 0.02 }}
         >
           <p className="eyebrow">Senior engineering, without the full time hire or agency.</p>
-          <h1><WordRise text="Modern websites, AI agents, and observability delivered for your business." start={ready} /></h1>
+          <h1>Modern websites, AI agents, and observability delivered for your business.</h1>
           <p className="lead">Work directly with two senior engineers — a New Jersey web design and automation studio building polished digital experiences, secure automation, and resilient operations for growing businesses across South Jersey and remote teams nationwide.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#contact">Start Your Project</a>
