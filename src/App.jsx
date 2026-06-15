@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import introVideoUrl from '../intro-animation-clean.mp4';
@@ -425,32 +425,6 @@ function useIsMobile() {
   return isMobile;
 }
 
-function WordRise({ text, start }) {
-  const reducedMotion = useReducedMotion();
-  const words = text.split(' ');
-
-  if (reducedMotion) return <span>{text}</span>;
-
-  // aria-label keeps the headline readable as one phrase for screen readers.
-  return (
-    <span aria-label={text} role="text">
-      {words.map((word, index) => (
-        <Fragment key={`${word}-${index}`}>
-          <motion.span
-            className="word-rise"
-            aria-hidden="true"
-            initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
-            animate={start ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 18, filter: 'blur(6px)' }}
-            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.12 + index * 0.055 }}
-          >
-            {word}
-          </motion.span>
-          {index < words.length - 1 ? ' ' : ''}
-        </Fragment>
-      ))}
-    </span>
-  );
-}
 
 const terminalScript = [
   { prompt: true, text: 'mcm deploy --site client-prod' },
@@ -1532,7 +1506,6 @@ function OrbitalScrollScene({ activeIndex, onPlanetClick, interactive = true, ce
       ctx.translate(-cam.x, -cam.y);
       planetVisuals.forEach((planet, index) => {
         const orbitRadius = maxOrbit * planet.orbit;
-        const isActive = index === activeIndexRef.current;
 
         // Back half — solid, dim (far side, receding from viewer)
         ctx.save();
