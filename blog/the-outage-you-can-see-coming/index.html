@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4H8NQ7SRDD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4H8NQ7SRDD');
+  </script>
+  <title>The One Outage You Can See Coming: SSL and Domain Expiry</title>
+  <meta name="description" content="Most outages ambush you. A certificate or domain expiry sends a save-the-date weeks in advance, and businesses still walk into it. Why it happens to careful people, and the one check that prevents it." />
+  <meta name="author" content="Aidan McManus" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="canonical" href="https://www.mcm-integrated.com/blog/the-outage-you-can-see-coming/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="MCM Integrated" />
+  <meta property="og:title" content="The One Outage You Can See Coming: SSL and Domain Expiry" />
+  <meta property="og:description" content="Most outages ambush you. A certificate or domain expiry sends a save-the-date weeks in advance, and businesses still walk into it. Why it happens, and the one check that prevents it." />
+  <meta property="og:url" content="https://www.mcm-integrated.com/blog/the-outage-you-can-see-coming/" />
+  <meta property="og:image" content="https://www.mcm-integrated.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The One Outage You Can See Coming: SSL and Domain Expiry" />
+  <meta name="twitter:description" content="Most outages ambush you. A certificate or domain expiry sends a save-the-date weeks in advance, and businesses still walk into it. Why it happens, and the one check that prevents it." />
+  <meta name="twitter:image" content="https://www.mcm-integrated.com/og-image.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "The One Outage You Can See Coming: SSL and Domain Expiry",
+      "description": "Most outages ambush you. A certificate or domain expiry sends a save-the-date weeks in advance, and businesses still walk into it. Why it happens to careful people, and the one check that prevents it.",
+      "image": "https://www.mcm-integrated.com/og-image.png",
+      "datePublished": "2026-06-14",
+      "dateModified": "2026-06-14",
+      "author": {
+        "@type": "Person",
+        "name": "Aidan McManus",
+        "url": "https://www.mcm-integrated.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "MCM Integrated",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.mcm-integrated.com/mcm-logo-transparent.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.mcm-integrated.com/blog/the-outage-you-can-see-coming/"
+      },
+      "about": "Preventing predictable outages from SSL certificate and domain name expiry with monitoring"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.mcm-integrated.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.mcm-integrated.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "The Outage You Can See Coming", "item": "https://www.mcm-integrated.com/blog/the-outage-you-can-see-coming/" }
+      ]
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="module" src="/src/page.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="MCM Integrated home">
+        <img src="/mcm-logo-transparent.png" alt="MCM Integrated logo" class="brand-logo" />
+        <span class="sr-only">MCM Integrated</span>
+      </a>
+      <nav class="nav-links" id="primaryNav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/web-design/">Web Design</a>
+        <a href="/ai-automation/">AI Automation</a>
+        <a href="/monitoring/">Monitoring</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#contact" class="button button-secondary">Contact</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <article class="article">
+      <div class="article-container">
+        <p class="article-eyebrow"><a href="/blog/">Blog</a> &middot; Monitoring</p>
+        <h1>The One Outage You Can See Coming: SSL and Domain Expiry</h1>
+        <p class="article-meta">By Aidan McManus, MCM Integrated &middot; June 2026 &middot; ~5 min read</p>
+
+        <div class="article-body">
+          <p>Almost every outage I get called about is a surprise. A host hiccups, a plugin update goes sideways, traffic spikes at the worst possible moment. Nobody saw it coming, because there was nothing to see. Then there is one failure that does the opposite. It tells you the exact date it will happen, sometimes months ahead, and businesses still walk straight into it.</p>
+
+          <p>That failure is an expired SSL certificate or an expired domain name. Both have a hard deadline printed on them from the day they are set up. Both will take your site down on schedule if nobody acts. And both are completely preventable, which is exactly why it stings to watch one happen.</p>
+
+          <h2>What actually happens when a certificate expires</h2>
+          <p>Your SSL certificate is the thing that puts the little padlock next to your address and turns on the "s" in https. It quietly proves to a visitor's browser that your site is really your site. Certificates are not permanent. They are issued for a fixed window, often ninety days or a year, and they have an expiry date baked in.</p>
+          <p>When that date passes without a renewal, nothing about your site changes on your end. The pages are all still there. But every modern browser stops trusting the connection and throws a full-screen red warning that says the site is not secure, with a scary "your connection is not private" headline. Most visitors never click past that screen. As far as your customers are concerned, you are down, even though the server is running perfectly. It is the worst kind of outage, the one where the building is fine but the front door is chained shut with a warning sign on it.</p>
+
+          <h2>Domain expiry is the same problem with the volume turned up</h2>
+          <p>A domain name is the address itself, the thing people type to reach you. You do not own it forever either. You rent it, usually a year at a time, from a registrar. Let that lapse and the consequences are worse than a certificate, because the domain does not just stop pointing at your site. Your email that runs on that domain stops too. Invoices bounce, customer replies vanish, and the login you need to fix it is often tied to the same dead address.</p>
+          <p>There is also a window after expiry where someone else can grab the name, and getting it back can turn into an expensive negotiation or a lost asset. A lapsed certificate is a bad afternoon. A lapsed domain can be a genuine emergency.</p>
+
+          <figure class="article-figure">
+            <svg viewBox="0 0 720 280" role="img" aria-label="A timeline showing renewal reminder windows at 30, 14, and 7 days before an expiry date, followed by a sharp cliff where the site goes down on the expiry date itself.">
+              <defs>
+                <linearGradient id="cliff" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="0.8" stop-color="#fbbf24"/><stop offset="1" stop-color="#f87171"/></linearGradient>
+              </defs>
+              <text x="20" y="30" font-family="Inter, sans-serif" font-size="17" font-weight="700" fill="#f8fafc">The deadline you get to see in advance</text>
+              <line x1="40" y1="170" x2="680" y2="170" stroke="rgba(159,178,198,0.35)" stroke-width="1.5"/>
+              <path d="M40 150 L560 150 L560 240 L680 240" fill="none" stroke="url(#cliff)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <g font-family="Inter, sans-serif" text-anchor="middle">
+                <circle cx="150" cy="150" r="6" fill="#34d399"/>
+                <text x="150" y="135" font-size="12.5" fill="#d7f5e9">30 days out</text>
+                <text x="150" y="200" font-size="11.5" fill="#a9b7cb">First reminder</text>
+                <circle cx="320" cy="150" r="6" fill="#34d399"/>
+                <text x="320" y="135" font-size="12.5" fill="#d7f5e9">14 days out</text>
+                <text x="320" y="200" font-size="11.5" fill="#a9b7cb">Still easy to fix</text>
+                <circle cx="490" cy="150" r="6" fill="#fbbf24"/>
+                <text x="490" y="135" font-size="12.5" fill="#fde9a9">7 days out</text>
+                <text x="490" y="200" font-size="11.5" fill="#a9b7cb">Last quiet window</text>
+                <circle cx="560" cy="150" r="7" fill="#f87171"/>
+                <text x="610" y="232" font-size="13" font-weight="600" fill="#fecaca">Expiry: site down</text>
+              </g>
+            </svg>
+            <figcaption>Every certificate and domain comes with reminder windows built in. The whole failure is the gap between those reminders and someone actually acting on them.</figcaption>
+          </figure>
+
+          <h2>So why does this still happen to careful people</h2>
+          <p>The obvious question is why anyone lets a dated deadline sneak up on them. I have seen it happen to organized, competent businesses, and the reason is almost never carelessness. It is that the reminders go to the wrong place or assume something that is no longer true.</p>
+          <ul>
+            <li><strong>Auto-renew was on, but the card was not.</strong> Most registrars and certificate services do offer auto-renew. It quietly fails the day the card on file expires or hits a limit. The renewal does not happen, and the only warning is an email that nobody is watching for.</li>
+            <li><strong>The reminders go to an inbox nobody reads.</strong> Domains are often registered to whoever set the site up years ago, a former employee, an agency you no longer use, or a personal address that has since drowned in spam. The warnings are being sent. They are just landing somewhere with no eyes on it.</li>
+            <li><strong>The certificate and the domain live in different places.</strong> Your domain might be at one company, your hosting at another, your certificate issued by a third. Renewing one does nothing for the others, and no single dashboard shows you all three deadlines in one view.</li>
+            <li><strong>Auto-renewal broke and stayed quiet.</strong> Plenty of certificates renew automatically through the host. When that automation breaks, it breaks the way <a href="/blog/when-automations-fail-silently/">automations usually break</a>, without a sound. Everything looks fine until the day it does not.</li>
+          </ul>
+          <p>None of these are exotic. They are the normal, boring ways a deadline slips through a busy small business, and they all share one trait: the expiry was knowable the whole time, and nobody was checking the date itself.</p>
+
+          <figure class="article-figure">
+            <svg viewBox="0 0 720 200" role="img" aria-label="Four common reasons a renewal silently fails: an expired payment card, reminders going to an unwatched inbox, the domain and certificate living in separate accounts, and broken auto-renewal automation.">
+              <defs>
+                <linearGradient id="why4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
+              </defs>
+              <text x="20" y="28" font-family="Inter, sans-serif" font-size="17" font-weight="700" fill="#f8fafc">How a known deadline still gets missed</text>
+              <g font-family="Inter, sans-serif">
+                <rect x="20" y="48" width="162" height="118" rx="14" fill="#0e1733" stroke="rgba(52,211,153,0.22)"/>
+                <rect x="20" y="48" width="162" height="5" rx="2.5" fill="url(#why4)"/>
+                <text x="38" y="94" font-size="15" font-weight="700" fill="#f8fafc">Dead card</text>
+                <text x="38" y="120" font-size="12.5" fill="#a9b7cb">Auto-renew fails</text>
+                <text x="38" y="138" font-size="12.5" fill="#a9b7cb">on an expired card</text>
+
+                <rect x="194" y="48" width="162" height="118" rx="14" fill="#0e1733" stroke="rgba(52,211,153,0.22)"/>
+                <rect x="194" y="48" width="162" height="5" rx="2.5" fill="url(#why4)"/>
+                <text x="212" y="94" font-size="15" font-weight="700" fill="#f8fafc">Lost inbox</text>
+                <text x="212" y="120" font-size="12.5" fill="#a9b7cb">Reminders go to</text>
+                <text x="212" y="138" font-size="12.5" fill="#a9b7cb">no one watching</text>
+
+                <rect x="368" y="48" width="162" height="118" rx="14" fill="#0e1733" stroke="rgba(52,211,153,0.22)"/>
+                <rect x="368" y="48" width="162" height="5" rx="2.5" fill="url(#why4)"/>
+                <text x="386" y="94" font-size="15" font-weight="700" fill="#f8fafc">Split accounts</text>
+                <text x="386" y="120" font-size="12.5" fill="#a9b7cb">Domain and cert</text>
+                <text x="386" y="138" font-size="12.5" fill="#a9b7cb">in different places</text>
+
+                <rect x="542" y="48" width="162" height="118" rx="14" fill="#0e1733" stroke="rgba(52,211,153,0.22)"/>
+                <rect x="542" y="48" width="162" height="5" rx="2.5" fill="url(#why4)"/>
+                <text x="560" y="94" font-size="15" font-weight="700" fill="#f8fafc">Broken renew</text>
+                <text x="560" y="120" font-size="12.5" fill="#a9b7cb">Automation died</text>
+                <text x="560" y="138" font-size="12.5" fill="#a9b7cb">without a sound</text>
+              </g>
+            </svg>
+            <figcaption>Every one of these is fixable in advance. None of them announce themselves on the day the renewal quietly does not happen.</figcaption>
+          </figure>
+
+          <h2>The fix is almost embarrassingly simple</h2>
+          <p>This is the rare problem where the solution is genuinely easy, because the thing you are watching is a date, not a moving target. You do not need to predict anything. You just need something that knows your expiry dates and warns a real person well before they arrive.</p>
+          <p>A proper check reads the certificate and the domain directly, the same way a browser does, and counts down. When you cross thirty days out, it tells you. Fourteen days out, it tells you again, louder. Seven days out it should be hard to ignore. The point is that the warning lands somewhere a human will actually see it, like a phone or a shared inbox the business checks every day, not an address from three setups ago.</p>
+          <p>This is the same idea behind everything else I have written about <a href="/blog/what-monitoring-does/">what monitoring actually does</a>. Do not assume the system will renew itself and tell you if it fails. Check the result from the outside, on a schedule, and make the alert go where someone is looking. A certificate expiry caught at thirty days is a two-minute task. The same expiry caught by a customer screenshotting your security warning is a bad day plus a dent in trust you did not need to take.</p>
+
+          <h2>The five-minute version you can do today</h2>
+          <p>If you do nothing else, find out three things and write them on a calendar. What date does your domain expire, what date does your SSL certificate expire, and which email address gets the renewal notices. If you cannot answer all three, that gap is exactly where the outage lives. Most businesses I talk to can name maybe one of the three off the top of their head, and the missing two are the ones that bite.</p>
+          <p>From there, the durable fix is to stop relying on memory and a calendar reminder you might snooze. Put a watch on the dates themselves so the reminder comes from outside your own to-do list. It is the cheapest insurance in this whole field, because unlike most outages, you are paying to prevent something you can see coming from a mile away.</p>
+
+          <div class="article-cta">
+            <h3>Want to know when your domain and certificate expire?</h3>
+            <p>I set up <a href="/monitoring/">monitoring and alerting</a> that watches your certificate and domain expiry dates and tells you weeks in advance, in plain language, somewhere you will actually see it. Tell me your domain and I will tell you what is worth watching.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="/#contact">Start a Project</a>
+              <a class="button button-outline" href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener noreferrer">Book a Call</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 MCM Integrated</p>
+      <p class="footer-areas">Monitoring &amp; observability serving Burlington and Camden County, New Jersey, including Cherry Hill, Moorestown, Medford, Mount Holly, Voorhees, and Burlington, plus the greater Philadelphia area.</p>
+      <nav aria-label="Footer">
+        <a href="/">Home</a> &middot;
+        <a href="/web-design/">Web Design</a> &middot;
+        <a href="/ai-automation/">AI Automation</a> &middot;
+        <a href="/monitoring/">Monitoring</a> &middot;
+        <a href="/about/">About</a> &middot;
+        <a href="/blog/">Blog</a> &middot;
+        <a href="/privacy/">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
