@@ -1,0 +1,4 @@
+ALPHA-realnewline
+BETA-line
+GAMMA-tab	end
+DELTA-unicode─✓
