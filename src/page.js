@@ -51,6 +51,13 @@ if (header) {
 
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.nav-links');
+// Header parity: every static (non-home) page shows the same full nav so you
+// can reach any page from anywhere, kept consistent sitewide without editing
+// each page (future blog posts inherit it too). The home SPA renders its own
+// matching nav from App.jsx.
+if (nav) {
+  nav.innerHTML = '<a href=\"/\">Home</a><a href=\"/web-design/\">Web Design</a><a href=\"/ai-automation/\">AI Automation</a><a href=\"/monitoring/\">Monitoring</a><a href=\"/about/\">About</a><a href=\"/blog/\">Blog</a><a href=\"/#contact\" class=\"button button-secondary\">Contact</a>';
+}
 if (toggle && nav) {
   toggle.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
