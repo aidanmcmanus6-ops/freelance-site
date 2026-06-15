@@ -21,13 +21,10 @@ const preferredTimes = Array.from({ length: 49 }, (_, index) => {
 
 const navItems = [
   ['Home', '#home'],
-  ['Services', '#services'],
-  ['Pricing', '#pricing'],
-  ['Process', '#process'],
-  ['Why It Matters', '#why'],
-  ['Portfolio', '#portfolio'],
-  ['About', '#about'],
-  ['FAQ', '#faq'],
+  ['Web Design', '/web-design/'],
+  ['AI Automation', '/ai-automation/'],
+  ['Monitoring', '/monitoring/'],
+  ['About', '/about/'],
   ['Blog', '/blog/'],
 ];
 
@@ -151,6 +148,7 @@ const processSteps = [
 const faqs = [
   ['How long does a typical website take?', 'A basic two page site can often be completed in one to two weeks once content is ready. Larger sites, rewrites, integrations, or automation work depend on scope and complexity.'],
   ['Do you work with small businesses?', 'Yes. The pricing and process are designed for small and growing businesses that need senior level execution without hiring a full time developer or agency.'],
+  ['Do you work with businesses in my area?', 'Yes. We are based in Burlington County, New Jersey and work with businesses across South Jersey, including Medford, Mount Holly, Cherry Hill, Moorestown, Voorhees, and the wider Burlington, Camden, Ocean, and Mercer County area, plus fully remote clients nationwide. We can meet locally or work entirely online.'],
   ['Can you maintain the site after launch?', 'Yes. Monthly retainers start at $500 and can cover updates, monitoring, content changes, technical support, and ongoing improvements.'],
   ['What do I need before starting?', 'A clear goal, rough budget range, brand assets if you have them, and any existing website or system access. If you are not sure, the discovery call is where we sort that out.'],
   ['Can you help with AI automation even if we are early?', 'Yes. The best first step is usually mapping repetitive work, data flow, permissions, and business risk before deciding what should actually be automated.'],
