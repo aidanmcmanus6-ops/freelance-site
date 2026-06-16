@@ -36,6 +36,7 @@ export default defineConfig({
         blogGoogleVisibility: resolve(__dirname, 'blog/why-you-dont-show-up-on-google/index.html'),
         blogWritingAiPrompts: resolve(__dirname, 'blog/writing-ai-prompts-for-business/index.html'),
         blogSignsNewSite: resolve(__dirname, 'blog/signs-your-south-jersey-business-needs-a-new-website/index.html'),
+        blogHowToUseAi: resolve(__dirname, 'blog/how-small-businesses-use-ai/index.html'),
       },
     },
   },
