@@ -37,6 +37,7 @@ export default defineConfig({
         blogWritingAiPrompts: resolve(__dirname, 'blog/writing-ai-prompts-for-business/index.html'),
         blogSignsNewSite: resolve(__dirname, 'blog/signs-your-south-jersey-business-needs-a-new-website/index.html'),
         blogHowToUseAi: resolve(__dirname, 'blog/how-small-businesses-use-ai/index.html'),
+        blogAlertFatigue: resolve(__dirname, 'blog/monitoring-alert-fatigue/index.html'),
       },
     },
   },
