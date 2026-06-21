@@ -38,6 +38,7 @@ export default defineConfig({
         blogSignsNewSite: resolve(__dirname, 'blog/signs-your-south-jersey-business-needs-a-new-website/index.html'),
         blogHowToUseAi: resolve(__dirname, 'blog/how-small-businesses-use-ai/index.html'),
         blogAlertFatigue: resolve(__dirname, 'blog/monitoring-alert-fatigue/index.html'),
+        blogHomepageNeeds: resolve(__dirname, 'blog/what-your-homepage-needs/index.html'),
       },
     },
   },
