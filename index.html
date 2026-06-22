@@ -236,12 +236,15 @@
   header.site{position:sticky;top:0;z-index:50;background:rgba(4,6,12,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
   .brand img{height:44px;width:auto}
-  nav.links{display:flex;align-items:center;gap:1.7rem;font-size:.92rem;font-weight:500}
+  nav.links{display:flex;align-items:center;gap:1.5rem;font-size:.92rem;font-weight:500}
   nav.links a{color:var(--muted)}
   nav.links a:hover{color:var(--ink)}
   .nav-cta{border:1px solid var(--line2);padding:.5rem 1rem;border-radius:8px;font-size:.86rem;font-weight:600;color:var(--ink)}
+  .nav-cta:hover{border-color:#fff}
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
   .burger span{width:23px;height:2px;background:var(--ink);border-radius:2px}
+  .scroll-progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--pu),var(--cy));box-shadow:0 0 12px rgba(56,189,248,.45);pointer-events:none}
+  header.site.scrolled{background:rgba(4,6,12,.85)}
 
   .hero{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
   #flow{position:absolute;inset:0;z-index:-3;width:100%;height:100%;display:block}
@@ -435,6 +438,7 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img src="https://www.mcm-integrated.com/mcm-logo-transparent.png" alt="MCM Integrated" /></a>
     <nav class="links" id="nav">
+      <a href="/">Home</a>
       <a href="/web-design/">Web Design</a>
       <a href="/ai-automation/">AI Automation</a>
       <a href="/monitoring/">Monitoring</a>
@@ -445,6 +449,7 @@
     <a class="nav-cta" href="#contact">Contact</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 </header>
 
 <main>
@@ -722,6 +727,13 @@
 <script>
   var b=document.getElementById('burger'),n=document.getElementById('nav');
   if(b){b.addEventListener('click',function(){n.classList.toggle('open');});}
+
+  var hdr=document.querySelector('header.site'),prog=document.querySelector('.scroll-progress');
+  function onHdrScroll(){
+    if(hdr) hdr.classList.toggle('scrolled', window.scrollY>12);
+    if(prog){ var max=document.documentElement.scrollHeight-window.innerHeight; prog.style.transform='scaleX('+(max>0?Math.min(1,window.scrollY/max):0)+')'; }
+  }
+  onHdrScroll(); window.addEventListener('scroll',onHdrScroll,{passive:true}); window.addEventListener('resize',onHdrScroll,{passive:true});
 
   document.querySelectorAll('.faq-q').forEach(function(q){
     q.addEventListener('click',function(){
