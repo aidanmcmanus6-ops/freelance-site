@@ -79,22 +79,21 @@ body.site-v2 .service-entry-points{list-style:none;display:grid;gap:.5rem;paddin
 body.site-v2 .service-entry-points li{display:flex;gap:.55rem;font-size:.9rem;color:#cdd6e6}
 body.site-v2 .service-entry-points li::before{content:"\2713";color:var(--ac);font-weight:700}
 
-/* Pricing — intro header + three plan cards */
+/* Pricing — editorial price list (numbered hairline rows, no boxes) */
 body.site-v2 .pricing-feature{position:relative;display:block;background:none;border:0;border-radius:0;padding:0;box-shadow:none;overflow:visible}
 body.site-v2 .pricing-feature::before{display:none}
-body.site-v2 .pricing-feature-head{max-width:64ch;margin-bottom:1.9rem}
+body.site-v2 .pricing-feature-head{max-width:64ch;margin-bottom:1.4rem}
 body.site-v2 .pricing-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
 body.site-v2 .pricing-feature-head h3{font-family:'Fraunces',serif;font-size:1.9rem;margin:.4rem 0 .6rem}
 body.site-v2 .pricing-feature-head .price{display:none}
-body.site-v2 .pricing-feature-desc{color:var(--muted);font-size:1rem;margin:0 0 1.3rem}
-body.site-v2 .pricing-feature-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
-body.site-v2 .pricing-tier{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:.35rem;align-items:flex-start;padding:1.9rem 1.6rem;background:var(--panel);border:1px solid var(--line);border-radius:16px;color:var(--ink);transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
-body.site-v2 .pricing-tier::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--ac);opacity:.85}
-body.site-v2 .pricing-tier:hover{transform:translateY(-5px);border-color:var(--line2);box-shadow:0 24px 54px -32px rgba(56,189,248,.5)}
-body.site-v2 .pricing-tier:nth-child(2){background:linear-gradient(180deg,#0d1a2c,var(--panel));box-shadow:0 22px 52px -34px rgba(56,189,248,.5)}
-body.site-v2 .pricing-tier span{order:1;font-size:.94rem;color:var(--muted);line-height:1.45}
-body.site-v2 .pricing-tier strong{order:2;margin-top:.4rem;font-family:'Fraunces',serif;font-size:1.95rem;font-weight:600;color:#fff;letter-spacing:-.01em;white-space:nowrap}
-body.site-v2 .pricing-note{margin-top:1.6rem;font-size:.86rem;color:var(--muted);border-left:2px solid var(--ac);padding-left:1rem;max-width:80ch}
+body.site-v2 .pricing-feature-desc{color:var(--muted);font-size:1rem;margin:0 0 1.6rem}
+body.site-v2 .pricing-feature-tiers{display:block;border-top:1px solid var(--line2);counter-reset:tier}
+body.site-v2 .pricing-tier{position:relative;display:grid;grid-template-columns:2.6rem 1fr auto;align-items:center;gap:1.4rem;padding:1.7rem .3rem;border:0;border-bottom:1px solid var(--line);border-radius:0;background:none;color:var(--ink);transition:padding .35s ease,background .35s ease}
+body.site-v2 .pricing-tier::before{counter-increment:tier;content:counter(tier,decimal-leading-zero);position:static;display:block;inset:auto;width:auto;height:auto;background:none;border:0;border-radius:0;font-family:'JetBrains Mono',monospace;font-size:.82rem;font-weight:500;color:var(--ac);opacity:.85;letter-spacing:.05em}
+body.site-v2 .pricing-tier span{font-family:'Fraunces',serif;font-size:clamp(1.2rem,2.2vw,1.55rem);font-weight:500;color:#fff;line-height:1.2}
+body.site-v2 .pricing-tier strong{font-family:'Fraunces',serif;font-size:clamp(1.35rem,2.4vw,1.8rem);font-weight:600;color:var(--ac);white-space:nowrap;letter-spacing:-.01em}
+body.site-v2 .pricing-tier:hover{padding-left:18px;background:linear-gradient(90deg,rgba(255,255,255,.035),transparent)}
+body.site-v2 .pricing-note{margin-top:1.8rem;font-size:.86rem;color:var(--muted);border-left:2px solid var(--ac);padding-left:1rem;max-width:80ch}
 body.site-v2 .pricing-note strong{color:#fff;font-family:'Inter',sans-serif;font-size:.86rem;white-space:normal}
 
 /* Process timeline — full reset of the legacy circle/connector layout */
@@ -147,7 +146,9 @@ body.site-v2 [data-reveal].revealed{opacity:1;transform:none}
   body.site-v2 .hero.hero-v2{min-height:auto}
   body.site-v2 .hero-grid{grid-template-columns:1fr}
   body.site-v2 .hero-card{display:none}
-  body.site-v2 .services-list,body.site-v2 .pricing-feature-tiers,body.site-v2 .process-timeline,body.site-v2 .related-links{grid-template-columns:1fr}
+  body.site-v2 .services-list,body.site-v2 .process-timeline,body.site-v2 .related-links{grid-template-columns:1fr}
+  body.site-v2 .pricing-tier{grid-template-columns:2.2rem 1fr;gap:.4rem 1rem}
+  body.site-v2 .pricing-tier strong{grid-column:2;justify-self:start;margin-top:.2rem}
   body.site-v2 .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:1rem;background:#070b14;border-bottom:1px solid var(--line);padding:1.4rem 5vw;display:none}
   body.site-v2 .nav-links.open{display:flex}
 }
