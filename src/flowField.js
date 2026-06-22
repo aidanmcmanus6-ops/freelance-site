@@ -1,7 +1,7 @@
 // Interactive WebGL flow-field nebula for the /concept/ hero background.
 // A single fragment shader: domain-warped fbm noise, brand-coloured, that
-// drifts slowly and gently swirls toward the cursor. No external libs.
-// Tuned to be subtle so the headline stays the focus.
+// drifts slowly on its own. The cursor no longer warps the field (that read
+// as glitchy); it only adds a faint brightness glow near the pointer.
 // Returns false if WebGL is unavailable so the caller can fall back.
 
 const VERT = 'attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }';
@@ -11,7 +11,7 @@ const FRAG = [
   'uniform float u_time;',
   'uniform vec2 u_res;',
   'uniform vec2 u_mouse;',
-  'uniform float u_swirl;',
+  'uniform float u_glow;',
   'float hash(vec2 p){ p = fract(p*vec2(123.34,456.21)); p += dot(p, p+45.32); return fract(p.x*p.y); }',
   'float noise(vec2 p){ vec2 i=floor(p); vec2 f=fract(p); vec2 u=f*f*(3.0-2.0*f);',
   '  float a=hash(i); float b=hash(i+vec2(1.0,0.0)); float c=hash(i+vec2(0.0,1.0)); float d=hash(i+vec2(1.0,1.0));',
@@ -23,13 +23,9 @@ const FRAG = [
   '  float aspect = u_res.x / u_res.y;',
   '  vec2 auv = vec2((uv.x-0.5)*aspect+0.5, uv.y);',
   '  vec2 m = vec2((u_mouse.x-0.5)*aspect+0.5, u_mouse.y);',
-  '  vec2 d = auv - m;',
-  '  float dist = length(d);',
-  '  float ang = (u_swirl*0.8 + 0.04) * exp(-dist*3.4);',
-  '  float cs = cos(ang); float sn = sin(ang);',
-  '  vec2 sw = m + mat2(cs,-sn,sn,cs)*d;',
-  '  float t = u_time*0.028;',
-  '  vec2 p = sw*2.7;',
+  '  float dist = length(auv - m);',
+  '  float t = u_time*0.024;',
+  '  vec2 p = auv*2.7;',
   '  vec2 q = vec2(fbm(p + t), fbm(p + vec2(5.2,1.3) - t));',
   '  vec2 r = vec2(fbm(p + 3.0*q + vec2(1.7,9.2) + 0.5*t), fbm(p + 3.0*q + vec2(8.3,2.8) - 0.4*t));',
   '  float f = fbm(p + 3.0*r);',
@@ -44,7 +40,7 @@ const FRAG = [
   '  col = mix(col, purple*0.34, clamp(smoothstep(0.62,0.9,f)*rl*0.5, 0.0, 1.0));',
   '  col += ember*0.14*smoothstep(0.82,0.99,f);',
   '  col += (cyan*0.08 + purple*0.05)*pow(f,4.0);',
-  '  col += cyan*0.045*exp(-dist*4.6)*(0.3 + u_swirl*0.6);',
+  '  col += cyan*0.04*exp(-dist*4.8)*(0.5 + u_glow*0.5);',
   '  col *= 0.62;',
   '  float vig = smoothstep(1.18, 0.30, length((uv-0.5)*vec2(aspect,1.0)));',
   '  col *= vig;',
@@ -92,7 +88,7 @@ export function initFlowField(canvas, opts) {
   const uTime = gl.getUniformLocation(prog, 'u_time');
   const uRes = gl.getUniformLocation(prog, 'u_res');
   const uMouse = gl.getUniformLocation(prog, 'u_mouse');
-  const uSwirl = gl.getUniformLocation(prog, 'u_swirl');
+  const uGlow = gl.getUniformLocation(prog, 'u_glow');
 
   const renderScale = Math.min(window.devicePixelRatio || 1, 1.5) * 0.62;
   let W = 1, H = 1;
@@ -109,14 +105,14 @@ export function initFlowField(canvas, opts) {
 
   const mouse = [0.5, 0.5];
   let target = [0.5, 0.5];
-  let swirl = 0;
+  let glow = 0;
   let lastX = 0.5, lastY = 0.5;
   if (fine) {
     window.addEventListener('mousemove', (e) => {
       const nx = e.clientX / window.innerWidth;
       const ny = e.clientY / window.innerHeight;
       const dx = nx - lastX, dy = ny - lastY;
-      swirl = Math.min(0.4, swirl + Math.sqrt(dx * dx + dy * dy) * 4.0);
+      glow = Math.min(0.6, glow + Math.sqrt(dx * dx + dy * dy) * 3.0);
       lastX = nx; lastY = ny;
       target = [nx, 1.0 - ny];
     }, { passive: true });
@@ -126,14 +122,14 @@ export function initFlowField(canvas, opts) {
   let raf = 0;
   let visible = true;
   const render = (now) => {
-    mouse[0] += (target[0] - mouse[0]) * 0.05;
-    mouse[1] += (target[1] - mouse[1]) * 0.05;
-    swirl *= 0.9;
+    mouse[0] += (target[0] - mouse[0]) * 0.045;
+    mouse[1] += (target[1] - mouse[1]) * 0.045;
+    glow *= 0.94;
     const time = reduced ? 6.0 : (now - t0) * 0.001;
     gl.uniform1f(uTime, time);
     gl.uniform2f(uRes, W, H);
     gl.uniform2f(uMouse, mouse[0], mouse[1]);
-    gl.uniform1f(uSwirl, swirl);
+    gl.uniform1f(uGlow, glow);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     raf = (!reduced && visible) ? window.requestAnimationFrame(render) : 0;
   };
