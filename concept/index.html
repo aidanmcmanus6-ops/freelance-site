@@ -48,8 +48,6 @@
   .hero .aura{position:absolute;inset:0;z-index:-2;background:radial-gradient(50% 55% at 18% 35%,rgba(56,189,248,.18),transparent 60%),radial-gradient(45% 50% at 88% 25%,rgba(167,139,250,.16),transparent 62%),radial-gradient(60% 60% at 70% 100%,rgba(52,211,153,.1),transparent 60%)}
   .hero .vign{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(4,6,12,.2),rgba(4,6,12,.45) 72%,var(--bg))}
   .hero-inner{padding:2.5rem 0 3.5rem}
-  .badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--line2);border-radius:999px;padding:.4rem .9rem;font-size:.76rem;color:var(--muted);margin-bottom:1.8rem;background:rgba(4,6,12,.35);backdrop-filter:blur(4px)}
-  .badge .pip{width:7px;height:7px;border-radius:50%;background:var(--gr);box-shadow:0 0 0 4px rgba(52,211,153,.18)}
   .hero h1{font-size:clamp(2.9rem,7.4vw,5.8rem);font-weight:400;max-width:15ch;letter-spacing:-.025em}
   .hero h1 em{font-style:italic;color:#9bdcfb}
   .hero h1 .grad{background:linear-gradient(110deg,#7cc4ff,#a78bfa 55%,#5be0b0);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -71,7 +69,7 @@
   .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.6rem}
   .sec-head h2{font-size:clamp(1.9rem,4vw,3rem)}
   .sec-head h2 em{font-style:italic;color:#9bdcfb}
-  .sec-head p{color:var(--muted);max-width:42ch;font-size:.98rem}
+  .sec-head p{color:var(--muted);max-width:46ch;font-size:.98rem}
 
   .srow{display:grid;grid-template-columns:84px 1fr 1.1fr 52px;gap:1.6rem;align-items:center;padding:2rem 0;border-top:1px solid var(--line);transition:padding .3s ease,background .3s ease}
   .srow:last-child{border-bottom:1px solid var(--line)}
@@ -103,18 +101,24 @@
   .pnote{margin-top:1.6rem;font-size:.86rem;color:var(--muted);border-left:2px solid var(--line2);padding-left:1rem;max-width:80ch}
   .pnote strong{color:var(--ink)}
 
-  .mosaic{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-auto-rows:188px;gap:14px}
-  .tile{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end;padding:1.4rem;transition:transform .3s ease,border-color .3s ease}
+  .mosaic{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-auto-rows:202px;gap:14px}
+  .tile{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;isolation:isolate;transition:transform .35s ease,border-color .35s ease}
   .tile:hover{transform:translateY(-4px);border-color:var(--line2)}
+  .tile .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform .6s ease}
+  .tile:hover .bg{transform:scale(1.05)}
+  .tile .ov{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,12,20,.1),rgba(7,10,18,.82))}
+  .tile .spark{position:absolute;top:0;left:0;width:100%;height:60%;z-index:-1;opacity:.4}
   .tile .k{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.5rem}
-  .tile .t{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:500;line-height:1.1}
-  .tile .s{color:var(--muted);font-size:.9rem;margin-top:.35rem}
-  .tile .go{position:absolute;top:1.2rem;right:1.2rem;color:rgba(255,255,255,.5)}
-  .demo-tile{grid-row:span 2;background:linear-gradient(160deg,#1d2740,#0b1120)}
-  .demo-tile .k{color:#c4b5fd}
-  .ai-tile{background:linear-gradient(160deg,#10243a,#0a121f)} .ai-tile .k{color:var(--cy)}
-  .mon-tile{background:linear-gradient(160deg,#0f2a22,#0a1612)} .mon-tile .k{color:var(--gr)}
-  .big-num{position:absolute;top:.6rem;right:1.1rem;font-family:'Fraunces',serif;font-size:2.6rem;color:rgba(255,255,255,.08);font-weight:600}
+  .tile .big{font-family:'Fraunces',serif;font-weight:500;line-height:1.05;letter-spacing:-.01em;font-size:1.55rem}
+  .tile .big .ar{color:var(--cy);font-style:normal;padding:0 .15em}
+  .tile .big .hl{color:var(--cy)}
+  .tile .s{color:var(--muted);font-size:.88rem;margin-top:.4rem}
+  .tile .cta{margin-top:1rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.06em;color:#dbe6f5;display:inline-flex;align-items:center;gap:.4rem;opacity:.82;transition:gap .3s ease,opacity .3s ease}
+  .tile:hover .cta{gap:.75rem;opacity:1}
+  .demo-tile{grid-row:span 2}
+  .demo-tile .big{font-size:1.85rem}
+  .ai-tile{background:linear-gradient(160deg,#11243a,#0a121f)}
+  .mon-tile{background:linear-gradient(160deg,#0f2a22,#0a1612)}
 
   .why{position:relative;background:#04060c}
   .why-stage{position:relative;height:600vh}
@@ -199,7 +203,7 @@
     .burger{display:flex}
     nav.links.open{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);padding:1.4rem 5vw}
     .strip-in,.psteps,.mosaic,.pgrid,.testi .tgrid,.faq-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
-    .mosaic{grid-auto-rows:170px}
+    .mosaic{grid-auto-rows:190px}
     .demo-tile{grid-row:span 1}
     .why-grid.show{grid-template-columns:1fr}
     .why-head{top:3rem}
@@ -234,7 +238,6 @@
     <div class="aura"></div>
     <div class="vign"></div>
     <div class="wrap hero-inner">
-      <span class="badge"><span class="pip"></span> South Jersey web, AI &amp; monitoring studio</span>
       <h1 class="ff">Modern websites, AI agents, and the <span class="grad">monitoring</span> to keep them standing.</h1>
       <p class="lead">A senior team of two building fast custom sites, AI automation that pays for itself, and the observability that catches trouble first, for businesses across Burlington and Camden County.</p>
       <div class="hero-cta">
@@ -317,24 +320,32 @@
     <div class="wrap">
       <div class="sec-head">
         <h2 class="ff">Selected <em>work.</em></h2>
-        <p>Proof, not promises. Real systems, generalized numbers.</p>
+        <p>Proof, not promises. Real systems, generalized numbers. <a class="link-arrow" href="/work/" style="white-space:nowrap">All work &#8594;</a></p>
       </div>
       <div class="mosaic">
         <a class="tile demo-tile" href="/demo/">
-          <span class="go">&#8599;</span>
-          <span class="k">Web &middot; live build</span>
-          <span class="t ff">A full site, designed &amp; shipped end to end</span>
-          <span class="s">Click through a complete responsive build.</span>
+          <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1778869290979-6f09567a0eee?auto=format&fit=crop&w=1200&q=72')"></div>
+          <div class="ov"></div>
+          <span class="k" style="color:#c4b5fd">Web &middot; live build</span>
+          <span class="big">A full site, designed &amp; shipped end to end</span>
+          <span class="s">Click through a complete, responsive build.</span>
+          <span class="cta">Explore the live build &#8594;</span>
         </a>
         <a class="tile ai-tile" href="/work/">
-          <span class="big-num ff">$285</span>
-          <span class="k">AI case</span>
-          <span class="t ff">A $320K job, shipped for $285</span>
+          <svg class="spark" viewBox="0 0 200 70" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,11 38,14 66,16 86,52 130,60 200,62" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          <div class="ov"></div>
+          <span class="k" style="color:var(--cy)">AI case</span>
+          <span class="big">$320K<span class="ar">&#8594;</span><span class="hl">$285</span></span>
+          <span class="s">99.9% lower cost on a document pipeline.</span>
+          <span class="cta">Read the case &#8594;</span>
         </a>
         <a class="tile mon-tile" href="/work/">
-          <span class="go">&#8599;</span>
-          <span class="k">Monitoring</span>
-          <span class="t ff">Backstopped a major launch</span>
+          <svg class="spark" viewBox="0 0 200 70" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,40 28,40 44,16 60,62 76,40 110,40 126,20 142,58 158,40 200,40" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          <div class="ov"></div>
+          <span class="k" style="color:var(--gr)">Monitoring</span>
+          <span class="big">Live through launch</span>
+          <span class="s">Backstopped a multi-million-dollar go-live.</span>
+          <span class="cta">Read the case &#8594;</span>
         </a>
       </div>
     </div>
