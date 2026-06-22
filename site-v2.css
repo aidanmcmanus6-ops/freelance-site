@@ -29,14 +29,15 @@ body.site-v2 .button-outline{border:1px solid var(--line2);color:#fff;background
 body.site-v2 .button-outline:hover{border-color:#fff;background:rgba(255,255,255,.05)}
 body.site-v2 .button-secondary{border:1px solid var(--line2);color:#fff;background:transparent;padding:.5rem 1rem;border-radius:8px;font-size:.86rem}
 
-/* Header */
+/* Header — three zones: brand (left) / centered links / Contact CTA (right) */
 body.site-v2 .site-header{position:sticky;top:0;z-index:50;background:rgba(4,6,12,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-body.site-v2 .header-inner{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
+body.site-v2 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 0}
 body.site-v2 .brand-logo{height:44px;width:auto}
 body.site-v2 .nav-links{display:flex;align-items:center;gap:1.5rem;font-size:.92rem;font-weight:500}
 body.site-v2 .nav-links a{color:var(--muted)}
 body.site-v2 .nav-links a:hover{color:#fff}
-body.site-v2 .nav-links a.button-secondary:hover{color:#fff;border-color:#fff}
+body.site-v2 .nav-cta{border:1px solid var(--line2);padding:.5rem 1rem;border-radius:8px;font-size:.86rem;font-weight:600;color:#fff;white-space:nowrap}
+body.site-v2 .nav-cta:hover{border-color:#fff}
 body.site-v2 .nav-toggle span{background:#fff}
 body.site-v2 .scroll-progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform-origin:0 50%;background:var(--ac);opacity:.85}
 
@@ -169,6 +170,8 @@ body.site-v2 .cat-span-4 .cat-card h3{line-height:1.35}
   body.site-v2 .services-list,body.site-v2 .process-timeline,body.site-v2 .related-links,body.site-v2 .pricing-feature-tiers{grid-template-columns:1fr}
   body.site-v2 .pricing-tier{border-right:0;border-bottom:1px solid var(--line);padding:1.2rem 0}
   body.site-v2 .pricing-tier:last-child{border-bottom:0}
+  body.site-v2 .nav-cta{display:none}
+  body.site-v2 .nav-toggle{display:inline-flex}
   body.site-v2 .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:1rem;background:#070b14;border-bottom:1px solid var(--line);padding:1.4rem 5vw;display:none}
   body.site-v2 .nav-links.open{display:flex}
 }
