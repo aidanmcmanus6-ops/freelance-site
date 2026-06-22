@@ -254,14 +254,14 @@ if (finePointer && !reduceMotion) {
 }
 
 // ── Service-page hero scenes ────────────────────────
-// Living dioramas for each service hero. Skipped under the v2 design, which
-// uses the flow-field hero instead (the static mockup card stays).
+// Living dioramas for each service hero (web rebuild, ai pipeline, mon heal).
+// They play inside the hero card, with the flow-field nebula behind.
 const sceneKind = document.body.classList.contains('page-web') ? 'web'
   : document.body.classList.contains('page-ai') ? 'ai'
   : document.body.classList.contains('page-mon') ? 'mon'
   : null;
 
-if (sceneKind && !reduceMotion && !useV2) {
+if (sceneKind && !reduceMotion) {
   const visual = document.querySelector('.hero-visual');
   if (visual) {
     const mockup = visual.querySelector('.hero-mockup');
