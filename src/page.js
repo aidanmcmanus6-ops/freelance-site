@@ -56,7 +56,7 @@ const nav = document.querySelector('.nav-links');
 // each page (future blog posts inherit it too). The home SPA renders its own
 // matching nav from App.jsx.
 if (nav) {
-  nav.innerHTML = '<a href=\"/\">Home</a><a href=\"/web-design/\">Web Design</a><a href=\"/ai-automation/\">AI Automation</a><a href=\"/monitoring/\">Monitoring</a><a href=\"/about/\">About</a><a href=\"/blog/\">Blog</a><a href=\"/#contact\" class=\"button button-secondary\">Contact</a>';
+  nav.innerHTML = '<a href=\"/\">Home</a><a href=\"/web-design/\">Web Design</a><a href=\"/ai-automation/\">AI Automation</a><a href=\"/monitoring/\">Monitoring</a><a href=\"/work/\">Work</a><a href=\"/about/\">About</a><a href=\"/blog/\">Blog</a><a href=\"/#contact\" class=\"button button-secondary\">Contact</a>';
 }
 if (toggle && nav) {
   toggle.addEventListener('click', () => {

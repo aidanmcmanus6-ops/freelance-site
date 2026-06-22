@@ -25,6 +25,7 @@ const navItems = [
   ['Web Design', '/web-design/'],
   ['AI Automation', '/ai-automation/'],
   ['Monitoring', '/monitoring/'],
+  ['Work', '/work/'],
   ['About', '/about/'],
   ['Blog', '/blog/'],
 ];
@@ -461,7 +462,7 @@ function TerminalPanel({ ready }) {
         <span className="hud-dot hud-dot-red" />
         <span className="hud-dot hud-dot-amber" />
         <span className="hud-dot hud-dot-green" />
-        <span className="hud-terminal-title">mcm-ops — live</span>
+        <span className="hud-terminal-title">mcm-ops · live</span>
         <span className="hud-terminal-status"><span className="hud-status-pulse" />online</span>
       </div>
       <div className="hud-terminal-body" aria-hidden="true">
@@ -522,7 +523,7 @@ function Hero({ ready }) {
         >
           <p className="eyebrow">Senior engineering, without the full time hire or agency.</p>
           <h1>Modern websites, AI agents, and observability delivered for your business.</h1>
-          <p className="lead">Work directly with two senior engineers — a New Jersey web design and automation studio building polished digital experiences, secure automation, and resilient operations for growing businesses across South Jersey and remote teams nationwide.</p>
+          <p className="lead">Work directly with two senior engineers, a New Jersey web design and automation studio building polished digital experiences, secure automation, and resilient operations for growing businesses across South Jersey and remote teams nationwide.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#contact">Start Your Project</a>
             <a className="button button-outline" href="#portfolio">View Work</a>
@@ -1837,6 +1838,15 @@ function Portfolio() {
                 <span className="project-tag">{project.tag}</span>
                 <h3>{project.title}</h3>
                 <p>{project.body}</p>
+                {project.link && (
+                  <a
+                    className="project-jump"
+                    href={project.link}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.9rem', fontWeight: 600, color: 'var(--art)', textDecoration: 'none' }}
+                  >
+                    {project.linkLabel} <span aria-hidden="true">→</span>
+                  </a>
+                )}
               </div>
               <div className="project-art">
                 <ProjectArt type={project.art} />
