@@ -5,6 +5,7 @@
 import '../styles.css';
 import '../blog-cards.css';
 import '../svc-scenes.css';
+import '../site-v2.css';
 import { inject } from '@vercel/analytics';
 import { injectSpeedInsights } from '@vercel/speed-insights';
 
@@ -22,6 +23,20 @@ const servicePath = window.location.pathname;
 if (servicePath.startsWith('/web-design')) document.body.classList.add('page-web');
 else if (servicePath.startsWith('/ai-automation')) document.body.classList.add('page-ai');
 else if (servicePath.startsWith('/monitoring')) document.body.classList.add('page-mon');
+
+// New shared "v2" design system. Applied to every static page EXCEPT the blog
+// (the blog keeps its bespoke magazine design). Rolling out in waves: enabled
+// here for the three service pages first.
+const isBlog = servicePath.startsWith('/blog');
+const v2Paths = ['/web-design', '/ai-automation', '/monitoring'];
+const useV2 = !isBlog && v2Paths.some((p) => servicePath.startsWith(p));
+if (useV2) {
+  document.body.classList.add('site-v2');
+  const f = document.createElement('link');
+  f.rel = 'stylesheet';
+  f.href = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;600&display=swap';
+  document.head.appendChild(f);
+}
 
 // Service pages: their building blocks stagger-reveal automatically.
 if (document.body.matches('.page-web, .page-ai, .page-mon')) {
@@ -226,18 +241,15 @@ if (finePointer && !reduceMotion) {
   }
 }
 
-// ── Service-page hero scenes ──────────────────────────────────
-// Each service hero swaps its static SVG mockup for a living diorama:
-// web = a dated site is kicked off and a modern build assembles;
-// ai = a pipeline wires itself, runs live traffic, and extends itself;
-// mon = a site crashes and monitoring detects, alerts, and auto-heals.
-// Reduced motion keeps the original static mockup instead.
+// ── Service-page hero scenes ────────────────────────
+// Living dioramas for each service hero. Skipped under the v2 design, which
+// uses a calmer editorial hero (the static mockup stays).
 const sceneKind = document.body.classList.contains('page-web') ? 'web'
   : document.body.classList.contains('page-ai') ? 'ai'
   : document.body.classList.contains('page-mon') ? 'mon'
   : null;
 
-if (sceneKind && !reduceMotion) {
+if (sceneKind && !reduceMotion && !useV2) {
   const visual = document.querySelector('.hero-visual');
   if (visual) {
     const mockup = visual.querySelector('.hero-mockup');
@@ -367,7 +379,6 @@ function initAiScene(scene) {
   window.setTimeout(() => {
     scene.dataset.phase = 'run';
     cap.textContent = 'Live · lead-intake.flow · 0 errors';
-    // Packets land in sequence; flash + count on arrival.
     [0, 1, 2].forEach((idx) => {
       window.setTimeout(() => {
         land(idx);
@@ -376,7 +387,6 @@ function initAiScene(scene) {
     });
   }, 3000);
 
-  // The pipeline extends itself mid-flight.
   window.setTimeout(() => {
     scene.classList.add('svc-extended');
     cap.textContent = 'Live · new route added itself · 0 errors';
@@ -436,7 +446,6 @@ function initMonScene(scene) {
   };
   step();
 
-  // Live chart + latency ticker, shaped by the current state.
   window.setInterval(() => {
     const healthy = state === 'up' || state === 'recovered';
     chartBars.forEach((bar) => {

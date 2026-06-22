@@ -1,0 +1,133 @@
+/* Shared "v2" design system for static content pages (not the blog).
+   Scoped under body.site-v2 so it overrides the legacy styles.css only on
+   pages that opt in (page.js adds the class for non-blog pages). The blog
+   never receives .site-v2, so its design is left completely untouched. */
+
+body.site-v2{
+  --bg:#04060c; --panel:#0c1322; --panel2:#101a2e;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.16);
+  --ink:#eef2fa; --muted:#9aa6be; --dim:#5c6a80;
+  --cy:#38bdf8; --gr:#34d399; --pu:#a78bfa; --amber:#fbbf24; --ac:#38bdf8;
+  background:#04060c; color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif; line-height:1.65;
+}
+body.site-v2.page-web{--ac:#a78bfa}
+body.site-v2.page-ai{--ac:#38bdf8}
+body.site-v2.page-mon{--ac:#34d399}
+body.site-v2::before{content:"";position:fixed;inset:0;z-index:-10;pointer-events:none;background:radial-gradient(120% 52% at 50% -8%,rgba(56,189,248,.06),transparent 58%),radial-gradient(80% 50% at 100% 102%,rgba(167,139,250,.045),transparent 60%),linear-gradient(180deg,#04060c 0%,#05080f 46%,#04060c 100%)}
+
+body.site-v2 h1,body.site-v2 h2,body.site-v2 h3,body.site-v2 h4{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.02em;line-height:1.06;color:#fff}
+body.site-v2 a{color:inherit}
+body.site-v2 .container{width:min(1180px,92vw);margin-inline:auto}
+body.site-v2 .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ac)}
+
+/* Buttons */
+body.site-v2 .button{display:inline-flex;align-items:center;gap:.55rem;font-weight:600;font-size:.95rem;padding:.92rem 1.6rem;border-radius:9px;transition:transform .18s ease,background .18s ease,border-color .18s ease}
+body.site-v2 .button:hover{transform:translateY(-2px)}
+body.site-v2 .button-primary{background:linear-gradient(120deg,#5b8cff,#38bdf8);color:#04121f;border:0;box-shadow:0 16px 34px -14px rgba(56,189,248,.55)}
+body.site-v2 .button-outline{border:1px solid var(--line2);color:#fff;background:transparent}
+body.site-v2 .button-outline:hover{border-color:#fff;background:rgba(255,255,255,.05)}
+body.site-v2 .button-secondary{border:1px solid var(--line2);color:#fff;background:transparent;padding:.5rem 1rem;border-radius:8px;font-size:.86rem}
+
+/* Header */
+body.site-v2 .site-header{position:sticky;top:0;z-index:50;background:rgba(4,6,12,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+body.site-v2 .header-inner{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
+body.site-v2 .brand-logo{height:44px;width:auto}
+body.site-v2 .nav-links{display:flex;align-items:center;gap:1.5rem;font-size:.92rem;font-weight:500}
+body.site-v2 .nav-links a{color:var(--muted)}
+body.site-v2 .nav-links a:hover{color:#fff}
+body.site-v2 .nav-links a.button-secondary:hover{color:#fff;border-color:#fff}
+body.site-v2 .nav-toggle span{background:#fff}
+body.site-v2 .scroll-progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform-origin:0 50%;background:var(--ac);opacity:.85}
+
+/* Hero */
+body.site-v2 .hero{padding:5rem 0 3.5rem;border:0;background:none}
+body.site-v2 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center}
+body.site-v2 .hero h1{font-size:clamp(2.4rem,5.2vw,3.9rem);font-weight:400;margin:1.1rem 0;max-width:18ch}
+body.site-v2 .hero .lead{font-size:1.15rem;color:var(--muted);max-width:54ch}
+body.site-v2 .hero-actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:1.9rem}
+body.site-v2 .hero-card{position:relative}
+body.site-v2 .hero-visual{position:relative;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--panel),rgba(12,19,34,.4));padding:1.4rem;overflow:hidden}
+body.site-v2 .hero-visual-glow{position:absolute;inset:0;background:radial-gradient(60% 60% at 30% 20%,rgba(56,189,248,.12),transparent 60%);pointer-events:none}
+body.site-v2 .hero-chip{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.08em;color:#cdd6e6;background:rgba(8,12,20,.7);border:1px solid var(--line2);border-radius:7px;padding:.3rem .6rem}
+
+/* Section + headings */
+body.site-v2 .section{padding:5rem 0}
+body.site-v2 .section-heading{margin-bottom:2.4rem}
+body.site-v2 .section-heading h2{font-size:clamp(1.8rem,3.6vw,2.7rem)}
+body.site-v2 .section-prose{color:var(--muted);max-width:74ch}
+body.site-v2 .section-prose p{margin-bottom:1rem}
+body.site-v2 .section-prose a{color:var(--ac);font-weight:600}
+
+/* Services list */
+body.site-v2 .services-list{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+body.site-v2 .service-entry{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:1.8rem;transition:transform .3s ease,border-color .3s ease}
+body.site-v2 .service-entry:hover{transform:translateY(-4px);border-color:var(--line2)}
+body.site-v2 .service-entry-head{display:flex;flex-direction:column;gap:.6rem;margin-bottom:.9rem}
+body.site-v2 .service-entry-icon{width:42px;height:42px;border-radius:11px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;color:var(--ac);font-size:1.2rem}
+body.site-v2 .service-entry h3{font-size:1.3rem}
+body.site-v2 .service-entry-body{color:var(--muted);font-size:.95rem;margin-bottom:1rem}
+body.site-v2 .service-entry-points{list-style:none;display:grid;gap:.5rem;padding:0}
+body.site-v2 .service-entry-points li{display:flex;gap:.55rem;font-size:.9rem;color:#cdd6e6}
+body.site-v2 .service-entry-points li::before{content:"\2713";color:var(--ac);font-weight:700}
+
+/* Pricing */
+body.site-v2 .pricing-feature{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;background:linear-gradient(180deg,#0d1a2c,var(--panel));border:1px solid rgba(56,189,248,.4);border-radius:18px;padding:2.2rem;align-items:center}
+body.site-v2 .pricing-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
+body.site-v2 .pricing-feature-head h3{font-family:'Fraunces',serif;font-size:1.6rem;margin:.4rem 0 .3rem}
+body.site-v2 .pricing-feature .price{font-size:2rem;font-weight:800;letter-spacing:-.03em;color:#fff;margin:.2rem 0 .7rem}
+body.site-v2 .pricing-feature-desc{color:var(--muted);font-size:.95rem;margin-bottom:1.2rem}
+body.site-v2 .pricing-feature-tiers{display:grid;gap:.7rem}
+body.site-v2 .pricing-tier{display:flex;justify-content:space-between;gap:1rem;padding:.85rem 1rem;background:var(--bg);border:1px solid var(--line);border-radius:11px;font-size:.92rem;color:#cdd6e6}
+body.site-v2 .pricing-tier strong{color:#fff}
+body.site-v2 .pricing-note{margin-top:1.4rem;font-size:.86rem;color:var(--muted);border-left:2px solid var(--line2);padding-left:1rem;max-width:80ch}
+body.site-v2 .pricing-note strong{color:#fff}
+
+/* Process timeline */
+body.site-v2 .process-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+body.site-v2 .process-step{border-top:1px solid var(--line2);padding-top:1.2rem}
+body.site-v2 .process-node{font-family:'Fraunces',serif;font-size:2rem;color:var(--ac);line-height:1;display:block;margin-bottom:.5rem}
+body.site-v2 .process-step h3{font-size:1.15rem;margin-bottom:.4rem}
+body.site-v2 .process-step p{color:var(--muted);font-size:.92rem}
+body.site-v2 .process-step a{color:var(--ac)}
+
+/* FAQ */
+body.site-v2 .faq-list{display:grid;gap:.8rem}
+body.site-v2 .faq-row{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.3rem 1.4rem}
+body.site-v2 .faq-row h3{font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:600;color:#fff;margin-bottom:.5rem}
+body.site-v2 .faq-row p{color:var(--muted);font-size:.95rem}
+
+/* Related links */
+body.site-v2 .related-links{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+body.site-v2 .related-link{display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.4rem;transition:transform .3s ease,border-color .3s ease}
+body.site-v2 .related-link:hover{transform:translateY(-4px);border-color:var(--line2)}
+body.site-v2 .related-link h3{font-size:1.1rem;margin-bottom:.3rem}
+body.site-v2 .related-link p{color:var(--muted);font-size:.9rem}
+body.site-v2 .related-arrow{color:var(--ac);font-size:1.2rem;flex-shrink:0}
+
+/* Final CTA */
+body.site-v2 .final-cta{padding:5rem 0}
+body.site-v2 .final-cta-inner{position:relative;border:1px solid var(--line2);border-radius:22px;padding:3rem;text-align:center;overflow:hidden;background:linear-gradient(180deg,var(--panel2),var(--panel))}
+body.site-v2 .final-cta-inner::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 50% 0%,rgba(56,189,248,.18),transparent 70%);pointer-events:none}
+body.site-v2 .final-cta-inner>*{position:relative}
+body.site-v2 .final-cta h2{font-size:clamp(1.8rem,3.6vw,2.7rem)}
+body.site-v2 .final-cta p{color:var(--muted);margin:1rem auto 1.8rem;max-width:48ch}
+body.site-v2 .final-cta-actions{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+
+/* Footer */
+body.site-v2 .site-footer{border-top:1px solid var(--line);padding:3rem 0 2.4rem;color:var(--muted);font-size:.9rem;margin-top:2rem;background:none}
+body.site-v2 .footer-areas{max-width:80ch;color:var(--dim);font-size:.84rem;margin:.6rem 0 1.2rem}
+body.site-v2 .site-footer nav a{color:var(--muted)}
+body.site-v2 .site-footer nav a:hover{color:#fff}
+
+/* Reveal */
+body.site-v2 [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;transition-delay:var(--d,0s)}
+body.site-v2 [data-reveal].revealed{opacity:1;transform:none}
+
+@media(max-width:860px){
+  body.site-v2 .hero-grid{grid-template-columns:1fr}
+  body.site-v2 .hero-card{display:none}
+  body.site-v2 .services-list,body.site-v2 .pricing-feature,body.site-v2 .process-timeline,body.site-v2 .related-links{grid-template-columns:1fr}
+  body.site-v2 .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:1rem;background:var(--bg2,#070b14);border-bottom:1px solid var(--line);padding:1.4rem 5vw;display:none}
+  body.site-v2 .nav-links.open{display:flex}
+}
