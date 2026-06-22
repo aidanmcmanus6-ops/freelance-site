@@ -14,7 +14,7 @@
   :root{
     --bg:#04060c; --bg2:#070b14; --panel:#0c1322; --panel2:#101a2e;
     --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.16);
-    --ink:#eef2fa; --muted:#9aa6be; --dim:#5c6ب80; --dim:#5c6a80;
+    --ink:#eef2fa; --muted:#9aa6be; --dim:#5c6a80;
     --cy:#38bdf8; --gr:#34d399; --pu:#a78bfa; --amber:#fbbf24;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -27,10 +27,10 @@
   .ff{font-family:'Fraunces',Georgia,serif}
   .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
   h1,h2,h3{line-height:1.04;letter-spacing:-.02em;font-weight:500}
-  .btn{display:inline-flex;align-items:center;gap:.55rem;font-weight:600;font-size:.95rem;padding:.92rem 1.6rem;border-radius:9px;transition:transform .18s ease,background .18s ease,border-color .18s ease}
+  .btn{display:inline-flex;align-items:center;gap:.55rem;font-weight:600;font-size:.95rem;padding:.92rem 1.6rem;border-radius:9px;transition:transform .18s ease,background .18s ease,border-color .18s ease;cursor:pointer}
   .btn:hover{transform:translateY(-2px)}
-  .btn-primary{background:linear-gradient(120deg,#5b8cff,#38bdf8);color:#04121f;box-shadow:0 16px 34px -14px rgba(56,189,248,.6)}
-  .btn-ghost{border:1px solid var(--line2);color:var(--ink)}
+  .btn-primary{background:linear-gradient(120deg,#5b8cff,#38bdf8);color:#04121f;box-shadow:0 16px 34px -14px rgba(56,189,248,.6);border:0}
+  .btn-ghost{border:1px solid var(--line2);color:var(--ink);background:transparent}
   .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.05)}
 
   header.site{position:sticky;top:0;z-index:50;background:rgba(4,6,12,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -71,7 +71,7 @@
   .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.6rem}
   .sec-head h2{font-size:clamp(1.9rem,4vw,3rem)}
   .sec-head h2 em{font-style:italic;color:#9bdcfb}
-  .sec-head p{color:var(--muted);max-width:40ch;font-size:.98rem}
+  .sec-head p{color:var(--muted);max-width:42ch;font-size:.98rem}
 
   .srow{display:grid;grid-template-columns:84px 1fr 1.1fr 52px;gap:1.6rem;align-items:center;padding:2rem 0;border-top:1px solid var(--line);transition:padding .3s ease,background .3s ease}
   .srow:last-child{border-bottom:1px solid var(--line)}
@@ -87,7 +87,22 @@
   .srow.ai:hover .go{border-color:var(--cy);color:var(--cy)} .srow.ai:hover h3{color:#9bdcfb}
   .srow.mon:hover .go{border-color:var(--gr);color:var(--gr)} .srow.mon:hover h3{color:#7fe7c4}
 
-  .work{background:linear-gradient(180deg,var(--bg),#060a13)}
+  .pricing{background:linear-gradient(180deg,var(--bg),#060a13)}
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .pcard{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:2rem 1.8rem;display:flex;flex-direction:column;transition:transform .3s ease,border-color .3s ease}
+  .pcard:hover{transform:translateY(-5px);border-color:var(--line2)}
+  .pcard.feat{border-color:rgba(56,189,248,.5);background:linear-gradient(180deg,#0d1a2c,var(--panel))}
+  .pcard .plabel{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cy)}
+  .pcard h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;margin:.5rem 0 .2rem}
+  .pcard .price{font-size:1.7rem;font-weight:800;letter-spacing:-.03em;margin:.4rem 0 .8rem}
+  .pcard>p{color:var(--muted);font-size:.94rem;margin-bottom:1.1rem}
+  .pcard ul{list-style:none;display:grid;gap:.55rem;margin-top:auto}
+  .pcard li{display:flex;gap:.55rem;font-size:.9rem;color:#cdd6e6}
+  .pcard li::before{content:"\2713";color:var(--cy);font-weight:700}
+  .ptag{align-self:flex-start;margin-bottom:1rem;font-size:.66rem;font-family:'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#04121f;background:var(--cy);padding:.25rem .7rem;border-radius:6px}
+  .pnote{margin-top:1.6rem;font-size:.86rem;color:var(--muted);border-left:2px solid var(--line2);padding-left:1rem;max-width:80ch}
+  .pnote strong{color:var(--ink)}
+
   .mosaic{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-auto-rows:188px;gap:14px}
   .tile{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end;padding:1.4rem;transition:transform .3s ease,border-color .3s ease}
   .tile:hover{transform:translateY(-4px);border-color:var(--line2)}
@@ -101,12 +116,68 @@
   .mon-tile{background:linear-gradient(160deg,#0f2a22,#0a1612)} .mon-tile .k{color:var(--gr)}
   .big-num{position:absolute;top:.6rem;right:1.1rem;font-family:'Fraunces',serif;font-size:2.6rem;color:rgba(255,255,255,.08);font-weight:600}
 
-  .process{background:#060a13}
-  .psteps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;position:relative}
+  .why{background:radial-gradient(70% 90% at 50% 10%,#0a1426,#04060c);position:relative;overflow:hidden}
+  .orbit-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:2.6rem;align-items:center}
+  .orbit-stage{position:relative;aspect-ratio:1/1;width:100%}
+  #solar{position:absolute;inset:0;width:100%;height:100%;cursor:pointer}
+  .orbit-info{min-height:230px}
+  .orbit-info .oi-icon{width:50px;height:50px;border-radius:12px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;color:#9bdcfb}
+  .orbit-info h3{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:500;margin-bottom:.6rem;transition:color .3s ease}
+  .orbit-info p{color:var(--muted);font-size:1rem;max-width:42ch}
+  .oi-dots{display:flex;gap:.5rem;margin-top:1.4rem;flex-wrap:wrap}
+  .oi-dots button{width:11px;height:11px;border-radius:50%;border:0;background:var(--line2);cursor:pointer;padding:0;transition:transform .2s ease,background .2s ease}
+  .oi-dots button.on{background:var(--cy);transform:scale(1.3)}
+
+  .testi .tgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:1.2rem}
+  .qbig{background:var(--panel2);border:1px solid var(--line);border-radius:18px;padding:2.4rem}
+  .qbig .mark{font-family:'Fraunces',serif;font-size:3rem;line-height:.6;color:var(--cy)}
+  .qbig blockquote{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;letter-spacing:-.01em;margin:1rem 0 1.4rem;line-height:1.3}
+  .qcol{display:grid;gap:1.2rem}
+  .qsm{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.4rem}
+  .qsm blockquote{font-size:.98rem;color:var(--ink)}
+  .who{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.05em;color:var(--muted);margin-top:.9rem}
+
+  .psteps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
   .pstep{border-top:1px solid var(--line2);padding-top:1.3rem}
   .pstep .pn{font-family:'Fraunces',serif;font-size:2.2rem;color:var(--cy);line-height:1}
   .pstep h4{font-size:1.18rem;font-weight:600;margin:.7rem 0 .45rem}
   .pstep p{font-size:.92rem;color:var(--muted)}
+
+  .faq{background:#060a13}
+  .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:2.6rem;align-items:start}
+  .faq-intro{color:var(--muted);margin-top:1rem;font-size:.98rem}
+  .faq-list{display:grid;gap:.7rem}
+  .faq-item{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+  .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;text-align:left;background:none;border:0;color:var(--ink);font-family:inherit;font-size:1.02rem;font-weight:500;padding:1.1rem 1.3rem;cursor:pointer}
+  .faq-ic{color:var(--cy);font-size:1.3rem;flex-shrink:0}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .32s ease}
+  .faq-a p{padding:0 1.3rem 1.2rem;color:var(--muted);font-size:.95rem}
+
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2.6rem;align-items:center}
+  .about p{color:var(--muted);margin-bottom:1rem;max-width:54ch}
+  .about .exp{list-style:none;display:grid;gap:.6rem;margin:1.2rem 0}
+  .about .exp li{display:flex;gap:.6rem;color:#cdd6e6;font-size:.95rem}
+  .about .exp li::before{content:"\25B8";color:var(--gr)}
+  .about-side{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:2rem}
+  .about-side .row{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line);font-size:.92rem}
+  .about-side .row:last-child{border-bottom:0}
+  .about-side .row span:first-child{color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
+  .about-side .row span:last-child{color:var(--ink);text-align:right}
+  .link-arrow{color:var(--cy);font-weight:600}
+
+  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:2.6rem;align-items:start}
+  .contact-details{list-style:none;display:grid;gap:.9rem;margin:1.3rem 0}
+  .contact-details li{color:var(--muted);font-size:.94rem}
+  .contact-details strong{color:var(--ink)}
+  .contact-details a{color:var(--cy)}
+  .cform{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:1.8rem}
+  .cform label{display:block;font-size:.74rem;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin:.9rem 0 .35rem}
+  .cform input,.cform select,.cform textarea{width:100%;background:#0a0e18;border:1px solid var(--line2);border-radius:9px;color:var(--ink);font-family:inherit;font-size:.95rem;padding:.7rem .8rem;outline:none}
+  .cform input:focus,.cform select:focus,.cform textarea:focus{border-color:var(--cy)}
+  .cform .frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+  .cform button{width:100%;margin-top:1.2rem;justify-content:center}
+  .cnote{font-size:.78rem;color:var(--dim);margin-top:.9rem}
+  .cnote a{color:var(--cy)}
 
   .final{position:relative;border:1px solid var(--line2);border-radius:24px;padding:4rem;text-align:center;overflow:hidden;background:linear-gradient(180deg,var(--panel2),var(--panel))}
   .final::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 50% 0%,rgba(56,189,248,.2),transparent 70%);z-index:0}
@@ -125,9 +196,10 @@
     nav.links,.nav-cta{display:none}
     .burger{display:flex}
     nav.links.open{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);padding:1.4rem 5vw}
-    .strip-in,.psteps,.mosaic{grid-template-columns:1fr}
+    .strip-in,.psteps,.mosaic,.pgrid,.orbit-wrap,.testi .tgrid,.faq-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
     .mosaic{grid-auto-rows:170px}
     .demo-tile{grid-row:span 1}
+    .orbit-stage{max-width:380px;margin:0 auto}
     .srow{grid-template-columns:54px 1fr 44px;gap:1rem}
     .srow .desc{display:none}
     .final{padding:2.4rem 1.4rem}
@@ -143,14 +215,13 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img src="https://www.mcm-integrated.com/mcm-logo-transparent.png" alt="MCM Integrated" /></a>
     <nav class="links" id="nav">
-      <a href="/web-design/">Web Design</a>
-      <a href="/ai-automation/">AI Automation</a>
-      <a href="/monitoring/">Monitoring</a>
-      <a href="/work/">Work</a>
-      <a href="/about/">About</a>
-      <a href="/blog/">Blog</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#work">Work</a>
+      <a href="#faq">FAQ</a>
+      <a href="#about">About</a>
     </nav>
-    <a class="nav-cta" href="/#contact">Contact</a>
+    <a class="nav-cta" href="#contact">Contact</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -162,10 +233,10 @@
     <div class="vign"></div>
     <div class="wrap hero-inner">
       <span class="badge"><span class="pip"></span> South Jersey web, AI &amp; monitoring studio</span>
-      <h1 class="ff">The web work most studios <span class="grad">quote double</span> for.</h1>
-      <p class="lead">A small, senior team building fast custom sites, AI automation that pays for itself, and the monitoring that keeps it all standing, for businesses across Burlington and Camden County.</p>
+      <h1 class="ff">Modern websites, AI agents, and the <span class="grad">monitoring</span> to keep them standing.</h1>
+      <p class="lead">A senior team of two building fast custom sites, AI automation that pays for itself, and the observability that catches trouble first, for businesses across Burlington and Camden County.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="/#contact">Start a project <i class=""></i></a>
+        <a class="btn btn-primary" href="#contact">Start a project</a>
         <a class="btn btn-ghost" href="/work/">See the work</a>
         <span class="tiny">Usually replies same day</span>
       </div>
@@ -179,34 +250,68 @@
     <div class="stat"><div class="n pu">100,000s</div><div class="l">documents processed per run, on the same budget</div></div>
   </div></div></div>
 
-  <section>
+  <section id="services">
     <div class="wrap">
       <div class="sec-head">
         <h2 class="ff">Three things, <em>done properly.</em></h2>
-        <p>No bloated retainers, no jargon. Pick what you need, or let us wire all three together.</p>
+        <p>Websites, AI automation, and monitoring for growing New Jersey businesses. Pick what you need, or wire all three together.</p>
       </div>
       <a class="srow web" href="/web-design/">
         <span class="num" style="color:var(--pu)">01</span>
-        <div><h3 class="ff">Web Design</h3><div class="tags"><span>Custom build</span><span>SEO-ready</span><span>~$1,500</span></div></div>
-        <p class="desc">Fast, responsive sites that look custom because they are, built to actually bring in calls, not just sit there.</p>
+        <div><h3 class="ff">Modern Websites</h3><div class="tags"><span>Custom build</span><span>Responsive UX</span><span>Launch + hosting</span></div></div>
+        <p class="desc">Polished websites and applications, built, launched, and supported end to end, designed to bring in calls, not just sit there.</p>
         <span class="go">&#8594;</span>
       </a>
       <a class="srow ai" href="/ai-automation/">
         <span class="num" style="color:var(--cy)">02</span>
-        <div><h3 class="ff">AI &amp; Automation</h3><div class="tags"><span>Pipelines</span><span>Cost control</span><span>Right-sized models</span></div></div>
-        <p class="desc">Agents and workflows that take the busywork off your plate, with real-time cost alerts so spend never runs away.</p>
+        <div><h3 class="ff">AI &amp; Automation</h3><div class="tags"><span>Copilot Studio</span><span>Azure</span><span>Cost control</span></div></div>
+        <p class="desc">Practical AI workflows and integrations with secure toolchain orchestration, plus real-time cost alerts so spend never runs away.</p>
         <span class="go">&#8594;</span>
       </a>
       <a class="srow mon" href="/monitoring/">
         <span class="num" style="color:var(--gr)">03</span>
-        <div><h3 class="ff">Monitoring</h3><div class="tags"><span>Uptime</span><span>Synthetic checks</span><span>Tuned alerts</span></div></div>
-        <p class="desc">Dashboards and alerting that catch trouble before your customers feel it, the same setup we ran through a major launch.</p>
+        <div><h3 class="ff">Monitoring &amp; Reliability</h3><div class="tags"><span>Synthetic checks</span><span>Dashboards</span><span>Tuned alerts</span></div></div>
+        <p class="desc">Observability and alerting that keeps your team ahead of outages, the same setup we ran through a major launch.</p>
         <span class="go">&#8594;</span>
       </a>
     </div>
   </section>
 
-  <section class="work">
+  <section class="pricing" id="pricing">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="ff">Estimated <em>starting points.</em></h2>
+        <p>Clear ranges up front, for serious business outcomes. No bloated retainers, no surprises.</p>
+      </div>
+      <div class="pgrid">
+        <div class="pcard">
+          <span class="plabel">Websites</span>
+          <h3>Site Builds</h3>
+          <div class="price">From $1,000</div>
+          <p>For polished business websites that need clean design, responsive structure, and a professional launch path.</p>
+          <ul><li>Basic 2-page website: starts at $1,000</li><li>3-4 page website: starts at $1,750</li><li>Full rewrite or new site from scratch: starts at $3,000</li></ul>
+        </div>
+        <div class="pcard feat">
+          <span class="ptag">Most popular</span>
+          <span class="plabel">AI &amp; Automation</span>
+          <h3>Workflow Build</h3>
+          <div class="price">From $2,500</div>
+          <p>For companies ready to automate repetitive work, connect systems, or build practical AI-powered operations.</p>
+          <ul><li>Discovery and workflow design</li><li>Copilot Studio, Azure, or API integrations</li><li>Secure handoff and documentation</li></ul>
+        </div>
+        <div class="pcard">
+          <span class="plabel">Reliability</span>
+          <h3>Monitoring Setup</h3>
+          <div class="price">$2,000&#8211;$7,500</div>
+          <p>For teams that need dashboards, alerting, and operational visibility before small issues become expensive.</p>
+          <ul><li>Dashboard and alert design</li><li>Synthetic checks and system visibility</li><li>Incident response workflow recommendations</li></ul>
+        </div>
+      </div>
+      <p class="pnote"><strong>Pricing note:</strong> These are estimated starting points. Final pricing can vary based on project complexity, content needs, integrations, platform setup, timeline, and support requirements. Monthly retainers typically start at $500 for updates, monitoring, and advisory support.</p>
+    </div>
+  </section>
+
+  <section id="work">
     <div class="wrap">
       <div class="sec-head">
         <h2 class="ff">Selected <em>work.</em></h2>
@@ -233,14 +338,135 @@
     </div>
   </section>
 
-  <section class="process">
+  <section class="why">
     <div class="wrap">
-      <div class="sec-head"><h2 class="ff">How it goes</h2><p>Clear from the first call to launch day, and after.</p></div>
+      <div class="sec-head">
+        <h2 class="ff">Why it <em>matters.</em></h2>
+        <p>Two senior engineers, full ownership from architecture to deployment. Tap a planet to explore.</p>
+      </div>
+      <div class="orbit-wrap">
+        <div class="orbit-stage"><canvas id="solar"></canvas></div>
+        <div class="orbit-info">
+          <div class="oi-icon" id="oiIcon">&#8593;</div>
+          <h3 class="ff" id="oiTitle">Ship faster, spend less</h3>
+          <p id="oiDesc">No agency overhead, no onboarding delays. Two senior engineers who move immediately, cutting weeks off timelines and a significant fraction off typical agency costs.</p>
+          <div class="oi-dots" id="oiDots"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testi">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="ff">Trusted by teams that need <em>reliable execution.</em></h2></div>
+      <div class="tgrid">
+        <div class="qbig">
+          <div class="mark">&ldquo;</div>
+          <blockquote>Aidan delivered dependable automation and monitoring improvements that reduced risk and improved visibility for our critical systems.</blockquote>
+          <div class="who">Lead Engineer, Enterprise Operations</div>
+        </div>
+        <div class="qcol">
+          <div class="qsm"><blockquote>&ldquo;Their work on secure Azure integrations and AI workflows helped our organization move faster while keeping data and identity controls intact.&rdquo;</blockquote><div class="who">IAM &amp; Security Partner</div></div>
+          <div class="qsm"><blockquote>&ldquo;Clear dashboards and automation reduced our ticket volume significantly and helped our team stay ahead of production issues.&rdquo;</blockquote><div class="who">Monitoring Team Manager</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head"><h2 class="ff">A straightforward path from <em>idea to launch.</em></h2></div>
       <div class="psteps">
-        <div class="pstep"><div class="pn ff">01</div><h4>Talk it through</h4><p>You tell us the goal. We tell you the smartest next step, timeline, and cost. No pressure.</p></div>
-        <div class="pstep"><div class="pn ff" style="color:var(--pu)">02</div><h4>Design &amp; build</h4><p>We design, write, and build it, sharing progress so there are no surprises at the end.</p></div>
-        <div class="pstep"><div class="pn ff" style="color:var(--gr)">03</div><h4>Launch, watched</h4><p>We ship it and keep eyes on it, so issues get caught before your customers ever notice.</p></div>
-        <div class="pstep"><div class="pn ff" style="color:var(--amber)">04</div><h4>Keep improving</h4><p>Tweaks, automation, and monitoring on an ongoing basis, only if you want it.</p></div>
+        <div class="pstep"><div class="pn ff">01</div><h4>Discover</h4><p>We define the business goal, audience, current systems, constraints, and the smallest useful launch path.</p></div>
+        <div class="pstep"><div class="pn ff" style="color:var(--pu)">02</div><h4>Build</h4><p>We design and implement the site, workflow, or monitoring setup with regular updates and visible progress.</p></div>
+        <div class="pstep"><div class="pn ff" style="color:var(--gr)">03</div><h4>Launch</h4><p>We ship cleanly with responsive polish, deployment support, handoff notes, and practical next steps.</p></div>
+        <div class="pstep"><div class="pn ff" style="color:var(--amber)">04</div><h4>Support</h4><p>After launch we can stay involved for updates, automation improvements, monitoring, and advisory support.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="wrap faq-grid">
+      <div>
+        <h2 class="ff" style="font-size:clamp(1.9rem,4vw,3rem)">Answers before <em>we talk.</em></h2>
+        <p class="faq-intro">A few practical details clients usually want to know before booking a call or sending a request.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">How long does a typical website take?<span class="faq-ic">+</span></button><div class="faq-a"><p>A basic two page site can often be completed in one to two weeks once content is ready. Larger sites, rewrites, integrations, or automation work depend on scope and complexity.</p></div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Do you work with small businesses?<span class="faq-ic">+</span></button><div class="faq-a"><p>Yes. The pricing and process are designed for small and growing businesses that need senior level execution without hiring a full time developer or agency.</p></div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Do you work with businesses in my area?<span class="faq-ic">+</span></button><div class="faq-a"><p>Yes. We are based in Burlington County, New Jersey and work with businesses across South Jersey, including Medford, Mount Holly, Cherry Hill, Moorestown, Voorhees, and the wider Burlington, Camden, Ocean, and Mercer County area, plus fully remote clients nationwide.</p></div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can you maintain the site after launch?<span class="faq-ic">+</span></button><div class="faq-a"><p>Yes. Monthly retainers start at $500 and can cover updates, monitoring, content changes, technical support, and ongoing improvements.</p></div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">What do I need before starting?<span class="faq-ic">+</span></button><div class="faq-a"><p>A clear goal, rough budget range, brand assets if you have them, and any existing website or system access. If you are not sure, the discovery call is where we sort that out.</p></div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false">Can you help with AI automation even if we are early?<span class="faq-ic">+</span></button><div class="faq-a"><p>Yes. The best first step is usually mapping repetitive work, data flow, permissions, and business risk before deciding what should actually be automated.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div>
+        <h2 class="ff" style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:1.2rem">Enterprise systems experience, <em>delivered directly.</em></h2>
+        <p>We help growing companies access senior level engineering without the overhead of a full time hire or agency. A senior team of two, focused execution, real results.</p>
+        <p>MCM Integrated is a New Jersey web design and automation studio serving Burlington and Camden County and the wider South Jersey and Jersey Shore area, from Medford, Mount Holly, and Lumberton to Cherry Hill, Moorestown, Voorhees, Trenton, Ocean City, and Long Beach Island.</p>
+        <ul class="exp">
+          <li>Cloud automation and tool integration for mission critical environments</li>
+          <li>Observability, dashboarding, and alerting that reduce risk</li>
+          <li>Secure workflows and authorization patterns that protect data and identity</li>
+        </ul>
+        <p><a class="link-arrow" href="/about/">More about MCM Integrated &#8594;</a></p>
+      </div>
+      <div class="about-side">
+        <div class="row"><span>Team</span><span>Two senior engineers</span></div>
+        <div class="row"><span>Based in</span><span>Burlington County, NJ</span></div>
+        <div class="row"><span>Serving</span><span>South Jersey + remote</span></div>
+        <div class="row"><span>Focus</span><span>Web &middot; AI &middot; Monitoring</span></div>
+        <div class="row"><span>Retainers</span><span>From $500 / month</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <h2 class="ff" style="font-size:clamp(1.9rem,4vw,3rem)">Let&rsquo;s talk about your <em>next project.</em></h2>
+        <p style="color:var(--muted);margin-top:1rem;max-width:44ch">Whether you need a website, AI automation, or improved monitoring, let&rsquo;s figure out the right solution together.</p>
+        <ul class="contact-details">
+          <li><strong>Email:</strong> <a href="mailto:aidan@mcm-integrated.com">aidan@mcm-integrated.com</a></li>
+          <li><strong>Phone:</strong> <a href="tel:+16093040371">609-304-0371</a></li>
+          <li><strong>Service area:</strong> Burlington, Camden, Ocean &amp; Mercer County, NJ, plus the greater Philadelphia area. Remote engagements welcome.</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener">Book a call</a>
+      </div>
+      <div class="cform">
+        <form action="https://formsubmit.co/6882a8350f42f5141130704b2cfafc2b" method="POST">
+          <input type="hidden" name="_subject" value="New MCM Integrated project request (concept page)" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+          <input type="hidden" name="_next" value="https://www.mcm-integrated.com/thank-you/" />
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" maxlength="120" required />
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" maxlength="254" required />
+          <label for="ptype">Project type</label>
+          <select id="ptype" name="project_type" required>
+            <option value="">Select a project type</option>
+            <option>Modern website</option><option>AI automation</option><option>Monitoring and reliability</option><option>Secure integration</option><option>Ongoing support</option><option>Not sure yet</option>
+          </select>
+          <label for="budget">Budget</label>
+          <select id="budget" name="budget" required>
+            <option value="">Select a budget range</option>
+            <option>Under $1,500</option><option>$1,500-$4,500</option><option>$4,500-$8,000</option><option>$8,000-$15,000</option><option>$15,000+</option><option>Monthly retainer</option>
+          </select>
+          <div class="frow">
+            <div><label for="cdate">Preferred call date</label><input type="date" id="cdate" name="preferred_call_date" /></div>
+            <div><label for="ctime">Preferred time</label><select id="ctime" name="preferred_call_time"><option value="">Select a time</option><option>Morning</option><option>Midday</option><option>Afternoon</option><option>Evening</option></select></div>
+          </div>
+          <label for="msg">Message</label>
+          <textarea id="msg" name="message" rows="5" placeholder="Tell me about your project" maxlength="4000" required></textarea>
+          <button class="btn btn-primary" type="submit">Send request</button>
+          <p class="cnote">Requests are sent directly to aidan@mcm-integrated.com. Prefer to talk first? <a href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener">Book a call</a>.</p>
+        </form>
       </div>
     </div>
   </section>
@@ -252,7 +478,7 @@
         <h2 class="ff" style="margin-top:.8rem">Let&rsquo;s build something <em>worth showing off.</em></h2>
         <p>Tell us what you are trying to do. We will tell you the smartest way to get there, the timeline, and the cost.</p>
         <div class="final-cta">
-          <a class="btn btn-primary" href="/#contact">Start your project</a>
+          <a class="btn btn-primary" href="#contact">Start your project</a>
           <a class="btn btn-ghost" href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener">Book a call</a>
         </div>
       </div>
@@ -272,7 +498,16 @@
 
 <script>
   var b=document.getElementById('burger'),n=document.getElementById('nav');
-  b&&b.addEventListener('click',function(){n.classList.toggle('open');});
+  if(b){b.addEventListener('click',function(){n.classList.toggle('open');});}
+
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var a=q.nextElementSibling,open=q.getAttribute('aria-expanded')==='true';
+      q.setAttribute('aria-expanded',open?'false':'true');
+      q.querySelector('.faq-ic').textContent=open?'+':'−';
+      a.style.maxHeight=open?null:a.scrollHeight+'px';
+    });
+  });
 
   (function(){
     var c=document.getElementById('constellation');
@@ -280,55 +515,73 @@
     var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var fine=window.matchMedia&&window.matchMedia('(pointer: fine)').matches;
     var ctx=c.getContext('2d'),W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
-    var pts=[],N=0,mx=0.5,my=0.5,tmx=0.5,tmy=0.5;
+    var pts=[],N=0,mx=0.5,my=0.5,tmx=0.5,tmy=0.5,raf;
     var COLORS=['56,189,248','167,139,250','52,211,153'];
     function resize(){
       var r=c.getBoundingClientRect();W=r.width;H=r.height;
       c.width=W*DPR;c.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);
-      N=Math.max(28,Math.min(72,Math.round(W*H/22000)));
+      N=Math.max(28,Math.min(70,Math.round(W*H/22000)));
       pts=[];
-      for(var i=0;i<N;i++){
-        pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.18,vy:(Math.random()-0.5)*0.18,z:0.4+Math.random()*0.9,col:COLORS[i%3]});
-      }
+      for(var i=0;i<N;i++){pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.18,vy:(Math.random()-0.5)*0.18,z:0.4+Math.random()*0.9,col:COLORS[i%3]});}
     }
     function frame(){
       ctx.clearRect(0,0,W,H);
       mx+=(tmx-mx)*0.04;my+=(tmy-my)*0.04;
-      var ox=(mx-0.5)*38,oy=(my-0.5)*38;
-      for(var i=0;i<N;i++){
-        var p=pts[i];
-        if(!reduce){p.x+=p.vx;p.y+=p.vy;}
-        if(p.x<-20)p.x=W+20; if(p.x>W+20)p.x=-20;
-        if(p.y<-20)p.y=H+20; if(p.y>H+20)p.y=-20;
-      }
-      for(var a=0;a<N;a++){
-        for(var bb=a+1;bb<N;bb++){
-          var p1=pts[a],p2=pts[b2=bb],dx=p1.x-p2.x,dy=p1.y-p2.y,d=Math.sqrt(dx*dx+dy*dy);
-          if(d<140){
-            var al=(1-d/140)*0.5;
-            ctx.strokeStyle='rgba(120,160,210,'+al.toFixed(3)+')';
-            ctx.lineWidth=0.6;
-            ctx.beginPath();
-            ctx.moveTo(p1.x+ox*p1.z,p1.y+oy*p1.z);
-            ctx.lineTo(p2.x+ox*p2.z,p2.y+oy*p2.z);
-            ctx.stroke();
-          }
-        }
-      }
-      for(var k=0;k<N;k++){
-        var p=pts[k],px=p.x+ox*p.z,py=p.y+oy*p.z;
-        ctx.beginPath();
-        ctx.arc(px,py,p.z*1.5,0,6.2832);
-        ctx.fillStyle='rgba('+p.col+','+(0.5*p.z).toFixed(3)+')';
-        ctx.fill();
-      }
+      var ox=(mx-0.5)*38,oy=(my-0.5)*38,i,j;
+      for(i=0;i<N;i++){var p=pts[i];if(!reduce){p.x+=p.vx;p.y+=p.vy;}if(p.x<-20)p.x=W+20;if(p.x>W+20)p.x=-20;if(p.y<-20)p.y=H+20;if(p.y>H+20)p.y=-20;}
+      for(i=0;i<N;i++){for(j=i+1;j<N;j++){
+        var p1=pts[i],p2=pts[j],dx=p1.x-p2.x,dy=p1.y-p2.y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<140){var al=(1-d/140)*0.5;ctx.strokeStyle='rgba(120,160,210,'+al.toFixed(3)+')';ctx.lineWidth=0.6;ctx.beginPath();ctx.moveTo(p1.x+ox*p1.z,p1.y+oy*p1.z);ctx.lineTo(p2.x+ox*p2.z,p2.y+oy*p2.z);ctx.stroke();}
+      }}
+      for(i=0;i<N;i++){var q=pts[i],qx=q.x+ox*q.z,qy=q.y+oy*q.z;ctx.beginPath();ctx.arc(qx,qy,q.z*1.5,0,6.2832);ctx.fillStyle='rgba('+q.col+','+(0.5*q.z).toFixed(3)+')';ctx.fill();}
       if(!reduce) raf=requestAnimationFrame(frame);
     }
-    var raf;
     function start(){cancelAnimationFrame(raf);resize();frame();}
     window.addEventListener('resize',start);
     if(fine){window.addEventListener('mousemove',function(e){tmx=e.clientX/window.innerWidth;tmy=e.clientY/window.innerHeight;});}
     start();
+  })();
+
+  (function(){
+    var c=document.getElementById('solar');
+    if(!c) return;
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ctx=c.getContext('2d'),W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2),raf,t=0;
+    var planets=[
+      {icon:'↑',title:'Ship faster, spend less',desc:'No agency overhead, no onboarding delays. Two senior engineers who move immediately, cutting weeks off timelines and a significant fraction off typical agency costs.',base:'#a78bfa',glow:'168,139,250',size:13,orbit:0.40,speed:0.34,ang:0.5},
+      {icon:'⬡',title:'Two senior engineers, full ownership',desc:'From architecture to deployment, a senior team of two owns the outcome end to end. Stronger solutions, faster answers, clear accountability, and direct communication.',base:'#fb923c',glow:'251,146,60',size:16,orbit:0.52,speed:0.25,ang:2.9},
+      {icon:'⟳',title:'Built to scale',desc:'Every website, workflow, and system is built with your growth in mind: clean code, documented decisions, and infrastructure that does not need rebuilding when you scale.',base:'#38bdf8',glow:'56,189,248',size:15,orbit:0.64,speed:0.19,ang:5.3},
+      {icon:'◎',title:'Reduce operational risk',desc:'Monitoring, alerting, and resilient automation means your team spends less time firefighting and more time building. Issues get caught before they become outages.',base:'#22d3ee',glow:'34,211,238',size:17,orbit:0.77,speed:0.145,ang:1.42},
+      {icon:'⚡',title:'AI that actually works',desc:'Not AI for the sake of it. Just practical automation that removes repetitive work, connects your tools, and gives your team leverage.',base:'#d7a35f',glow:'215,163,95',size:13,orbit:0.89,speed:0.11,ang:3.82},
+      {icon:'⬤',title:'Security built in',desc:'Secure integrations, RBAC access controls, and hardened workflows from day one, not bolted on after the fact. Your data stays protected as you grow.',base:'#60a5fa',glow:'96,165,250',size:15,orbit:1.0,speed:0.085,ang:6.22}
+    ];
+    var active=0,pos=[],stars=[],lastTouch=0;
+    var oiIcon=document.getElementById('oiIcon'),oiTitle=document.getElementById('oiTitle'),oiDesc=document.getElementById('oiDesc'),oiDots=document.getElementById('oiDots');
+    planets.forEach(function(p,k){var d=document.createElement('button');d.setAttribute('aria-label',p.title);if(k===0)d.className='on';d.addEventListener('click',function(){setActive(k);lastTouch=Date.now();});oiDots.appendChild(d);});
+    function setActive(k){active=k;var p=planets[k];oiIcon.textContent=p.icon;oiTitle.textContent=p.title;oiTitle.style.color=p.base;oiDesc.textContent=p.desc;oiIcon.style.color=p.base;oiIcon.style.borderColor=p.base;var dots=oiDots.children;for(var i=0;i<dots.length;i++){dots[i].className=i===k?'on':'';dots[i].style.background=i===k?p.base:'';}}
+    function resize(){var r=c.getBoundingClientRect();W=r.width;H=r.height;c.width=W*DPR;c.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);stars=[];for(var i=0;i<70;i++){stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+0.2,a:Math.random()*0.5+0.1});}}
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      var cx=W/2,cy=H/2,maxR=Math.min(W,H)/2*0.92;
+      for(var s=0;s<stars.length;s++){var st=stars[s];ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,6.2832);ctx.fillStyle='rgba(200,220,255,'+st.a.toFixed(2)+')';ctx.fill();}
+      for(var o=0;o<planets.length;o++){ctx.beginPath();ctx.arc(cx,cy,planets[o].orbit*maxR,0,6.2832);ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;ctx.stroke();}
+      var sunR=maxR*0.13;var g=ctx.createRadialGradient(cx,cy,0,cx,cy,sunR*3.4);g.addColorStop(0,'rgba(255,224,170,0.5)');g.addColorStop(0.4,'rgba(255,176,80,0.18)');g.addColorStop(1,'rgba(255,176,80,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,sunR*3.4,0,6.2832);ctx.fill();
+      ctx.beginPath();ctx.arc(cx,cy,sunR,0,6.2832);ctx.fillStyle='#ffd27a';ctx.fill();
+      pos=[];
+      for(var i=0;i<planets.length;i++){
+        var p=planets[i],a=p.ang+t*p.speed,R=p.orbit*maxR,px=cx+Math.cos(a)*R,py=cy+Math.sin(a)*R;
+        pos.push({x:px,y:py,r:p.size});
+        var pg=ctx.createRadialGradient(px,py,0,px,py,p.size*2.4);pg.addColorStop(0,'rgba('+p.glow+',0.5)');pg.addColorStop(1,'rgba('+p.glow+',0)');ctx.fillStyle=pg;ctx.beginPath();ctx.arc(px,py,p.size*2.4,0,6.2832);ctx.fill();
+        ctx.beginPath();ctx.arc(px,py,p.size,0,6.2832);ctx.fillStyle=p.base;ctx.fill();
+        if(i===active){ctx.beginPath();ctx.arc(px,py,p.size+6,0,6.2832);ctx.strokeStyle='rgba(255,255,255,0.8)';ctx.lineWidth=1.5;ctx.stroke();}
+      }
+      if(!reduce){t+=0.045;if(Date.now()-lastTouch>6000){var auto=Math.floor(t*0.12)%planets.length;if(auto!==active)setActive(auto);}}
+      if(!reduce) raf=requestAnimationFrame(draw);
+    }
+    c.addEventListener('click',function(e){var r=c.getBoundingClientRect(),mxp=e.clientX-r.left,myp=e.clientY-r.top,best=-1,bd=1e9;for(var i=0;i<pos.length;i++){var dx=pos[i].x-mxp,dy=pos[i].y-myp,d=dx*dx+dy*dy;if(d<bd&&d<(pos[i].r+12)*(pos[i].r+12)){bd=d;best=i;}}if(best>=0){setActive(best);lastTouch=Date.now();}});
+    function start(){cancelAnimationFrame(raf);resize();draw();}
+    window.addEventListener('resize',start);
+    setActive(0);start();
   })();
 </script>
 </body>
