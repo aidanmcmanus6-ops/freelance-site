@@ -116,17 +116,27 @@
   .mon-tile{background:linear-gradient(160deg,#0f2a22,#0a1612)} .mon-tile .k{color:var(--gr)}
   .big-num{position:absolute;top:.6rem;right:1.1rem;font-family:'Fraunces',serif;font-size:2.6rem;color:rgba(255,255,255,.08);font-weight:600}
 
-  .why{background:radial-gradient(70% 90% at 50% 10%,#0a1426,#04060c);position:relative;overflow:hidden}
-  .orbit-wrap{display:grid;grid-template-columns:1.5fr .78fr;gap:2rem;align-items:center}
-  .orbit-stage{position:relative;aspect-ratio:1/0.8;width:100%}
-  #solar{position:absolute;inset:0;width:100%;height:100%;cursor:pointer}
-  .orbit-info{min-height:230px}
-  .orbit-info .oi-icon{width:50px;height:50px;border-radius:12px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;color:#9bdcfb}
-  .orbit-info h3{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:500;margin-bottom:.6rem;transition:color .3s ease}
-  .orbit-info p{color:var(--muted);font-size:1rem;max-width:42ch}
-  .oi-dots{display:flex;gap:.5rem;margin-top:1.4rem;flex-wrap:wrap}
-  .oi-dots button{width:11px;height:11px;border-radius:50%;border:0;background:var(--line2);cursor:pointer;padding:0;transition:transform .2s ease,background .2s ease}
-  .oi-dots button.on{transform:scale(1.3)}
+  .why{position:relative;background:#04060c}
+  .why-stage{position:relative;height:600vh}
+  .why-sticky{position:absolute;top:0;left:0;right:0;height:100vh;overflow:hidden}
+  #solar{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .why-overlay{position:absolute;inset:0;pointer-events:none}
+  .why-head{position:absolute;top:5.5rem;left:0;right:0}
+  .why-head .eyebrow{display:block;margin-bottom:.7rem}
+  .why-head h2{font-size:clamp(1.9rem,4vw,3rem)}
+  .why-head h2 em{font-style:italic;color:#9bdcfb}
+  .why-card{position:absolute;top:50%;right:max(6vw,calc(50% - 540px));transform:translateY(-50%);width:min(360px,84vw);background:rgba(8,13,24,.66);backdrop-filter:blur(12px);border:1px solid var(--line2);border-radius:18px;padding:1.8rem;opacity:0;transition:opacity .4s ease}
+  .why-card.on{opacity:1}
+  .why-card .oi-icon{width:48px;height:48px;border-radius:12px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:.9rem;color:#9bdcfb}
+  .why-card h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;margin-bottom:.55rem;transition:color .3s ease}
+  .why-card p{color:var(--muted);font-size:.96rem}
+  .why-hint{position:absolute;left:50%;bottom:2.4rem;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);transition:opacity .4s ease}
+  .why-grid{display:none;grid-template-columns:repeat(3,1fr);gap:1.2rem;padding:1rem 0}
+  .why-grid.show{display:grid}
+  .why-gcard{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:1.4rem}
+  .why-gcard .oi-icon{width:42px;height:42px;border-radius:10px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:.7rem}
+  .why-gcard h3{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:500;margin-bottom:.35rem}
+  .why-gcard p{color:var(--muted);font-size:.9rem}
 
   .testi .tgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:1.2rem}
   .qbig{background:var(--panel2);border:1px solid var(--line);border-radius:18px;padding:2.4rem}
@@ -179,14 +189,6 @@
   .cnote{font-size:.78rem;color:var(--dim);margin-top:.9rem}
   .cnote a{color:var(--cy)}
 
-  .final{position:relative;border:1px solid var(--line2);border-radius:24px;padding:4rem;text-align:center;overflow:hidden;background:linear-gradient(180deg,var(--panel2),var(--panel))}
-  .final::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 50% 0%,rgba(56,189,248,.2),transparent 70%);z-index:0}
-  .final>*{position:relative;z-index:1}
-  .final h2{font-size:clamp(2rem,4.4vw,3.2rem);font-weight:400}
-  .final h2 em{font-style:italic;color:#9bdcfb}
-  .final p{color:var(--muted);margin:1.1rem auto 2rem;max-width:46ch}
-  .final-cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
-
   footer.site{border-top:1px solid var(--line);padding:3rem 0 2.4rem;color:var(--muted);font-size:.9rem;margin-top:2rem}
   .foot-nav{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin-top:.8rem}
   .foot-nav a:hover{color:var(--ink)}
@@ -196,13 +198,13 @@
     nav.links,.nav-cta{display:none}
     .burger{display:flex}
     nav.links.open{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);padding:1.4rem 5vw}
-    .strip-in,.psteps,.mosaic,.pgrid,.orbit-wrap,.testi .tgrid,.faq-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+    .strip-in,.psteps,.mosaic,.pgrid,.testi .tgrid,.faq-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
     .mosaic{grid-auto-rows:170px}
     .demo-tile{grid-row:span 1}
-    .orbit-stage{max-width:440px;margin:0 auto;aspect-ratio:1/0.92}
+    .why-grid.show{grid-template-columns:1fr}
+    .why-head{top:3rem}
     .srow{grid-template-columns:54px 1fr 44px;gap:1rem}
     .srow .desc{display:none}
-    .final{padding:2.4rem 1.4rem}
   }
   @media(prefers-reduced-motion:reduce){
     .scrollcue .ln{animation:none}
@@ -338,22 +340,25 @@
     </div>
   </section>
 
-  <section class="why">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 class="ff">Why it <em>matters.</em></h2>
-        <p>Two senior engineers, full ownership from architecture to deployment. Tap a planet to explore.</p>
-      </div>
-      <div class="orbit-wrap">
-        <div class="orbit-stage"><canvas id="solar"></canvas></div>
-        <div class="orbit-info">
-          <div class="oi-icon" id="oiIcon">&#8593;</div>
-          <h3 class="ff" id="oiTitle">Ship faster, spend less</h3>
-          <p id="oiDesc">No agency overhead, no onboarding delays. Two senior engineers who move immediately, cutting weeks off timelines and a significant fraction off typical agency costs.</p>
-          <div class="oi-dots" id="oiDots"></div>
+  <section class="why why-fly" id="why">
+    <div class="why-stage" id="whyStage">
+      <div class="why-sticky" id="whySticky">
+        <canvas id="solar"></canvas>
+        <div class="why-overlay">
+          <div class="wrap why-head">
+            <span class="eyebrow" style="color:var(--cy)">Why it matters</span>
+            <h2 class="ff">Two senior engineers, <em>full ownership.</em></h2>
+          </div>
+          <div class="why-card" id="whyCard" aria-live="polite">
+            <div class="oi-icon" id="oiIcon">&#8593;</div>
+            <h3 class="ff" id="oiTitle">Ship faster, spend less</h3>
+            <p id="oiDesc">No agency overhead, no onboarding delays. Two senior engineers who move immediately, cutting weeks off timelines and a significant fraction off typical agency costs.</p>
+          </div>
+          <div class="why-hint" id="whyHint">Scroll to fly through the system</div>
         </div>
       </div>
     </div>
+    <div class="wrap why-grid" id="whyGrid"></div>
   </section>
 
   <section class="testi">
@@ -470,20 +475,6 @@
       </div>
     </div>
   </section>
-
-  <section>
-    <div class="wrap">
-      <div class="final">
-        <p class="eyebrow" style="color:var(--cy)">Your project</p>
-        <h2 class="ff" style="margin-top:.8rem">Let&rsquo;s build something <em>worth showing off.</em></h2>
-        <p>Tell us what you are trying to do. We will tell you the smartest way to get there, the timeline, and the cost.</p>
-        <div class="final-cta">
-          <a class="btn btn-primary" href="#contact">Start your project</a>
-          <a class="btn btn-ghost" href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener">Book a call</a>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="site">
@@ -553,13 +544,46 @@
     {ic:'⚡',t:'AI that actually works',d:'Not AI for the sake of it. Just practical automation that removes repetitive work, connects your tools, and gives your team leverage.',c:'#d7a35f'},
     {ic:'⬤',t:'Security built in',d:'Secure integrations, RBAC access controls, and hardened workflows from day one, not bolted on after the fact. Your data stays protected as you grow.',c:'#60a5fa'}
   ];
-  var oiIcon=document.getElementById('oiIcon'),oiTitle=document.getElementById('oiTitle'),oiDesc=document.getElementById('oiDesc'),oiDots=document.getElementById('oiDots');
-  var active=0,last=0;
-  PD.forEach(function(p,k){var d=document.createElement('button');d.setAttribute('aria-label',p.t);d.addEventListener('click',function(){setActive(k);last=Date.now();});oiDots.appendChild(d);});
-  function setActive(k){active=k;var p=PD[k];oiIcon.textContent=p.ic;oiIcon.style.color=p.c;oiIcon.style.borderColor=p.c;oiTitle.textContent=p.t;oiTitle.style.color=p.c;oiDesc.textContent=p.d;var ds=oiDots.children;for(var i=0;i<ds.length;i++){ds[i].className=i===k?'on':'';ds[i].style.background=i===k?p.c:'';}}
-  setActive(0);
-  initSolarScene(document.getElementById('solar'),{centerXFrac:0.5,scale:1.12,onSelect:function(i){if(i!=null){setActive(i);last=Date.now();}}});
-  setInterval(function(){if(Date.now()-last>6000){setActive((active+1)%PD.length);}},6000);
+  var oiIcon=document.getElementById('oiIcon'),oiTitle=document.getElementById('oiTitle'),oiDesc=document.getElementById('oiDesc'),card=document.getElementById('whyCard');
+  var canvas=document.getElementById('solar');
+  var scene=initSolarScene(canvas,{centerXFrac:0.46,interactive:false});
+  var curr=-2;
+  function setCard(i){ if(i===curr)return; curr=i; if(i<0){card.classList.remove('on');return;} var p=PD[i]; oiIcon.textContent=p.ic; oiIcon.style.color=p.c; oiIcon.style.borderColor=p.c; oiTitle.textContent=p.t; oiTitle.style.color=p.c; oiDesc.textContent=p.d; card.classList.add('on'); }
+  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mobile=window.matchMedia&&window.matchMedia('(max-width:860px)').matches;
+  if(!reduced && !mobile){
+    var stage=document.getElementById('whyStage'),sticky=document.getElementById('whySticky'),hint=document.getElementById('whyHint');
+    sticky.style.position='absolute';sticky.style.top='0';
+    var raf=0;
+    function onScroll(){ if(raf)return; raf=requestAnimationFrame(function(){ raf=0;
+      var vh=window.innerHeight,rect=stage.getBoundingClientRect(),total=Math.max(1,rect.height-vh);
+      var progress=Math.min(1,Math.max(0,-rect.top/total));
+      var count=PD.length,seg=Math.min(count-0.0001,progress*count),index=Math.floor(seg),local=seg-index;
+      var ease=function(v){return v*v*(3-2*v);};
+      var traveling=index<count-1 && local>0.78;
+      var blend=traveling?ease((local-0.78)/0.22):0;
+      var strength=1;
+      if(index===0 && local<0.45) strength=ease(local/0.45);
+      else if(index===count-1 && local>0.85) strength=ease((1-local)/0.15);
+      scene.setFocus({index:index,nextIndex:traveling?index+1:-1,blend:blend,strength:strength});
+      var top=-rect.top,mode=top<0?'before':top>=total?'after':'during';
+      if(sticky.dataset.pin!==mode){ sticky.dataset.pin=mode;
+        if(mode==='during'){sticky.style.position='fixed';sticky.style.top='0';sticky.style.bottom='auto';}
+        else if(mode==='after'){sticky.style.position='absolute';sticky.style.top='auto';sticky.style.bottom='0';}
+        else {sticky.style.position='absolute';sticky.style.top='0';sticky.style.bottom='auto';}
+      }
+      var visible=progress>0.005 && strength>0.75 && blend<0.25 ? index : -1;
+      setCard(visible);
+      if(hint) hint.style.opacity=progress>0.02?'0':'';
+    }); }
+    onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+  } else {
+    var stage2=document.getElementById('whyStage'),sticky2=document.getElementById('whySticky'),grid=document.getElementById('whyGrid'),hint2=document.getElementById('whyHint');
+    stage2.style.height='auto'; sticky2.style.position='static'; sticky2.style.height='60vh';
+    if(hint2) hint2.style.display='none';
+    PD.forEach(function(p){ var d=document.createElement('div'); d.className='why-gcard'; var ic=document.createElement('div'); ic.className='oi-icon'; ic.style.color=p.c; ic.style.borderColor=p.c; ic.textContent=p.ic; var h=document.createElement('h3'); h.className='ff'; h.textContent=p.t; var pp=document.createElement('p'); pp.textContent=p.d; d.appendChild(ic); d.appendChild(h); d.appendChild(pp); grid.appendChild(d); });
+    grid.classList.add('show');
+  }
 </script>
 </body>
 </html>
