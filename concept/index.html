@@ -35,7 +35,7 @@
 
   header.site{position:sticky;top:0;z-index:50;background:rgba(4,6,12,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
-  .brand img{height:30px;width:auto}
+  .brand img{height:44px;width:auto}
   nav.links{display:flex;align-items:center;gap:1.7rem;font-size:.92rem;font-weight:500}
   nav.links a{color:var(--muted)}
   nav.links a:hover{color:var(--ink)}
@@ -43,11 +43,11 @@
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
   .burger span{width:23px;height:2px;background:var(--ink);border-radius:2px}
 
-  .hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+  .hero{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
   #constellation{position:absolute;inset:0;z-index:-3;width:100%;height:100%;display:block}
   .hero .aura{position:absolute;inset:0;z-index:-2;background:radial-gradient(50% 55% at 18% 35%,rgba(56,189,248,.18),transparent 60%),radial-gradient(45% 50% at 88% 25%,rgba(167,139,250,.16),transparent 62%),radial-gradient(60% 60% at 70% 100%,rgba(52,211,153,.1),transparent 60%)}
   .hero .vign{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(4,6,12,.2),rgba(4,6,12,.55) 70%,var(--bg))}
-  .hero-inner{padding:8rem 0 6rem;width:100%}
+  .hero-inner{padding:2.5rem 0 3.5rem}
   .badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--line2);border-radius:999px;padding:.4rem .9rem;font-size:.76rem;color:var(--muted);margin-bottom:1.8rem}
   .badge .pip{width:7px;height:7px;border-radius:50%;background:var(--gr);box-shadow:0 0 0 4px rgba(52,211,153,.18)}
   .hero h1{font-size:clamp(2.9rem,7.4vw,5.8rem);font-weight:400;max-width:15ch;letter-spacing:-.025em}
@@ -117,8 +117,8 @@
   .big-num{position:absolute;top:.6rem;right:1.1rem;font-family:'Fraunces',serif;font-size:2.6rem;color:rgba(255,255,255,.08);font-weight:600}
 
   .why{background:radial-gradient(70% 90% at 50% 10%,#0a1426,#04060c);position:relative;overflow:hidden}
-  .orbit-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:2.6rem;align-items:center}
-  .orbit-stage{position:relative;aspect-ratio:1/1;width:100%}
+  .orbit-wrap{display:grid;grid-template-columns:1.5fr .78fr;gap:2rem;align-items:center}
+  .orbit-stage{position:relative;aspect-ratio:1/0.8;width:100%}
   #solar{position:absolute;inset:0;width:100%;height:100%;cursor:pointer}
   .orbit-info{min-height:230px}
   .orbit-info .oi-icon{width:50px;height:50px;border-radius:12px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;color:#9bdcfb}
@@ -199,7 +199,7 @@
     .strip-in,.psteps,.mosaic,.pgrid,.orbit-wrap,.testi .tgrid,.faq-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
     .mosaic{grid-auto-rows:170px}
     .demo-tile{grid-row:span 1}
-    .orbit-stage{max-width:380px;margin:0 auto}
+    .orbit-stage{max-width:440px;margin:0 auto;aspect-ratio:1/0.92}
     .srow{grid-template-columns:54px 1fr 44px;gap:1rem}
     .srow .desc{display:none}
     .final{padding:2.4rem 1.4rem}
@@ -558,7 +558,7 @@
   PD.forEach(function(p,k){var d=document.createElement('button');d.setAttribute('aria-label',p.t);d.addEventListener('click',function(){setActive(k);last=Date.now();});oiDots.appendChild(d);});
   function setActive(k){active=k;var p=PD[k];oiIcon.textContent=p.ic;oiIcon.style.color=p.c;oiIcon.style.borderColor=p.c;oiTitle.textContent=p.t;oiTitle.style.color=p.c;oiDesc.textContent=p.d;var ds=oiDots.children;for(var i=0;i<ds.length;i++){ds[i].className=i===k?'on':'';ds[i].style.background=i===k?p.c:'';}}
   setActive(0);
-  initSolarScene(document.getElementById('solar'),{centerXFrac:0.5,onSelect:function(i){if(i!=null){setActive(i);last=Date.now();}}});
+  initSolarScene(document.getElementById('solar'),{centerXFrac:0.5,scale:1.12,onSelect:function(i){if(i!=null){setActive(i);last=Date.now();}}});
   setInterval(function(){if(Date.now()-last>6000){setActive((active+1)%PD.length);}},6000);
 </script>
 </body>
