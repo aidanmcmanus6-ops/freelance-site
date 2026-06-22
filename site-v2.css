@@ -29,11 +29,13 @@ body.site-v2 .button-outline{border:1px solid var(--line2);color:#fff;background
 body.site-v2 .button-outline:hover{border-color:#fff;background:rgba(255,255,255,.05)}
 body.site-v2 .button-secondary{border:1px solid var(--line2);color:#fff;background:transparent;padding:.5rem 1rem;border-radius:8px;font-size:.86rem}
 
-/* Header — three zones: brand (left) / centered links / Contact CTA (right) */
+/* Header — three zones: brand (left) / centered links / Contact CTA (right).
+   Reset the legacy styles.css .nav-links margin-left:auto, which would otherwise
+   shove the links to the right edge on these pages. */
 body.site-v2 .site-header{position:sticky;top:0;z-index:50;background:rgba(4,6,12,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 body.site-v2 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 0}
 body.site-v2 .brand-logo{height:44px;width:auto}
-body.site-v2 .nav-links{display:flex;align-items:center;gap:1.5rem;font-size:.92rem;font-weight:500}
+body.site-v2 .nav-links{display:flex;align-items:center;gap:1.5rem;font-size:.92rem;font-weight:500;margin:0}
 body.site-v2 .nav-links a{color:var(--muted)}
 body.site-v2 .nav-links a:hover{color:#fff}
 body.site-v2 .nav-cta{border:1px solid var(--line2);padding:.5rem 1rem;border-radius:8px;font-size:.86rem;font-weight:600;color:#fff;white-space:nowrap}
