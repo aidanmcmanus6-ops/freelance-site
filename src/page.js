@@ -36,6 +36,18 @@ if (useV2) {
   f.rel = 'stylesheet';
   f.href = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;600&display=swap';
   document.head.appendChild(f);
+
+  // Living flow-field nebula behind the hero (same effect as the home page),
+  // tinted by the page accent. Loaded only on v2 pages.
+  const heroEl = document.querySelector('.hero');
+  if (heroEl) {
+    heroEl.classList.add('hero-v2');
+    heroEl.insertAdjacentHTML('afterbegin', '<canvas id="flow" aria-hidden="true"></canvas><div class="hero-aura" aria-hidden="true"></div><div class="hero-vign" aria-hidden="true"></div>');
+    const fc = heroEl.querySelector('#flow');
+    import('./flowField.js')
+      .then((m) => { try { if (!m.initFlowField(fc, {})) fc.style.display = 'none'; } catch (e) { fc.style.display = 'none'; } })
+      .catch(() => { fc.style.display = 'none'; });
+  }
 }
 
 // Service pages: their building blocks stagger-reveal automatically.
@@ -243,7 +255,7 @@ if (finePointer && !reduceMotion) {
 
 // ── Service-page hero scenes ────────────────────────
 // Living dioramas for each service hero. Skipped under the v2 design, which
-// uses a calmer editorial hero (the static mockup stays).
+// uses the flow-field hero instead (the static mockup card stays).
 const sceneKind = document.body.classList.contains('page-web') ? 'web'
   : document.body.classList.contains('page-ai') ? 'ai'
   : document.body.classList.contains('page-mon') ? 'mon'
