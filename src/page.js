@@ -126,8 +126,8 @@ if (filterButtons.length) {
   });
 }
 
-// Card physics for service-page surfaces + magnetic CTAs on every static
-// page (mirrors CardPhysics in App.jsx). Mouse-only, reduced-motion aware.
+// Card physics for service-page surfaces + magnetic CTAs. The 3D card tilt is
+// disabled on v2 pages (it read as "bendy"); the subtle button magnet stays.
 if (finePointer && !reduceMotion) {
   const tiltSelector = '.service-entry, .pricing-feature, .faq-row, .related-link';
   const magnetSelector = '.button-primary, .button-outline, .button-secondary';
@@ -160,7 +160,7 @@ if (finePointer && !reduceMotion) {
 
   document.addEventListener('pointermove', (event) => {
     const origin = event.target instanceof Element ? event.target : null;
-    const hitCard = origin ? origin.closest(tiltSelector) : null;
+    const hitCard = (origin && !useV2) ? origin.closest(tiltSelector) : null;
     const hitMagnet = origin ? origin.closest(magnetSelector) : null;
 
     if (hitCard !== card) {
