@@ -32,6 +32,7 @@ export function initSolarScene(canvas, opts) {
   if (!canvas) return;
   opts = opts || {};
   const centerXFrac = opts.centerXFrac != null ? opts.centerXFrac : 0.5;
+  const scale = opts.scale != null ? opts.scale : 1;
   const onSelect = opts.onSelect || function () {};
   const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const ctx = canvas.getContext('2d');
@@ -101,8 +102,8 @@ export function initSolarScene(canvas, opts) {
       [0.34 + Math.cos(nd * 1.1 + 3.6) * 0.016, 0.44, 0.38, 'rgba(52, 211, 153, 0.08)'],
     ];
     nebulae.forEach((nb) => {
-      const x = nb[0], y = nb[1], scale = nb[2], color = nb[3];
-      const radius = Math.max(width, height) * scale;
+      const x = nb[0], y = nb[1], scl = nb[2], color = nb[3];
+      const radius = Math.max(width, height) * scl;
       const gradient = ctx.createRadialGradient(width * x, height * y, 0, width * x, height * y, radius);
       gradient.addColorStop(0, color);
       gradient.addColorStop(0.42, color.replace(/0\.\d+\)/, '0.055)'));
@@ -741,7 +742,7 @@ export function initSolarScene(canvas, opts) {
     const height = rect.height;
     const centerX = width * centerXFrac;
     const centerY = height * 0.5;
-    const maxOrbit = Math.min(width * 0.45, height * 0.62);
+    const maxOrbit = Math.min(width * 0.45, height * 0.62) * scale;
     const tilt = 0.48;
     const phase = time * 0.00052;
     ctx.clearRect(0, 0, width, height);
@@ -753,7 +754,7 @@ export function initSolarScene(canvas, opts) {
       const depth = (Math.sin(angle) + 1) / 2;
       const x = Math.cos(angle) * orbitRadius;
       const y = Math.sin(angle) * orbitRadius * tilt;
-      return Object.assign({}, planet, { index: index, x: x, y: y, depth: depth, radius: planet.size * (0.78 + depth * 0.42) });
+      return Object.assign({}, planet, { index: index, x: x, y: y, depth: depth, radius: planet.size * (0.78 + depth * 0.42) * scale });
     }).sort((a, b) => a.y - b.y);
     ctx.save();
     ctx.translate(centerX, centerY);
