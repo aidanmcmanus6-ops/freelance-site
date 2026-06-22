@@ -45,6 +45,7 @@ export default defineConfig({
         blogHowToUseAi: resolve(__dirname, 'blog/how-small-businesses-use-ai/index.html'),
         blogAlertFatigue: resolve(__dirname, 'blog/monitoring-alert-fatigue/index.html'),
         blogHomepageNeeds: resolve(__dirname, 'blog/what-your-homepage-needs/index.html'),
+        blogAiChatbots: resolve(__dirname, 'blog/ai-chatbots-for-small-business/index.html'),
       },
     },
   },
