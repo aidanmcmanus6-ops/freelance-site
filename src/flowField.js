@@ -1,6 +1,7 @@
 // Interactive WebGL flow-field nebula for the /concept/ hero background.
 // A single fragment shader: domain-warped fbm noise, brand-coloured, that
-// swirls around the cursor and reacts to cursor velocity. No external libs.
+// drifts slowly and gently swirls toward the cursor. No external libs.
+// Tuned to be subtle so the headline stays the focus.
 // Returns false if WebGL is unavailable so the caller can fall back.
 
 const VERT = 'attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }';
@@ -24,29 +25,30 @@ const FRAG = [
   '  vec2 m = vec2((u_mouse.x-0.5)*aspect+0.5, u_mouse.y);',
   '  vec2 d = auv - m;',
   '  float dist = length(d);',
-  '  float ang = (u_swirl*1.9 + 0.16) * exp(-dist*3.4);',
+  '  float ang = (u_swirl*0.8 + 0.04) * exp(-dist*3.4);',
   '  float cs = cos(ang); float sn = sin(ang);',
   '  vec2 sw = m + mat2(cs,-sn,sn,cs)*d;',
-  '  float t = u_time*0.06;',
-  '  vec2 p = sw*3.0;',
+  '  float t = u_time*0.028;',
+  '  vec2 p = sw*2.7;',
   '  vec2 q = vec2(fbm(p + t), fbm(p + vec2(5.2,1.3) - t));',
   '  vec2 r = vec2(fbm(p + 3.0*q + vec2(1.7,9.2) + 0.5*t), fbm(p + 3.0*q + vec2(8.3,2.8) - 0.4*t));',
   '  float f = fbm(p + 3.0*r);',
-  '  f = clamp(f*1.15, 0.0, 1.0);',
+  '  f = clamp(f*1.1, 0.0, 1.0);',
   '  float rl = clamp(length(r), 0.0, 1.0);',
-  '  vec3 deep = vec3(0.016,0.024,0.047);',
+  '  vec3 deep = vec3(0.014,0.021,0.041);',
   '  vec3 cyan = vec3(0.22,0.74,0.97);',
   '  vec3 purple = vec3(0.655,0.545,0.98);',
   '  vec3 ember = vec3(0.98,0.45,0.18);',
   '  vec3 col = deep;',
-  '  col = mix(col, cyan*0.5, smoothstep(0.35,0.62,f));',
-  '  col = mix(col, purple*0.6, clamp(smoothstep(0.55,0.82,f)*rl*0.85, 0.0, 1.0));',
-  '  col += ember*0.4*smoothstep(0.72,0.96,f);',
-  '  col += (cyan*0.18 + purple*0.12)*pow(f,3.0);',
-  '  col += cyan*0.10*exp(-dist*4.0)*(0.4 + u_swirl);',
-  '  float vig = smoothstep(1.18, 0.32, length((uv-0.5)*vec2(aspect,1.0)));',
+  '  col = mix(col, cyan*0.30, smoothstep(0.46,0.74,f));',
+  '  col = mix(col, purple*0.34, clamp(smoothstep(0.62,0.9,f)*rl*0.5, 0.0, 1.0));',
+  '  col += ember*0.14*smoothstep(0.82,0.99,f);',
+  '  col += (cyan*0.08 + purple*0.05)*pow(f,4.0);',
+  '  col += cyan*0.045*exp(-dist*4.6)*(0.3 + u_swirl*0.6);',
+  '  col *= 0.62;',
+  '  float vig = smoothstep(1.18, 0.30, length((uv-0.5)*vec2(aspect,1.0)));',
   '  col *= vig;',
-  '  col = col/(col+0.7);',
+  '  col = col/(col+0.8);',
   '  gl_FragColor = vec4(col, 1.0);',
   '}',
 ].join('\n');
@@ -114,7 +116,7 @@ export function initFlowField(canvas, opts) {
       const nx = e.clientX / window.innerWidth;
       const ny = e.clientY / window.innerHeight;
       const dx = nx - lastX, dy = ny - lastY;
-      swirl = Math.min(0.7, swirl + Math.sqrt(dx * dx + dy * dy) * 7.0);
+      swirl = Math.min(0.4, swirl + Math.sqrt(dx * dx + dy * dy) * 4.0);
       lastX = nx; lastY = ny;
       target = [nx, 1.0 - ny];
     }, { passive: true });
@@ -124,9 +126,9 @@ export function initFlowField(canvas, opts) {
   let raf = 0;
   let visible = true;
   const render = (now) => {
-    mouse[0] += (target[0] - mouse[0]) * 0.06;
-    mouse[1] += (target[1] - mouse[1]) * 0.06;
-    swirl *= 0.92;
+    mouse[0] += (target[0] - mouse[0]) * 0.05;
+    mouse[1] += (target[1] - mouse[1]) * 0.05;
+    swirl *= 0.9;
     const time = reduced ? 6.0 : (now - t0) * 0.001;
     gl.uniform1f(uTime, time);
     gl.uniform2f(uRes, W, H);
