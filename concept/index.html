@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>MCM Integrated, concept homepage</title>
+<meta name="description" content="Experimental homepage direction for MCM Integrated. Not a live page." />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#04060c; --bg2:#070b14; --panel:#0c1322; --panel2:#101a2e;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.16);
+    --ink:#eef2fa; --muted:#9aa6be; --dim:#5c6ب80; --dim:#5c6a80;
+    --cy:#38bdf8; --gr:#34d399; --pu:#a78bfa; --amber:#fbbf24;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{width:min(1180px,92vw);margin-inline:auto}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .ff{font-family:'Fraunces',Georgia,serif}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
+  h1,h2,h3{line-height:1.04;letter-spacing:-.02em;font-weight:500}
+  .btn{display:inline-flex;align-items:center;gap:.55rem;font-weight:600;font-size:.95rem;padding:.92rem 1.6rem;border-radius:9px;transition:transform .18s ease,background .18s ease,border-color .18s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:linear-gradient(120deg,#5b8cff,#38bdf8);color:#04121f;box-shadow:0 16px 34px -14px rgba(56,189,248,.6)}
+  .btn-ghost{border:1px solid var(--line2);color:var(--ink)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.05)}
+
+  header.site{position:sticky;top:0;z-index:50;background:rgba(4,6,12,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
+  .brand img{height:30px;width:auto}
+  nav.links{display:flex;align-items:center;gap:1.7rem;font-size:.92rem;font-weight:500}
+  nav.links a{color:var(--muted)}
+  nav.links a:hover{color:var(--ink)}
+  .nav-cta{border:1px solid var(--line2);padding:.5rem 1rem;border-radius:8px;font-size:.86rem;font-weight:600;color:var(--ink)}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
+  .burger span{width:23px;height:2px;background:var(--ink);border-radius:2px}
+
+  .hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+  #constellation{position:absolute;inset:0;z-index:-3;width:100%;height:100%;display:block}
+  .hero .aura{position:absolute;inset:0;z-index:-2;background:radial-gradient(50% 55% at 18% 35%,rgba(56,189,248,.18),transparent 60%),radial-gradient(45% 50% at 88% 25%,rgba(167,139,250,.16),transparent 62%),radial-gradient(60% 60% at 70% 100%,rgba(52,211,153,.1),transparent 60%)}
+  .hero .vign{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(4,6,12,.2),rgba(4,6,12,.55) 70%,var(--bg))}
+  .hero-inner{padding:8rem 0 6rem;width:100%}
+  .badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--line2);border-radius:999px;padding:.4rem .9rem;font-size:.76rem;color:var(--muted);margin-bottom:1.8rem}
+  .badge .pip{width:7px;height:7px;border-radius:50%;background:var(--gr);box-shadow:0 0 0 4px rgba(52,211,153,.18)}
+  .hero h1{font-size:clamp(2.9rem,7.4vw,5.8rem);font-weight:400;max-width:15ch;letter-spacing:-.025em}
+  .hero h1 em{font-style:italic;color:#9bdcfb}
+  .hero h1 .grad{background:linear-gradient(110deg,#7cc4ff,#a78bfa 55%,#5be0b0);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{margin:1.8rem 0 2.3rem;font-size:1.18rem;color:var(--muted);max-width:54ch}
+  .hero-cta{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
+  .hero-cta .tiny{font-size:.82rem;color:var(--dim);margin-left:.3rem}
+  .scrollcue{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);display:flex;flex-direction:column;align-items:center;gap:.5rem}
+  .scrollcue .ln{width:1px;height:34px;background:linear-gradient(var(--dim),transparent);animation:cue 2.4s ease-in-out infinite}
+  @keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(8,12,22,.6)}
+  .strip-in{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+  .stat{background:var(--bg);padding:1.7rem 1.8rem}
+  .stat .n{font-size:clamp(1.5rem,3vw,2.3rem);font-weight:800;letter-spacing:-.04em;line-height:1}
+  .stat .n.cy{color:var(--cy)} .stat .n.gr{color:var(--gr)} .stat .n.pu{color:var(--pu)}
+  .stat .l{margin-top:.6rem;font-size:.9rem;color:var(--muted)}
+
+  section{padding:6rem 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.6rem}
+  .sec-head h2{font-size:clamp(1.9rem,4vw,3rem)}
+  .sec-head h2 em{font-style:italic;color:#9bdcfb}
+  .sec-head p{color:var(--muted);max-width:40ch;font-size:.98rem}
+
+  .srow{display:grid;grid-template-columns:84px 1fr 1.1fr 52px;gap:1.6rem;align-items:center;padding:2rem 0;border-top:1px solid var(--line);transition:padding .3s ease,background .3s ease}
+  .srow:last-child{border-bottom:1px solid var(--line)}
+  .srow .num{font-family:'Fraunces',serif;font-size:1.4rem}
+  .srow h3{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:500;letter-spacing:-.02em}
+  .srow .desc{color:var(--muted);font-size:1rem}
+  .srow .tags{margin-top:.7rem;display:flex;gap:.5rem;flex-wrap:wrap}
+  .srow .tags span{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:var(--dim);border:1px solid var(--line);border-radius:6px;padding:.25rem .55rem}
+  .srow .go{justify-self:end;width:46px;height:46px;border-radius:50%;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:transform .3s ease,color .3s ease,border-color .3s ease}
+  .srow:hover{padding-left:18px;background:linear-gradient(90deg,rgba(255,255,255,.025),transparent)}
+  .srow:hover .go{transform:translateX(4px);color:#fff}
+  .srow.web:hover .go{border-color:var(--pu);color:var(--pu)} .srow.web:hover h3{color:#c4b5fd}
+  .srow.ai:hover .go{border-color:var(--cy);color:var(--cy)} .srow.ai:hover h3{color:#9bdcfb}
+  .srow.mon:hover .go{border-color:var(--gr);color:var(--gr)} .srow.mon:hover h3{color:#7fe7c4}
+
+  .work{background:linear-gradient(180deg,var(--bg),#060a13)}
+  .mosaic{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-auto-rows:188px;gap:14px}
+  .tile{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end;padding:1.4rem;transition:transform .3s ease,border-color .3s ease}
+  .tile:hover{transform:translateY(-4px);border-color:var(--line2)}
+  .tile .k{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.5rem}
+  .tile .t{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:500;line-height:1.1}
+  .tile .s{color:var(--muted);font-size:.9rem;margin-top:.35rem}
+  .tile .go{position:absolute;top:1.2rem;right:1.2rem;color:rgba(255,255,255,.5)}
+  .demo-tile{grid-row:span 2;background:linear-gradient(160deg,#1d2740,#0b1120)}
+  .demo-tile .k{color:#c4b5fd}
+  .ai-tile{background:linear-gradient(160deg,#10243a,#0a121f)} .ai-tile .k{color:var(--cy)}
+  .mon-tile{background:linear-gradient(160deg,#0f2a22,#0a1612)} .mon-tile .k{color:var(--gr)}
+  .big-num{position:absolute;top:.6rem;right:1.1rem;font-family:'Fraunces',serif;font-size:2.6rem;color:rgba(255,255,255,.08);font-weight:600}
+
+  .process{background:#060a13}
+  .psteps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;position:relative}
+  .pstep{border-top:1px solid var(--line2);padding-top:1.3rem}
+  .pstep .pn{font-family:'Fraunces',serif;font-size:2.2rem;color:var(--cy);line-height:1}
+  .pstep h4{font-size:1.18rem;font-weight:600;margin:.7rem 0 .45rem}
+  .pstep p{font-size:.92rem;color:var(--muted)}
+
+  .final{position:relative;border:1px solid var(--line2);border-radius:24px;padding:4rem;text-align:center;overflow:hidden;background:linear-gradient(180deg,var(--panel2),var(--panel))}
+  .final::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 50% 0%,rgba(56,189,248,.2),transparent 70%);z-index:0}
+  .final>*{position:relative;z-index:1}
+  .final h2{font-size:clamp(2rem,4.4vw,3.2rem);font-weight:400}
+  .final h2 em{font-style:italic;color:#9bdcfb}
+  .final p{color:var(--muted);margin:1.1rem auto 2rem;max-width:46ch}
+  .final-cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+
+  footer.site{border-top:1px solid var(--line);padding:3rem 0 2.4rem;color:var(--muted);font-size:.9rem;margin-top:2rem}
+  .foot-nav{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin-top:.8rem}
+  .foot-nav a:hover{color:var(--ink)}
+  .flag{margin-top:1.4rem;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim)}
+
+  @media(max-width:860px){
+    nav.links,.nav-cta{display:none}
+    .burger{display:flex}
+    nav.links.open{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);padding:1.4rem 5vw}
+    .strip-in,.psteps,.mosaic{grid-template-columns:1fr}
+    .mosaic{grid-auto-rows:170px}
+    .demo-tile{grid-row:span 1}
+    .srow{grid-template-columns:54px 1fr 44px;gap:1rem}
+    .srow .desc{display:none}
+    .final{padding:2.4rem 1.4rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .scrollcue .ln{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="https://www.mcm-integrated.com/mcm-logo-transparent.png" alt="MCM Integrated" /></a>
+    <nav class="links" id="nav">
+      <a href="/web-design/">Web Design</a>
+      <a href="/ai-automation/">AI Automation</a>
+      <a href="/monitoring/">Monitoring</a>
+      <a href="/work/">Work</a>
+      <a href="/about/">About</a>
+      <a href="/blog/">Blog</a>
+    </nav>
+    <a class="nav-cta" href="/#contact">Contact</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <canvas id="constellation"></canvas>
+    <div class="aura"></div>
+    <div class="vign"></div>
+    <div class="wrap hero-inner">
+      <span class="badge"><span class="pip"></span> South Jersey web, AI &amp; monitoring studio</span>
+      <h1 class="ff">The web work most studios <span class="grad">quote double</span> for.</h1>
+      <p class="lead">A small, senior team building fast custom sites, AI automation that pays for itself, and the monitoring that keeps it all standing, for businesses across Burlington and Camden County.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="/#contact">Start a project <i class=""></i></a>
+        <a class="btn btn-ghost" href="/work/">See the work</a>
+        <span class="tiny">Usually replies same day</span>
+      </div>
+    </div>
+    <div class="scrollcue"><span>Scroll</span><span class="ln"></span></div>
+  </section>
+
+  <div class="strip"><div class="wrap"><div class="strip-in">
+    <div class="stat"><div class="n cy">$320K&#8201;&#8594;&#8201;$285</div><div class="l">an AI document job projected at $320,000, shipped for $285</div></div>
+    <div class="stat"><div class="n gr">Multi&#8209;million</div><div class="l">dollar launch backstopped with live monitoring &amp; alerting</div></div>
+    <div class="stat"><div class="n pu">100,000s</div><div class="l">documents processed per run, on the same budget</div></div>
+  </div></div></div>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="ff">Three things, <em>done properly.</em></h2>
+        <p>No bloated retainers, no jargon. Pick what you need, or let us wire all three together.</p>
+      </div>
+      <a class="srow web" href="/web-design/">
+        <span class="num" style="color:var(--pu)">01</span>
+        <div><h3 class="ff">Web Design</h3><div class="tags"><span>Custom build</span><span>SEO-ready</span><span>~$1,500</span></div></div>
+        <p class="desc">Fast, responsive sites that look custom because they are, built to actually bring in calls, not just sit there.</p>
+        <span class="go">&#8594;</span>
+      </a>
+      <a class="srow ai" href="/ai-automation/">
+        <span class="num" style="color:var(--cy)">02</span>
+        <div><h3 class="ff">AI &amp; Automation</h3><div class="tags"><span>Pipelines</span><span>Cost control</span><span>Right-sized models</span></div></div>
+        <p class="desc">Agents and workflows that take the busywork off your plate, with real-time cost alerts so spend never runs away.</p>
+        <span class="go">&#8594;</span>
+      </a>
+      <a class="srow mon" href="/monitoring/">
+        <span class="num" style="color:var(--gr)">03</span>
+        <div><h3 class="ff">Monitoring</h3><div class="tags"><span>Uptime</span><span>Synthetic checks</span><span>Tuned alerts</span></div></div>
+        <p class="desc">Dashboards and alerting that catch trouble before your customers feel it, the same setup we ran through a major launch.</p>
+        <span class="go">&#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="ff">Selected <em>work.</em></h2>
+        <p>Proof, not promises. Real systems, generalized numbers.</p>
+      </div>
+      <div class="mosaic">
+        <a class="tile demo-tile" href="/demo/">
+          <span class="go">&#8599;</span>
+          <span class="k">Web &middot; live build</span>
+          <span class="t ff">A full site, designed &amp; shipped end to end</span>
+          <span class="s">Click through a complete responsive build.</span>
+        </a>
+        <a class="tile ai-tile" href="/work/">
+          <span class="big-num ff">$285</span>
+          <span class="k">AI case</span>
+          <span class="t ff">A $320K job, shipped for $285</span>
+        </a>
+        <a class="tile mon-tile" href="/work/">
+          <span class="go">&#8599;</span>
+          <span class="k">Monitoring</span>
+          <span class="t ff">Backstopped a major launch</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="ff">How it goes</h2><p>Clear from the first call to launch day, and after.</p></div>
+      <div class="psteps">
+        <div class="pstep"><div class="pn ff">01</div><h4>Talk it through</h4><p>You tell us the goal. We tell you the smartest next step, timeline, and cost. No pressure.</p></div>
+        <div class="pstep"><div class="pn ff" style="color:var(--pu)">02</div><h4>Design &amp; build</h4><p>We design, write, and build it, sharing progress so there are no surprises at the end.</p></div>
+        <div class="pstep"><div class="pn ff" style="color:var(--gr)">03</div><h4>Launch, watched</h4><p>We ship it and keep eyes on it, so issues get caught before your customers ever notice.</p></div>
+        <div class="pstep"><div class="pn ff" style="color:var(--amber)">04</div><h4>Keep improving</h4><p>Tweaks, automation, and monitoring on an ongoing basis, only if you want it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="final">
+        <p class="eyebrow" style="color:var(--cy)">Your project</p>
+        <h2 class="ff" style="margin-top:.8rem">Let&rsquo;s build something <em>worth showing off.</em></h2>
+        <p>Tell us what you are trying to do. We will tell you the smartest way to get there, the timeline, and the cost.</p>
+        <div class="final-cta">
+          <a class="btn btn-primary" href="/#contact">Start your project</a>
+          <a class="btn btn-ghost" href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>&copy; 2026 MCM Integrated</p>
+    <nav class="foot-nav">
+      <a href="/">Home</a><a href="/web-design/">Web Design</a><a href="/ai-automation/">AI Automation</a><a href="/monitoring/">Monitoring</a><a href="/work/">Work</a><a href="/about/">About</a><a href="/blog/">Blog</a>
+    </nav>
+    <p class="flag">// concept page, experimental homepage direction, not linked in nav</p>
+  </div>
+</footer>
+
+<script>
+  var b=document.getElementById('burger'),n=document.getElementById('nav');
+  b&&b.addEventListener('click',function(){n.classList.toggle('open');});
+
+  (function(){
+    var c=document.getElementById('constellation');
+    if(!c) return;
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var fine=window.matchMedia&&window.matchMedia('(pointer: fine)').matches;
+    var ctx=c.getContext('2d'),W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
+    var pts=[],N=0,mx=0.5,my=0.5,tmx=0.5,tmy=0.5;
+    var COLORS=['56,189,248','167,139,250','52,211,153'];
+    function resize(){
+      var r=c.getBoundingClientRect();W=r.width;H=r.height;
+      c.width=W*DPR;c.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);
+      N=Math.max(28,Math.min(72,Math.round(W*H/22000)));
+      pts=[];
+      for(var i=0;i<N;i++){
+        pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.18,vy:(Math.random()-0.5)*0.18,z:0.4+Math.random()*0.9,col:COLORS[i%3]});
+      }
+    }
+    function frame(){
+      ctx.clearRect(0,0,W,H);
+      mx+=(tmx-mx)*0.04;my+=(tmy-my)*0.04;
+      var ox=(mx-0.5)*38,oy=(my-0.5)*38;
+      for(var i=0;i<N;i++){
+        var p=pts[i];
+        if(!reduce){p.x+=p.vx;p.y+=p.vy;}
+        if(p.x<-20)p.x=W+20; if(p.x>W+20)p.x=-20;
+        if(p.y<-20)p.y=H+20; if(p.y>H+20)p.y=-20;
+      }
+      for(var a=0;a<N;a++){
+        for(var bb=a+1;bb<N;bb++){
+          var p1=pts[a],p2=pts[b2=bb],dx=p1.x-p2.x,dy=p1.y-p2.y,d=Math.sqrt(dx*dx+dy*dy);
+          if(d<140){
+            var al=(1-d/140)*0.5;
+            ctx.strokeStyle='rgba(120,160,210,'+al.toFixed(3)+')';
+            ctx.lineWidth=0.6;
+            ctx.beginPath();
+            ctx.moveTo(p1.x+ox*p1.z,p1.y+oy*p1.z);
+            ctx.lineTo(p2.x+ox*p2.z,p2.y+oy*p2.z);
+            ctx.stroke();
+          }
+        }
+      }
+      for(var k=0;k<N;k++){
+        var p=pts[k],px=p.x+ox*p.z,py=p.y+oy*p.z;
+        ctx.beginPath();
+        ctx.arc(px,py,p.z*1.5,0,6.2832);
+        ctx.fillStyle='rgba('+p.col+','+(0.5*p.z).toFixed(3)+')';
+        ctx.fill();
+      }
+      if(!reduce) raf=requestAnimationFrame(frame);
+    }
+    var raf;
+    function start(){cancelAnimationFrame(raf);resize();frame();}
+    window.addEventListener('resize',start);
+    if(fine){window.addEventListener('mousemove',function(e){tmx=e.clientX/window.innerWidth;tmy=e.clientY/window.innerHeight;});}
+    start();
+  })();
+</script>
+</body>
+</html>
