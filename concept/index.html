@@ -44,11 +44,11 @@
   .burger span{width:23px;height:2px;background:var(--ink);border-radius:2px}
 
   .hero{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
-  #constellation{position:absolute;inset:0;z-index:-3;width:100%;height:100%;display:block}
+  #flow{position:absolute;inset:0;z-index:-3;width:100%;height:100%;display:block}
   .hero .aura{position:absolute;inset:0;z-index:-2;background:radial-gradient(50% 55% at 18% 35%,rgba(56,189,248,.18),transparent 60%),radial-gradient(45% 50% at 88% 25%,rgba(167,139,250,.16),transparent 62%),radial-gradient(60% 60% at 70% 100%,rgba(52,211,153,.1),transparent 60%)}
-  .hero .vign{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(4,6,12,.2),rgba(4,6,12,.55) 70%,var(--bg))}
+  .hero .vign{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(4,6,12,.2),rgba(4,6,12,.45) 72%,var(--bg))}
   .hero-inner{padding:2.5rem 0 3.5rem}
-  .badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--line2);border-radius:999px;padding:.4rem .9rem;font-size:.76rem;color:var(--muted);margin-bottom:1.8rem}
+  .badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--line2);border-radius:999px;padding:.4rem .9rem;font-size:.76rem;color:var(--muted);margin-bottom:1.8rem;background:rgba(4,6,12,.35);backdrop-filter:blur(4px)}
   .badge .pip{width:7px;height:7px;border-radius:50%;background:var(--gr);box-shadow:0 0 0 4px rgba(52,211,153,.18)}
   .hero h1{font-size:clamp(2.9rem,7.4vw,5.8rem);font-weight:400;max-width:15ch;letter-spacing:-.025em}
   .hero h1 em{font-style:italic;color:#9bdcfb}
@@ -230,7 +230,7 @@
 
 <main>
   <section class="hero">
-    <canvas id="constellation"></canvas>
+    <canvas id="flow"></canvas>
     <div class="aura"></div>
     <div class="vign"></div>
     <div class="wrap hero-inner">
@@ -499,43 +499,18 @@
       a.style.maxHeight=open?null:a.scrollHeight+'px';
     });
   });
-
-  (function(){
-    var c=document.getElementById('constellation');
-    if(!c) return;
-    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var fine=window.matchMedia&&window.matchMedia('(pointer: fine)').matches;
-    var ctx=c.getContext('2d'),W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
-    var pts=[],N=0,mx=0.5,my=0.5,tmx=0.5,tmy=0.5,raf;
-    var COLORS=['56,189,248','167,139,250','52,211,153'];
-    function resize(){
-      var r=c.getBoundingClientRect();W=r.width;H=r.height;
-      c.width=W*DPR;c.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);
-      N=Math.max(28,Math.min(70,Math.round(W*H/22000)));
-      pts=[];
-      for(var i=0;i<N;i++){pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.18,vy:(Math.random()-0.5)*0.18,z:0.4+Math.random()*0.9,col:COLORS[i%3]});}
-    }
-    function frame(){
-      ctx.clearRect(0,0,W,H);
-      mx+=(tmx-mx)*0.04;my+=(tmy-my)*0.04;
-      var ox=(mx-0.5)*38,oy=(my-0.5)*38,i,j;
-      for(i=0;i<N;i++){var p=pts[i];if(!reduce){p.x+=p.vx;p.y+=p.vy;}if(p.x<-20)p.x=W+20;if(p.x>W+20)p.x=-20;if(p.y<-20)p.y=H+20;if(p.y>H+20)p.y=-20;}
-      for(i=0;i<N;i++){for(j=i+1;j<N;j++){
-        var p1=pts[i],p2=pts[j],dx=p1.x-p2.x,dy=p1.y-p2.y,d=Math.sqrt(dx*dx+dy*dy);
-        if(d<140){var al=(1-d/140)*0.5;ctx.strokeStyle='rgba(120,160,210,'+al.toFixed(3)+')';ctx.lineWidth=0.6;ctx.beginPath();ctx.moveTo(p1.x+ox*p1.z,p1.y+oy*p1.z);ctx.lineTo(p2.x+ox*p2.z,p2.y+oy*p2.z);ctx.stroke();}
-      }}
-      for(i=0;i<N;i++){var q=pts[i],qx=q.x+ox*q.z,qy=q.y+oy*q.z;ctx.beginPath();ctx.arc(qx,qy,q.z*1.5,0,6.2832);ctx.fillStyle='rgba('+q.col+','+(0.5*q.z).toFixed(3)+')';ctx.fill();}
-      if(!reduce) raf=requestAnimationFrame(frame);
-    }
-    function start(){cancelAnimationFrame(raf);resize();frame();}
-    window.addEventListener('resize',start);
-    if(fine){window.addEventListener('mousemove',function(e){tmx=e.clientX/window.innerWidth;tmy=e.clientY/window.innerHeight;});}
-    start();
-  })();
 </script>
 
 <script type="module">
   import { initSolarScene } from '../src/solarScene.js';
+  import { initFlowField } from '../src/flowField.js';
+
+  var flowCanvas=document.getElementById('flow');
+  var flowOk=false;
+  try{ flowOk=initFlowField(flowCanvas,{}); }catch(e){ flowOk=false; }
+  if(!flowOk){ if(flowCanvas) flowCanvas.style.display='none'; }
+  else { var au=document.querySelector('.hero .aura'); if(au) au.style.opacity='0.5'; }
+
   var PD=[
     {ic:'↑',t:'Ship faster, spend less',d:'No agency overhead, no onboarding delays. Two senior engineers who move immediately, cutting weeks off timelines and a significant fraction off typical agency costs.',c:'#a78bfa'},
     {ic:'⬡',t:'Two senior engineers, full ownership',d:'From architecture to deployment, a senior team of two owns the outcome end to end. With two experienced engineers thinking through every problem, you get stronger solutions and faster answers, backed by clear accountability and direct communication.',c:'#fb923c'},
