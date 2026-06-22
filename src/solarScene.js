@@ -1,7 +1,6 @@
 // Vanilla port of the homepage OrbitalScrollScene renderer, for use on the
-// static /concept/ page. Same drawing routines and image assets as App.jsx;
-// the scroll-driven fly camera is replaced with a fixed centered camera, and
-// clicking a planet reports its index via opts.onSelect.
+// static /concept/ page. Same drawing routines and image assets as App.jsx,
+// including the scroll-driven fly camera (drive it via the returned setFocus).
 import planetRenderSheetUrl from './assets/planet-render-sheet-v2.webp';
 import sunRenderUrl from './assets/sun-render.webp';
 
@@ -29,11 +28,14 @@ const minorOrbitals = [
 ];
 
 export function initSolarScene(canvas, opts) {
-  if (!canvas) return;
+  if (!canvas) return { setFocus: function () {} };
   opts = opts || {};
   const centerXFrac = opts.centerXFrac != null ? opts.centerXFrac : 0.5;
   const scale = opts.scale != null ? opts.scale : 1;
+  const interactive = opts.interactive !== false;
   const onSelect = opts.onSelect || function () {};
+  const cam = { x: 0, y: 0, z: 1 };
+  let focus = { index: -1, nextIndex: -1, blend: 0, strength: 0 };
   const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const ctx = canvas.getContext('2d');
   let time = 0;
@@ -756,9 +758,29 @@ export function initSolarScene(canvas, opts) {
       const y = Math.sin(angle) * orbitRadius * tilt;
       return Object.assign({}, planet, { index: index, x: x, y: y, depth: depth, radius: planet.size * (0.78 + depth * 0.42) * scale });
     }).sort((a, b) => a.y - b.y);
+    let targetX = 0, targetY = 0, targetZ = 1;
+    if (focus && focus.index >= 0 && focus.strength > 0) {
+      const fromPlanet = planets.find((p) => p.index === focus.index);
+      const toPlanet = focus.nextIndex >= 0 ? planets.find((p) => p.index === focus.nextIndex) : null;
+      if (fromPlanet) {
+        const s = Math.min(1, Math.max(0, focus.strength));
+        const blend = toPlanet ? Math.min(1, Math.max(0, focus.blend || 0)) : 0;
+        const px = toPlanet ? fromPlanet.x + (toPlanet.x - fromPlanet.x) * blend : fromPlanet.x;
+        const py = toPlanet ? fromPlanet.y + (toPlanet.y - fromPlanet.y) * blend : fromPlanet.y;
+        const dip = Math.sin(Math.PI * blend) * 0.55;
+        targetZ = 1 + s * (1.55 - dip);
+        targetX = px * s;
+        targetY = py * s;
+      }
+    }
+    cam.x += (targetX - cam.x) * 0.1;
+    cam.y += (targetY - cam.y) * 0.1;
+    cam.z += (targetZ - cam.z) * 0.1;
     ctx.save();
     ctx.translate(centerX, centerY);
     ctx.rotate(-0.02);
+    ctx.scale(cam.z, cam.z);
+    ctx.translate(-cam.x, -cam.y);
     planetVisuals.forEach((planet) => {
       const orbitRadius = maxOrbit * planet.orbit;
       ctx.save();
@@ -798,6 +820,15 @@ export function initSolarScene(canvas, opts) {
     drawMoons(planets);
     drawSpaceStation(maxOrbit, tilt, phase);
     ctx.restore();
+    const focusAmt = Math.min(1, Math.max(0, (cam.z - 1) / 1.55));
+    if (focusAmt > 0.03) {
+      const spot = ctx.createRadialGradient(centerX, centerY, Math.min(width, height) * 0.16, centerX, centerY, Math.max(width, height) * 0.78);
+      spot.addColorStop(0, 'rgba(2, 6, 23, 0)');
+      spot.addColorStop(0.55, 'rgba(2, 6, 23, ' + (0.18 * focusAmt) + ')');
+      spot.addColorStop(1, 'rgba(2, 6, 23, ' + (0.6 * focusAmt) + ')');
+      ctx.fillStyle = spot;
+      ctx.fillRect(0, 0, width, height);
+    }
     time += reducedMotion ? 0 : 8;
     animationFrame = isActive() ? window.requestAnimationFrame(draw) : 0;
   };
@@ -817,8 +848,10 @@ export function initSolarScene(canvas, opts) {
     onSelect(null);
   };
 
-  canvas.style.cursor = 'pointer';
-  canvas.addEventListener('click', handleClick);
+  if (interactive) {
+    canvas.style.cursor = 'pointer';
+    canvas.addEventListener('click', handleClick);
+  }
   resize();
   window.addEventListener('resize', resize);
   animationFrame = window.requestAnimationFrame(draw);
@@ -826,4 +859,9 @@ export function initSolarScene(canvas, opts) {
   const io = new IntersectionObserver((entries) => { isIntersecting = entries[0].isIntersecting; resume(); }, { rootMargin: '150px' });
   io.observe(canvas);
   document.addEventListener('visibilitychange', resume);
+
+  return {
+    setFocus: function (f) { focus = f || { index: -1, nextIndex: -1, blend: 0, strength: 0 }; },
+    resize: resize,
+  };
 }
