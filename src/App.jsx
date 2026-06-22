@@ -6,6 +6,7 @@ import introVideoUrl from '../intro-animation-clean.mp4';
 import '../hero-tech.css';
 import planetRenderSheetUrl from './assets/planet-render-sheet-v2.webp';
 import sunRenderUrl from './assets/sun-render.webp';
+import { portfolio } from './portfolioData';
 
 const calendarUrl = 'https://calendar.app.google/STcrArBdLP484i9f8';
 
@@ -108,29 +109,7 @@ const minorOrbitals = [
   { type: 'probe', orbit: 0.88, angle: 5.62, speed: 0.032, size: 2.8, color: '#fef3c7', glow: 'rgba(251, 191, 36, 0.2)' },
 ];
 
-const portfolio = [
-  {
-    title: 'Booking Website for a Local Wellness Studio',
-    body: 'A fast, mobile friendly site with class schedules and online booking, so the studio stopped fielding scheduling calls and started filling more classes.',
-    tag: 'Web Design',
-    art: 'web',
-    accent: '#8b5cf6',
-  },
-  {
-    title: 'Lead and Quote Automation for a Home Services Company',
-    body: 'An automation that turns new inquiries into clean quotes and handles the follow up on its own, cutting hours of admin and keeping leads from slipping away.',
-    tag: 'AI Automation',
-    art: 'flow',
-    accent: '#38bdf8',
-  },
-  {
-    title: 'Storefront Uptime Monitoring for an Online Shop',
-    body: 'Around the clock monitoring on the storefront and checkout that alerts the team the moment something breaks, so a broken payment page never costs another day of sales.',
-    tag: 'Monitoring',
-    art: 'pulse',
-    accent: '#34d399',
-  },
-];
+// Homepage "Selected work" entries are imported from ./portfolioData.
 
 const testimonials = [
   ['“Aidan delivered dependable automation and monitoring improvements that reduced risk and improved visibility for our critical systems.”', 'Lead Engineer, Enterprise Operations'],
@@ -1844,7 +1823,7 @@ function Portfolio() {
   return (
     <section className="section portfolio" id="portfolio">
       <div className="container">
-        <SectionHeading title="Selected examples of work we have delivered" />
+        <SectionHeading title="Selected work" />
         <CardGrid className="portfolio-showcase">
           {portfolio.map((project) => (
             <motion.article
