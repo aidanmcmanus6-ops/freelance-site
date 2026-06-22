@@ -45,6 +45,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    .dash-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:1.8rem}
+    .dash-grid figure{margin:0}
+    .dash-grid img{width:100%;border-radius:6px;border:1px solid #1c2230;display:block;background:#0b0e13}
+    .dash-grid figcaption{font-size:.8rem;color:#8a929c;margin-top:.5rem;letter-spacing:.02em}
+    .dash-note{font-size:.85rem;color:#94a3b8;margin-top:1rem}
+    @media(min-width:760px){.dash-grid{grid-template-columns:repeat(3,1fr)}}
+  </style>
   <script type="module" src="/src/page.js"></script>
 </head>
 <body class="page-service">
@@ -113,7 +121,12 @@
           <div class="faq-row"><h3>What we did</h3><p>Ahead of the launch we stood up dashboards, synthetic checks, and tuned alerting so the team could watch uptime, performance, and errors live. If something started to slip, the team would know immediately, with the context to act, instead of hearing about it hours later.</p></div>
           <div class="faq-row"><h3>The result</h3><p>The team went into launch day with full visibility instead of crossed fingers, and the monitoring stack kept watch through the critical post-launch period when the most users were hitting the site.</p></div>
         </div>
-        <!-- IMAGE SLOT: monitoring dashboard screenshot from the launch goes here once Aidan provides a scrubbed version. -->
+        <div class="dash-grid">
+          <figure><img src="/dash-services.svg" alt="Representative service-status dashboard: health breakdown, degraded services over time, and status tables" loading="lazy" /><figcaption>Service status &amp; health</figcaption></figure>
+          <figure><img src="/dash-network.svg" alt="Representative network-device dashboard: edge and core CPU and memory across sites" loading="lazy" /><figcaption>Network device monitoring</figcaption></figure>
+          <figure><img src="/dash-apps.svg" alt="Representative application monitoring dashboard: response-time charts per app" loading="lazy" /><figcaption>App &amp; website response times</figcaption></figure>
+        </div>
+        <p class="dash-note">Representative dashboards, recreated in the same style with synthetic data. Real client systems and identifiers are not shown.</p>
       </div>
     </section>
 
