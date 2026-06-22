@@ -69,6 +69,7 @@
   .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.6rem}
   .sec-head h2{font-size:clamp(1.9rem,4vw,3rem)}
   .sec-head h2 em{font-style:italic;color:#9bdcfb}
+  .faq h2 em,.about-grid h2 em,.contact-grid h2 em{font-style:italic;color:#9bdcfb}
   .sec-head p{color:var(--muted);max-width:46ch;font-size:.98rem}
 
   .srow{display:grid;grid-template-columns:84px 1fr 1.1fr 52px;gap:1.6rem;align-items:center;padding:2rem 0;border-top:1px solid var(--line);transition:padding .3s ease,background .3s ease}
@@ -86,19 +87,25 @@
   .srow.mon:hover .go{border-color:var(--gr);color:var(--gr)} .srow.mon:hover h3{color:#7fe7c4}
 
   .pricing{background:linear-gradient(180deg,var(--bg),#060a13)}
-  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .pcard{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:2rem 1.8rem;display:flex;flex-direction:column;transition:transform .3s ease,border-color .3s ease}
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+  .pcard{--ac:var(--cy);position:relative;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:2rem 1.8rem;display:flex;flex-direction:column;transition:transform .3s ease,border-color .3s ease;overflow:hidden}
+  .pcard::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--ac);opacity:.9}
   .pcard:hover{transform:translateY(-5px);border-color:var(--line2)}
-  .pcard.feat{border-color:rgba(56,189,248,.5);background:linear-gradient(180deg,#0d1a2c,var(--panel))}
-  .pcard .plabel{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cy)}
-  .pcard h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;margin:.5rem 0 .2rem}
-  .pcard .price{font-size:1.7rem;font-weight:800;letter-spacing:-.03em;margin:.4rem 0 .8rem}
-  .pcard>p{color:var(--muted);font-size:.94rem;margin-bottom:1.1rem}
-  .pcard ul{list-style:none;display:grid;gap:.55rem;margin-top:auto}
-  .pcard li{display:flex;gap:.55rem;font-size:.9rem;color:#cdd6e6}
-  .pcard li::before{content:"\2713";color:var(--cy);font-weight:700}
-  .ptag{align-self:flex-start;margin-bottom:1rem;font-size:.66rem;font-family:'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#04121f;background:var(--cy);padding:.25rem .7rem;border-radius:6px}
-  .pnote{margin-top:1.6rem;font-size:.86rem;color:var(--muted);border-left:2px solid var(--line2);padding-left:1rem;max-width:80ch}
+  .pcard.pc-web{--ac:#a78bfa} .pcard.pc-ai{--ac:#38bdf8} .pcard.pc-mon{--ac:#34d399}
+  .pcard.feat{border-color:rgba(56,189,248,.55);background:linear-gradient(180deg,#0d1a2c,var(--panel));box-shadow:0 24px 60px -28px rgba(56,189,248,.45)}
+  .picon{width:42px;height:42px;border-radius:11px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;color:var(--ac);font-size:1.15rem;margin-bottom:1rem}
+  .pcard .plabel{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
+  .pcard h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;margin:.4rem 0 .5rem}
+  .pcard .price{font-size:1.9rem;font-weight:800;letter-spacing:-.03em;margin:.2rem 0 .9rem;color:var(--ink)}
+  .pcard .price .pre{font-family:'Inter',sans-serif;font-size:.85rem;font-weight:500;color:var(--muted);letter-spacing:0;margin-right:.4rem}
+  .pcard .price b{color:var(--ac);font-weight:800}
+  .pcard>p{color:var(--muted);font-size:.94rem;margin-bottom:1.2rem}
+  .pcard ul{list-style:none;display:grid;gap:.6rem;margin-top:auto}
+  .pcard li{display:flex;gap:.6rem;font-size:.9rem;color:#cdd6e6}
+  .pcard li::before{content:"\2713";color:var(--ac);font-weight:700}
+  .ptag{align-self:flex-start;margin-bottom:.9rem;font-size:.64rem;font-family:'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#04121f;background:var(--cy);padding:.25rem .7rem;border-radius:6px}
+  .pfoot{display:flex;align-items:center;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;margin-top:1.8rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+  .pnote{font-size:.86rem;color:var(--muted);max-width:64ch;margin:0}
   .pnote strong{color:var(--ink)}
 
   .mosaic{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-auto-rows:202px;gap:14px}
@@ -289,37 +296,43 @@
         <p>Clear ranges up front, for serious business outcomes. No bloated retainers, no surprises.</p>
       </div>
       <div class="pgrid">
-        <div class="pcard">
+        <div class="pcard pc-web">
+          <div class="picon">&#9672;</div>
           <span class="plabel">Websites</span>
           <h3>Site Builds</h3>
-          <div class="price">From $1,000</div>
+          <div class="price"><span class="pre">From</span><b>$1,000</b></div>
           <p>For polished business websites that need clean design, responsive structure, and a professional launch path.</p>
           <ul><li>Basic 2-page website: starts at $1,000</li><li>3-4 page website: starts at $1,750</li><li>Full rewrite or new site from scratch: starts at $3,000</li></ul>
         </div>
-        <div class="pcard feat">
+        <div class="pcard pc-ai feat">
           <span class="ptag">Most popular</span>
+          <div class="picon">&#10022;</div>
           <span class="plabel">AI &amp; Automation</span>
           <h3>Workflow Build</h3>
-          <div class="price">From $2,500</div>
+          <div class="price"><span class="pre">From</span><b>$2,500</b></div>
           <p>For companies ready to automate repetitive work, connect systems, or build practical AI-powered operations.</p>
           <ul><li>Discovery and workflow design</li><li>Copilot Studio, Azure, or API integrations</li><li>Secure handoff and documentation</li></ul>
         </div>
-        <div class="pcard">
+        <div class="pcard pc-mon">
+          <div class="picon">&#9678;</div>
           <span class="plabel">Reliability</span>
           <h3>Monitoring Setup</h3>
-          <div class="price">$2,000&#8211;$7,500</div>
+          <div class="price"><b>$2,000&#8211;$7,500</b></div>
           <p>For teams that need dashboards, alerting, and operational visibility before small issues become expensive.</p>
           <ul><li>Dashboard and alert design</li><li>Synthetic checks and system visibility</li><li>Incident response workflow recommendations</li></ul>
         </div>
       </div>
-      <p class="pnote"><strong>Pricing note:</strong> These are estimated starting points. Final pricing can vary based on project complexity, content needs, integrations, platform setup, timeline, and support requirements. Monthly retainers typically start at $500 for updates, monitoring, and advisory support.</p>
+      <div class="pfoot">
+        <p class="pnote"><strong>Pricing note:</strong> These are estimated starting points. Final pricing can vary with project complexity, content, integrations, timeline, and support. Monthly retainers typically start at $500.</p>
+        <a class="btn btn-primary" href="#contact" style="flex-shrink:0">Get a fixed quote &#8594;</a>
+      </div>
     </div>
   </section>
 
   <section id="work">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="ff">Selected <em>work.</em></h2>
+        <h2 class="ff">Selected <em style="color:#c4b5fd">work.</em></h2>
         <p>Proof, not promises. Real systems, generalized numbers. <a class="link-arrow" href="/work/" style="white-space:nowrap">All work &#8594;</a></p>
       </div>
       <div class="mosaic">
@@ -358,7 +371,7 @@
         <div class="why-overlay">
           <div class="wrap why-head">
             <span class="eyebrow" style="color:var(--cy)">Why it matters</span>
-            <h2 class="ff">Two senior engineers, <em>full ownership.</em></h2>
+            <h2 class="ff">Two senior engineers, <em style="color:#7fe7c4">full ownership.</em></h2>
           </div>
           <div class="why-card" id="whyCard" aria-live="polite">
             <div class="oi-icon" id="oiIcon">&#8593;</div>
@@ -391,7 +404,7 @@
 
   <section>
     <div class="wrap">
-      <div class="sec-head"><h2 class="ff">A straightforward path from <em>idea to launch.</em></h2></div>
+      <div class="sec-head"><h2 class="ff">A straightforward path from <em style="color:#7fe7c4">idea to launch.</em></h2></div>
       <div class="psteps">
         <div class="pstep"><div class="pn ff">01</div><h4>Discover</h4><p>We define the business goal, audience, current systems, constraints, and the smallest useful launch path.</p></div>
         <div class="pstep"><div class="pn ff" style="color:var(--pu)">02</div><h4>Build</h4><p>We design and implement the site, workflow, or monitoring setup with regular updates and visible progress.</p></div>
@@ -421,7 +434,7 @@
   <section class="about" id="about">
     <div class="wrap about-grid">
       <div>
-        <h2 class="ff" style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:1.2rem">Enterprise systems experience, <em>delivered directly.</em></h2>
+        <h2 class="ff" style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:1.2rem">Enterprise systems experience, <em style="color:#c4b5fd">delivered directly.</em></h2>
         <p>We help growing companies access senior level engineering without the overhead of a full time hire or agency. A senior team of two, focused execution, real results.</p>
         <p>MCM Integrated is a New Jersey web design and automation studio serving Burlington and Camden County and the wider South Jersey and Jersey Shore area, from Medford, Mount Holly, and Lumberton to Cherry Hill, Moorestown, Voorhees, Trenton, Ocean City, and Long Beach Island.</p>
         <ul class="exp">
