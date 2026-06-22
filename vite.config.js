@@ -19,6 +19,8 @@ export default defineConfig({
         howItWorks: resolve(__dirname, 'how-it-works/index.html'),
         // Work — case studies and real results.
         work: resolve(__dirname, 'work/index.html'),
+        // Demo — fictional sample build (noindex) to showcase web design.
+        demo: resolve(__dirname, 'demo/index.html'),
         // Conversion confirmation page (noindex) — fires the lead/booking event.
         thankYou: resolve(__dirname, 'thank-you/index.html'),
         // Privacy notice for analytics and contact-form disclosure.
