@@ -74,6 +74,7 @@
   nav.links a{color:var(--muted)}
   nav.links a:hover{color:var(--ink)}
   nav.links a.active{color:var(--ink)}
+  nav.links .nav-contact{display:none}
   .nav-cta{border:1px solid var(--line2);padding:.5rem 1rem;border-radius:8px;font-size:.86rem;font-weight:600;color:var(--ink)}
   .nav-cta:hover{border-color:#fff}
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
@@ -184,6 +185,7 @@
     nav.links,.nav-cta{display:none}
     .burger{display:flex}
     nav.links.open{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);padding:1.4rem 5vw}
+    nav.links .nav-contact{display:block;color:var(--ink);font-weight:600}
     .stats,.dash,.demo-show,.qgrid,.timeline{grid-template-columns:1fr}
     .timeline::before{display:none}
     .case-head{grid-template-columns:1fr}
@@ -208,6 +210,7 @@
       <a href="/work/" class="active">Work</a>
       <a href="/about/">About</a>
       <a href="/blog/">Blog</a>
+      <a href="/#contact" class="nav-contact">Contact</a>
     </nav>
     <a class="nav-cta" href="/#contact">Contact</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
