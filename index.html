@@ -796,7 +796,7 @@
     if(whyOverlay){ whyOverlay.style.position='static'; whyOverlay.style.pointerEvents='auto'; }
     if(whyHint) whyHint.style.display='none';
     if(whyHead){ whyHead.style.position='static'; whyHead.style.margin='0 0 1rem'; whySticky.insertBefore(whyHead, canvas); }
-    canvas.style.position='static'; canvas.style.width='100%'; canvas.style.height='56vh'; canvas.style.display='block'; canvas.style.borderRadius='14px'; canvas.style.border='1px solid var(--line2)';
+    canvas.style.position='static'; canvas.style.width='100%'; canvas.style.height='56vh'; canvas.style.display='block'; canvas.style.borderRadius='14px'; canvas.style.border='1px solid var(--line2)'; canvas.style.touchAction='pan-y';
     card.style.position='static'; card.style.transform='none'; card.style.width='auto'; card.style.maxWidth='none'; card.style.margin='1rem auto 0'; card.style.top='auto'; card.style.right='auto';
     var ui=document.createElement('div'); ui.className='why-mui';
     ui.innerHTML='<button class="why-nav" type="button" data-d="-1" aria-label="Previous reason">&#8249;</button><div class="why-dots"></div><button class="why-nav" type="button" data-d="1" aria-label="Next reason">&#8250;</button>';
@@ -810,9 +810,9 @@
       else { var p=PD[i]; oiIcon.textContent=p.ic; oiIcon.style.color=p.c; oiIcon.style.borderColor=p.c; oiTitle.textContent=p.t; oiTitle.style.color=p.c; oiDesc.textContent=p.d; }
       card.classList.add('on');
     }
-    function mobileSelect(i){ msel=i; if(i<0){ scene.setFocus({index:-1,nextIndex:-1,blend:0,strength:0}); } else { scene.setFocus({index:i,nextIndex:-1,blend:0,strength:1}); } setMobileCard(i); updateDots(); }
+    function mobileSelect(i){ msel=i; if(i<0){ scene.setFocus({index:-1,nextIndex:-1,blend:0,strength:0}); } else { scene.setFocus({index:i,nextIndex:-1,blend:0,strength:0.82}); } setMobileCard(i); updateDots(); }
     ui.querySelectorAll('.why-nav').forEach(function(btn){ btn.addEventListener('click',function(){ var dir=parseInt(btn.getAttribute('data-d'),10); var n=(msel<0?(dir>0?0:PD.length-1):msel+dir); if(n<0)n=PD.length-1; if(n>=PD.length)n=0; mobileSelect(n); }); });
-    scene=initSolarScene(canvas,{centerXFrac:0.5,scale:0.92,interactive:true,onSelect:function(idx){ if(idx!=null) mobileSelect(idx); else mobileSelect(-1); }});
+    scene=initSolarScene(canvas,{centerXFrac:0.5,scale:0.92,interactive:true,onSelect:function(idx){ if(idx!=null) mobileSelect(idx); }});
     var grid0=document.getElementById('whyGrid'); if(grid0) grid0.style.display='none';
     setMobileCard(-1); updateDots();
     window.requestAnimationFrame(function(){ scene.resize(); });
