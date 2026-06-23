@@ -839,13 +839,18 @@ export function initSolarScene(canvas, opts) {
     const dy = (e.clientY - rect.top) - rect.height * 0.5;
     const cos = Math.cos(0.02);
     const sin = Math.sin(0.02);
-    const rx = dx * cos - dy * sin;
-    const ry = dx * sin + dy * cos;
+    // Map the screen point back through the live fly-camera (rotation, then
+    // zoom + pan) so taps land on the right planet even while zoomed into one.
+    const rx = (dx * cos - dy * sin) / cam.z + cam.x;
+    const ry = (dx * sin + dy * cos) / cam.z + cam.y;
+    let best = -1;
+    let bestDist = Infinity;
     for (let i = 0; i < planetPositions.length; i += 1) {
       const planet = planetPositions[i];
-      if (Math.hypot(rx - planet.x, ry - planet.y) <= planet.radius * 1.5) { onSelect(planet.index); return; }
+      const d = Math.hypot(rx - planet.x, ry - planet.y);
+      if (d <= planet.radius * 1.6 && d < bestDist) { best = planet.index; bestDist = d; }
     }
-    onSelect(null);
+    onSelect(best >= 0 ? best : null);
   };
 
   if (interactive) {
