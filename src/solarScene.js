@@ -34,6 +34,7 @@ export function initSolarScene(canvas, opts) {
   const scale = opts.scale != null ? opts.scale : 1;
   const interactive = opts.interactive !== false;
   const onSelect = opts.onSelect || function () {};
+  const dprCap = opts.dprCap != null ? opts.dprCap : Infinity;
   const cam = { x: 0, y: 0, z: 1 };
   let focus = { index: -1, nextIndex: -1, blend: 0, strength: 0 };
   const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -80,7 +81,7 @@ export function initSolarScene(canvas, opts) {
 
   const resize = () => {
     const rect = canvas.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = Math.min(window.devicePixelRatio || 1, dprCap);
     canvas.width = Math.max(1, Math.floor(rect.width * dpr));
     canvas.height = Math.max(1, Math.floor(rect.height * dpr));
     canvas.style.width = rect.width + 'px';
