@@ -85,9 +85,10 @@ const nav = document.querySelector('.nav-links');
 // each page (future blog posts inherit it too). The home SPA renders its own
 // matching nav from App.jsx. Contact is pulled into its own .nav-cta element so
 // the header has three zones (brand / centered links / CTA) and the links sit
-// centered, matching the home and work pages.
+// centered, matching the home and work pages. A second Contact link lives inside
+// the link list (.nav-contact) but only shows in the mobile dropdown.
 if (nav) {
-  nav.innerHTML = '<a href=\"/\">Home</a><a href=\"/web-design/\">Web Design</a><a href=\"/ai-automation/\">AI Automation</a><a href=\"/monitoring/\">Monitoring</a><a href=\"/work/\">Work</a><a href=\"/about/\">About</a><a href=\"/blog/\">Blog</a>';
+  nav.innerHTML = '<a href=\"/\">Home</a><a href=\"/web-design/\">Web Design</a><a href=\"/ai-automation/\">AI Automation</a><a href=\"/monitoring/\">Monitoring</a><a href=\"/work/\">Work</a><a href=\"/about/\">About</a><a href=\"/blog/\">Blog</a><a href=\"/#contact\" class=\"nav-contact\">Contact</a>';
   if (!document.querySelector('.nav-cta')) {
     const cta = document.createElement('a');
     cta.className = 'nav-cta';

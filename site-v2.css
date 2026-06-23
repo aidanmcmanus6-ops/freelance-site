@@ -31,13 +31,15 @@ body.site-v2 .button-secondary{border:1px solid var(--line2);color:#fff;backgrou
 
 /* Header — three zones: brand (left) / centered links / Contact CTA (right).
    Reset the legacy styles.css .nav-links margin-left:auto, which would otherwise
-   shove the links to the right edge on these pages. */
+   shove the links to the right edge on these pages. .nav-contact is a duplicate
+   Contact link inside the list, shown only in the mobile dropdown. */
 body.site-v2 .site-header{position:sticky;top:0;z-index:50;background:rgba(4,6,12,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 body.site-v2 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 0}
 body.site-v2 .brand-logo{height:44px;width:auto}
 body.site-v2 .nav-links{display:flex;align-items:center;gap:1.5rem;font-size:.92rem;font-weight:500;margin:0}
 body.site-v2 .nav-links a{color:var(--muted)}
 body.site-v2 .nav-links a:hover{color:#fff}
+body.site-v2 .nav-links .nav-contact{display:none}
 body.site-v2 .nav-cta{border:1px solid var(--line2);padding:.5rem 1rem;border-radius:8px;font-size:.86rem;font-weight:600;color:#fff;white-space:nowrap}
 body.site-v2 .nav-cta:hover{border-color:#fff}
 body.site-v2 .nav-toggle span{background:#fff}
@@ -183,4 +185,5 @@ body.site-v2 .cat-span-4 .cat-card h3{line-height:1.35}
   body.site-v2 .nav-toggle{display:inline-flex}
   body.site-v2 .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:1rem;background:#070b14;border-bottom:1px solid var(--line);padding:1.4rem 5vw;display:none}
   body.site-v2 .nav-links.open{display:flex}
+  body.site-v2 .nav-links .nav-contact{display:block;color:#fff;font-weight:600}
 }
