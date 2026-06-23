@@ -346,6 +346,8 @@
   .why-card .oi-icon{width:48px;height:48px;border-radius:12px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:.9rem;color:#9bdcfb}
   .why-card h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;margin-bottom:.55rem;transition:color .3s ease}
   .why-card p{color:var(--muted);font-size:.96rem}
+  .why-card.pop{animation:cardpop .44s cubic-bezier(.2,.8,.2,1)}
+  @keyframes cardpop{0%{transform:scale(.95)}55%{transform:scale(1.025)}100%{transform:scale(1)}}
   .why-hint{position:absolute;left:50%;bottom:2.4rem;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);transition:opacity .4s ease}
   .why-grid{display:none;grid-template-columns:repeat(3,1fr);gap:1.2rem;padding:1rem 0}
   .why-grid.show{display:grid}
@@ -438,6 +440,7 @@
   }
   @media(prefers-reduced-motion:reduce){
     .scrollcue .ln{animation:none}
+    .why-card.pop{animation:none}
   }
 </style>
 </head>
@@ -796,8 +799,8 @@
     if(whyOverlay){ whyOverlay.style.position='static'; whyOverlay.style.pointerEvents='auto'; }
     if(whyHint) whyHint.style.display='none';
     if(whyHead){ whyHead.style.position='static'; whyHead.style.margin='0 0 1rem'; whySticky.insertBefore(whyHead, canvas); }
-    canvas.style.position='static'; canvas.style.width='100%'; canvas.style.height='56vh'; canvas.style.display='block'; canvas.style.borderRadius='14px'; canvas.style.border='1px solid var(--line2)'; canvas.style.touchAction='pan-y';
-    card.style.position='static'; card.style.transform='none'; card.style.width='auto'; card.style.maxWidth='none'; card.style.margin='1rem auto 0'; card.style.top='auto'; card.style.right='auto';
+    canvas.style.position='static'; canvas.style.width='100%'; canvas.style.height='50vh'; canvas.style.display='block'; canvas.style.borderRadius='14px'; canvas.style.border='1px solid var(--line2)'; canvas.style.touchAction='pan-y';
+    card.style.position='static'; card.style.transform='none'; card.style.width='auto'; card.style.maxWidth='none'; card.style.margin='1rem auto 0'; card.style.top='auto'; card.style.right='auto'; card.style.background='rgba(10,15,28,.95)';
     var ui=document.createElement('div'); ui.className='why-mui';
     ui.innerHTML='<button class="why-nav" type="button" data-d="-1" aria-label="Previous reason">&#8249;</button><div class="why-dots"></div><button class="why-nav" type="button" data-d="1" aria-label="Next reason">&#8250;</button>';
     canvas.insertAdjacentElement('afterend', ui);
@@ -806,9 +809,12 @@
     PD.forEach(function(p,i){ var dt=document.createElement('button'); dt.type='button'; dt.className='why-dot'; dt.style.setProperty('--dc',p.c); dt.setAttribute('aria-label','Reason '+(i+1)); dt.addEventListener('click',function(){ mobileSelect(i); }); dotsWrap.appendChild(dt); });
     function updateDots(){ var ds=dotsWrap.querySelectorAll('.why-dot'); for(var k=0;k<ds.length;k++){ ds[k].classList.toggle('on', k===msel); } }
     function setMobileCard(i){
-      if(i<0){ oiIcon.textContent='✷'; oiIcon.style.color='#9bdcfb'; oiIcon.style.borderColor='#9bdcfb'; oiTitle.textContent='Six reasons it works'; oiTitle.style.color='#fff'; oiDesc.textContent='Tap a planet, or use the arrows, to fly through what makes a senior two-engineer studio different.'; }
+      var col=(i<0)?'#9bdcfb':PD[i].c;
+      if(i<0){ oiIcon.textContent='✷'; oiIcon.style.color=col; oiIcon.style.borderColor=col; oiTitle.textContent='Six reasons it works'; oiTitle.style.color='#fff'; oiDesc.textContent='Tap a planet, or use the arrows, to fly through what makes a senior two-engineer studio different.'; }
       else { var p=PD[i]; oiIcon.textContent=p.ic; oiIcon.style.color=p.c; oiIcon.style.borderColor=p.c; oiTitle.textContent=p.t; oiTitle.style.color=p.c; oiDesc.textContent=p.d; }
+      card.style.borderColor=col; card.style.boxShadow='0 0 0 1px '+col+'55, 0 16px 44px -18px '+col+'aa';
       card.classList.add('on');
+      card.classList.remove('pop'); void card.offsetWidth; card.classList.add('pop');
     }
     function mobileSelect(i){ msel=i; if(i<0){ scene.setFocus({index:-1,nextIndex:-1,blend:0,strength:0}); } else { scene.setFocus({index:i,nextIndex:-1,blend:0,strength:0.82}); } setMobileCard(i); updateDots(); }
     ui.querySelectorAll('.why-nav').forEach(function(btn){ btn.addEventListener('click',function(){ var dir=parseInt(btn.getAttribute('data-d'),10); var n=(msel<0?(dir>0?0:PD.length-1):msel+dir); if(n<0)n=PD.length-1; if(n>=PD.length)n=0; mobileSelect(n); }); });
