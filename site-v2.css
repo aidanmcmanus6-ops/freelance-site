@@ -166,6 +166,9 @@ body.site-v2 .cat-feature h3{font-family:'Inter',system-ui,sans-serif;font-size:
 body.site-v2 .cat-span-4 .cat-card h3{line-height:1.35}
 
 @media(max-width:860px){
+  body.site-v2{--muted:#b2bccf;--dim:#74829a;--line:rgba(255,255,255,.14)}
+  body.site-v2 .service-entry,body.site-v2 .faq-row,body.site-v2 .related-link{border-color:var(--line2)}
+  body.site-v2 .service-entry-body,body.site-v2 .faq-row p,body.site-v2 .related-link p,body.site-v2 .pricing-tier span,body.site-v2 .section-prose p{font-size:.97rem}
   body.site-v2 .hero.hero-v2{min-height:auto}
   body.site-v2 .hero-grid{grid-template-columns:1fr}
   body.site-v2 .hero-card{display:none}

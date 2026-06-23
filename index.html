@@ -353,6 +353,12 @@
   .why-gcard .oi-icon{width:42px;height:42px;border-radius:10px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:.7rem}
   .why-gcard h3{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:500;margin-bottom:.35rem}
   .why-gcard p{color:var(--muted);font-size:.9rem}
+  .why-mui{display:none;align-items:center;justify-content:center;gap:.7rem;margin:1.1rem 0 .2rem}
+  .why-nav{width:42px;height:42px;border-radius:50%;border:1px solid var(--line2);background:rgba(8,13,24,.6);color:var(--ink);font-size:1.4rem;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .why-nav:active{background:rgba(255,255,255,.08)}
+  .why-dots{display:flex;gap:.55rem;align-items:center}
+  .why-dot{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.26);cursor:pointer;transition:transform .2s ease,background .2s ease}
+  .why-dot.on{background:var(--dc,var(--cy));transform:scale(1.55)}
 
   .testi{position:relative;isolation:isolate}
   .testi::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(44% 60% at 86% 24%,rgba(251,191,36,.04),transparent 62%)}
@@ -416,6 +422,7 @@
   .foot-areas{max-width:80ch;color:var(--dim);font-size:.84rem;margin-top:1rem}
 
   @media(max-width:860px){
+    :root{--muted:#b2bccf;--dim:#74829a;--line:rgba(255,255,255,.14)}
     nav.links,.nav-cta{display:none}
     .burger{display:flex}
     nav.links.open{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);padding:1.4rem 5vw}
@@ -423,9 +430,11 @@
     .mosaic{grid-auto-rows:190px}
     .demo-tile{grid-row:span 1}
     .why-grid.show{grid-template-columns:1fr}
-    .why-head{top:3rem}
+    .why-mui{display:flex}
     .srow{grid-template-columns:54px 1fr 44px;gap:1rem}
     .srow .desc{display:none}
+    .stat .l,.tile .s,.pcard>p,.pstep p,.faq-a p,.contact-details li,.qsm blockquote,.why-card p,.why-gcard p{font-size:.96rem}
+    .cnote,.hero-cta .tiny{font-size:.84rem}
   }
   @media(prefers-reduced-motion:reduce){
     .scrollcue .ln{animation:none}
@@ -765,17 +774,54 @@
   ];
   var oiIcon=document.getElementById('oiIcon'),oiTitle=document.getElementById('oiTitle'),oiDesc=document.getElementById('oiDesc'),card=document.getElementById('whyCard');
   var canvas=document.getElementById('solar');
-  var scene=initSolarScene(canvas,{centerXFrac:0.46,interactive:false});
-  var curr=-2;
-  function setCard(i){ if(i===curr)return; curr=i; if(i<0){card.classList.remove('on');return;} var p=PD[i]; oiIcon.textContent=p.ic; oiIcon.style.color=p.c; oiIcon.style.borderColor=p.c; oiTitle.textContent=p.t; oiTitle.style.color=p.c; oiDesc.textContent=p.d; card.classList.add('on'); }
   var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var mobile=window.matchMedia&&window.matchMedia('(max-width:860px)').matches;
-  if(!reduced && !mobile){
-    var stage=document.getElementById('whyStage'),sticky=document.getElementById('whySticky'),hint=document.getElementById('whyHint');
-    sticky.style.position='absolute';sticky.style.top='0';
+  var curr=-2;
+  function setCard(i){ if(i===curr)return; curr=i; if(i<0){card.classList.remove('on');return;} var p=PD[i]; oiIcon.textContent=p.ic; oiIcon.style.color=p.c; oiIcon.style.borderColor=p.c; oiTitle.textContent=p.t; oiTitle.style.color=p.c; oiDesc.textContent=p.d; card.classList.add('on'); }
+  function buildGrid(){ var grid=document.getElementById('whyGrid'); PD.forEach(function(p){ var d=document.createElement('div'); d.className='why-gcard'; var ic=document.createElement('div'); ic.className='oi-icon'; ic.style.color=p.c; ic.style.borderColor=p.c; ic.textContent=p.ic; var h=document.createElement('h3'); h.className='ff'; h.textContent=p.t; var pp=document.createElement('p'); pp.textContent=p.d; d.appendChild(ic); d.appendChild(h); d.appendChild(pp); grid.appendChild(d); }); grid.classList.add('show'); }
+
+  var scene;
+  var whyStage=document.getElementById('whyStage'),whySticky=document.getElementById('whySticky'),whyHint=document.getElementById('whyHint'),whyHead=document.querySelector('.why-head'),whyOverlay=document.querySelector('.why-overlay');
+
+  if(reduced){
+    if(canvas) canvas.style.display='none';
+    whyStage.style.height='auto'; whySticky.style.position='static'; whySticky.style.height='auto'; whySticky.style.overflow='visible';
+    if(whyOverlay) whyOverlay.style.position='static';
+    if(whyHead){ whyHead.style.position='static'; whyHead.style.margin='0 0 1rem'; }
+    if(whyHint) whyHint.style.display='none';
+    if(card) card.style.display='none';
+    buildGrid();
+  } else if(mobile){
+    whyStage.style.height='auto'; whySticky.style.position='static'; whySticky.style.height='auto'; whySticky.style.overflow='visible';
+    if(whyOverlay){ whyOverlay.style.position='static'; whyOverlay.style.pointerEvents='auto'; }
+    if(whyHint) whyHint.style.display='none';
+    if(whyHead){ whyHead.style.position='static'; whyHead.style.margin='0 0 1rem'; whySticky.insertBefore(whyHead, canvas); }
+    canvas.style.position='static'; canvas.style.width='100%'; canvas.style.height='56vh'; canvas.style.display='block'; canvas.style.borderRadius='14px'; canvas.style.border='1px solid var(--line2)';
+    card.style.position='static'; card.style.transform='none'; card.style.width='auto'; card.style.maxWidth='none'; card.style.margin='1rem auto 0'; card.style.top='auto'; card.style.right='auto';
+    var ui=document.createElement('div'); ui.className='why-mui';
+    ui.innerHTML='<button class="why-nav" type="button" data-d="-1" aria-label="Previous reason">&#8249;</button><div class="why-dots"></div><button class="why-nav" type="button" data-d="1" aria-label="Next reason">&#8250;</button>';
+    canvas.insertAdjacentElement('afterend', ui);
+    var dotsWrap=ui.querySelector('.why-dots');
+    var msel=-1;
+    PD.forEach(function(p,i){ var dt=document.createElement('button'); dt.type='button'; dt.className='why-dot'; dt.style.setProperty('--dc',p.c); dt.setAttribute('aria-label','Reason '+(i+1)); dt.addEventListener('click',function(){ mobileSelect(i); }); dotsWrap.appendChild(dt); });
+    function updateDots(){ var ds=dotsWrap.querySelectorAll('.why-dot'); for(var k=0;k<ds.length;k++){ ds[k].classList.toggle('on', k===msel); } }
+    function setMobileCard(i){
+      if(i<0){ oiIcon.textContent='✷'; oiIcon.style.color='#9bdcfb'; oiIcon.style.borderColor='#9bdcfb'; oiTitle.textContent='Six reasons it works'; oiTitle.style.color='#fff'; oiDesc.textContent='Tap a planet, or use the arrows, to fly through what makes a senior two-engineer studio different.'; }
+      else { var p=PD[i]; oiIcon.textContent=p.ic; oiIcon.style.color=p.c; oiIcon.style.borderColor=p.c; oiTitle.textContent=p.t; oiTitle.style.color=p.c; oiDesc.textContent=p.d; }
+      card.classList.add('on');
+    }
+    function mobileSelect(i){ msel=i; if(i<0){ scene.setFocus({index:-1,nextIndex:-1,blend:0,strength:0}); } else { scene.setFocus({index:i,nextIndex:-1,blend:0,strength:1}); } setMobileCard(i); updateDots(); }
+    ui.querySelectorAll('.why-nav').forEach(function(btn){ btn.addEventListener('click',function(){ var dir=parseInt(btn.getAttribute('data-d'),10); var n=(msel<0?(dir>0?0:PD.length-1):msel+dir); if(n<0)n=PD.length-1; if(n>=PD.length)n=0; mobileSelect(n); }); });
+    scene=initSolarScene(canvas,{centerXFrac:0.5,scale:0.92,interactive:true,onSelect:function(idx){ if(idx!=null) mobileSelect(idx); else mobileSelect(-1); }});
+    var grid0=document.getElementById('whyGrid'); if(grid0) grid0.style.display='none';
+    setMobileCard(-1); updateDots();
+    window.requestAnimationFrame(function(){ scene.resize(); });
+  } else {
+    scene=initSolarScene(canvas,{centerXFrac:0.46,interactive:false});
+    whySticky.style.position='absolute';whySticky.style.top='0';
     var raf=0;
     function onScroll(){ if(raf)return; raf=requestAnimationFrame(function(){ raf=0;
-      var vh=window.innerHeight,rect=stage.getBoundingClientRect(),total=Math.max(1,rect.height-vh);
+      var vh=window.innerHeight,rect=whyStage.getBoundingClientRect(),total=Math.max(1,rect.height-vh);
       var progress=Math.min(1,Math.max(0,-rect.top/total));
       var count=PD.length,seg=Math.min(count-0.0001,progress*count),index=Math.floor(seg),local=seg-index;
       var ease=function(v){return v*v*(3-2*v);};
@@ -786,22 +832,16 @@
       else if(index===count-1 && local>0.85) strength=ease((1-local)/0.15);
       scene.setFocus({index:index,nextIndex:traveling?index+1:-1,blend:blend,strength:strength});
       var top=-rect.top,mode=top<0?'before':top>=total?'after':'during';
-      if(sticky.dataset.pin!==mode){ sticky.dataset.pin=mode;
-        if(mode==='during'){sticky.style.position='fixed';sticky.style.top='0';sticky.style.bottom='auto';}
-        else if(mode==='after'){sticky.style.position='absolute';sticky.style.top='auto';sticky.style.bottom='0';}
-        else {sticky.style.position='absolute';sticky.style.top='0';sticky.style.bottom='auto';}
+      if(whySticky.dataset.pin!==mode){ whySticky.dataset.pin=mode;
+        if(mode==='during'){whySticky.style.position='fixed';whySticky.style.top='0';whySticky.style.bottom='auto';}
+        else if(mode==='after'){whySticky.style.position='absolute';whySticky.style.top='auto';whySticky.style.bottom='0';}
+        else {whySticky.style.position='absolute';whySticky.style.top='0';whySticky.style.bottom='auto';}
       }
       var visible=progress>0.005 && strength>0.75 && blend<0.25 ? index : -1;
       setCard(visible);
-      if(hint) hint.style.opacity=progress>0.02?'0':'';
+      if(whyHint) whyHint.style.opacity=progress>0.02?'0':'';
     }); }
     onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
-  } else {
-    var stage2=document.getElementById('whyStage'),sticky2=document.getElementById('whySticky'),grid=document.getElementById('whyGrid'),hint2=document.getElementById('whyHint');
-    stage2.style.height='auto'; sticky2.style.position='static'; sticky2.style.height='60vh';
-    if(hint2) hint2.style.display='none';
-    PD.forEach(function(p){ var d=document.createElement('div'); d.className='why-gcard'; var ic=document.createElement('div'); ic.className='oi-icon'; ic.style.color=p.c; ic.style.borderColor=p.c; ic.textContent=p.ic; var h=document.createElement('h3'); h.className='ff'; h.textContent=p.t; var pp=document.createElement('p'); pp.textContent=p.d; d.appendChild(ic); d.appendChild(h); d.appendChild(pp); grid.appendChild(d); });
-    grid.classList.add('show');
   }
 </script>
 </body>
