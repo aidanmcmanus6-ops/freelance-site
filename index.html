@@ -402,6 +402,10 @@
   .about-side .row span:first-child{color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
   .about-side .row span:last-child{color:var(--ink);text-align:right}
   .link-arrow{color:var(--cy);font-weight:600}
+  .about-excerpt{display:block;color:inherit;transition:opacity .25s ease,transform .25s ease}
+  .about-excerpt:hover{opacity:.94;transform:translateY(-2px)}
+  .about-excerpt .link-arrow{display:inline-block;margin-top:1.1rem}
+  .about-excerpt:hover .link-arrow{text-decoration:underline}
 
   .contact{position:relative;isolation:isolate}
   .contact::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(48% 60% at 86% 32%,rgba(56,189,248,.06),transparent 62%)}
@@ -662,17 +666,12 @@
 
   <section class="about" id="about">
     <div class="wrap about-grid">
-      <div>
-        <h2 class="ff" style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:1.2rem">Enterprise systems experience, <em style="color:#c4b5fd">delivered directly.</em></h2>
-        <p>We help growing companies access senior level engineering without the overhead of a full time hire or agency. A senior team of two, focused execution, real results.</p>
-        <p>MCM Integrated is a New Jersey web design and automation studio serving Burlington and Camden County and the wider South Jersey and Jersey Shore area, from Medford, Mount Holly, and Lumberton to Cherry Hill, Moorestown, Voorhees, Trenton, Ocean City, and Long Beach Island.</p>
-        <ul class="exp">
-          <li>Cloud automation and tool integration for mission critical environments</li>
-          <li>Observability, dashboarding, and alerting that reduce risk</li>
-          <li>Secure workflows and authorization patterns that protect data and identity</li>
-        </ul>
-        <p><a class="link-arrow" href="/about/">More about MCM Integrated &#8594;</a></p>
-      </div>
+      <a class="about-excerpt" href="/about/">
+        <h2 class="ff" style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:1.2rem">Enterprise-grade engineering, at a small-business <em style="color:#c4b5fd">price.</em></h2>
+        <p>We spent years building the websites, automation, and monitoring that large organizations run on. We started MCM Integrated to put that same engineering in reach of small and growing businesses, without the agency overhead, the hand-offs to junior staff, or the enterprise invoice.</p>
+        <p>No corner offices to bankroll, no shareholders to keep happy at your expense. You deal with the two people doing the work, and you pay for the work.</p>
+        <span class="link-arrow">Read our story &#8594;</span>
+      </a>
       <div class="about-side">
         <div class="row"><span>Team</span><span>Two senior engineers</span></div>
         <div class="row"><span>Based in</span><span>Burlington County, NJ</span></div>
