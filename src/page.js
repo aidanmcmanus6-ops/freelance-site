@@ -29,7 +29,7 @@ else if (servicePath.startsWith('/monitoring')) document.body.classList.add('pag
 // but adopts the v2 header, footer, background, and typography so the whole
 // site reads as one piece).
 const isBlog = servicePath.startsWith('/blog');
-const v2Paths = ['/web-design', '/ai-automation', '/monitoring', '/about'];
+const v2Paths = ['/web-design', '/ai-automation', '/monitoring', '/how-it-works', '/about'];
 const useV2 = isBlog || v2Paths.some((p) => servicePath.startsWith(p));
 if (useV2) {
   document.body.classList.add('site-v2');
@@ -88,7 +88,7 @@ const nav = document.querySelector('.nav-links');
 // centered, matching the home and work pages. A second Contact link lives inside
 // the link list (.nav-contact) but only shows in the mobile dropdown.
 if (nav) {
-  nav.innerHTML = '<a href=\"/\">Home</a><a href=\"/web-design/\">Web Design</a><a href=\"/ai-automation/\">AI Automation</a><a href=\"/monitoring/\">Monitoring</a><a href=\"/work/\">Work</a><a href=\"/about/\">About</a><a href=\"/blog/\">Blog</a><a href=\"/#contact\" class=\"nav-contact\">Contact</a>';
+  nav.innerHTML = '<a href=\"/\">Home</a><a href=\"/web-design/\">Web Design</a><a href=\"/ai-automation/\">AI Automation</a><a href=\"/monitoring/\">Monitoring</a><a href=\"/work/\">Work</a><a href=\"/how-it-works/\">How It Works</a><a href=\"/about/\">About</a><a href=\"/blog/\">Blog</a><a href=\"/#contact\" class=\"nav-contact\">Contact</a>';
   if (!document.querySelector('.nav-cta')) {
     const cta = document.createElement('a');
     cta.className = 'nav-cta';
@@ -265,7 +265,7 @@ if (finePointer && !reduceMotion) {
   }
 }
 
-// ── Service-page hero scenes ──────────────────
+// ── Service-page hero scenes ──────────────
 // Living dioramas for each service hero (web rebuild, ai pipeline, mon heal).
 // They play inside the hero card, with the flow-field nebula behind.
 const sceneKind = document.body.classList.contains('page-web') ? 'web'
