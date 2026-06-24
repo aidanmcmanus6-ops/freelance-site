@@ -68,6 +68,8 @@
   .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.04)}
 
   header.site{position:sticky;top:0;z-index:50;background:rgba(5,8,15,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  header.site.scrolled{background:rgba(5,8,15,.9)}
+  .scroll-progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--pu),var(--cy));box-shadow:0 0 12px rgba(56,189,248,.45);pointer-events:none}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
   .brand img{height:44px;width:auto}
   nav.links{display:flex;align-items:center;gap:1.5rem;font-size:.92rem;font-weight:500}
@@ -168,12 +170,13 @@
   .qsm p{font-size:.98rem;color:var(--ink)}
   .who{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.06em;color:var(--muted);margin-top:.9rem}
 
-  .final{position:relative;border:1px solid var(--line2);border-radius:22px;padding:3.5rem;text-align:center;overflow:hidden;background:linear-gradient(180deg,var(--panel2),var(--panel))}
-  .final::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 100% at 50% 0%,rgba(56,189,248,.18),transparent 70%);z-index:0}
+  .final{position:relative;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;border:1px solid var(--line2);border-radius:22px;padding:3rem 3.5rem;overflow:hidden;background:linear-gradient(180deg,var(--panel2),var(--panel))}
+  .final::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 50% 0%,rgba(56,189,248,.2),transparent 70%);z-index:0}
   .final>*{position:relative;z-index:1}
-  .final h2{font-size:clamp(2rem,4vw,3rem);font-weight:500}
-  .final p{color:var(--muted);margin:1rem auto 2rem;max-width:48ch}
-  .final-cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+  .final h2{font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:500}
+  .final h2 em{font-style:italic;color:var(--gr)}
+  .final p{color:var(--muted);margin:.8rem 0 0;max-width:52ch}
+  .final-cta{display:flex;gap:.9rem;justify-content:flex-end;flex-wrap:wrap}
 
   footer.site{border-top:1px solid var(--line);padding:3rem 0 2.4rem;color:var(--muted);font-size:.9rem;margin-top:2rem}
   .foot-areas{max-width:80ch;color:var(--dim);font-size:.84rem;margin:.4rem 0 1.4rem}
@@ -192,7 +195,8 @@
     .bigstat{align-items:flex-start;text-align:left}
     .lrow{grid-template-columns:1fr;gap:.3rem}
     .lval{justify-content:flex-start;text-align:left}
-    .final{padding:2.4rem 1.4rem}
+    .final{grid-template-columns:1fr;padding:2.4rem 1.6rem}
+    .final-cta{justify-content:flex-start}
     .stat .l,.tphase p,.dcap,.note,.bigstat .u{font-size:.95rem}
   }
 </style>
@@ -208,6 +212,7 @@
       <a href="/ai-automation/">AI Automation</a>
       <a href="/monitoring/">Monitoring</a>
       <a href="/work/" class="active">Work</a>
+      <a href="/how-it-works/">How It Works</a>
       <a href="/about/">About</a>
       <a href="/blog/">Blog</a>
       <a href="/#contact" class="nav-contact">Contact</a>
@@ -215,6 +220,7 @@
     <a class="nav-cta" href="/#contact">Contact</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 </header>
 
 <main>
@@ -327,12 +333,13 @@
   <section>
     <div class="wrap">
       <div class="final">
-        <p class="eyebrow" style="color:var(--cy)">Your project</p>
-        <h2 style="margin-top:.8rem">Want numbers like these?</h2>
-        <p>Tell us what you are trying to do and we will tell you the smartest next step, the timeline, and the cost. No pressure, no jargon.</p>
+        <div>
+          <h2>Build something polished, useful, and <em>reliable.</em></h2>
+          <p>Start with a project request or book a discovery call if you want to talk through the best next move first.</p>
+        </div>
         <div class="final-cta">
-          <a class="btn btn-primary" href="/#contact">Start your project</a>
-          <a class="btn btn-ghost" href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener">Book a call</a>
+          <a class="btn btn-primary" href="/#contact">Start Your Project</a>
+          <a class="btn btn-ghost" href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener">Book a Call</a>
         </div>
       </div>
     </div>
@@ -352,6 +359,9 @@
 <script>
   var b=document.getElementById('burger'),n=document.getElementById('nav');
   b&&b.addEventListener('click',function(){n.classList.toggle('open');});
+  var hdr=document.querySelector('header.site'),prog=document.querySelector('.scroll-progress');
+  function onScroll(){if(hdr)hdr.classList.toggle('scrolled',window.scrollY>12);if(prog){var max=document.documentElement.scrollHeight-window.innerHeight;prog.style.transform='scaleX('+(max>0?Math.min(1,window.scrollY/max):0)+')';}}
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll,{passive:true});
 </script>
 </body>
 </html>
