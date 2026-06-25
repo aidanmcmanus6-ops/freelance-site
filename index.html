@@ -422,6 +422,15 @@
   .cform button{width:100%;margin-top:1.2rem;justify-content:center}
   .cnote{font-size:.78rem;color:var(--dim);margin-top:.9rem}
   .cnote a{color:var(--cy)}
+  .blogfeed .sec-head{margin-bottom:2.2rem}
+  .bfgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .bfcard{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:1.6rem;transition:transform .3s ease,border-color .3s ease}
+  .bfcard:hover{transform:translateY(-4px);border-color:var(--line2)}
+  .bf-k{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase}
+  .bfcard h3{font-family:'Fraunces',serif;font-size:1.18rem;font-weight:500;line-height:1.22;letter-spacing:-.01em;margin:.55rem 0 .5rem}
+  .bfcard p{color:var(--muted);font-size:.92rem;flex:1}
+  .bf-go{margin-top:1rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.06em;color:#dbe6f5;display:inline-flex;align-items:center;gap:.4rem;transition:gap .3s ease}
+  .bfcard:hover .bf-go{gap:.7rem}
 
   footer.site{border-top:1px solid var(--line);padding:3rem 0 2.4rem;color:var(--muted);font-size:.9rem;margin-top:2rem}
   .foot-nav{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin-top:.8rem}
@@ -434,7 +443,7 @@
     .burger{display:flex}
     nav.links.open{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);padding:1.4rem 5vw}
     nav.links .nav-contact{display:block;color:#fff;font-weight:600}
-    .strip-in,.psteps,.mosaic,.pgrid,.testi .tgrid,.faq-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+    .strip-in,.psteps,.mosaic,.pgrid,.testi .tgrid,.faq-grid,.about-grid,.contact-grid,.bfgrid{grid-template-columns:1fr}
     .mosaic{grid-auto-rows:190px}
     .demo-tile{grid-row:span 1}
     .why-grid.show{grid-template-columns:1fr}
@@ -724,6 +733,35 @@
           <button class="btn btn-primary" type="submit">Send request</button>
           <p class="cnote">Requests are sent directly to aidan@mcm-integrated.com. Prefer to talk first? <a href="https://calendar.app.google/STcrArBdLP484i9f8" target="_blank" rel="noopener">Book a call</a>.</p>
         </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="blogfeed" id="from-the-blog">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="ff">From the <em>blog.</em></h2>
+        <p>Plain-English guides on websites, AI, and monitoring for small businesses. <a class="link-arrow" href="/blog/" style="white-space:nowrap">All articles &#8594;</a></p>
+      </div>
+      <div class="bfgrid">
+        <a class="bfcard" href="/blog/small-business-website-cost-south-jersey/">
+          <span class="bf-k" style="color:#c4b5fd">Web Design</span>
+          <h3>How Much Does a Small Business Website Cost in South Jersey? (2026)</h3>
+          <p>Real price ranges, what actually drives the cost, and the ongoing fees nobody mentions.</p>
+          <span class="bf-go">Read the guide &#8594;</span>
+        </a>
+        <a class="bfcard" href="/blog/what-to-automate/">
+          <span class="bf-k" style="color:var(--cy)">AI &amp; Automation</span>
+          <h3>What's Actually Worth Automating in Your Business (And What Isn't)</h3>
+          <p>How to tell which tasks are worth automating, what makes a good candidate, and where to start.</p>
+          <span class="bf-go">Read the guide &#8594;</span>
+        </a>
+        <a class="bfcard" href="/blog/monitoring-third-party-tools/">
+          <span class="bf-k" style="color:var(--gr)">Monitoring</span>
+          <h3>The Outage That Isn't Your Fault: Monitoring Your Third-Party Tools</h3>
+          <p>Your site can be up while the booking widget or checkout quietly fails. How to catch it first.</p>
+          <span class="bf-go">Read the guide &#8594;</span>
+        </a>
       </div>
     </div>
   </section>
