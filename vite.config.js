@@ -13,6 +13,12 @@ export default defineConfig({
         webDesign: resolve(__dirname, 'web-design/index.html'),
         aiAutomation: resolve(__dirname, 'ai-automation/index.html'),
         monitoring: resolve(__dirname, 'monitoring/index.html'),
+        // Web design town landing pages (local SEO).
+        townCherryHill: resolve(__dirname, 'web-design/cherry-hill/index.html'),
+        townMoorestown: resolve(__dirname, 'web-design/moorestown/index.html'),
+        townMedford: resolve(__dirname, 'web-design/medford/index.html'),
+        townMountLaurel: resolve(__dirname, 'web-design/mount-laurel/index.html'),
+        townMarlton: resolve(__dirname, 'web-design/marlton/index.html'),
         // About page — local-SEO entity page (founder, story, service area).
         about: resolve(__dirname, 'about/index.html'),
         // How It Works — process, timelines, pricing expectations.
