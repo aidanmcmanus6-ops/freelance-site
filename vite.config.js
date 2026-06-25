@@ -19,6 +19,11 @@ export default defineConfig({
         townMedford: resolve(__dirname, 'web-design/medford/index.html'),
         townMountLaurel: resolve(__dirname, 'web-design/mount-laurel/index.html'),
         townMarlton: resolve(__dirname, 'web-design/marlton/index.html'),
+        townMountHolly: resolve(__dirname, 'web-design/mount-holly/index.html'),
+        townVoorhees: resolve(__dirname, 'web-design/voorhees/index.html'),
+        townLumberton: resolve(__dirname, 'web-design/lumberton/index.html'),
+        townBurlington: resolve(__dirname, 'web-design/burlington/index.html'),
+        townTrenton: resolve(__dirname, 'web-design/trenton/index.html'),
         // About page — local-SEO entity page (founder, story, service area).
         about: resolve(__dirname, 'about/index.html'),
         // How It Works — process, timelines, pricing expectations.
