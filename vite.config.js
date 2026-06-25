@@ -46,6 +46,7 @@ export default defineConfig({
         blogAlertFatigue: resolve(__dirname, 'blog/monitoring-alert-fatigue/index.html'),
         blogHomepageNeeds: resolve(__dirname, 'blog/what-your-homepage-needs/index.html'),
         blogAiChatbots: resolve(__dirname, 'blog/ai-chatbots-for-small-business/index.html'),
+        blogThirdPartyTools: resolve(__dirname, 'blog/monitoring-third-party-tools/index.html'),
       },
     },
   },
