@@ -52,8 +52,10 @@ export default defineConfig({
         howItWorks: resolve(__dirname, 'how-it-works/index.html'),
         // Work — case studies and real results.
         work: resolve(__dirname, 'work/index.html'),
-        // Demo — fictional sample build (noindex) to showcase web design.
+        // Demo — fictional sample builds (noindex) to showcase web design.
         demo: resolve(__dirname, 'demo/index.html'),
+        demoLawFirm: resolve(__dirname, 'demo/law-firm/index.html'),
+        demoCoffeeShop: resolve(__dirname, 'demo/coffee-shop/index.html'),
         // Concept — experimental homepage direction (noindex), not linked in nav.
         concept: resolve(__dirname, 'concept/index.html'),
         // Conversion confirmation page (noindex) — fires the lead/booking event.
