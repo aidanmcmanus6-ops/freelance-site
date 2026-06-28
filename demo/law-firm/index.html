@@ -3,243 +3,362 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Whitman &amp; Hale LLP — Attorneys at Law | Moorestown, NJ</title>
-<meta name="description" content="Demo site by MCM Integrated. Whitman & Hale LLP is a fictional South Jersey law firm, used to showcase web design for professional services." />
 <meta name="robots" content="noindex, nofollow" />
-<meta name="theme-color" content="#13263a" />
+<title>Whitman &amp; Hale &mdash; Attorneys at Law | Moorestown, NJ</title>
+<meta name="description" content="Demo site by MCM Integrated. Whitman & Hale is a fictional South Jersey law firm, used to showcase web design for professional-services firms." />
+<meta name="theme-color" content="#16263a" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-  :root{--navy:#13263a;--navy2:#1c3a55;--gold:#b08d57;--gold2:#c9a972;--cream:#f8f5ee;--paper:#fffdf8;--ink:#23262b;--muted:#5d6470;--line:#e4ddcf}
+  :root{
+    --ink:#15202b; --ink-soft:#41505d; --paper:#f6f2ea; --paper2:#ece5d6; --white:#fcfaf5;
+    --navy:#16263a; --navy2:#1f3a55; --gold:#a47c44; --gold-lt:#c2a06a; --line:#ddd3c1; --line-dk:rgba(255,255,255,.16);
+  }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{font-family:'Source Sans 3',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  body{font-family:'Hanken Grotesk',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.ff{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.05;letter-spacing:0}
   a{color:inherit;text-decoration:none}
-  h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:.01em}
-  .wrap{width:min(1140px,92vw);margin-inline:auto}
-  .eyebrow{font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700}
-  .btn{display:inline-block;font-weight:600;font-size:.95rem;padding:.85rem 1.7rem;border-radius:3px;transition:.2s}
-  .btn-gold{background:var(--gold);color:#1a1206;border:1px solid var(--gold)}
-  .btn-gold:hover{background:var(--gold2)}
-  .btn-out{border:1px solid rgba(255,255,255,.5);color:#fff}
-  .btn-out:hover{background:rgba(255,255,255,.1)}
-  .btn-dark{border:1px solid var(--navy);color:var(--navy)}
-  .btn-dark:hover{background:var(--navy);color:#fff}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  .wrap{width:min(1200px,90vw);margin-inline:auto}
+  .label{font-size:.72rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase}
+  .arrow-link{display:inline-flex;align-items:center;gap:.55rem;font-weight:600;font-size:.95rem;letter-spacing:.02em;border-bottom:1.5px solid currentColor;padding-bottom:3px;transition:gap .2s ease}
+  .arrow-link:hover{gap:.95rem}
+  .btn{display:inline-block;background:var(--gold);color:#1a1206;font-weight:600;font-size:.9rem;letter-spacing:.03em;padding:.92rem 1.7rem;border-radius:1px;transition:background .2s ease,color .2s ease}
+  .btn:hover{background:var(--navy);color:#fff}
 
-  header{position:sticky;top:0;z-index:40;background:rgba(19,38,58,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(176,141,87,.3)}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;color:#fff}
-  .mark{display:flex;align-items:center;gap:.7rem}
-  .mark .crest{width:34px;height:34px;flex:none}
-  .mark .wm{font-family:'Cormorant Garamond',serif;font-size:1.42rem;font-weight:700;letter-spacing:.02em;line-height:1;color:#fff}
-  .mark .wm small{display:block;font-family:'Source Sans 3',sans-serif;font-size:.58rem;letter-spacing:.34em;color:var(--gold2);font-weight:600;margin-top:3px}
-  nav.links{display:flex;align-items:center;gap:1.7rem;font-size:.92rem;font-weight:600}
-  nav.links a{color:#dce3ec}
-  nav.links a:hover{color:var(--gold2)}
-  .navphone{color:var(--gold2);font-weight:700}
-  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer}
-  .burger span{width:24px;height:2px;background:#fff}
+  .back-mcm{position:fixed;bottom:18px;left:18px;z-index:60;display:inline-flex;align-items:center;gap:.4rem;background:rgba(21,32,43,.93);color:#e7d9bf;border:1px solid rgba(196,160,106,.5);padding:.55rem 1rem;border-radius:999px;font-size:.8rem;font-weight:600;box-shadow:0 10px 24px -12px rgba(0,0,0,.6);backdrop-filter:blur(6px);transition:background .2s ease,transform .2s ease,color .2s ease}
+  .back-mcm:hover{background:#1d2c3b;color:#fff;transform:translateY(-2px)}
 
-  .hero{position:relative;background:linear-gradient(160deg,#13263a,#0e1c2c);color:#fff;overflow:hidden}
-  .hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 85% 20%,rgba(176,141,87,.18),transparent 45%);pointer-events:none}
-  .hero-in{position:relative;z-index:1;padding:6rem 0 6.5rem;max-width:42rem}
-  .hero h1{font-size:clamp(2.7rem,6vw,4.6rem);font-weight:600;margin:1.4rem 0 0}
-  .hero h1 em{font-style:italic;color:var(--gold2)}
-  .hero p{font-size:1.18rem;color:#c4cedb;margin:1.5rem 0 2.3rem;max-width:36rem}
-  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
-  .trustbar{background:var(--navy);border-top:1px solid rgba(176,141,87,.25);color:#cdd6e1;font-size:.92rem}
-  .trustbar .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2.2rem;padding:1rem 0;justify-content:center;text-align:center}
-  .trustbar b{color:var(--gold2);font-weight:700}
+  header{position:fixed;top:0;left:0;right:0;z-index:40;transition:background .3s ease,box-shadow .3s ease,color .3s ease;color:#fff}
+  header .bar{display:flex;align-items:center;justify-content:space-between;padding:1.35rem 0}
+  header.solid{background:var(--white);color:var(--ink);box-shadow:0 1px 0 var(--line)}
+  .logo{font-family:'Cormorant Garamond';font-size:1.62rem;font-weight:600;letter-spacing:.01em;line-height:1}
+  .logo small{display:block;font-family:'Hanken Grotesk';font-size:.56rem;letter-spacing:.42em;font-weight:600;margin-top:4px;opacity:.85}
+  nav.main{display:flex;align-items:center;gap:2.3rem;font-size:.93rem;font-weight:500}
+  nav.main a{opacity:.92}
+  nav.main a:hover{opacity:1;color:var(--gold-lt)}
+  header.solid nav.main a:hover{color:var(--gold)}
+  .head-right{display:flex;align-items:center;gap:1.7rem}
+  .head-phone{font-weight:600;font-size:.95rem;letter-spacing:.01em}
+  .head-cta{border:1.5px solid currentColor;padding:.5rem 1.1rem;border-radius:1px;font-size:.84rem;font-weight:700;letter-spacing:.02em}
+  header.solid .head-cta{background:var(--navy);color:#fff;border-color:var(--navy)}
+  header.solid .head-cta:hover{background:var(--gold);border-color:var(--gold);color:#1a1206}
+  section[id]{scroll-margin-top:100px}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
+  .burger span{width:24px;height:2px;background:currentColor}
 
-  section{padding:5.5rem 0}
-  .shead{text-align:center;max-width:40rem;margin:0 auto 3rem}
-  .shead h2{font-size:clamp(2rem,4vw,3rem);margin:.7rem 0 .6rem;color:var(--navy)}
-  .shead p{color:var(--muted)}
-  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
-  .area{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:2rem 1.7rem;transition:.2s}
-  .area:hover{border-color:var(--gold);box-shadow:0 18px 40px -28px rgba(19,38,58,.4);transform:translateY(-3px)}
-  .area .ic{width:42px;height:42px;color:var(--gold);margin-bottom:1rem}
-  .area h3{font-size:1.5rem;color:var(--navy);margin-bottom:.4rem}
-  .area p{font-size:.96rem;color:var(--muted)}
+  .hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+  .hero .bg{position:absolute;inset:0;z-index:-2}
+  .hero .bg img{filter:saturate(.85) brightness(.92)}
+  .hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,21,30,.55) 0%,rgba(13,21,30,.2) 42%,rgba(13,21,30,.82) 100%)}
+  .hero-inner{padding-bottom:6vh;width:100%}
+  .hero .label{color:var(--gold-lt);margin-bottom:1.4rem}
+  .hero h1{font-size:clamp(2.7rem,6.2vw,5.4rem);font-weight:500;max-width:16ch}
+  .hero h1 em{font-style:italic;color:#e7d3ad}
+  .hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-top:2.1rem;flex-wrap:wrap}
+  .hero-row p{max-width:44ch;color:#e7e2d6;font-size:1.05rem}
+  .hero-row .arrow-link{color:#fff}
 
-  .about{background:var(--cream)}
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
-  .about-grid h2{font-size:clamp(2rem,4vw,3rem);color:var(--navy);margin-bottom:1.2rem}
-  .about-grid p{color:var(--muted);margin-bottom:1rem}
-  .pillars{display:grid;gap:1.1rem}
-  .pillar{display:flex;gap:1rem;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:4px;padding:1.2rem 1.4rem}
-  .pillar .pn{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1}
-  .pillar h4{font-size:1.2rem;color:var(--navy)}
-  .pillar p{font-size:.92rem;color:var(--muted);margin:0}
+  .statement{padding:6.5rem 0 5.5rem}
+  .statement .grid{display:grid;grid-template-columns:0.34fr 0.66fr;gap:2rem}
+  .statement .label{color:var(--gold);padding-top:.7rem}
+  .statement p{font-family:'Cormorant Garamond';font-weight:500;font-size:clamp(1.55rem,2.8vw,2.3rem);line-height:1.26;color:var(--ink-soft);letter-spacing:0}
+  .statement p b{color:var(--ink);font-weight:600}
 
-  .attorneys{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:60rem;margin:0 auto}
-  .atty{display:flex;gap:1.4rem;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:1.6rem}
-  .atty .av{width:92px;height:92px;border-radius:50%;flex:none;background:linear-gradient(150deg,#1c3a55,#13263a);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold2);border:2px solid var(--gold)}
-  .atty h3{font-size:1.5rem;color:var(--navy);line-height:1.1}
-  .atty .role{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:.2rem 0 .5rem}
-  .atty p{font-size:.92rem;color:var(--muted)}
+  .practice{padding:1rem 0 5.5rem}
+  .sec-top{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding:2.3rem 0 1rem;flex-wrap:wrap}
+  .sec-top h2{font-size:clamp(2rem,3.6vw,2.9rem)}
+  .sec-top .label{color:var(--gold)}
+  .prow{display:grid;grid-template-columns:64px 1fr 250px 150px;gap:1.6rem;align-items:center;padding:1.7rem 0;border-top:1px solid var(--line);transition:padding .25s ease}
+  .prow:last-child{border-bottom:1px solid var(--line)}
+  .prow .num{font-family:'Cormorant Garamond';font-size:1.2rem;color:var(--gold)}
+  .prow h3{font-size:1.75rem;font-weight:600}
+  .prow .desc{font-size:.93rem;color:var(--ink-soft)}
+  .prow .thumb{height:90px;border-radius:2px;overflow:hidden;filter:grayscale(.35) saturate(.8)}
+  .prow .thumb img{transition:transform .6s ease}
+  .prow:hover{padding-left:14px}
+  .prow:hover h3{color:var(--navy)}
+  .prow:hover .thumb{filter:none}
+  .prow:hover .thumb img{transform:scale(1.07)}
 
-  .quote{background:var(--navy);color:#fff;text-align:center}
-  .quote blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.4vw,2.4rem);font-style:italic;font-weight:500;max-width:46rem;margin:0 auto;line-height:1.3}
-  .quote .who{margin-top:1.6rem;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2);font-weight:700}
-  .stars{color:var(--gold2);font-size:1.2rem;letter-spacing:.2em;margin-bottom:1.2rem}
+  .band{position:relative;color:#fff;padding:7rem 0;overflow:hidden}
+  .band .bg{position:absolute;inset:0;z-index:-2}
+  .band .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,18,27,.9),rgba(11,18,27,.62))}
+  .band .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center}
+  .band h2{font-size:clamp(1.9rem,3.7vw,2.9rem);font-weight:500;max-width:16ch}
+  .band h2 em{font-style:italic;color:#e7d3ad}
+  .bstats{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem 2rem}
+  .bstat .n{font-family:'Cormorant Garamond';font-size:2.7rem;color:var(--gold-lt);line-height:1}
+  .bstat .l{font-size:.82rem;letter-spacing:.04em;color:#cbd3dc;margin-top:.3rem}
 
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
-  .cinfo h2{font-size:clamp(2rem,4vw,3rem);color:var(--navy);margin-bottom:1rem}
-  .cline{display:flex;gap:.8rem;align-items:flex-start;margin-bottom:1rem;color:var(--ink)}
-  .cline .ck{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;min-width:84px;padding-top:3px}
-  form{background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:2rem}
-  label{display:block;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 .35rem}
-  input,textarea,select{width:100%;padding:.7rem .85rem;border:1px solid var(--line);border-radius:4px;font:inherit;background:#fff;margin-bottom:1.1rem;color:var(--ink)}
-  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--gold)}
-  .formnote{font-size:.8rem;color:var(--muted);margin-top:-.4rem}
-  .ok{display:none;margin-top:1rem;padding:.9rem 1.1rem;background:#eef6ec;border:1px solid #bcd9b4;border-radius:6px;color:#2f6b34;font-size:.92rem}
+  .attorneys{padding:6rem 0}
+  .agrid{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:1.8rem}
+  .atty{display:grid;grid-template-columns:140px 1fr;gap:1.5rem;align-items:start}
+  .atty .ph{aspect-ratio:3/4;border-radius:2px;overflow:hidden;filter:grayscale(.2)}
+  .atty h3{font-size:1.6rem;font-weight:600;line-height:1.05}
+  .atty .role{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:.35rem 0 .7rem}
+  .atty p{font-size:.93rem;color:var(--ink-soft)}
 
-  footer{background:#0e1c2c;color:#9fb0c2;padding:3rem 0 2rem;font-size:.9rem}
-  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.4rem;align-items:center;padding-bottom:1.6rem;border-bottom:1px solid rgba(255,255,255,.08)}
-  .foot-nav{display:flex;gap:1.3rem;flex-wrap:wrap}
-  .foot-nav a:hover{color:var(--gold2)}
-  .foot-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;padding-top:1.4rem;font-size:.82rem;color:#6f8093}
-  .foot-bot a{color:var(--gold2)}
-  .sample-flag{position:fixed;bottom:14px;left:14px;z-index:60;background:rgba(19,38,58,.94);color:#e8d9bb;border:1px solid var(--gold);border-radius:30px;padding:.4rem .95rem;font-size:.74rem;font-weight:600;backdrop-filter:blur(6px)}
-  .sample-flag a{color:var(--gold2);font-weight:700}
+  .about{padding:5.5rem 0 6rem;background:var(--paper2)}
+  .about .grid{display:grid;grid-template-columns:0.92fr 1.08fr;gap:4rem;align-items:center}
+  .about .photo{aspect-ratio:4/5;border-radius:2px;overflow:hidden;filter:grayscale(.25)}
+  .about h2{font-size:clamp(1.9rem,3.2vw,2.7rem);margin:.7rem 0 1.1rem}
+  .about p{color:var(--ink-soft);margin-bottom:1rem;max-width:48ch}
+  .pull{font-family:'Cormorant Garamond';font-style:italic;font-size:1.5rem;line-height:1.32;color:var(--ink);border-left:2px solid var(--gold);padding-left:1.2rem;margin:1.7rem 0}
+  .creds{margin-top:1.5rem;font-size:.84rem;letter-spacing:.03em;color:var(--navy);font-weight:600}
+  .creds span{opacity:.4;margin:0 .5rem}
 
-  @media(max-width:840px){
-    nav.links{display:none}
-    nav.links.open{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;position:absolute;top:100%;left:0;right:0;background:var(--navy);padding:1.3rem 5vw;border-bottom:1px solid rgba(176,141,87,.3)}
+  .process{background:var(--navy);color:#e7e6dd;padding:6rem 0}
+  .process .sec-top h2{color:#fff}
+  .process .sec-top .label{color:var(--gold-lt)}
+  .psteps{display:grid;grid-template-columns:repeat(3,1fr);gap:2.6rem;margin-top:1.5rem}
+  .pstep{border-top:1px solid var(--line-dk);padding-top:1.4rem}
+  .pstep .pn{font-family:'Cormorant Garamond';font-size:2.7rem;color:var(--gold-lt);line-height:1}
+  .pstep h3{font-size:1.4rem;margin:.6rem 0 .5rem;color:#fff;font-weight:600}
+  .pstep p{font-size:.93rem;color:#bcc4cd;max-width:34ch}
+
+  .testi{padding:6.5rem 0;text-align:center}
+  .testi .stars{color:var(--gold);letter-spacing:3px;font-size:1rem}
+  .testi blockquote{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.28;max-width:22ch;margin:1.3rem auto;letter-spacing:0}
+  .testi cite{font-style:normal;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700}
+
+  .contact{position:relative;color:#fff;overflow:hidden;padding:6.5rem 0}
+  .contact .bg{position:absolute;inset:0;z-index:-2}
+  .contact .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,18,27,.94),rgba(11,18,27,.66))}
+  .contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+  .contact h2{font-size:clamp(2rem,3.6vw,3rem);font-weight:500;max-width:14ch}
+  .contact .sub{color:#d6d2c5;margin-top:1rem;max-width:40ch}
+  .contact .phone-cta{margin-top:1.8rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+  .contact .phone{font-family:'Cormorant Garamond';font-size:1.9rem;color:#fff}
+  .contact .phone small{display:block;font-family:'Hanken Grotesk';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-lt);font-weight:700}
+  form{display:grid;gap:1.25rem}
+  .fld{display:flex;flex-direction:column;gap:.35rem}
+  .fld label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#cfcabb}
+  .fld input,.fld select{background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.35);color:#fff;font-family:inherit;font-size:1rem;padding:.5rem 0;outline:none}
+  .fld select option{color:#15202b}
+  .fld input::placeholder{color:rgba(255,255,255,.5)}
+  .fld input:focus,.fld select:focus{border-color:var(--gold-lt)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+  .formnote{font-size:.76rem;color:#bcc4cd}
+  .ok{display:none;border:1px solid rgba(255,255,255,.3);padding:.8rem 1rem;border-radius:2px;font-size:.9rem;background:rgba(255,255,255,.08)}
+
+  footer.site{background:#0e1822;color:#9aa6b1;padding:4rem 0 2rem;font-size:.9rem}
+  .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:2.4rem;padding-bottom:2.4rem;border-bottom:1px solid rgba(255,255,255,.1)}
+  .fgrid .logo{color:#fff;font-size:1.7rem;margin-bottom:.7rem;display:block}
+  .fgrid h4{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#74808c;margin-bottom:1rem;font-weight:700}
+  .fgrid a{display:block;margin-bottom:.5rem;opacity:.85}
+  .fgrid a:hover{opacity:1;color:#fff}
+  .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;padding-top:1.5rem;font-size:.78rem;color:#74808c}
+  .fbot a{color:var(--gold-lt);border-bottom:1px solid rgba(196,160,106,.4)}
+
+  @media(max-width:900px){
+    nav.main,.head-phone{display:none}
     .burger{display:flex}
-    .areas,.attorneys,.about-grid,.contact-grid{grid-template-columns:1fr}
-    .foot-top{flex-direction:column;align-items:flex-start}
+    nav.mobile{display:none}
+    nav.mobile.open{display:flex;flex-direction:column;gap:1.2rem;position:absolute;top:100%;left:0;right:0;background:var(--white);color:var(--ink);padding:1.6rem 5vw;box-shadow:0 12px 24px -16px rgba(0,0,0,.4)}
+    .statement .grid,.about .grid,.contact .grid,.band .grid,.agrid{grid-template-columns:1fr;gap:1.8rem}
+    .prow{grid-template-columns:40px 1fr;gap:1rem}
+    .prow .thumb,.prow .desc{display:none}
+    .psteps{grid-template-columns:1fr}
+    .grid2{grid-template-columns:1fr}
+    .fgrid{grid-template-columns:1fr 1fr}
+    .back-mcm{bottom:12px;left:12px;font-size:.74rem;padding:.45rem .8rem}
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap nav">
-    <a class="mark" href="#top">
-      <svg class="crest" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="4" stroke="#b08d57" stroke-width="1.5"/><path d="M20 8v24M11 15h18M11 15l-4 8h8l-4-8zm18 0l-4 8h8l-4-8z" stroke="#c9a972" stroke-width="1.4" stroke-linejoin="round"/><circle cx="20" cy="8" r="2" fill="#c9a972"/></svg>
-      <span class="wm">Whitman &amp; Hale<small>ATTORNEYS AT LAW</small></span>
-    </a>
-    <nav class="links" id="nav">
-      <a href="#practice">Practice Areas</a>
+<a class="back-mcm" href="https://www.mcm-integrated.com/work/">&larr; Back to MCM Integrated</a>
+
+<header id="hd">
+  <div class="wrap bar">
+    <a class="logo" href="#top">Whitman &amp; Hale<small>ATTORNEYS AT LAW</small></a>
+    <nav class="main">
+      <a href="#practice">Practice</a>
       <a href="#attorneys">Attorneys</a>
-      <a href="#about">About</a>
+      <a href="#about">The Firm</a>
       <a href="#contact">Contact</a>
-      <a class="navphone" href="tel:+18565550144">(856) 555-0144</a>
     </nav>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="head-right">
+      <span class="head-phone">(856) 555-0144</span>
+      <a class="head-cta" href="#contact">Request a Consultation</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
   </div>
+  <nav class="mobile" id="mnav">
+    <a href="#practice">Practice</a><a href="#attorneys">Attorneys</a><a href="#about">The Firm</a><a href="#contact">Contact</a>
+  </nav>
 </header>
 
 <main id="top">
   <section class="hero">
-    <div class="wrap hero-in">
-      <p class="eyebrow">Moorestown, New Jersey &middot; Est. 1998</p>
-      <h1>Trusted counsel for South Jersey <em>families and businesses.</em></h1>
-      <p>For over twenty-five years, Whitman &amp; Hale has guided Burlington and Camden County clients through the moments that matter most, with judgment, discretion, and a steady hand.</p>
-      <div class="hero-cta">
-        <a class="btn btn-gold" href="#contact">Schedule a consultation</a>
-        <a class="btn btn-out" href="#practice">Our practice areas</a>
+    <div class="bg"><img src="https://images.unsplash.com/photo-1505547828843-176834e42154?auto=format&fit=crop&w=2400&q=72" alt="Stone columns of a courthouse" /></div>
+    <div class="wrap hero-inner">
+      <p class="label">Family &middot; Estate &middot; Real Estate &middot; Injury</p>
+      <h1>When it matters most, you want it <em>handled right.</em></h1>
+      <div class="hero-row">
+        <p>A boutique South Jersey firm in Moorestown, representing Burlington and Camden County families and businesses since 1998, with the judgment and discretion the moment calls for.</p>
+        <a class="arrow-link" href="#practice">See how we help</a>
       </div>
     </div>
   </section>
 
-  <div class="trustbar"><div class="wrap"><span>&#9878; <b>Serving Burlington &amp; Camden County</b> since 1998</span><span>&#9201; <b>Free</b> initial consultation</span><span>&#9733; <b>Responsive</b>, personal representation</span></div></div>
+  <section class="statement"><div class="wrap"><div class="grid">
+    <p class="label">Est. 1998 &middot; Moorestown, NJ</p>
+    <p>We are a small firm on purpose. <b>You work directly with the partner whose name is on the door</b>, not a rotating cast of associates, so the person who knows your case is the person handling it, from the first call to the last.</p>
+  </div></div></section>
 
-  <section id="practice">
-    <div class="wrap">
-      <div class="shead"><p class="eyebrow">How we help</p><h2>Practice areas</h2><p>Focused representation across the areas South Jersey families and small businesses need most.</p></div>
-      <div class="areas">
-        <div class="area"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg><h3>Family Law</h3><p>Divorce, custody, support, and adoption, handled with care and clear-eyed advice when emotions run high.</p></div>
-        <div class="area"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h9l3 3v15H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg><h3>Estate Planning &amp; Wills</h3><p>Wills, trusts, powers of attorney, and probate, so your wishes are clear and your family is protected.</p></div>
-        <div class="area"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><h3>Real Estate</h3><p>Residential and commercial closings, contracts, and disputes, with no surprises at the table.</p></div>
-        <div class="area"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16v13H4z"/><path d="M9 7V4h6v3"/></svg><h3>Business &amp; Contracts</h3><p>Formation, agreements, and counsel for the small businesses that make this community run.</p></div>
-        <div class="area"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 21h14"/><path d="M5 8l7-3 7 3"/><path d="M5 8l-2 5h4l-2-5zm14 0l-2 5h4l-2-5z"/></svg><h3>Personal Injury</h3><p>If you have been hurt by someone else&rsquo;s negligence, we pursue what you are owed, and we do not get paid unless you do.</p></div>
-        <div class="area"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Probate &amp; Estates</h3><p>Guiding executors and families through probate and estate administration, one step at a time.</p></div>
-      </div>
+  <section class="practice" id="practice"><div class="wrap">
+    <div class="sec-top"><h2 class="ff">How we help</h2><span class="label">Areas of practice</span></div>
+    <div class="prow">
+      <span class="num">01</span><h3 class="ff">Family Law</h3>
+      <p class="desc">Divorce, custody, and support handled with care when emotions run high and the stakes are personal.</p>
+      <div class="thumb"><img src="https://images.unsplash.com/photo-1562564055-71e051d33c19?auto=format&fit=crop&w=500&q=70" alt="Signing documents" /></div>
     </div>
+    <div class="prow">
+      <span class="num">02</span><h3 class="ff">Estate Planning &amp; Wills</h3>
+      <p class="desc">Wills, trusts, and powers of attorney so your wishes are clear and your family is protected.</p>
+      <div class="thumb"><img src="https://images.unsplash.com/photo-1479142506502-19b3a3b7ff33?auto=format&fit=crop&w=500&q=70" alt="Law books on a shelf" /></div>
+    </div>
+    <div class="prow">
+      <span class="num">03</span><h3 class="ff">Real Estate</h3>
+      <p class="desc">Residential and commercial closings, contracts, and disputes, with no surprises at the table.</p>
+      <div class="thumb"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=500&q=70" alt="City office buildings" /></div>
+    </div>
+    <div class="prow">
+      <span class="num">04</span><h3 class="ff">Business &amp; Contracts</h3>
+      <p class="desc">Formation, agreements, and steady counsel for the small businesses that make this community run.</p>
+      <div class="thumb"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=500&q=70" alt="Reviewing paperwork at a desk" /></div>
+    </div>
+    <div class="prow">
+      <span class="num">05</span><h3 class="ff">Personal Injury</h3>
+      <p class="desc">If someone else&rsquo;s negligence hurt you, we pursue what you are owed, and you owe nothing unless we win.</p>
+      <div class="thumb"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=500&q=70" alt="Office corridor" /></div>
+    </div>
+    <div class="prow">
+      <span class="num">06</span><h3 class="ff">Probate &amp; Estates</h3>
+      <p class="desc">Guiding executors and families through probate and estate administration, one clear step at a time.</p>
+      <div class="thumb"><img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=500&q=70" alt="Bound legal volumes" /></div>
+    </div>
+  </div></section>
+
+  <section class="band">
+    <div class="bg"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=72" alt="City skyline at dusk" /></div>
+    <div class="wrap"><div class="grid">
+      <h2 class="ff">Twenty-five years of standing beside <em>South Jersey.</em></h2>
+      <div class="bstats">
+        <div class="bstat"><div class="n">25+</div><div class="l">Years in Burlington County</div></div>
+        <div class="bstat"><div class="n">1,200+</div><div class="l">Families &amp; businesses served</div></div>
+        <div class="bstat"><div class="n">1:1</div><div class="l">Partner-level attention</div></div>
+        <div class="bstat"><div class="n">Free</div><div class="l">Initial consultation</div></div>
+      </div>
+    </div></div>
   </section>
 
-  <section class="about" id="about">
-    <div class="wrap about-grid">
+  <section class="attorneys" id="attorneys"><div class="wrap">
+    <div class="sec-top"><h2 class="ff">The people on your side</h2><span class="label">Our attorneys</span></div>
+    <div class="agrid">
+      <div class="atty">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1701096374092-bb70915fdc5c?auto=format&fit=crop&w=600&q=72" alt="Portrait of Eleanor Whitman" /></div>
+        <div>
+          <h3 class="ff">Eleanor Whitman</h3>
+          <div class="role">Founding Partner</div>
+          <p>Family and estate law. Known across Burlington County for steady, clear-eyed guidance through divorce, custody, and estate matters, and for treating every client like her only one.</p>
+        </div>
+      </div>
+      <div class="atty">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1652471943570-f3590a4e52ed?auto=format&fit=crop&w=600&q=72" alt="Portrait of James Hale" /></div>
+        <div>
+          <h3 class="ff">James Hale</h3>
+          <div class="role">Partner</div>
+          <p>Real estate, business, and personal injury. Practical, plain-spoken counsel for closings, contracts, and claims throughout South Jersey, with a courtroom record to match.</p>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="about" id="about"><div class="wrap"><div class="grid">
+    <div class="photo"><img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=900&q=74" alt="Shelves of legal volumes" /></div>
+    <div>
+      <span class="label" style="color:var(--gold)">The firm</span>
+      <h2 class="ff">A small firm, by design.</h2>
+      <p>Whitman &amp; Hale is not a billboard practice. We are two senior attorneys and a close team who take a limited number of matters, so yours gets the attention it deserves.</p>
+      <p class="pull">We would rather represent a handful of clients well than a hundred in a hurry.</p>
+      <p>That means you reach a person, not a call center, and your case is handled by someone who knows it cold, start to finish.</p>
+      <div class="creds">Licensed in NJ &amp; PA <span>/</span> Free initial consultation <span>/</span> 4.9&#9733; &middot; 130+ reviews</div>
+    </div>
+  </div></div></section>
+
+  <section class="process"><div class="wrap">
+    <div class="sec-top"><h2 class="ff">What working with us looks like</h2><span class="label">How it goes</span></div>
+    <div class="psteps">
+      <div class="pstep"><div class="pn">01</div><h3 class="ff">Sit down together</h3><p>A free, confidential consultation where we listen, answer plainly, and tell you honestly whether you even need us.</p></div>
+      <div class="pstep"><div class="pn">02</div><h3 class="ff">Build the strategy</h3><p>A clear plan and clear expectations, in language that makes sense, with the partner who will actually handle your matter.</p></div>
+      <div class="pstep"><div class="pn">03</div><h3 class="ff">See it through</h3><p>We keep you informed at every turn and stay reachable, all the way to resolution and whatever comes after.</p></div>
+    </div>
+  </div></section>
+
+  <section class="testi"><div class="wrap">
+    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    <blockquote class="ff">&ldquo;They treated our family like we were their only client, calm and clear from the first call to the last.&rdquo;</blockquote>
+    <cite>Estate client &middot; Moorestown, NJ</cite>
+  </div></section>
+
+  <section class="contact" id="contact">
+    <div class="bg"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=72" alt="Attorney reviewing documents" /></div>
+    <div class="wrap"><div class="grid">
       <div>
-        <p class="eyebrow">Why Whitman &amp; Hale</p>
-        <h2>A small firm, by design.</h2>
-        <p>We are not a billboard practice. We are two senior attorneys and a small team who take a limited number of matters so that yours gets real attention, from the partner whose name is on the door.</p>
-        <p>That means you reach a person, not a call center, and your case is handled by someone who knows it cold.</p>
-        <a class="btn btn-dark" href="#contact" style="margin-top:.6rem">Talk to an attorney</a>
+        <span class="label" style="color:var(--gold-lt)">Get in touch</span>
+        <h2 class="ff" style="margin-top:.7rem">Tell us about your situation.</h2>
+        <p class="sub">Send a few details and we will reach out within one business day to set up a free, confidential consultation. Prefer to talk now?</p>
+        <div class="phone-cta">
+          <a class="btn" href="tel:+18565550144">Call the firm</a>
+          <div class="phone">(856) 555-0144<small>Mon&ndash;Fri 8:30&ndash;5:30</small></div>
+        </div>
       </div>
-      <div class="pillars">
-        <div class="pillar"><span class="pn">25+</span><div><h4>Years serving South Jersey</h4><p>Deep roots in Burlington and Camden County courts and communities.</p></div></div>
-        <div class="pillar"><span class="pn">1:1</span><div><h4>Partner-level attention</h4><p>You work directly with the attorney handling your matter, start to finish.</p></div></div>
-        <div class="pillar"><span class="pn">24h</span><div><h4>Responsive by default</h4><p>Calls and emails returned promptly, because waiting only adds stress.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="attorneys">
-    <div class="wrap">
-      <div class="shead"><p class="eyebrow">Our attorneys</p><h2>The people on your side</h2></div>
-      <div class="attorneys">
-        <div class="atty"><div class="av">EW</div><div><h3>Eleanor Whitman</h3><div class="role">Founding Partner</div><p>Family and estate law. Known for steady guidance through divorce, custody, and estate matters across Burlington County.</p></div></div>
-        <div class="atty"><div class="av">JH</div><div><h3>James Hale</h3><div class="role">Partner</div><p>Real estate, business, and personal injury. Practical counsel for closings, contracts, and claims throughout South Jersey.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="quote">
-    <div class="wrap">
-      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <blockquote>&ldquo;They treated our family like we were their only client. Calm, clear, and genuinely on our side from the first call to the last.&rdquo;</blockquote>
-      <div class="who">Estate client &middot; Moorestown, NJ</div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap contact-grid">
-      <div class="cinfo">
-        <p class="eyebrow">Get in touch</p>
-        <h2>Schedule a consultation</h2>
-        <p style="color:var(--muted);margin-bottom:1.6rem">Tell us a little about your situation and we will reach out to set up a free, confidential consultation.</p>
-        <div class="cline"><span class="ck">Office</span><span>118 Main Street, Suite 4<br/>Moorestown, NJ 08057</span></div>
-        <div class="cline"><span class="ck">Phone</span><a href="tel:+18565550144">(856) 555-0144</a></div>
-        <div class="cline"><span class="ck">Hours</span><span>Mon&ndash;Fri 8:30am&ndash;5:30pm &middot; Evenings by appointment</span></div>
-        <div class="cline"><span class="ck">Email</span><span>intake@whitmanhale.example</span></div>
-      </div>
-      <form id="form" onsubmit="return demoSubmit(event)">
-        <label for="n">Name</label><input id="n" required />
-        <label for="e">Email</label><input id="e" type="email" required />
-        <label for="m">Matter type</label>
-        <select id="matter"><option>Family Law</option><option>Estate Planning</option><option>Real Estate</option><option>Business &amp; Contracts</option><option>Personal Injury</option><option>Not sure yet</option></select>
-        <label for="msg">How can we help?</label><textarea id="msg" rows="4"></textarea>
-        <button class="btn btn-gold" type="submit" style="width:100%">Request consultation</button>
-        <p class="formnote">Demo form &mdash; nothing is actually sent.</p>
+      <form id="qf" onsubmit="return false;">
+        <div class="grid2">
+          <div class="fld"><label>Name</label><input type="text" placeholder="Your name" /></div>
+          <div class="fld"><label>Phone</label><input type="tel" placeholder="(856) 000-0000" /></div>
+        </div>
+        <div class="fld"><label>Email</label><input type="email" placeholder="you@email.com" /></div>
+        <div class="fld"><label>How can we help?</label>
+          <select><option>Choose a matter</option><option>Family law</option><option>Estate planning</option><option>Real estate</option><option>Business &amp; contracts</option><option>Personal injury</option><option>Not sure yet</option></select>
+        </div>
+        <button class="btn" type="submit">Request Consultation</button>
+        <p class="formnote">Demo form, nothing is actually sent.</p>
         <div class="ok" id="ok">Thank you. On a live site this would reach the firm&rsquo;s intake inbox instantly. (Demo only.)</div>
       </form>
-    </div>
+    </div></div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <span class="mark"><svg class="crest" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="4" stroke="#b08d57" stroke-width="1.5"/><path d="M20 8v24M11 15h18M11 15l-4 8h8l-4-8zm18 0l-4 8h8l-4-8z" stroke="#c9a972" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="wm" style="font-size:1.2rem">Whitman &amp; Hale</span></span>
-      <nav class="foot-nav"><a href="#practice">Practice Areas</a><a href="#attorneys">Attorneys</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+<footer class="site"><div class="wrap">
+  <div class="fgrid">
+    <div>
+      <a class="logo" href="#top">Whitman &amp; Hale</a>
+      <p style="max-width:32ch">Counsel for families and businesses across Burlington &amp; Camden County, New Jersey.</p>
     </div>
-    <div class="foot-bot">
-      <span>&copy; 2026 Whitman &amp; Hale LLP &mdash; fictional demo business. Attorney advertising (sample).</span>
-      <span>Sample site by <a href="https://www.mcm-integrated.com/">MCM Integrated</a></span>
-    </div>
+    <div><h4>Practice</h4><a href="#practice">Family law</a><a href="#practice">Estate planning</a><a href="#practice">Real estate</a><a href="#practice">Personal injury</a></div>
+    <div><h4>Firm</h4><a href="#attorneys">Attorneys</a><a href="#about">The firm</a><a href="#contact">Contact</a><a href="tel:+18565550144">(856) 555-0144</a></div>
   </div>
-</footer>
-
-<div class="sample-flag">Sample build by <a href="https://www.mcm-integrated.com/web-design/">MCM Integrated</a></div>
+  <div class="fbot">
+    <span>&copy; 2026 Whitman &amp; Hale, fictional demo business. Attorney advertising (sample).</span>
+    <span>Sample site by <a href="https://www.mcm-integrated.com/">MCM Integrated</a></span>
+  </div>
+</div></footer>
 
 <script>
-  var b=document.getElementById('burger'),n=document.getElementById('nav');
-  b&&b.addEventListener('click',function(){n.classList.toggle('open');});
-  function demoSubmit(e){e.preventDefault();document.getElementById('ok').style.display='block';document.getElementById('form').reset();return false;}
+  var hd=document.getElementById('hd');
+  function onScroll(){ if(window.scrollY>window.innerHeight-90){hd.classList.add('solid');}else{hd.classList.remove('solid');} }
+  window.addEventListener('scroll',onScroll); onScroll();
+  var b=document.getElementById('burger'),m=document.getElementById('mnav');
+  b.addEventListener('click',function(){m.classList.toggle('open');});
+  m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');});});
+  var f=document.getElementById('qf'),ok=document.getElementById('ok');
+  f.addEventListener('submit',function(){ok.style.display='block';ok.scrollIntoView({behavior:'smooth',block:'center'});});
 </script>
 </body>
 </html>
