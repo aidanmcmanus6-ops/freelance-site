@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Whitman &amp; Hale LLP — Attorneys at Law | Moorestown, NJ</title>
+<meta name="description" content="Demo site by MCM Integrated. Whitman & Hale LLP is a fictional South Jersey law firm, used to showcase web design for professional services." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#13263a" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--navy:#13263a;--navy2:#1c3consequat;--gold:#b08d57;--gold2:#c9a972;--cream:#f8f5ee;--paper:#fffdf8;--ink:#23262b;--muted:#5d6470;--line:#e4ddcf}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Source Sans 3',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:.01em}
+  .wrap{width:min(1140px,92vw);margin-inline:auto}
+  .eyebrow{font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .btn{display:inline-block;font-weight:600;font-size:.95rem;padding:.85rem 1.7rem;border-radius:3px;transition:.2s}
+  .btn-gold{background:var(--gold);color:#1a1206;border:1px solid var(--gold)}
+  .btn-gold:hover{background:var(--gold2)}
+  .btn-out{border:1px solid rgba(255,255,255,.5);color:#fff}
+  .btn-out:hover{background:rgba(255,255,255,.1)}
+  .btn-dark{border:1px solid var(--navy);color:var(--navy)}
+  .btn-dark:hover{background:var(--navy);color:#fff}
+
+  header{position:sticky;top:0;z-index:40;background:rgba(19,38,58,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(176,141,87,.3)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;color:#fff}
+  .mark{display:flex;align-items:center;gap:.7rem}
+  .mark .crest{width:34px;height:34px;flex:none}
+  .mark .wm{font-family:'Cormorant Garamond',serif;font-size:1.42rem;font-weight:700;letter-spacing:.02em;line-height:1;color:#fff}
+  .mark .wm small{display:block;font-family:'Source Sans 3',sans-serif;font-size:.58rem;letter-spacing:.34em;color:var(--gold2);font-weight:600;margin-top:3px}
+  nav.links{display:flex;align-items:center;gap:1.7rem;font-size:.92rem;font-weight:600}
+  nav.links a{color:#dce3ec}
+  nav.links a:hover{color:var(--gold2)}
+  .navphone{color:var(--gold2);font-weight:700}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer}
+  .burger span{width:24px;height:2px;background:#fff}
+
+  .hero{position:relative;background:linear-gradient(160deg,#13263a,#0e1c2c);color:#fff;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 85% 20%,rgba(176,141,87,.18),transparent 45%);pointer-events:none}
+  .hero-in{position:relative;z-index:1;padding:6rem 0 6.5rem;max-width:42rem}
+  .hero h1{font-size:clamp(2.7rem,6vw,4.6rem);font-weight:600;margin:1.4rem 0 0}
+  .hero h1 em{font-style:italic;color:var(--gold2)}
+  .hero p{font-size:1.18rem;color:#c4cedb;margin:1.5rem 0 2.3rem;max-width:36rem}
+  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+  .trustbar{background:var(--navy);border-top:1px solid rgba(176,141,87,.25);color:#cdd6e1;font-size:.92rem}
+  .trustbar .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2.2rem;padding:1rem 0;justify-content:center;text-align:center}
+  .trustbar b{color:var(--gold2);font-weight:700}
+
+  section{padding:5.5rem 0}
+  .shead{text-align:center;max-width:40rem;margin:0 auto 3rem}
+  .shead h2{font-size:clamp(2rem,4vw,3rem);margin:.7rem 0 .6rem;color:var(--navy)}
+  .shead p{color:var(--muted)}
+  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .area{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:2rem 1.7rem;transition:.2s}
+  .area:hover{border-color:var(--gold);box-shadow:0 18px 40px -28px rgba(19,38,58,.4);transform:translateY(-3px)}
+  .area .ic{width:42px;height:42px;color:var(--gold);margin-bottom:1rem}
+  .area h3{font-size:1.5rem;color:var(--navy);margin-bottom:.4rem}
+  .area p{font-size:.96rem;color:var(--muted)}
+
+  .about{background:var(--cream)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+  .about-grid h2{font-size:clamp(2rem,4vw,3rem);color:var(--navy);margin-bottom:1.2rem}
+  .about-grid p{color:var(--muted);margin-bottom:1rem}
+  .pillars{display:grid;gap:1.1rem}
+  .pillar{display:flex;gap:1rem;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:4px;padding:1.2rem 1.4rem}
+  .pillar .pn{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1}
+  .pillar h4{font-size:1.2rem;color:var(--navy)}
+  .pillar p{font-size:.92rem;color:var(--muted);margin:0}
+
+  .attorneys{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:60rem;margin:0 auto}
+  .atty{display:flex;gap:1.4rem;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:1.6rem}
+  .atty .av{width:92px;height:92px;border-radius:50%;flex:none;background:linear-gradient(150deg,#1c3consequat,#13263a);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold2);border:2px solid var(--gold)}
+  .atty h3{font-size:1.5rem;color:var(--navy);line-height:1.1}
+  .atty .role{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:.2rem 0 .5rem}
+  .atty p{font-size:.92rem;color:var(--muted)}
+
+  .quote{background:var(--navy);color:#fff;text-align:center}
+  .quote blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.4vw,2.4rem);font-style:italic;font-weight:500;max-width:46rem;margin:0 auto;line-height:1.3}
+  .quote .who{margin-top:1.6rem;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2);font-weight:700}
+  .stars{color:var(--gold2);font-size:1.2rem;letter-spacing:.2em;margin-bottom:1.2rem}
+
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+  .cinfo h2{font-size:clamp(2rem,4vw,3rem);color:var(--navy);margin-bottom:1rem}
+  .cline{display:flex;gap:.8rem;align-items:flex-start;margin-bottom:1rem;color:var(--ink)}
+  .cline .ck{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;min-width:84px;padding-top:3px}
+  form{background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:2rem}
+  label{display:block;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 .35rem}
+  input,textarea,select{width:100%;padding:.7rem .85rem;border:1px solid var(--line);border-radius:4px;font:inherit;background:#fff;margin-bottom:1.1rem;color:var(--ink)}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--gold)}
+  .formnote{font-size:.8rem;color:var(--muted);margin-top:-.4rem}
+  .ok{display:none;margin-top:1rem;padding:.9rem 1.1rem;background:#eef6ec;border:1px solid #bcd9b4;border-radius:6px;color:#2f6b34;font-size:.92rem}
+
+  footer{background:#0e1c2c;color:#9fb0c2;padding:3rem 0 2rem;font-size:.9rem}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.4rem;align-items:center;padding-bottom:1.6rem;border-bottom:1px solid rgba(255,255,255,.08)}
+  .foot-nav{display:flex;gap:1.3rem;flex-wrap:wrap}
+  .foot-nav a:hover{color:var(--gold2)}
+  .foot-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;padding-top:1.4rem;font-size:.82rem;color:#6f8093}
+  .foot-bot a{color:var(--gold2)}
+  .sample-flag{position:fixed;bottom:14px;left:14px;z-index:60;background:rgba(19,38,58,.94);color:#e8d9bb;border:1px solid var(--gold);border-radius:30px;padding:.4rem .95rem;font-size:.74rem;font-weight:600;backdrop-filter:blur(6px)}
+  .sample-flag a{color:var(--gold2);font-weight:700}
+
+  @media(max-width:840px){
+    nav.links{display:none}
+    nav.links.open{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;position:absolute;top:100%;left:0;right:0;background:var(--navy);padding:1.3rem 5vw;border-bottom:1px solid rgba(176,141,87,.3)}
+    .burger{display:flex}
+    .areas,.attorneys,.about-grid,.contact-grid{grid-template-columns:1fr}
+    .foot-top{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="mark" href="#top">
+      <svg class="crest" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="4" stroke="#b08d57" stroke-width="1.5"/><path d="M20 8v24M11 15h18M11 15l-4 8h8l-4-8zm18 0l-4 8h8l-4-8z" stroke="#c9a972" stroke-width="1.4" stroke-linejoin="round"/><circle cx="20" cy="8" r="2" fill="#c9a972"/></svg>
+      <span class="wm">Whitman &amp; Hale<small>ATTORNEYS AT LAW</small></span>
+    </a>
+    <nav class="links" id="nav">
+      <a href="#practice">Practice Areas</a>
+      <a href="#attorneys">Attorneys</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a class="navphone" href="tel:+18565550144">(856) 555-0144</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-in">
+      <p class="eyebrow">Moorestown, New Jersey &middot; Est. 1998</p>
+      <h1>Trusted counsel for South Jersey <em>families and businesses.</em></h1>
+      <p>For over twenty-five years, Whitman &amp; Hale has guided Burlington and Camden County clients through the moments that matter most, with judgment, discretion, and a steady hand.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#contact">Schedule a consultation</a>
+        <a class="btn btn-out" href="#practice">Our practice areas</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="trustbar"><div class="wrap"><span>&#9878; <b>Serving Burlington &amp; Camden County</b> since 1998</span><span>&#9201; <b>Free</b> initial consultation</span><span>&#9733; <b>Responsive</b>, personal representation</span></div></div>
+
+  <section id="practice">
+    <div class="wrap">
+      <div class="shead"><p class="eyebrow">How we help</p><h2>Practice areas</h2><p>Focused representation across the areas South Jersey families and small businesses need most.</p></div>
+      <div class="areas">
+        <div class="area"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg><h3>Family Law</h3><p>Divorce, custody, support, and adoption, handled with care and clear-eyed advice when emotions run high.</p></div>
+        <div class="area"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h9l3 3v15H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg><h3>Estate Planning &amp; Wills</h3><p>Wills, trusts, powers of attorney, and probate, so your wishes are clear and your family is protected.</p></div>
+        <div class="area"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><h3>Real Estate</h3><p>Residential and commercial closings, contracts, and disputes, with no surprises at the table.</p></div>
+        <div class="area"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16v13H4z"/><path d="M9 7V4h6v3"/></svg><h3>Business &amp; Contracts</h3><p>Formation, agreements, and counsel for the small businesses that make this community run.</p></div>
+        <div class="area"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 21h14"/><path d="M5 8l7-3 7 3"/><path d="M5 8l-2 5h4l-2-5zm14 0l-2 5h4l-2-5z"/></svg><h3>Personal Injury</h3><p>If you have been hurt by someone else&rsquo;s negligence, we pursue what you are owed, and we do not get paid unless you do.</p></div>
+        <div class="area"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Probate &amp; Estates</h3><p>Guiding executors and families through probate and estate administration, one step at a time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div>
+        <p class="eyebrow">Why Whitman &amp; Hale</p>
+        <h2>A small firm, by design.</h2>
+        <p>We are not a billboard practice. We are two senior attorneys and a small team who take a limited number of matters so that yours gets real attention, from the partner whose name is on the door.</p>
+        <p>That means you reach a person, not a call center, and your case is handled by someone who knows it cold.</p>
+        <a class="btn btn-dark" href="#contact" style="margin-top:.6rem">Talk to an attorney</a>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><span class="pn">25+</span><div><h4>Years serving South Jersey</h4><p>Deep roots in Burlington and Camden County courts and communities.</p></div></div>
+        <div class="pillar"><span class="pn">1:1</span><div><h4>Partner-level attention</h4><p>You work directly with the attorney handling your matter, start to finish.</p></div></div>
+        <div class="pillar"><span class="pn">24h</span><div><h4>Responsive by default</h4><p>Calls and emails returned promptly, because waiting only adds stress.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="attorneys">
+    <div class="wrap">
+      <div class="shead"><p class="eyebrow">Our attorneys</p><h2>The people on your side</h2></div>
+      <div class="attorneys">
+        <div class="atty"><div class="av">EW</div><div><h3>Eleanor Whitman</h3><div class="role">Founding Partner</div><p>Family and estate law. Known for steady guidance through divorce, custody, and estate matters across Burlington County.</p></div></div>
+        <div class="atty"><div class="av">JH</div><div><h3>James Hale</h3><div class="role">Partner</div><p>Real estate, business, and personal injury. Practical counsel for closings, contracts, and claims throughout South Jersey.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote">
+    <div class="wrap">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>&ldquo;They treated our family like we were their only client. Calm, clear, and genuinely on our side from the first call to the last.&rdquo;</blockquote>
+      <div class="who">Estate client &middot; Moorestown, NJ</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact-grid">
+      <div class="cinfo">
+        <p class="eyebrow">Get in touch</p>
+        <h2>Schedule a consultation</h2>
+        <p style="color:var(--muted);margin-bottom:1.6rem">Tell us a little about your situation and we will reach out to set up a free, confidential consultation.</p>
+        <div class="cline"><span class="ck">Office</span><span>118 Main Street, Suite 4<br/>Moorestown, NJ 08057</span></div>
+        <div class="cline"><span class="ck">Phone</span><a href="tel:+18565550144">(856) 555-0144</a></div>
+        <div class="cline"><span class="ck">Hours</span><span>Mon&ndash;Fri 8:30am&ndash;5:30pm &middot; Evenings by appointment</span></div>
+        <div class="cline"><span class="ck">Email</span><span>intake@whitmanhale.example</span></div>
+      </div>
+      <form id="form" onsubmit="return demoSubmit(event)">
+        <label for="n">Name</label><input id="n" required />
+        <label for="e">Email</label><input id="e" type="email" required />
+        <label for="m">Matter type</label>
+        <select id="matter"><option>Family Law</option><option>Estate Planning</option><option>Real Estate</option><option>Business &amp; Contracts</option><option>Personal Injury</option><option>Not sure yet</option></select>
+        <label for="msg">How can we help?</label><textarea id="msg" rows="4"></textarea>
+        <button class="btn btn-gold" type="submit" style="width:100%">Request consultation</button>
+        <p class="formnote">Demo form &mdash; nothing is actually sent.</p>
+        <div class="ok" id="ok">Thank you. On a live site this would reach the firm&rsquo;s intake inbox instantly. (Demo only.)</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <span class="mark"><svg class="crest" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="4" stroke="#b08d57" stroke-width="1.5"/><path d="M20 8v24M11 15h18M11 15l-4 8h8l-4-8zm18 0l-4 8h8l-4-8z" stroke="#c9a972" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="wm" style="font-size:1.2rem">Whitman &amp; Hale</span></span>
+      <nav class="foot-nav"><a href="#practice">Practice Areas</a><a href="#attorneys">Attorneys</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+    </div>
+    <div class="foot-bot">
+      <span>&copy; 2026 Whitman &amp; Hale LLP &mdash; fictional demo business. Attorney advertising (sample).</span>
+      <span>Sample site by <a href="https://www.mcm-integrated.com/">MCM Integrated</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="sample-flag">Sample build by <a href="https://www.mcm-integrated.com/web-design/">MCM Integrated</a></div>
+
+<script>
+  var b=document.getElementById('burger'),n=document.getElementById('nav');
+  b&&b.addEventListener('click',function(){n.classList.toggle('open');});
+  function demoSubmit(e){e.preventDefault();document.getElementById('ok').style.display='block';document.getElementById('form').reset();return false;}
+</script>
+</body>
+</html>
