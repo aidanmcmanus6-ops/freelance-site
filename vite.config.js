@@ -24,6 +24,7 @@ export default defineConfig({
         aiTownLumberton: resolve(__dirname, 'ai-automation/lumberton/index.html'),
         aiTownBurlington: resolve(__dirname, 'ai-automation/burlington/index.html'),
         aiTownTrenton: resolve(__dirname, 'ai-automation/trenton/index.html'),
+        aiTownSouthampton: resolve(__dirname, 'ai-automation/southampton/index.html'),
         // Monitoring town landing pages (local SEO).
         monTownCherryHill: resolve(__dirname, 'monitoring/cherry-hill/index.html'),
         monTownMoorestown: resolve(__dirname, 'monitoring/moorestown/index.html'),
@@ -35,6 +36,7 @@ export default defineConfig({
         monTownLumberton: resolve(__dirname, 'monitoring/lumberton/index.html'),
         monTownBurlington: resolve(__dirname, 'monitoring/burlington/index.html'),
         monTownTrenton: resolve(__dirname, 'monitoring/trenton/index.html'),
+        monTownSouthampton: resolve(__dirname, 'monitoring/southampton/index.html'),
         // Web design town landing pages (local SEO).
         townCherryHill: resolve(__dirname, 'web-design/cherry-hill/index.html'),
         townMoorestown: resolve(__dirname, 'web-design/moorestown/index.html'),
@@ -46,6 +48,7 @@ export default defineConfig({
         townLumberton: resolve(__dirname, 'web-design/lumberton/index.html'),
         townBurlington: resolve(__dirname, 'web-design/burlington/index.html'),
         townTrenton: resolve(__dirname, 'web-design/trenton/index.html'),
+        townSouthampton: resolve(__dirname, 'web-design/southampton/index.html'),
         // About page — local-SEO entity page (founder, story, service area).
         about: resolve(__dirname, 'about/index.html'),
         // How It Works — process, timelines, pricing expectations.
