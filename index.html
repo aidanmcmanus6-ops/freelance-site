@@ -363,7 +363,7 @@
   .tile:hover .cta{gap:.75rem;opacity:1}
   .tile.span2{grid-column:span 2}
   .tile .big{font-size:1.5rem}
-  .tile.stat .big{font-size:clamp(1.9rem,3vw,2.6rem)}
+  .tile.stat .big{font-size:clamp(1.7rem,2.6vw,2.3rem)}
   .ai-tile{background:linear-gradient(160deg,#13243d,#0a1220)}
   .mon-tile{background:linear-gradient(160deg,#102b22,#0a1612)}
   .tile.stat .s{color:#cdd6e6}
@@ -636,12 +636,20 @@
           <span class="s">A warm coffee-roaster site.</span>
           <span class="cta">Explore the build &#8594;</span>
         </a>
-        <a class="tile ai-tile stat span2" href="/work/">
+        <a class="tile ai-tile stat" href="/work/">
+          <div class="bg" style="background-image:url('https://www.mcm-integrated.com/dash-classifier.svg');background-position:top center"></div>
+          <div class="ov"></div>
+          <span class="k" style="color:var(--cy)">AI &amp; Automation case</span>
+          <span class="big">$320K<span class="ar">&#8594;</span><span class="hl">$285</span></span>
+          <span class="s">A contract-classification pipeline rebuilt for 99.9% lower cost, at 98% accuracy.</span>
+          <span class="cta">Read the case &#8594;</span>
+        </a>
+        <a class="tile ai-tile stat" href="/work/">
           <div class="bg" style="background-image:url('https://www.mcm-integrated.com/dash-invoice.svg');background-position:top center"></div>
           <div class="ov"></div>
           <span class="k" style="color:var(--cy)">AI &amp; Automation build</span>
           <span class="big">Invoice AI</span>
-          <span class="s">Reads a Gmail email, turns it into an invoice with Gemini, sends it, then tracks payment across Calendar, Sheets &amp; Contacts.</span>
+          <span class="s">Turns a Gmail email into a sent invoice with Gemini, then tracks the payment.</span>
           <span class="cta">See the build &#8594;</span>
         </a>
         <a class="tile mon-tile stat" href="/work/">
