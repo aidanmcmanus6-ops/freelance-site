@@ -363,10 +363,10 @@
   .tile:hover .cta{gap:.75rem;opacity:1}
   .tile.span2{grid-column:span 2}
   .tile .big{font-size:1.5rem}
-  .tile.stat .big{font-size:clamp(1.7rem,2.6vw,2.3rem)}
+  .tile.stat .big{font-size:clamp(1.9rem,3vw,2.6rem)}
+.tile.stat .ov{background:linear-gradient(180deg,rgba(8,12,20,.12) 0%,rgba(7,10,18,.5) 42%,rgba(6,9,16,.93) 100%)}
   .ai-tile{background:linear-gradient(160deg,#13243d,#0a1220)}
   .mon-tile{background:linear-gradient(160deg,#102b22,#0a1612)}
-  .tile.stat .s{color:#cdd6e6}
 
   .why{position:relative;background:#04060c}
   .why-stage{position:relative;height:600vh}
@@ -482,8 +482,11 @@
     .tile.span2{grid-column:auto}
     .why-grid.show{grid-template-columns:1fr}
     .why-mui{display:flex}
-    .srow{grid-template-columns:54px 1fr 44px;gap:1rem}
-    .srow .desc{display:none}
+    .srow{grid-template-columns:54px 1fr 44px;column-gap:1rem;row-gap:.55rem}
+    .srow .num{grid-row:1}
+    .srow>div{grid-column:2/3;grid-row:1}
+    .srow .go{grid-column:3/4;grid-row:1}
+    .srow .desc{display:block;grid-column:2/4;grid-row:2;font-size:.9rem}
     .stat .l,.tile .s,.pcard>p,.pstep p,.faq-a p,.contact-details li,.qsm blockquote,.why-card p,.why-gcard p{font-size:.96rem}
     .cnote,.hero-cta .tiny{font-size:.84rem}
   }
@@ -636,20 +639,12 @@
           <span class="s">A warm coffee-roaster site.</span>
           <span class="cta">Explore the build &#8594;</span>
         </a>
-        <a class="tile ai-tile stat" href="/work/">
-          <div class="bg" style="background-image:url('https://www.mcm-integrated.com/dash-classifier.svg');background-position:top center"></div>
-          <div class="ov"></div>
-          <span class="k" style="color:var(--cy)">AI &amp; Automation case</span>
-          <span class="big">$320K<span class="ar">&#8594;</span><span class="hl">$285</span></span>
-          <span class="s">A contract-classification pipeline rebuilt for 99.9% lower cost, at 98% accuracy.</span>
-          <span class="cta">Read the case &#8594;</span>
-        </a>
-        <a class="tile ai-tile stat" href="/work/">
+        <a class="tile ai-tile stat span2" href="/work/">
           <div class="bg" style="background-image:url('https://www.mcm-integrated.com/dash-invoice.svg');background-position:top center"></div>
           <div class="ov"></div>
           <span class="k" style="color:var(--cy)">AI &amp; Automation build</span>
           <span class="big">Invoice AI</span>
-          <span class="s">Turns a Gmail email into a sent invoice with Gemini, then tracks the payment.</span>
+          <span class="s">Reads a Gmail email, turns it into an invoice with Gemini, sends it, then tracks payment across Calendar, Sheets &amp; Contacts.</span>
           <span class="cta">See the build &#8594;</span>
         </a>
         <a class="tile mon-tile stat" href="/work/">
@@ -806,10 +801,10 @@
         <p>Plain-English guides on websites, AI, and monitoring for small businesses. <a class="link-arrow" href="/blog/" style="white-space:nowrap">All articles &#8594;</a></p>
       </div>
       <div class="bfgrid">
-        <a class="bfcard" href="/blog/how-fast-should-your-website-load/">
+        <a class="bfcard" href="/blog/small-business-website-cost-south-jersey/">
           <span class="bf-k" style="color:#c4b5fd">Web Design</span>
-          <h3>How Fast Should Your Website Load? And What Slow Is Costing You</h3>
-          <p>The load-time target that actually matters, what a slow site quietly costs you, and the fixes that work.</p>
+          <h3>How Much Does a Small Business Website Cost in South Jersey? (2026)</h3>
+          <p>Real price ranges, what actually drives the cost, and the ongoing fees nobody mentions.</p>
           <span class="bf-go">Read the guide &#8594;</span>
         </a>
         <a class="bfcard" href="/blog/what-to-automate/">
