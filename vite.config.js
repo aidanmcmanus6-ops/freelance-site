@@ -82,6 +82,7 @@ export default defineConfig({
         blogHomepageNeeds: resolve(__dirname, 'blog/what-your-homepage-needs/index.html'),
         blogAiChatbots: resolve(__dirname, 'blog/ai-chatbots-for-small-business/index.html'),
         blogThirdPartyTools: resolve(__dirname, 'blog/monitoring-third-party-tools/index.html'),
+        blogPageSpeed: resolve(__dirname, 'blog/how-fast-should-your-website-load/index.html'),
       },
     },
   },
