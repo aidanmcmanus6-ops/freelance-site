@@ -12,7 +12,7 @@
   gtag('config', 'G-4H8NQ7SRDD');
 </script>
 <title>Our Work: Case Studies &amp; Real Results | South Jersey | MCM Integrated</title>
-<meta name="description" content="Real engineering from MCM Integrated: an AI classification pipeline rebuilt to bring a $320,000 job in at $285, Atlas (an AI agent unifying a company's tools into one conversation), enterprise monitoring across 800+ devices, and custom web builds." />
+<meta name="description" content="Real engineering from MCM Integrated: an AI classification pipeline rebuilt to bring a $320,000 job in at $285, Invoice AI turning a Gmail inbox into sent invoices, Atlas (an AI agent unifying a company's tools into one conversation), enterprise monitoring across 800+ devices, and custom web builds." />
 <meta name="author" content="MCM Integrated" />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#05080f" />
@@ -23,14 +23,14 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="MCM Integrated" />
 <meta property="og:title" content="Our Work: Case Studies &amp; Real Results | MCM Integrated" />
-<meta property="og:description" content="An AI job brought from a $320,000 projection to $285, Atlas unifying a company's tools into one AI conversation, enterprise monitoring across 800+ devices, and custom web builds." />
+<meta property="og:description" content="An AI job brought from a $320,000 projection to $285, Invoice AI turning emails into sent invoices, Atlas unifying a company's tools into one AI conversation, enterprise monitoring across 800+ devices, and custom web builds." />
 <meta property="og:url" content="https://www.mcm-integrated.com/work/" />
 <meta property="og:image" content="https://www.mcm-integrated.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Our Work | MCM Integrated" />
-<meta name="twitter:description" content="An AI job brought from a $320,000 projection to $285, Atlas unifying a company's tools, enterprise monitoring, and custom web builds." />
+<meta name="twitter:description" content="An AI job brought from a $320,000 projection to $285, Invoice AI, Atlas unifying a company's tools, enterprise monitoring, and custom web builds." />
 <meta name="twitter:image" content="https://www.mcm-integrated.com/og-image.png" />
 <script type="application/ld+json">
   {
@@ -324,7 +324,47 @@
 
   <section>
     <div class="wrap case">
-      <div class="sec-label"><span class="tick" style="background:var(--pu)"></span><span class="eyebrow" style="color:var(--pu)">AI &amp; Automation</span><span class="case-idx">CASE 02</span></div>
+      <div class="sec-label"><span class="tick" style="background:var(--cy)"></span><span class="eyebrow" style="color:var(--cy)">AI &amp; Automation</span><span class="case-idx">CASE 02</span></div>
+      <div class="case-head">
+        <h2>Invoice AI: email in, invoice out</h2>
+        <div class="bigstat"><div class="v" style="color:var(--cy)">1 inbox</div><div class="u">read by Gemini, turned into a sent invoice without leaving the app</div></div>
+      </div>
+      <p class="lead-line"><b>The build.</b> A client-facing web app, built for a sample marketing studio, that reads a Gmail inbox, uses <b>Google Gemini 2.0 Flash</b> to pull the invoice details out of an email, and sends a clean, styled HTML invoice straight back to the client from Gmail. It is plain vanilla HTML, CSS, and JavaScript on top of Google Workspace and Gemini, so a small business runs its whole invoicing flow in one place instead of bouncing between tabs.</p>
+      <p class="lead-line" style="margin-top:1rem"><b>Why it matters.</b> It shows range. This is a real build by Aidan that wires a business's existing Google tools, Gmail, Calendar, Contacts, Sheets, and Drive, into a single invoicing app, with a dashboard that tracks revenue, aging, and overdue accounts on top.</p>
+      <div class="approach">
+        <div class="acard"><div class="an" style="color:var(--cy)">Approach &middot; 01</div><h4>Email in, invoice out</h4><p>Gemini 2.0 Flash reads the email, extracts the line items and amounts, and drafts the invoice. You review it, then it goes out as a styled HTML invoice straight from Gmail.</p></div>
+        <div class="acard"><div class="an" style="color:var(--cy)">Approach &middot; 02</div><h4>Wired into your Google tools</h4><p>Gmail to read and send, Calendar to push due dates with 1-day and 3-day reminders, Contacts to autofill clients, Sheets for one-click backup, Drive to search files. All through OAuth, least-privilege scopes only.</p></div>
+        <div class="acard"><div class="an" style="color:var(--cy)">Approach &middot; 03</div><h4>Sees the whole picture</h4><p>A dashboard with a revenue-over-time chart, status breakdown, invoice aging, and overdue and credit-limit alerts. Recurring invoices, templates, partial payments with a running balance, plus CSV and PDF export.</p></div>
+      </div>
+      <div class="diagram" aria-label="Invoice AI flow diagram">
+        <svg viewBox="0 0 1000 240" role="img" aria-label="A Gmail email is read by Gemini 2.0 Flash, which produces an invoice that is sent from Gmail, pushed to Calendar, backed up to Sheets, and tracked for payment">
+          <defs><marker id="iar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#38bdf8"/></marker></defs>
+          <g font-family="JetBrains Mono, monospace" font-size="13" text-anchor="middle">
+            <g><rect x="10" y="92" width="158" height="58" rx="10" fill="#0e1526" stroke="#2a3a55"/><text x="89" y="118" fill="#eef2fa" font-size="13">Gmail email</text><text x="89" y="136" fill="#9aa6be" font-size="11">the source</text></g>
+            <line x1="168" y1="121" x2="216" y2="121" stroke="#38bdf8" stroke-width="2" marker-end="url(#iar)"/>
+            <g><rect x="218" y="86" width="178" height="70" rx="10" fill="#0e1526" stroke="#38bdf8"/><text x="307" y="114" fill="#38bdf8" font-size="13">Gemini 2.0 Flash</text><text x="307" y="132" fill="#9aa6be" font-size="11">extract details</text></g>
+            <line x1="396" y1="121" x2="444" y2="121" stroke="#38bdf8" stroke-width="2" marker-end="url(#iar)"/>
+            <g><rect x="446" y="92" width="150" height="58" rx="10" fill="#0e1526" stroke="#38bdf8"/><text x="521" y="118" fill="#38bdf8" font-size="13">Invoice</text><text x="521" y="136" fill="#9aa6be" font-size="11">created</text></g>
+            <line x1="596" y1="121" x2="648" y2="48" stroke="#34d399" stroke-width="2" marker-end="url(#iar)"/>
+            <line x1="596" y1="121" x2="648" y2="100" stroke="#38bdf8" stroke-width="2" marker-end="url(#iar)"/>
+            <line x1="596" y1="121" x2="648" y2="152" stroke="#38bdf8" stroke-width="2" marker-end="url(#iar)"/>
+            <line x1="596" y1="121" x2="648" y2="204" stroke="#38bdf8" stroke-width="2" marker-end="url(#iar)"/>
+            <g><rect x="650" y="22" width="240" height="44" rx="9" fill="#0e1526" stroke="#34d399"/><text x="770" y="49" fill="#34d399" font-size="12">Send from Gmail</text></g>
+            <g><rect x="650" y="78" width="240" height="44" rx="9" fill="#0e1526" stroke="#2a3a55"/><text x="770" y="105" fill="#cdd6e6" font-size="12">Calendar reminder</text></g>
+            <g><rect x="650" y="134" width="240" height="44" rx="9" fill="#0e1526" stroke="#2a3a55"/><text x="770" y="161" fill="#cdd6e6" font-size="12">Sheets backup</text></g>
+            <g><rect x="650" y="190" width="240" height="44" rx="9" fill="#0e1526" stroke="#2a3a55"/><text x="770" y="217" fill="#cdd6e6" font-size="12">Payment tracked</text></g>
+          </g>
+        </svg>
+        <p class="dcap">One pass: Gemini reads the email and drafts the invoice, then it goes out from Gmail, lands a due-date reminder on Calendar, backs up to Sheets, and starts tracking the payment.</p>
+      </div>
+      <p class="kicker">A small business's own Google tools, wired into one app, so an email becomes a sent, tracked invoice in a few clicks. <b>Honest scope, real build.</b></p>
+      <div class="stack"><span class="sl">Built with</span><span class="chip">Gemini 2.0 Flash</span><span class="chip">Google Workspace APIs</span><span class="chip">OAuth 2.0</span><span class="chip">Chart.js</span><span class="chip">JavaScript</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap case">
+      <div class="sec-label"><span class="tick" style="background:var(--pu)"></span><span class="eyebrow" style="color:var(--pu)">AI &amp; Automation</span><span class="case-idx">CASE 03</span></div>
       <div class="case-head">
         <h2>Atlas: one conversation across every tool</h2>
         <div class="bigstat"><div class="v" style="color:var(--pu)">8+&#8202;&rarr;&#8202;1</div><div class="u">tools your team already uses, behind a single AI agent</div></div>
@@ -388,7 +428,7 @@
 
   <section>
     <div class="wrap case">
-      <div class="sec-label"><span class="tick" style="background:var(--gr)"></span><span class="eyebrow" style="color:var(--gr)">Monitoring &amp; Reliability</span><span class="case-idx">CASE 03</span></div>
+      <div class="sec-label"><span class="tick" style="background:var(--gr)"></span><span class="eyebrow" style="color:var(--gr)">Monitoring &amp; Reliability</span><span class="case-idx">CASE 04</span></div>
       <div class="case-head">
         <h2>Modernizing monitoring for a several-thousand-person enterprise</h2>
         <div class="bigstat"><div class="v" style="color:var(--gr)">~100</div><div class="u">support tickets a month eliminated by automation</div></div>
@@ -416,7 +456,7 @@
 
   <section>
     <div class="wrap case">
-      <div class="sec-label"><span class="tick" style="background:var(--pu)"></span><span class="eyebrow" style="color:var(--pu)">Web Design</span><span class="case-idx">CASE 04</span></div>
+      <div class="sec-label"><span class="tick" style="background:var(--pu)"></span><span class="eyebrow" style="color:var(--pu)">Web Design</span><span class="case-idx">CASE 05</span></div>
       <div class="web-intro">
         <div>
           <h2 style="font-size:clamp(1.9rem,3.6vw,2.7rem)">Full builds, designed and shipped end to end</h2>
