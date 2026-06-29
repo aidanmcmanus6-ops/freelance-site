@@ -280,11 +280,11 @@
   .scroll-progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--pu),var(--cy));box-shadow:0 0 12px rgba(56,189,248,.45);pointer-events:none}
   header.site.scrolled{background:rgba(4,6,12,.85)}
 
-  .hero{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+  .hero{position:relative;min-height:68vh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
   #flow{position:absolute;inset:0;z-index:-3;width:100%;height:100%;display:block}
   .hero .aura{position:absolute;inset:0;z-index:-2;background:radial-gradient(50% 55% at 18% 35%,rgba(56,189,248,.18),transparent 60%),radial-gradient(45% 50% at 88% 25%,rgba(167,139,250,.16),transparent 62%),radial-gradient(60% 60% at 70% 100%,rgba(52,211,153,.1),transparent 60%)}
   .hero .vign{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(4,6,12,.2),rgba(4,6,12,.45) 72%,var(--bg))}
-  .hero-inner{padding:2.5rem 0 3.5rem}
+  .hero-inner{padding:1rem 0 2.5rem}
   .hero h1{font-size:clamp(2.9rem,7.4vw,5.8rem);font-weight:400;max-width:15ch;letter-spacing:-.025em}
   .hero h1 em{font-style:italic;color:#9bdcfb}
   .hero h1 .grad{background:linear-gradient(110deg,#7cc4ff,#a78bfa 55%,#5be0b0);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -347,7 +347,7 @@
   .pnote{font-size:.86rem;color:var(--muted);max-width:64ch;margin:0}
   .pnote strong{color:var(--ink)}
 
-  .mosaic{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-auto-rows:202px;gap:14px}
+  .mosaic{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:230px;gap:14px}
   .tile{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;isolation:isolate;transition:transform .35s ease,border-color .35s ease}
   .tile:hover{transform:translateY(-4px);border-color:var(--line2)}
   .tile .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform .6s ease}
@@ -361,10 +361,11 @@
   .tile .s{color:var(--muted);font-size:.88rem;margin-top:.4rem}
   .tile .cta{margin-top:1rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.06em;color:#dbe6f5;display:inline-flex;align-items:center;gap:.4rem;opacity:.82;transition:gap .3s ease,opacity .3s ease}
   .tile:hover .cta{gap:.75rem;opacity:1}
-  .demo-tile{grid-row:span 2}
-  .demo-tile .big{font-size:1.85rem}
-  .ai-tile{background:linear-gradient(160deg,#11243a,#0a121f)}
-  .mon-tile{background:linear-gradient(160deg,#0f2a22,#0a1612)}
+  .tile.span2{grid-column:span 2}
+  .tile .big{font-size:1.5rem}
+  .tile.stat .big{font-size:clamp(1.9rem,3vw,2.6rem)}
+  .ai-tile{background:linear-gradient(160deg,#13243d,#0a1220)}
+  .mon-tile{background:linear-gradient(160deg,#102b22,#0a1612)}
 
   .why{position:relative;background:#04060c}
   .why-stage{position:relative;height:600vh}
@@ -477,8 +478,7 @@
     nav.links.open{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);padding:1.4rem 5vw}
     nav.links .nav-contact{display:block;color:#fff;font-weight:600}
     .strip-in,.psteps,.mosaic,.pgrid,.testi .tgrid,.faq-grid,.about-grid,.contact-grid,.bfgrid{grid-template-columns:1fr}
-    .mosaic{grid-auto-rows:190px}
-    .demo-tile{grid-row:span 1}
+    .tile.span2{grid-column:auto}
     .why-grid.show{grid-template-columns:1fr}
     .why-mui{display:flex}
     .srow{grid-template-columns:54px 1fr 44px;gap:1rem}
@@ -611,28 +611,42 @@
         <p>Proof, not promises. Real systems, generalized numbers. <a class="link-arrow" href="/work/" style="white-space:nowrap">All work &#8594;</a></p>
       </div>
       <div class="mosaic">
-        <a class="tile demo-tile" href="/demo/">
-          <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1778869290979-6f09567a0eee?auto=format&fit=crop&w=1200&q=72')"></div>
+        <a class="tile web-tile" href="/demo/" aria-label="Open the landscaping demo build">
+          <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1778869290979-6f09567a0eee?auto=format&fit=crop&w=900&q=72')"></div>
           <div class="ov"></div>
           <span class="k" style="color:#c4b5fd">Web &middot; live build</span>
-          <span class="big">A full site, designed &amp; shipped end to end</span>
-          <span class="s">Click through a complete, responsive build.</span>
-          <span class="cta">Explore the live build &#8594;</span>
+          <span class="big">Birchwood Outdoor Co.</span>
+          <span class="s">A landscaping site, built end to end.</span>
+          <span class="cta">Explore the build &#8594;</span>
         </a>
-        <a class="tile ai-tile" href="/work/">
-          <svg class="spark" viewBox="0 0 200 70" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,11 38,14 66,16 86,52 130,60 200,62" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        <a class="tile web-tile" href="/demo/law-firm/" aria-label="Open the law-firm demo build">
+          <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1505547828843-176834e42154?auto=format&fit=crop&w=900&q=72')"></div>
           <div class="ov"></div>
-          <span class="k" style="color:var(--cy)">AI case</span>
+          <span class="k" style="color:#c4b5fd">Web &middot; live build</span>
+          <span class="big">Whitman &amp; Hale</span>
+          <span class="s">An elegant law-firm site.</span>
+          <span class="cta">Explore the build &#8594;</span>
+        </a>
+        <a class="tile web-tile" href="/demo/coffee-shop/" aria-label="Open the coffee-shop demo build">
+          <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1551887196-72e32bfc7bf3?auto=format&fit=crop&w=900&q=72')"></div>
+          <div class="ov"></div>
+          <span class="k" style="color:#c4b5fd">Web &middot; live build</span>
+          <span class="big">Mill &amp; Oak Coffee</span>
+          <span class="s">A warm coffee-roaster site.</span>
+          <span class="cta">Explore the build &#8594;</span>
+        </a>
+        <a class="tile ai-tile stat span2" href="/work/">
+          <div class="ov"></div>
+          <span class="k" style="color:var(--cy)">AI &amp; Automation case</span>
           <span class="big">$320K<span class="ar">&#8594;</span><span class="hl">$285</span></span>
-          <span class="s">99.9% lower cost on a document pipeline.</span>
+          <span class="s">A document pipeline rebuilt for 99.9% lower cost, at 98% accuracy.</span>
           <span class="cta">Read the case &#8594;</span>
         </a>
-        <a class="tile mon-tile" href="/work/">
-          <svg class="spark" viewBox="0 0 200 70" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,40 28,40 44,16 60,62 76,40 110,40 126,20 142,58 158,40 200,40" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        <a class="tile mon-tile stat" href="/work/">
           <div class="ov"></div>
-          <span class="k" style="color:var(--gr)">Monitoring</span>
-          <span class="big">Live through launch</span>
-          <span class="s">Backstopped a multi-million-dollar go-live.</span>
+          <span class="k" style="color:var(--gr)">Monitoring case</span>
+          <span class="big">800+ devices</span>
+          <span class="s">Modernized monitoring, live through a major launch.</span>
           <span class="cta">Read the case &#8594;</span>
         </a>
       </div>
@@ -781,10 +795,10 @@
         <p>Plain-English guides on websites, AI, and monitoring for small businesses. <a class="link-arrow" href="/blog/" style="white-space:nowrap">All articles &#8594;</a></p>
       </div>
       <div class="bfgrid">
-        <a class="bfcard" href="/blog/small-business-website-cost-south-jersey/">
+        <a class="bfcard" href="/blog/how-fast-should-your-website-load/">
           <span class="bf-k" style="color:#c4b5fd">Web Design</span>
-          <h3>How Much Does a Small Business Website Cost in South Jersey? (2026)</h3>
-          <p>Real price ranges, what actually drives the cost, and the ongoing fees nobody mentions.</p>
+          <h3>How Fast Should Your Website Load? And What Slow Is Costing You</h3>
+          <p>The load-time target that actually matters, what a slow site quietly costs you, and the fixes that work.</p>
           <span class="bf-go">Read the guide &#8594;</span>
         </a>
         <a class="bfcard" href="/blog/what-to-automate/">
