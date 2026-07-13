@@ -88,6 +88,7 @@ export default defineConfig({
         blogPageSpeed: resolve(__dirname, 'blog/how-fast-should-your-website-load/index.html'),
         blogSpeedToLead: resolve(__dirname, 'blog/speed-to-lead/index.html'),
         blogSiteDown: resolve(__dirname, 'blog/what-to-do-when-your-website-goes-down/index.html'),
+        blogCustomVsTemplate: resolve(__dirname, 'blog/custom-website-vs-template/index.html'),
       },
     },
   },
