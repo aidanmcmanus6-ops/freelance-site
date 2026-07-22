@@ -91,6 +91,7 @@ export default defineConfig({
         blogCustomVsTemplate: resolve(__dirname, 'blog/custom-website-vs-template/index.html'),
         blogAppointmentReminders: resolve(__dirname, 'blog/automate-appointment-reminders/index.html'),
         blogUptimePercentages: resolve(__dirname, 'blog/what-uptime-percentages-mean/index.html'),
+        blogWebsiteOnPhone: resolve(__dirname, 'blog/your-website-on-a-phone/index.html'),
       },
     },
   },
