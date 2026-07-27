@@ -67,6 +67,7 @@ export default defineConfig({
         privacy: resolve(__dirname, 'privacy/index.html'),
         // Blog.
         blog: resolve(__dirname, 'blog/index.html'),
+        blogReviewRequests: resolve(__dirname, 'blog/automate-google-review-requests/index.html'),
         blogWebsiteCost: resolve(__dirname, 'blog/small-business-website-cost-south-jersey/index.html'),
         blogAiAgents: resolve(__dirname, 'blog/what-is-an-ai-agent/index.html'),
         blogMonitoring: resolve(__dirname, 'blog/what-monitoring-does/index.html'),
