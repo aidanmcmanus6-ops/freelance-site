@@ -93,6 +93,7 @@ export default defineConfig({
         blogAppointmentReminders: resolve(__dirname, 'blog/automate-appointment-reminders/index.html'),
         blogUptimePercentages: resolve(__dirname, 'blog/what-uptime-percentages-mean/index.html'),
         blogWebsiteOnPhone: resolve(__dirname, 'blog/your-website-on-a-phone/index.html'),
+        blogCheckFrequency: resolve(__dirname, 'blog/monitoring-check-frequency/index.html'),
       },
     },
   },
