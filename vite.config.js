@@ -94,6 +94,7 @@ export default defineConfig({
         blogUptimePercentages: resolve(__dirname, 'blog/what-uptime-percentages-mean/index.html'),
         blogWebsiteOnPhone: resolve(__dirname, 'blog/your-website-on-a-phone/index.html'),
         blogCheckFrequency: resolve(__dirname, 'blog/monitoring-check-frequency/index.html'),
+        blogInvoiceReminders: resolve(__dirname, 'blog/automate-invoice-reminders/index.html'),
       },
     },
   },
